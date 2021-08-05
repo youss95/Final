@@ -1,29 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-	
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
-		<property name="username" value="kh" />
-		<property name="password" value="kh" />
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="username" value="admin" />
+		<property name="password" value="finalproject" />
 		<property name="url"
-			value="jdbc:oracle:thin:@localhost:1521:xe" />
+			value="jdbc:oracle:thin:@final.chszh9axhysm.ap-northeast-2.rds.amazonaws.com:1521:final" />
 		<property name="driverClassName"
 			value="oracle.jdbc.OracleDriver" />
 		<property name="initialSize" value="30" /> <!-- 초기개수 -->
 	</bean>
-	
-	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-		<property name="dataSource" ref="dataSource"/>
+
+	<bean id="jdbcTemplate"
+		class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
 	</bean>
-	
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-      <property name="dataSource" ref="dataSource"></property>
-      <property name="mapperLocations" value="classpath:/mappers/*-mapper.xml"/>
-   </bean>
-   
-   <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-      <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
-   </bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="mapperLocations"
+			value="classpath:/mappers/*-mapper.xml" />
+	</bean>
+
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory"
+			ref="sqlSessionFactory" />
+	</bean>
+
+	<context:component-scan
+		base-package="dream.tk.dao" />
+	<context:component-scan
+		base-package="dream.tk.service" />
+
 </beans>
