@@ -11,12 +11,12 @@
 
 	<insert id="insert">
 		insert into admin_member values(admin_member_seq.nextval,
-		#{emp_id}, #{pw}, #{email}, #{name}, sysdate)
+		#{emp_id}, #{pw}, #{name}, #{phone}, #{email}, sysdate)
 	</insert>
 
 	<update id="update">
 		update admin_member set pw=#{pw},
-		email=#{email}, name=#{name}, reg_date=sysdate 
+		name=#{name}, phone=#{phone}, email=#{email}, reg_date=sysdate 
 		where emp_id=${emp_id}
 	</update>
 

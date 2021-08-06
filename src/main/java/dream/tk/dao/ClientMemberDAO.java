@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
 import dream.tk.dto.ClientMemberDTO;
 
 @Repository
@@ -17,7 +18,6 @@ public class ClientMemberDAO {
 	public int idCheck(String id) {
 		return mybatis.selectOne("cMember.idCheck", id);
 	}
-
 	public int insert(ClientMemberDTO dto) {
 		return mybatis.insert("cMember.insert", dto);
 	}

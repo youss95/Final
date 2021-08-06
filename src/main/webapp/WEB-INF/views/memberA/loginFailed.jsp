@@ -5,17 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Admin Log-in Failed</title>
 </head>
 <body>
 	<script>
-	if(${result=="true"}){
-		alert("Login Success!");
-		location.href="/"
-	}else{
-		alert("Fail to Login. Try again.");
-		location.href = "${pageContext.request.contextPath}cMember/loginForm";
-	}	
+
+		alert("로그인에 실패하셨습니다. ID와 비밀번호를 확인해주세요.");
+		location.href = "${pageContext.request.contextPath}aMember/loginForm";
+
 	</script>
 </body>
 </html>
