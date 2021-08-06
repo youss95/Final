@@ -30,9 +30,20 @@ public class ReservationDAO {
 		return result;
 	}
 	
-	public String passRefund(String memberId) {
-		String muid = mybatis.selectOne("ResMapper.refundPay",memberId);
+	public String passRefund(int pay_no) {
+		
+		String muid = mybatis.selectOne("ResMapper.refundPay",pay_no);
 		System.out.println("muid"+muid);
 		return muid;
+	}
+	
+	public int refundOrderNum(String memberId) {
+	
+		return mybatis.selectOne("ResMapper.refundOrder",memberId);
+	}
+	
+	public int refundCheck(int pay_no) {
+		
+		return mybatis.update("ResMapper.refundCheck",pay_no);
 	}
 }

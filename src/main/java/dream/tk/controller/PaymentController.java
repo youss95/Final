@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import dream.tk.dao.ReservationDAO;
 import dream.tk.dto.PaymentDTO;
+import dream.tk.service.ReservationService;
 import dream.tk.util.PaymentUtil;
 
 @Controller
@@ -21,7 +22,7 @@ public class PaymentController {
 
 	
 	@Autowired
-	private ReservationDAO resDao;
+	private ReservationService resService;
 	
 	@GetMapping("/res_payment")
 	public String paymentPage() {
@@ -35,7 +36,7 @@ public class PaymentController {
 	public ResponseEntity<String> payCom(@RequestBody PaymentDTO dto) {
 		System.out.println("되나염?");
 		System.out.println(dto.toString());
-		int result = resDao.resPay(dto);
+		int result = resService.resPay(dto);
 		if(result == 1) {
 			return new ResponseEntity<String>("성공",HttpStatus.OK);
 		}
@@ -50,7 +51,7 @@ public class PaymentController {
 		System.out.println(memberId);
 		
 		PaymentUtil obj = new PaymentUtil();
-		String mui = resDao.passRefund(memberId);
+		String mui = resService.passRefund(memberId);
 		System.out.println(mui);
 		//m_uid를 디비에 저장해서 가져오자
 		//merchant_ui를 받아오면 그것을 식별하고 환불이 진행
@@ -59,6 +60,7 @@ public class PaymentController {
 		 
 		System.out.println(res);
 		  if(res == 1) { 
+			  resService.refundCheck(memberId); //환불이 되었다는 체크
 			  return "success"; 
 			  }
 		 

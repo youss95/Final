@@ -10,8 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import dream.tk.dto.BusinessDTO;
 import dream.tk.service.ReservationService;
 
 @Controller
@@ -35,6 +37,19 @@ public class ReservationController {
 	@GetMapping("/bizSetting")
 	public String bizSetting() {
 		return "/reservation/res_bizSetting";
+	}
+	
+	@PostMapping("/setTime")
+	public String setTime(BusinessDTO dto) {
+		String result = "";
+		
+		for(String time : dto.getOnday()) {
+			result = result + time + "," ;
+		}
+		System.out.println(result);
+		
+		System.out.println(dto.toString());
+		return "/home";
 	}
 	
 	@DeleteMapping("/{resId}")
