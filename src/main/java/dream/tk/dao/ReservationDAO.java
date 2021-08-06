@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import dream.tk.dto.PaymentDTO;
+
 @Repository
 public class ReservationDAO {
 
@@ -23,4 +25,14 @@ public class ReservationDAO {
 		return result;
 	}
 	
+	public int resPay(PaymentDTO dto) {
+		int result = mybatis.insert("ResMapper.resPay",dto);
+		return result;
+	}
+	
+	public String passRefund(String memberId) {
+		String muid = mybatis.selectOne("ResMapper.refundPay",memberId);
+		System.out.println("muid"+muid);
+		return muid;
+	}
 }
