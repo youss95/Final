@@ -8,18 +8,24 @@
 		select count(*) from business_member where id=#{value}
 	</select>
 
-
-	<insert id="signup">
-		insert into business_member(seq, id,pw,name,email,phone,type,regNum,businessName,businessNameEng, businessContact, address1, address2, postcode,address1kor,reg_date,premium) 
-		values(business_member_seq.nextval, #{id}, #{pw}, 
-		#{name},#{email},#{phone},#{type},#{regNum},#{businessName},#{businessNameEng},#{businessContact},
-		#{address1},#{address2},#{postcode},#{address1Kor},sysdate,'N')
+    <insert id="signup">
+		insert into business_member values(business_member_seq.nextval, #{id}, #{pw}, 
+		#{name},#{email},#{phone},'N',default)
 	</insert>
+<!-- 	<insert id="signup"> -->
+<!-- 		insert into business_member(seq, id,pw,name,email,phone,type,regNum,businessName,businessNameEng, businessContact, address1, address2, postcode,address1kor,reg_date,premium)  -->
+<!-- 		values(business_member_seq.nextval, #{id}, #{pw},  -->
+<!-- 		#{name},#{email},#{phone},#{type},#{regNum},#{businessName},#{businessNameEng},#{businessContact}, -->
+<!-- 		#{address1},#{address2},#{postcode},#{address1Kor},sysdate,'N') -->
+<!-- 	</insert> -->
 	
 	
 	<select id="loginProc" resultType="int">
 		select count(*) from business_member where id=#{id} and pw=#{pw}
 	</select>
 	
+	<delete id="signOut">
+		delete from business_member where id=#{value}
+	</delete>
 	
 </mapper>

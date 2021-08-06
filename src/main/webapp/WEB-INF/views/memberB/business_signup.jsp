@@ -111,7 +111,7 @@ $(function(){
 			return false;
 		}
 
-		let emailReg = /^[0-9a-zA-Z_-]*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
+		let emailReg = /^[0-9a-zA-Z_-]*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 		let email = $("#email").val();
 
 		if (!emailReg.test(email)) {
@@ -224,85 +224,85 @@ $(function(){
 
 
 <!-- 사업자 정보 입력 칸 -->
-<div class="card bg-light">
-<article class="card-body mx-auto" style="max-width: 400px;">
-	<h4 class="card-title mt-3 text-center">Business Info</h4>
-	<p>
-	</p>
-	<p class="divider-text">
-    </p>
+<!-- <div class="card bg-light"> -->
+<!-- <article class="card-body mx-auto" style="max-width: 400px;"> -->
+<!-- 	<h4 class="card-title mt-3 text-center">Business Info</h4> -->
+<!-- 	<p> -->
+<!-- 	</p> -->
+<!-- 	<p class="divider-text"> -->
+<!--     </p> -->
 
-    <div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
-		</div>
-		<select class="form-control" name="type">
-			<option selected="selected">Select Business type</option>
-			<option value="KoreanFood" >KoreanFood</option>
-			<option value="ChineseFood">ChineseFood</option>
-			<option value="JapaneseFood">JapaneseFood</option>
-			<option value="WesternFood">WesternFood</option>
-			<option value="WorldFood">WorldFood</option>
-			<option value="Buffet">Buffet</option>
-			<option value="Cafe">Cafe</option>
-			<option value="Bar">Bar</option>
-		</select>
-	</div> <!-- form-group end.// -->
+<!--     <div class="form-group input-group"> -->
+<!--     	<div class="input-group-prepend"> -->
+<!-- 		    <span class="input-group-text"> <i class="fa fa-building"></i> </span> -->
+<!-- 		</div> -->
+<!-- 		<select class="form-control" name="type"> -->
+<!-- 			<option selected="selected">Select Business type</option> -->
+<!-- 			<option value="KoreanFood" >KoreanFood</option> -->
+<!-- 			<option value="ChineseFood">ChineseFood</option> -->
+<!-- 			<option value="JapaneseFood">JapaneseFood</option> -->
+<!-- 			<option value="WesternFood">WesternFood</option> -->
+<!-- 			<option value="WorldFood">WorldFood</option> -->
+<!-- 			<option value="Buffet">Buffet</option> -->
+<!-- 			<option value="Cafe">Cafe</option> -->
+<!-- 			<option value="Bar">Bar</option> -->
+<!-- 		</select> -->
+<!-- 	</div> form-group end.// -->
 	
 
-    <div class="form-group input-group">
-		<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
-		 </div>
-        <input name="regNum" id="regNum" class="form-control" placeholder="사업자등록번호" type="text">
-    </div> <!-- form-group// -->
+<!--     <div class="form-group input-group"> -->
+<!-- 		<div class="input-group-prepend"> -->
+<!-- 		    <span class="input-group-text"> <i class="fa fa-building"></i> </span> -->
+<!-- 		 </div> -->
+<!--         <input name="regNum" id="regNum" class="form-control" placeholder="사업자등록번호" type="text"> -->
+<!--     </div> form-group// -->
 
 
-	<div class="form-group input-group">
-		<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
-		 </div>
-        <input name="businessName" class="form-control" placeholder="업체명" type="text">
-    </div> <!-- form-group// -->
-    <div class="form-group input-group">
-		<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
-		 </div>
-        <input name="businessNameEng" class="form-control" placeholder="영문 업체명" type="text">
-    </div> <!-- form-group// -->
+<!-- 	<div class="form-group input-group"> -->
+<!-- 		<div class="input-group-prepend"> -->
+<!-- 		    <span class="input-group-text"> <i class="fa fa-building"></i> </span> -->
+<!-- 		 </div> -->
+<!--         <input name="businessName" class="form-control" placeholder="업체명" type="text"> -->
+<!--     </div> form-group// -->
+<!--     <div class="form-group input-group"> -->
+<!-- 		<div class="input-group-prepend"> -->
+<!-- 		    <span class="input-group-text"> <i class="fa fa-building"></i> </span> -->
+<!-- 		 </div> -->
+<!--         <input name="businessNameEng" class="form-control" placeholder="영문 업체명" type="text"> -->
+<!--     </div> form-group// -->
 
-    <div class="form-group input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
-                </div>
-                <select class="custom-select" style="max-width: 70px;" name="bContact1">
-                    <option value="02" selected="selected" >02</option>
-                    <option value="032" >032</option>
-                    <option value="010" >010</option>
-                    <option value="011">011</option>
-                    <option value="019">019</option>
-                </select>
-                <input name="bContact2" class="form-control" placeholder="number" type="text">
-                <input name="bContact3" class="form-control" placeholder="number" type="text">
-            </div> <!-- form-group// --> 
+<!--     <div class="form-group input-group"> -->
+<!--                 <div class="input-group-prepend"> -->
+<!--                     <span class="input-group-text"> <i class="fa fa-phone"></i> </span> -->
+<!--                 </div> -->
+<!--                 <select class="custom-select" style="max-width: 70px;" name="bContact1"> -->
+<!--                     <option value="02" selected="selected" >02</option> -->
+<!--                     <option value="032" >032</option> -->
+<!--                     <option value="010" >010</option> -->
+<!--                     <option value="011">011</option> -->
+<!--                     <option value="019">019</option> -->
+<!--                 </select> -->
+<!--                 <input name="bContact2" class="form-control" placeholder="number" type="text"> -->
+<!--                 <input name="bContact3" class="form-control" placeholder="number" type="text"> -->
+<!--             </div> form-group//  -->
 
-    <div class="form-group input-group">
-		<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
-		 </div>
-        <input name="address1" id="address1" class="form-control" placeholder="업체 주소" type="text">
-        <button id="search" type="button" class="btn btn-primary">찾기</button>
-    </div> <!-- form-group// -->
-    <div class="form-group input-group">
-		<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
-		 </div>
-        <input name="address2" class="form-control" placeholder="세부 주소" type="text" style="width:50%">
-        <input name="postcode" id="postcode" class="form-control" placeholder="우편번호" type="text" style="width:25%">
-    </div> <!-- form-group// -->
-     <input name="address1Kor" id="address1Kor" class="form-control" placeholder="한글주소" type="hidden" >
-</article>
-</div>
+<!--     <div class="form-group input-group"> -->
+<!-- 		<div class="input-group-prepend"> -->
+<!-- 		    <span class="input-group-text"> <i class="fa fa-building"></i> </span> -->
+<!-- 		 </div> -->
+<!--         <input name="address1" id="address1" class="form-control" placeholder="업체 주소" type="text"> -->
+<!--         <button id="search" type="button" class="btn btn-primary">찾기</button> -->
+<!--     </div> form-group// -->
+<!--     <div class="form-group input-group"> -->
+<!-- 		<div class="input-group-prepend"> -->
+<!-- 		    <span class="input-group-text"> <i class="fa fa-building"></i> </span> -->
+<!-- 		 </div> -->
+<!--         <input name="address2" class="form-control" placeholder="세부 주소" type="text" style="width:50%"> -->
+<!--         <input name="postcode" id="postcode" class="form-control" placeholder="우편번호" type="text" style="width:25%"> -->
+<!--     </div> form-group// -->
+<!--      <input name="address1Kor" id="address1Kor" class="form-control" placeholder="한글주소" type="hidden" > -->
+<!-- </article> -->
+<!-- </div> -->
 
 
 
