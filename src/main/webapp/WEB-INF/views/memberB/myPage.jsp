@@ -22,11 +22,38 @@
   <link href="${pageContext.request.contextPath}/resources/css/demo.css" rel="stylesheet" />
   <!--   jquery 관련 -->
  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
  <style>
       p{display:inline-block;}
     .card-body div{ display:inline-block;}
   </style>
+
+<script>
+	$(function(){
+		$("#signOut").on("click",function(){
+			Swal.fire({
+				  icon: "question",
+				  title: "정말 탈퇴하시겠습니까?",
+				  text: "확인 버튼을 클릭 시, 탈퇴가 진행됩니다.",
+				  showConfirmButton:true,
+				  showCancelButton:true,
+				  confirmButtonText:"확인",
+				  cancelButtonText:"취소",
+				}).then((result) =>{
+					if(result.isConfirmed){
+						location.href="${pageContext.request.contextPath}/bMember/signOut?id=${loginID}";
+					}else{
+						return false;
+					}
+					
+				})
+		})
+		
+	})
+	
+</script>
 
 </head>
 
@@ -190,8 +217,8 @@
                       </div>
 
                        <div style="text-align: right; padding:10px">
-                        <button class="btn" type="button" style="background-color:tomato">탈퇴하기</button>
-                        <button class="btn" type="button">Edit</button>
+                        <button id="signOut" class="btn" type="button" style="background-color:tomato">탈퇴하기</button>
+                        <button id="edit" class="btn" type="button">Edit</button>
                        </div>
 
                     </div>

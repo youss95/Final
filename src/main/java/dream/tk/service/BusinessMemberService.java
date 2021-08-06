@@ -40,4 +40,8 @@ public class BusinessMemberService {
 		return dao.loginProc(param);
 	}
 	
+	public int signOut(String id) {
+		return dao.signOut(id);
+	}
+	
 }
