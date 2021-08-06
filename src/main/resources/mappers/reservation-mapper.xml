@@ -19,9 +19,23 @@
   <insert id="resPay">
  insert into res_payment values (pay_seq.nextval,#{memberId},#{imp_uid},#{merchant_uid},#{biz_email},sysdate,#{card_no},#{price},0)
   </insert>
-  <!-- 정액권 할인 muid 가져오기 -->
+  <!-- 정액권 환불 muid 가져오기 -->
   <select id="refundPay" resultType="java.lang.String">
-	select merchant_uid from res_payment where memberId= #{memberId}
+	select merchant_uid from res_payment where pay_no= #{pay_no} and refund = 0
   </select>
+  
+  <!-- 사용자가 구매한 순서대로 환불 진행하기  -->
+  <select id="refundOrder" resultType="int">
+  select pay_no from res_payment where memberId=#{memberId} and refund = 0 and rownum = 1 order by pay_no desc
+  </select>
+  
+  <!--환불 할 때 refund 컬럼 1로 바꿔서 환불된 건지 아닌지 확인  -->
+  <update id="refundCheck">
+  update res_payment set refund =1 where pay_no = #{pay_no} 
+  </update>
+  
+  <!-- 할인권 구매 하였을때 비즈니스 멤버 기간 , 등급 업데이트 -->
+  
+  
   
   </mapper>
