@@ -25,5 +25,8 @@ public class BusinessMemberDAO {
 		return mybatis.selectOne("bMem.loginProc", param);
 	}
 	
+	public int signOut(String id) {
+		return mybatis.delete("bMem.signOut", id);
+	}
 	
 }

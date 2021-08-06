@@ -62,23 +62,8 @@ public class BusinessMemberController {
 		String phone3 = request.getParameter("phone3");
 		String phone = phone1 + phone2+ phone3;
 		
-		String type = request.getParameter("type");
-		String regNum = request.getParameter("regNum");
-		String businessName = request.getParameter("businessName");
-		String businessNameEng = request.getParameter("businessNameEng");
-		
-		String bcontact1 = request.getParameter("bContact1");
-		String bcontact2 = request.getParameter("bContact2");
-		String bcontact3 = request.getParameter("bContact3");
-		String businessContact = bcontact1 + bcontact2+ bcontact3;
-		
-		String address1 = request.getParameter("address1");
-		String address2 = request.getParameter("address2");
-		String postcode = request.getParameter("postcode");
-		
-		String address1Kor = request.getParameter("address1Kor");
-		
-		BusinessMemberDTO dto = new BusinessMemberDTO(id,pw,name,email,phone,type,regNum,businessName, businessNameEng, businessContact, address1, address2, postcode, address1Kor);
+	
+		BusinessMemberDTO dto = new BusinessMemberDTO(id,pw,name,email,phone,null,null);
 		
 		int result = ser.signup(dto);
 		m.addAttribute("result", result);
@@ -91,4 +76,10 @@ public class BusinessMemberController {
 		return "/memberB/myPage";
 	}
 	
+	@RequestMapping("signOut")
+	public String signOut(String id) {
+		System.out.println(id);
+		//ser.signOut(id);
+		return "/memberB/login";
+	}
 }
