@@ -1,5 +1,7 @@
 package dream.tk.dao;
 
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,6 +21,9 @@ public class BusinessMemberDAO {
 		return mybatis.insert("bMem.signup", dto);
 	}
 	
+	public int loginProc(Map<String,String> param) {
+		return mybatis.selectOne("bMem.loginProc", param);
+	}
 	
 	
 }
