@@ -14,8 +14,11 @@ public class AdminMemberDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	public int preExist(Map<String, String> param) {
-		return mybatis.selectOne("aMember.preExist", param);
+	public int idExist(String emp_id) {
+		return mybatis.selectOne("aMember.idExist", emp_id);
+	}
+	public int nameExist(String name) {
+		return mybatis.selectOne("aMember.nameExist", name);
 	}
 
 	public int insert(AdminMemberDTO dto) {
