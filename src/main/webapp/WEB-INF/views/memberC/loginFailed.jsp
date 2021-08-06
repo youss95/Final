@@ -11,7 +11,7 @@
 	<script>
 
 		alert("Fail to Login. Try again.");
-		location.href = "${pageContext.request.contextPath}cMember/loginForm";
+		location.href="${pageContext.request.contextPath}/cMember/loginForm";
 	
 	</script>
 </body>
