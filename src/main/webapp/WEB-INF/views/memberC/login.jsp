@@ -50,7 +50,7 @@ button {
 </head>
 <body>
     <div class="container p-5 shadow bg-white rounded">
-        <form action="" id="loginForm" method="POST">
+        <form action="${pageContext.request.contextPath}/cMember/loginProc" id="loginForm" method="POST">
             <div class="wrapper">
                 <div class="row header">
                     <div class="col-12 logo">LOGO</div>                    
@@ -61,8 +61,8 @@ button {
                     <div class="col-12"><input id="ipw" name="pw" type="password" placeholder="Enter your PASSWORD"></div></div>
                 <div class="row">
                     <div class="col-12">
-                        <button id="login">Log-in</button>
-                        <button id="signup">Sign-up</button>
+                        <button type="button" id="login">Log-in</button>
+                        <button type="button" id="signup">Sign-up</button>
                     </div>
                 </div>
                 <div class="row">
@@ -88,7 +88,7 @@ button {
             }
         })
         $("#signup").on("click", function(){
-            location.href="cMember/signupForm";
+            location.href="${pageContext.request.contextPath}/cMember/signupForm";
         })
     </script>
 	

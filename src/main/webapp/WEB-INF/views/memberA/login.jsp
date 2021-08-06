@@ -61,8 +61,8 @@ button {
                     <div class="col-12"><input id="ipw" name="pw" type="password" placeholder="비밀번호를 입력하세요."></div></div>
                 <div class="row">
                     <div class="col-12">
-                        <button id="login">Log-in</button>
-                        <button id="signup">Sign-up</button>
+                        <button type="button" id="login">Log-in</button>
+                        <button type="button" id="signup">Sign-up</button>
                     </div>
                 </div>
                 <div class="row">
@@ -88,7 +88,7 @@ button {
             }
         })
         $("#signup").on("click", function(){
-            location.href="aMember/signupForm";
+            location.href="${pageContext.request.contextPath}/aMember/signupForm";
         })
     </script>
 	
