@@ -10,11 +10,11 @@
 <body>
 	<script>
 	if(${result>0}){
-		alert("Sign-up Success!");
-		location.href="/"
+		alert("회원가입에 성공했습니다!");
+		location.href="${pageContext.request.contextPath}/aMember/loginForm";
 	}else{
-		alert("Fail to sign up. Try again.");
-		location.href = "${pageContext.request.contextPath}cMember/signupForm";
+		alert("회원가입에 실패했습니다. 다시 가입해주세요.");
+		location.href = "${pageContext.request.contextPath}/aMember/signupForm";
 	}	
 	</script>
 </body>

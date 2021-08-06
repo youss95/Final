@@ -18,7 +18,11 @@ public class AdminMemberService {
 	private AdminMemberDAO dao;
 	
 	public int preExist(String emp_id, String name) {
+
 		Map<String, String> param = new HashMap<>();
+		param.put("emp_id", emp_id);
+		param.put("name", name);
+
 		return dao.preExist(param);
 	}
 	

@@ -27,8 +27,8 @@ public class ClientMemberController {
 		return "memberC/signup";
 	}
 
-	@RequestMapping(value="idCheck")
 	@ResponseBody
+	@RequestMapping(value="idCheck")
 	public int idCheck(String id) {
 		return service.idCheck(id);
 	}

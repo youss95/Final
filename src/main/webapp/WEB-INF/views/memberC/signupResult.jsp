@@ -11,10 +11,10 @@
 	<script>
 	if(${result>0}){
 		alert("Sign-up Success!");
-		location.href="/"
+		location.href="${pageContext.request.contextPath}/cMember/loginForm";
 	}else{
 		alert("Fail to sign up. Try again.");
-		location.href = "${pageContext.request.contextPath}cMember/signupForm";
+		location.href = "${pageContext.request.contextPath}/cMember/signupForm";
 	}	
 	</script>
 </body>
