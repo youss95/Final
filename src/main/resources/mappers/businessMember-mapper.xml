@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bMem">
+
+	<select id="dupleCheck" resultType="int">
+		select count(*) from business_member where id=#{value}
+	</select>
+
+
+	<insert id="signup">
+		insert into business_member(seq, id,pw,name,email,phone,type,regNum,businessName,businessNameEng, businessContact, address1, address2, postcode,address1kor,reg_date,premium) 
+		values(business_member_seq.nextval, #{id}, #{pw}, 
+		#{name},#{email},#{phone},#{type},#{regNum},#{businessName},#{businessNameEng},#{businessContact},
+		#{address1},#{address2},#{postcode},#{address1Kor},sysdate,'N')
+	</insert>
+	
+	
+</mapper>
