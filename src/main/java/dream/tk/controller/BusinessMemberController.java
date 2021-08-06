@@ -17,9 +17,14 @@ public class BusinessMemberController {
 	@Autowired
 	private BusinessMemberService ser;
 	
-	@RequestMapping("/")
+	@RequestMapping("signupForm")
 	public String test() {
 		return "/memberB/business_signup";
+	}
+	
+	@RequestMapping("loginForm")
+	public String loginForm() {
+		return "/memberB/login";
 	}
 	
 	@ResponseBody
