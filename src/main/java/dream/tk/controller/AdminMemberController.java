@@ -22,21 +22,19 @@ public class AdminMemberController {
 
 	@Autowired
 	private AdminMemberService service;
-	
-	@RequestMapping(value="whichMember")
-	public String whichMember() {
-		return "memberA/whichMember";
-	}
+
+
 
 	@RequestMapping(value="signupForm")
 	public String signupForm() {
 		return "memberA/signup";
 	}
 
-	@RequestMapping(value="preExist")
 	@ResponseBody
-	public String preExist(String emp_id, String name) {
-		return String.valueOf(service.preExist(emp_id, name));
+	@RequestMapping(value="preExist")
+	public int preExist(String emp_id, String name) {
+
+		return service.preExist(emp_id, name);
 	}
 
 	@RequestMapping(value="signupProc")
@@ -46,7 +44,7 @@ public class AdminMemberController {
 		int result = service.insert(dto);
 
 		m.addAttribute("result", result);
-		return "memberA/loginResult";
+		return "memberA/signupResult";
 	}
 
 	@RequestMapping(value="loginForm")
@@ -64,9 +62,9 @@ public class AdminMemberController {
 		}else {
 			return "memberA/loginFailed";
 		}
-		
-		
-		
+
+
+
 	}
 
 }

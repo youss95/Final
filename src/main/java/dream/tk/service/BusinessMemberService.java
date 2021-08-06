@@ -1,5 +1,8 @@
 package dream.tk.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +31,13 @@ public class BusinessMemberService {
 	
 	public int signup(BusinessMemberDTO dto) {
 		return dao.signup(dto);
+	}
+	
+	public int loginProc(String id, String pw) {
+		Map<String,String> param =new HashMap<>();
+		param.put("id", id);
+		param.put("pw", pw);
+		return dao.loginProc(param);
 	}
 	
 }

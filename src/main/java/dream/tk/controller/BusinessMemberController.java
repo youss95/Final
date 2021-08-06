@@ -1,12 +1,15 @@
 package dream.tk.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import dream.tk.config.SHA256;
 import dream.tk.dto.BusinessMemberDTO;
 import dream.tk.service.BusinessMemberService;
 
@@ -16,6 +19,8 @@ public class BusinessMemberController {
 	
 	@Autowired
 	private BusinessMemberService ser;
+	@Autowired
+	private HttpSession session;
 	
 	@RequestMapping("signupForm")
 	public String test() {
@@ -27,6 +32,17 @@ public class BusinessMemberController {
 		return "/memberB/login";
 	}
 	
+	@RequestMapping(value="loginProc")
+	public String loginProc(String id, String pw) {
+		int result =ser.loginProc(id, SHA256.getSHA512(pw));
+		if(result>0) {
+			session.setAttribute("loginID", id);
+			return "/memberB/loginView";
+		}else {
+			return "error";
+		}
+	}
+	
 	@ResponseBody
 	@RequestMapping("dupleCheck")
 	public String dupleCheck(String id) {
@@ -35,9 +51,9 @@ public class BusinessMemberController {
 	}
 	
 	@RequestMapping("signup")
-	public String signup(HttpServletRequest request) {
+	public String signup(HttpServletRequest request, Model m) {
 		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
+		String pw = SHA256.getSHA512(request.getParameter("pw"));
 		String name = request.getParameter("name");
 		String email= request.getParameter("email");
 		
@@ -65,9 +81,14 @@ public class BusinessMemberController {
 		BusinessMemberDTO dto = new BusinessMemberDTO(id,pw,name,email,phone,type,regNum,businessName, businessNameEng, businessContact, address1, address2, postcode, address1Kor);
 		
 		int result = ser.signup(dto);
+		m.addAttribute("result", result);
 		
-		return "redirect:/cMember/loginForm";
+		return "/memberB/signupView";
 	}
 	
+	@RequestMapping("myPage")
+	public String myPage() {
+		return "/memberB/myPage";
+	}
 	
 }
