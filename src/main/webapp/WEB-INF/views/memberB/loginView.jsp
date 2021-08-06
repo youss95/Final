@@ -17,9 +17,11 @@
 			Swal.fire({
 				  icon: "success",
 				  title: "로그인 성공",
-				  text: "${loginID}님 환영합니다!",			 	 
+				  text: "${loginID}님 환영합니다!", 
+				  showConfirmButton: false,
+				  timer: 1300			 	 
 				}).then(function() {
-					location.href="${pageContext.request.contextPath}/";
+					location.href="${pageContext.request.contextPath}/bMember/myPage";
 				});
 
 			</script>

@@ -14,7 +14,7 @@
 	<c:choose>
 		<c:when test="${result>0}">
 			<script>
-			swal.fire({
+			Swal.fire({
 				icon: 'success',
 			    title: "회원가입 완료",
 			    type: "success"

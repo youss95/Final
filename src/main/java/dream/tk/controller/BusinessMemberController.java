@@ -86,5 +86,9 @@ public class BusinessMemberController {
 		return "/memberB/signupView";
 	}
 	
+	@RequestMapping("myPage")
+	public String myPage() {
+		return "/memberB/myPage";
+	}
 	
 }
