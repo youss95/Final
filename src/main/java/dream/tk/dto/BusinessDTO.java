@@ -1,5 +1,5 @@
 package dream.tk.dto;
-select * from business_member;
+
 
 
 import java.util.Arrays;
@@ -19,6 +19,8 @@ public class BusinessDTO {
 	private String address1Kor;
 	private String[] offday;
 	private String[] onday;
+	private String timeAvailable;
+	private String offdays;
 	private Date createDate;
 	private int seq;
 	public int getBiz_seq() {
@@ -93,6 +95,18 @@ public class BusinessDTO {
 	public void setOnday(String[] onday) {
 		this.onday = onday;
 	}
+	public String getTimeAvailable() {
+		return timeAvailable;
+	}
+	public void setTimeAvailable(String timeAvailable) {
+		this.timeAvailable = timeAvailable;
+	}
+	public String getOffdays() {
+		return offdays;
+	}
+	public void setOffdays(String offdays) {
+		this.offdays = offdays;
+	}
 	public Date getCreateDate() {
 		return createDate;
 	}
@@ -107,7 +121,7 @@ public class BusinessDTO {
 	}
 	public BusinessDTO(int biz_seq, String biz_type, String bizNum, String businessName, String businessNameEng,
 			String businessContact, String address1, String address2, String postcode, String address1Kor,
-			String[] offday, String[] onday, Date createDate, int seq) {
+			String[] offday, String[] onday, String timeAvailable, String offdays, Date createDate, int seq) {
 		super();
 		this.biz_seq = biz_seq;
 		this.biz_type = biz_type;
@@ -121,6 +135,8 @@ public class BusinessDTO {
 		this.address1Kor = address1Kor;
 		this.offday = offday;
 		this.onday = onday;
+		this.timeAvailable = timeAvailable;
+		this.offdays = offdays;
 		this.createDate = createDate;
 		this.seq = seq;
 	}
@@ -133,9 +149,9 @@ public class BusinessDTO {
 				+ businessName + ", businessNameEng=" + businessNameEng + ", businessContact=" + businessContact
 				+ ", address1=" + address1 + ", address2=" + address2 + ", postcode=" + postcode + ", address1Kor="
 				+ address1Kor + ", offday=" + Arrays.toString(offday) + ", onday=" + Arrays.toString(onday)
-				+ ", createDate=" + createDate + ", seq=" + seq + "]";
+				+ ", timeAvailable=" + timeAvailable + ", offdays=" + offdays + ", createDate=" + createDate + ", seq="
+				+ seq + "]";
 	}
-	
 	
 	
 }

@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.PaymentDTO;
 
 @Repository
@@ -45,5 +46,9 @@ public class ReservationDAO {
 	public int refundCheck(int pay_no) {
 		
 		return mybatis.update("ResMapper.refundCheck",pay_no);
+	}
+	
+	public int registerBiz(BusinessDTO dto) {
+		return mybatis.insert("ResMapper.bizSetting",dto);
 	}
 }

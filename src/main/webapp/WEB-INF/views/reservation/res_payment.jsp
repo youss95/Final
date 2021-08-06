@@ -10,15 +10,38 @@
 </head>
 <body>
 
-<h2>결제 페이지 (예약)</h2>
-
-
+<h2>결제 페이지 (정액권)</h2>
+	<div class="rd_group">
+										<div class="inp_rd">
+											<input type="radio" id="m1" name="price" value=100>
+											<label for="m1">1개월</label>
+										</div>
+										<div class="inp_rd">
+											<input type="radio" id="m2" name="price" value=600>
+											<label for="m2">6개월</label>
+										</div>
+										<div class="inp_rd">
+											<input type="radio" id="m3" name="price" value=120>
+											<label for="m3">12개월</label>
+										</div>
+									</div>
+									<button id="chek">체크</button>
+${loginID}
 <p>
     <p>아임 서포트 결제 모듈 테스트 해보기</p>
     <button id="check_module" type="button">아임 서포트 결제 모듈 테스트 해보기</button>
     <input type="button" id="check2" value="환불">
 </p>
 <script>
+let price = '';
+$("input[type=radio][name='price']").on('change',function(){
+	price = $("input[type=radio][name='price']:checked").val() ;
+	console.log(price)
+
+})
+
+
+
     $("#check_module").click(function () {
     	alert("결제를 진행")
         var IMP = window.IMP; // 생략가능
@@ -56,7 +79,7 @@
              */
             name: '주문명:결제테스트',
             //결제창에서 보여질 이름
-            amount: 100, 
+            amount: price, 
             //가격 
             buyer_email: 'iamport@siot.do',
             buyer_name: '구매자이름',
@@ -75,12 +98,12 @@
             if (rsp.success) {
             	
             	var result = {
-            			"memberId": "test",
+            			"memberId":'${loginID}',
     					"imp_uid" : rsp.imp_uid,
     				"merchant_uid" : rsp.merchant_uid,
     					"biz_email" : 'tkdyd1796@naver.com',
     					"pay_date" : new Date().getTime(),
-    					"price" : 100,
+    					"price" : price,
     					"card_no" : rsp.apply_num,
     					//"refund" : 'payed'
     					}
@@ -125,7 +148,7 @@
 				//datatype:"json",
 				contentType : 'application/x-www-form-urlencoded; charset = utf-8',
 				data : {
-					memberId : 'test', // 주문번호
+					memberId :'${loginID}', // 주문번호
 					"amount":80
 					//price:80, //환불금액
 					//"reason": "테스트 결제 환불", //환불사유
