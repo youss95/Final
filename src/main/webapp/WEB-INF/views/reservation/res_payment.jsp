@@ -75,12 +75,13 @@
             if (rsp.success) {
             	
             	var result = {
-    					//"imp_uid" : rsp.imp_uid,
-    				//"merchant_uid" : rsp.merchant_uid,
+            			"memberId": "test",
+    					"imp_uid" : rsp.imp_uid,
+    				"merchant_uid" : rsp.merchant_uid,
     					"biz_email" : 'tkdyd1796@naver.com',
-    					//"pay_date" : new Date().getTime(),
-    					//"amount" : 1000,
-    					//"card_no" : rsp.apply_num,
+    					"pay_date" : new Date().getTime(),
+    					"price" : 100,
+    					"card_no" : rsp.apply_num,
     					//"refund" : 'payed'
     					}
             	
@@ -94,7 +95,7 @@
             			 msg += '결제가 완료되었습니다.';
              			msg += '이멜' +resp.biz_email;
             			console.log("resp",resp)
-                		console.log('성공임')
+                		
                 		
             		console.log(msg)
                         /*   msg += '고유ID : ' + rsp.imp_uid;
@@ -124,9 +125,9 @@
 				//datatype:"json",
 				contentType : 'application/x-www-form-urlencoded; charset = utf-8',
 				data : {
-					"biz_email" : 'tkdyd1796@naver.com', // 주문번호
+					memberId : 'test', // 주문번호
 					
-					amount:100, //환불금액
+					//price:80, //환불금액
 					//"reason": "테스트 결제 환불", //환불사유
 					//"refund_holder": "홍길동", //[가상계좌 환불시 필수입력] 환불 가상계좌 예금주
 					//"refund_bank":"88", //[가상계좌 환불시 필수입력] 환불 가상계좌 은행코드(ex Kg이니시스의 경우 신한은행 88)

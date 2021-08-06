@@ -15,4 +15,13 @@
   delete from reservation where res_no = #{res_no}
   </delete>
   
+  <!-- 정액권 결제 -->
+  <insert id="resPay">
+ insert into res_payment values (pay_seq.nextval,#{memberId},#{imp_uid},#{merchant_uid},#{biz_email},sysdate,#{card_no},#{price},0)
+  </insert>
+  <!-- 정액권 할인 muid 가져오기 -->
+  <select id="refundPay" resultType="java.lang.String">
+	select merchant_uid from res_payment where memberId= #{memberId}
+  </select>
+  
   </mapper>
