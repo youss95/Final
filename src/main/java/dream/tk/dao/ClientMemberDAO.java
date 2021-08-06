@@ -18,7 +18,6 @@ public class ClientMemberDAO {
 	public int idCheck(String id) {
 		return mybatis.selectOne("cMember.idCheck", id);
 	}
-
 	public int insert(ClientMemberDTO dto) {
 		return mybatis.insert("cMember.insert", dto);
 	}

@@ -26,7 +26,7 @@
 
 	<select id="login" resultType="int">
 		select count(*) from client_member
-		where emp_id=#{emp_id} and pw=#{pw}
+		where id=#{id} and pw=#{pw}
 	</select>
 
 	<select id="getInfo" resultType="dream.tk.dto.AdminMemberDTO">

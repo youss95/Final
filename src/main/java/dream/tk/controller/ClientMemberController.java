@@ -8,13 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import dream.tk.config.SHA256;
 import dream.tk.dto.ClientMemberDTO;
 import dream.tk.service.ClientMemberService;
 
 @Controller
 @RequestMapping("/cMember")
 public class ClientMemberController {
-	
+
 	@Autowired
 	private HttpSession session;
 
@@ -28,18 +29,19 @@ public class ClientMemberController {
 
 	@RequestMapping(value="idCheck")
 	@ResponseBody
-	public String idCheck(String id) {
-		return String.valueOf(service.idCheck(id));
+	public int idCheck(String id) {
+		return service.idCheck(id);
 	}
 
 	@RequestMapping(value="signupProc")
-	public String signupProc(ClientMemberDTO dto) {
+	public String signupProc(ClientMemberDTO dto, Model m) {
+		String shaPW = SHA256.getSHA512(dto.getPw());
+		dto.setPw(shaPW);
+		
 		int result = service.insert(dto);
-		if(result>0) {
-			return "memberC/login";
-		}else {
-			return "memberC/signupFailed";
-		}
+		
+		m.addAttribute("result", result);
+		return "memberC/signupResult";
 	}
 
 	@RequestMapping(value="loginForm")
@@ -49,17 +51,19 @@ public class ClientMemberController {
 
 	@RequestMapping(value="loginProc")
 	public String loginProc(String id, String pw, Model m) {
-		int result = service.login(id, pw);
+		String shaPW = SHA256.getSHA512(pw);
+		int result = service.login(id, shaPW);
 		if(result>0) {
-			session.setAttribute("loginId", id);
-			m.addAttribute("result", "true");
-			return "memberA/loginResult";
+			session.setAttribute("loginID", id);
+			return "redirect:/";
 		}else {
-			m.addAttribute("result", "false");
-			return "memberA/loginResult";
-		}		
+			return "memberC/loginFailed";
+		}
+
+
+
 	}
-	
+
 
 
 }

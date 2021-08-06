@@ -5,16 +5,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Client Sign-up Result</title>
 </head>
 <body>
 	<script>
-	if(${result=="true"}){
-		alert("로그인에 성공하였습니다.");
+	if(${result>0}){
+		alert("Sign-up Success!");
 		location.href="/"
 	}else{
-		alert("로그인에 실패하셨습니다. ID와 비밀번호를 확인해주세요.");
-		location.href = "${pageContext.request.contextPath}aMember/loginForm";
+		alert("Fail to sign up. Try again.");
+		location.href = "${pageContext.request.contextPath}cMember/signupForm";
 	}	
 	</script>
 </body>
