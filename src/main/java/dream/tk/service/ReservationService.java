@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dream.tk.dao.ReservationDAO;
+import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.PaymentDTO;
 
 @Service
@@ -37,6 +38,11 @@ public class ReservationService {
 		int pay_no = resDao.refundOrderNum(memberId);
 		System.out.println("pn"+pay_no);
 		resDao.refundCheck(pay_no); //refund 1 업데이트
+	}
+	
+	public int registerBiz(BusinessDTO dto) {
+		
+		return resDao.registerBiz(dto);
 	}
 	
 }

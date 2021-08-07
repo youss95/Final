@@ -13,7 +13,7 @@
 
 .container  > section {
   width: 1100px;
-  margin: auto;
+  margin:0 auto;
 }
 .inp_chk {
   display: inline-block;
@@ -85,6 +85,7 @@
 
  <div class="container">
         <section class="prototype">
+        
         <form action="/res/setTime" method="post">
         <dt>사업장 이름</dt>
 		<dd><input type="text" class="inpform" name="businessName" placeholder="이름"></dd>
@@ -94,19 +95,19 @@
 		<dd><input type="text" class="inpform" name="businessContact" placeholder="01012341234"></dd>
 		 <dt>사업장 번호</dt>
 		<dd><input type="text" class="inpform" name="bizNum" placeholder="01012341234"></dd>
-		<dt>SELECT</dt>
+		<dt>분류</dt>
 								<dd>
 									<div class="inp_slct">
 										<select name="biz_type" id="biz_type">
 											<option value="">선택</option>
-											<option value="">Korean food</option>
-											<option value="">Chinese food</option>
-											<option value="">Japanese food</option>
-											<option value="">Western food</option>
-											<option value="">World food</option>
-											<option value="">Buffet</option>
-											<option value="">Cafe</option>
-											<option value="">Bar</option>
+											<option value="korean">Korean food</option>
+											<option value="chinese">Chinese food</option>
+											<option value="japanese">Japanese food</option>
+											<option value="western">Western food</option>
+											<option value="world">World food</option>
+											<option value="buffet">Buffet</option>
+											<option value="cafe">Cafe</option>
+											<option value="bar">Bar</option>
 										</select>
 									</div>
 								</dd>
@@ -131,8 +132,8 @@
 												<dd><input type="text" class="inpform" name="address2" id="address2" placeholder="Placeholder"></dd>
 												</div>
 											<div>
-											<h3>영어주소</h3>
-										<dd><input type="text" class="inpform" name="address1Kor" placeholder="한글주소"></dd>
+											<h3>한글주소</h3>
+										<dd><input type="text" class="inpform" name="address1Kor" id="address1Kor" placeholder="한글주소"></dd>
 											</div>
 									
 							<div>휴일</div>			
@@ -178,6 +179,7 @@
 			<span class="chkmark"></span> 20:00
 		</label>
 	</div>
+	
 	<button type="submit">시간등록</button>
 </form>
         
@@ -186,8 +188,7 @@
 
 	
 	
-	<button id="resBtn">등록</button>
-<button id="testBtn">btn</button>
+	
 <script>
 
 $(function() {
@@ -195,9 +196,11 @@ $(function() {
         new daum.Postcode({
             oncomplete: function (data) {
                 let roadAddr = data.roadAddress; // 도로명 주소 변수
+                let engAddr = data.roadAddressEnglish; //영문 도로명 주소 변수
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('postcode').value = data.zonecode;
-                document.getElementById("address1").value = roadAddr;
+                document.getElementById('address1').value = engAddr;
+                document.getElementById("address1Kor").value = roadAddr;
             }
         }).open();
     }

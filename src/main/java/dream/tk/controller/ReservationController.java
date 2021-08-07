@@ -42,13 +42,20 @@ public class ReservationController {
 	@PostMapping("/setTime")
 	public String setTime(BusinessDTO dto) {
 		String result = "";
-		
+		String result2 = "";
 		for(String time : dto.getOnday()) {
 			result = result + time + "," ;
 		}
-		System.out.println(result);
 		
+		for(String offTime : dto.getOffday()) {
+			result2 = result2 + offTime + ",";
+		}
+		dto.setTimeAvailable(result);
+		dto.setOffdays(result2);
+		System.out.println(result);
+		System.out.println(result2);
 		System.out.println(dto.toString());
+		resService.registerBiz(dto);
 		return "/home";
 	}
 	

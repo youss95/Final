@@ -37,5 +37,10 @@
   <!-- 할인권 구매 하였을때 비즈니스 멤버 기간 , 등급 업데이트 -->
   
   
+  <!--비즈니스 세팅  -->
+  <insert id="bizSetting" >
+  insert into business values(biz_seq.nextval,#{biz_type},#{bizNum},#{businessName},#{businessNameEng},#{businessContact},#{address1},#{address2},#{postcode},#{address1Kor},#{offdays},#{timeAvailable},sysdate,#{seq})
+  </insert>
+  
   
   </mapper>
