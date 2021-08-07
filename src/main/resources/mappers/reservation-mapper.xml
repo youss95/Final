@@ -31,6 +31,12 @@
   delete from reservation where res_no = #{res_no}
   </delete>
   
+  <!-- 예약 시간 선택 후 예약 하기 -->
+  <insert id="registerTime">
+  insert into reservation values(res_seq.nextval,#{res_name},#{userId},#{res_date},#{res_time},'Y',sysdate)
+  </insert>
+  
+  
   <!-- 정액권 결제 -->
   <insert id="resPay">
  insert into res_payment values (pay_seq.nextval,#{memberId},#{imp_uid},#{merchant_uid},#{biz_email},sysdate,#{card_no},#{price},0)

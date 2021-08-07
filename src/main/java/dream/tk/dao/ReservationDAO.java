@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.PaymentDTO;
+import dream.tk.dto.ReservationDTO;
 
 @Repository
 public class ReservationDAO {
@@ -33,6 +34,10 @@ public class ReservationDAO {
 	public int resDelete(int resId) {
 		int result = mybatis.delete("ResMapper.resDelete");
 		return result;
+	}
+	
+	public int registerTime(ReservationDTO dto) {
+		return mybatis.insert("ResMapper.registerTime", dto);
 	}
 	
 	public int resPay(PaymentDTO dto) {

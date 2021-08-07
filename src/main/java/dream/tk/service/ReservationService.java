@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import dream.tk.dao.ReservationDAO;
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.PaymentDTO;
+import dream.tk.dto.ReservationDTO;
 
 @Service
 public class ReservationService {
@@ -25,6 +26,10 @@ public class ReservationService {
 	
 	public String getOnday(int seq) {
 		return resDao.getOnday(seq);
+	}
+	
+	public int registerTime(ReservationDTO dto) {
+		return resDao.registerTime(dto);
 	}
 	
 	public int resDelete(int resId) {

@@ -140,12 +140,17 @@
     	 $("#subBtn").on('click',function(){
       		let selected = $('.clicked').html();
       		console.log(selected)
-      		
-      		let data = {data:selected}
+      		console.log(strDate)
+      		let data = {
+      			res_name:'행복식당',
+      			userId:'${loginID}',
+      			res_date:strDate,
+      			res_time:selected
+      			}
       		//start 컨트롤러에 보내면 시간 초 까지 나옴 가공해야됨
       		let no = 12
       		 $.ajax({
-      			url:"/replies/insertCal",
+      			url:"/res/insertCal",
       			type:"POST",
       			data: JSON.stringify(data),
       			contentType:"application/json;charset=utf-8"
