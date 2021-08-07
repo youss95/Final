@@ -15,34 +15,31 @@
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
 	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
 	crossorigin="anonymous" />
+<link rel="stylesheet" href="/resources/css/header.css" />
+
 <style>
-.container {
-	max-width: 800px;
-}
+
 </style>
 </head>
 <body>
-	<div class="container p-2 shadow bg-white rounded">
-		<c:choose>
-			<c:when test="${loginID!=null }">
-				<ul class="nav justify-content-end" style="background-color: white">
 
-					<li class="nav-item"><a class="nav-link" style="color: black"
-						href="${pageContext.request.contextPath}/mypage.mp">My Page</a></li>
-					<li class="nav-item"><a class="nav-link" style="color: black"
-						href="${pageContext.request.contextPath}/member/logout"><i
-							class="fas fa-sign-out-alt"></i></a></li>
-				</ul>
-			</c:when>
-			<c:otherwise>
-				<ul class="nav justify-content-end" style="background-color: white">
+<%@include file="layout/header.jsp" %>
 
-					<li class="nav-item"><a class="nav-link" style="color: black"
-						href="${pageContext.request.contextPath}/member/whichMember">Login</a></li>
-				</ul>
-			</c:otherwise>
-		</c:choose>
-	</div>
+<div class="container">
+      <main>
+        <p>a</p>
+        <p>b</p>
+        <p>c</p>
+      </main>
 
+     
+    </div>
+
+	<%-- <div class="container p-2 shadow bg-white rounded">
+	
+	</div> --%>
+	
+	
+ <script src="/resources/js/header.js"></script>
 </body>
 </html>
