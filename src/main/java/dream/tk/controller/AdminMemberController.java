@@ -1,14 +1,17 @@
 package dream.tk.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dream.tk.config.SHA256;
+import dream.tk.config.VerifyRecaptcha;
 import dream.tk.dto.AdminMemberDTO;
 import dream.tk.service.AdminMemberService;
 
@@ -31,10 +34,16 @@ public class AdminMemberController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value="preExist")
-	public int preExist(String emp_id, String name) {
+	@RequestMapping(value="idExist")
+	public int idExist(String emp_id) {
 
-		return service.preExist(emp_id, name);
+		return service.idExist(emp_id);
+	}
+	@ResponseBody
+	@RequestMapping(value="nameExist")
+	public int nameExist(String name) {
+
+		return service.nameExist(name);
 	}
 
 	@RequestMapping(value="signupProc")
@@ -62,9 +71,20 @@ public class AdminMemberController {
 		}else {
 			return "memberA/loginFailed";
 		}
-
-
-
+	}
+	@ResponseBody
+	@RequestMapping(value = "verifyRecaptcha", method = RequestMethod.POST)
+	public int VerifyRecaptcha(HttpServletRequest request) {
+	    VerifyRecaptcha.setSecretKey("6Ld-7eIbAAAAAHKQ6aWGRpvswCfWIykH7oqieuNY");
+	    String gRecaptchaResponse = request.getParameter("recaptcha");
+	    try {
+	       if(VerifyRecaptcha.verify(gRecaptchaResponse))
+	          return 0; // 성공
+	       else return 1; // 실패
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return -1; //에러
+	    }
 	}
 
 }

@@ -11,6 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
 <style>
 * {
 	box-sizing: border-box;
@@ -100,10 +101,12 @@ button {
 					</div>
 				</div>
 
+				<div class="g-recaptcha"
+					data-sitekey="6Ld-7eIbAAAAAO070jFLpuiXkJbkX408OJwZS2ZO"></div>
 
 				<div class="row">
 					<div class="col-12" style="text-align: center;">
-						<button type="submit" id="submit">Sign Up</button>
+						<button type="submit" id="signup">Sign Up</button>
 					</div>
 
 				</div>
@@ -113,55 +116,86 @@ button {
 	</div>
 
 	<script>
-
-
-		$("#submit").on("click", function(){
-			$.ajax({
-                url: "/aMember/preExist",
-                type: "get",
-                data: {"emp_id":$("#iid").val(), "name":$("#iname").val()}
-            }).done(function (res) {
-                if (res>0) {
-                    $("#signupForm").submit();
-                } else {
-                	alert("Your ID and Name is not exist in our company.");
-                	$("#iid").val(""); 
-                    $("#iname").val("");
-                    $("#iid").focus();
+	$("#signup").on("click", function() {
+		var captcha = 1;
+		$.ajax({
+            url: '/aMember/verifyRecaptcha',
+            type: 'post',
+            data: {
+                recaptcha: $("#g-recaptcha-response").val()
+            },
+            success: function(data) {
+                switch (data) {
+                    case 0:
+                        console.log("자동 가입 방지 봇 통과");
+                        captcha = 0;
+                		$("#signupForm").submit();
+                		break;
+                    case 1:
+                        alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
+                        break;
+                    default:
+                        alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : " + Number(data) + "]");
+                   		break;
                 }
-            }).fail(function (a, b, c) {
-                alert("Server is unstable. try again.");
-            })
-		})
-		
+            }
+        });
+		if(captcha != 0) {
+			return false;
+		} 
+});
+
 		let idRegex = /^[a-z0-9]{4,}$/;
-		let pwRegex =  /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+		let pwRegex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 		let phoneRegex = /^010\d{3,4}\d{4}$/;
 		let emailRegex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-		
-		
-		$("#iid").on("blur", function(){
-			let resultid = idRegex.test($("#iid").val());
-			if(resultid){
+
+		$("#iid").on("blur", function() {
+			$.ajax({
+				url : "/aMember/idExist",
+				type : "get",
+				data : {
+					"emp_id" : $("#iid").val()
+				}
+			}).done(function(res) {
+				if (res < 1) {
+					alert("Your ID is not exist in our company.");
+					$("#iid").val("");
+					$("#iid").focus();
+				}
+			}).fail(function(a, b, c) {
+				alert("Server is unstable. try again.");
+			})
+		})
+		$("#iname").on("blur", function() {
+			$.ajax({
+				url : "/aMember/nameExist",
+				type : "get",
+				data : {
+					"name" : $("#iname").val()
+				}
+			}).done(function(res) {
+				if (res < 1) {
+					alert("Your name is not exist in our company.");
+					$("#iname").val("");
+					$("#iname").focus();
+				}
+			}).fail(function(a, b, c) {
+				alert("Server is unstable. try again.");
+			})
+		})
+
+		$("#ipw").on("blur", function() {
+			let resultpw = pwRegex.test($("#ipw").val());
+			if (resultpw) {
 				return;
-			}else{
-				alert("최소 4글자 이상 입력하세요.");
-    			$("#iid").val("");
-				$("#iid").focus();
+			} else {
+				alert("최소 8자 이상, 영문, 숫자,  특수문자");
+				$("#ipw").val("");
+				$("#ipw").focus();
 			}
 		})
 
-		$("#ipw").on("blur", function(){
-	        let resultpw = pwRegex.test($("#ipw").val());
-            if(resultpw){
-                return;
-            }else{
-                alert("최소 8자 이상, 영문, 숫자,  특수문자");
-                $("#ipw").val("");
-				$("#ipw").focus();
-            }
-		})
-		
 		$("#ipwC").on("blur", function() {
 			console.log("비밀번호: " + $("#ipw").val());
 			console.log("비밀번호 확인: " + $("#ipwC").val())
@@ -173,28 +207,27 @@ button {
 				$("#pwCheck").html("비밀번호 확인 완료");
 			}
 		})
-        $("#iphone").on("blur", function(){
-	        let resultphone = phoneRegex.test($("#iphone").val());
-            if(resultphone){
-                return;
-            }else{
-                alert("핸드폰 번호를 확인하세요. ex)01012341234");
-                $("#iphone").val("");
-                $("#iphone").focus();
-            }
+		$("#iphone").on("blur", function() {
+			let resultphone = phoneRegex.test($("#iphone").val());
+			if (resultphone) {
+				return;
+			} else {
+				alert("핸드폰 번호를 확인하세요. ex)01012341234");
+				$("#iphone").val("");
+				$("#iphone").focus();
+			}
 		})
 
-				
-		$("#iemail").on("blur", function(){
+		$("#iemail").on("blur", function() {
 			let resultEmail = emailRegex.test($("#iemail").val());
-            if(resultEmail){
-                return;
-            }else{
-                alert("사용불가능한 메일입니다. 다른 메일을 입력하세요.");
-                
-                $("#iemail").val("");
-            }
+			if (resultEmail) {
+				return;
+			} else {
+				alert("사용불가능한 메일입니다. 다른 메일을 입력하세요.");
+
+				$("#iemail").val("");
+			}
 		})
-    </script>
+	</script>
 </body>
 </html>

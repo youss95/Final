@@ -17,13 +17,13 @@ public class AdminMemberService {
 	@Autowired
 	private AdminMemberDAO dao;
 	
-	public int preExist(String emp_id, String name) {
+	public int idExist(String emp_id) {
 
-		Map<String, String> param = new HashMap<>();
-		param.put("emp_id", emp_id);
-		param.put("name", name);
+		return dao.idExist(emp_id);
+	}
+	public int nameExist(String name) {
 
-		return dao.preExist(param);
+		return dao.nameExist(name);
 	}
 	
 	public int insert(AdminMemberDTO dto) {

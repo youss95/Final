@@ -21,7 +21,7 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.4</version>
 		</dependency>
-		
+
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -88,6 +88,40 @@
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.8.7</version>
+		</dependency>
+
+		<!-- 구글 리캡챠 -->
+		<dependency>
+			<groupId>net.tanesha.recaptcha4j</groupId>
+			<artifactId>recaptcha4j</artifactId>
+			<version>0.0.7</version>
+		</dependency>
+
+		<!-- 구글 리캡챠 사용하기 위한 json -->
+		<dependency>
+			<groupId>javax.json</groupId>
+			<artifactId>javax.json-api</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.json</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<!-- 잭슨 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.5</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-email -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-email</artifactId>
+			<version>1.5</version>
 		</dependency>
 
 
@@ -174,7 +208,7 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- 아임포트 결제를 위해 필요한 설정 시작 -->
 		<!-- json mapper -->
 		<dependency>
@@ -182,8 +216,8 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.9.10.1</version>
 		</dependency>
-	
-		<!-- 제이슨 파싱-->
+
+		<!-- 제이슨 파싱 -->
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
@@ -195,8 +229,8 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpcore</artifactId>
 			<version>4.4.6</version>
-		</dependency>  
-		
+		</dependency>
+
 		<!-- HttpCore를 기반으로 클라이언트의 동작을 구현한 라이브러리. HttpRequest와 같은 기능을 제공 -->
 		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
 		<dependency>
@@ -205,13 +239,13 @@
 			<version>4.5.2</version>
 		</dependency>
 		<!-- 아임포트 결제를 위해 필요한 설정 끝 -->
-		
-		
+
+
 	</dependencies>
-	
-	
-	
-	
+
+
+
+
 	<build>
 		<plugins>
 			<plugin>
