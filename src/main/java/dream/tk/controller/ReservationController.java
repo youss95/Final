@@ -24,12 +24,17 @@ public class ReservationController {
 	private ReservationService resService;
 	
 	@GetMapping("/calendar")
-	public String calendar(String time,Model model) {
-	System.out.println(time);
+	public String calendar(String offday,Model model) {
+	System.out.println(offday);
 	//String time2 = replyService.restime(time);
-	List<String> offdays = resService.dayoff();
+	
 	//System.out.println(time3);
 	//model.addAttribute("time",time2);
+	String od = resService.getOffday();
+	List<String> offdays = resService.dayoff(od);
+	String onday = resService.getOnday(0);
+	model.addAttribute("onday",onday);
+	model.addAttribute("od",od);
 	model.addAttribute("offdays",offdays);
 		return "/reservation/res_calendar";
 	}
@@ -42,18 +47,16 @@ public class ReservationController {
 	@PostMapping("/setTime")
 	public String setTime(BusinessDTO dto) {
 		String result = "";
-		String result2 = "";
+		
 		for(String time : dto.getOnday()) {
 			result = result + time + "," ;
 		}
 		
-		for(String offTime : dto.getOffday()) {
-			result2 = result2 + offTime + ",";
-		}
+		
 		dto.setTimeAvailable(result);
-		dto.setOffdays(result2);
+		
 		System.out.println(result);
-		System.out.println(result2);
+		
 		System.out.println(dto.toString());
 		resService.registerBiz(dto);
 		return "/home";

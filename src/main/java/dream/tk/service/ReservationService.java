@@ -15,8 +15,16 @@ public class ReservationService {
 	@Autowired
 	private ReservationDAO resDao;
 	
-	public List<String> dayoff(){
-		return resDao.dayoff();
+	public List<String> dayoff(String od){
+		return resDao.dayoff(od);
+	}
+	
+	public String getOffday() {
+		return resDao.getOffday();
+	}
+	
+	public String getOnday(int seq) {
+		return resDao.getOnday(seq);
 	}
 	
 	public int resDelete(int resId) {

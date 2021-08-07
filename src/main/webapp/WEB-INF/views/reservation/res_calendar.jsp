@@ -11,13 +11,19 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 <!-- fullcalendar CDN -->
 <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
 <!-- fullcalendar 언어 CDN -->
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+
 <style>
+
+
 
   body {
     margin: 40px 10px;
@@ -26,10 +32,7 @@
     font-size: 14px;
   }
 
-  #calendar {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
+
 	#modal_time span{
 	border:1px solid red;
 	border-radius:5px;
@@ -53,7 +56,11 @@
 </head>
 <body>
 
+<%@include file="../layout/header.jsp" %>
 
+<div class="container">
+
+<section class="">
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
@@ -66,8 +73,8 @@
         </button>
       </div>
       <div class="modal-body" id="modal_time">
-      <c:forTokens var="time" items="${time}" delims=",">
-       <span class="select_time">${time}</span>
+      <c:forTokens var="onday" items="${onday}" delims=",">
+       <span class="select_time">${onday}</span>
       </c:forTokens>
      
       </div>
@@ -79,6 +86,11 @@
   </div>
 </div>
  <div id='calendar'></div>
+ </section>
+ </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="/resources/js/header.js"></script>
  <script>
  let select = document.getElementsByClassName("select_time");
  
@@ -166,9 +178,12 @@
       selectable: true,
       selectMirror: true,
     
-     
+     /* 클릭하였을때 이벤트 막기 */
     	selectConstraint: {
-    		daysOfWeek: [0,1,2,3,4,6]
+    		<c:if test="${od == 'tue'}">
+    		daysOfWeek: [0,1,3,4,5,6]
+    		</c:if>
+    		
     	},
     
       //여기다가 모달창 만들어서 ajax로 데이터 넘겨주자
