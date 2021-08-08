@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import dream.tk.dao.BusinessMemberDAO;
 import dream.tk.dao.ClientMemberDAO;
+import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.BusinessMemberDTO;
 
 
@@ -50,5 +51,9 @@ public class BusinessMemberService {
 	
 	public int editPersonalInfo(BusinessMemberDTO dto) {
 		return dao.editPersonalInfo(dto);
+	}
+	
+	public BusinessDTO getBizInfo(int bizSeq) {
+		return dao.getBizInfo(bizSeq);
 	}
 }

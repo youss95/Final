@@ -1,5 +1,7 @@
 package dream.tk.controller;
 
+import java.sql.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dream.tk.config.SHA256;
+import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.BusinessMemberDTO;
 import dream.tk.service.BusinessMemberService;
 
@@ -33,12 +36,16 @@ public class BusinessMemberController {
 	}
 	
 	@RequestMapping(value="loginProc")
-	public String loginProc(String id, String pw) {
+	public String loginProc(String id, String pw ) {
 		int result =ser.loginProc(id, SHA256.getSHA512(pw));
 		if(result>0) {
 			session.setAttribute("loginID", id);
 			BusinessMemberDTO dto = ser.getInfo(id);
 			session.setAttribute("binfo", dto);
+			
+//			String bizSeq = dto.getSeq();
+//			BusinessDTO bizdto = ser.getBizInfo(bizSeq);
+//			session.setAttribute("bizInfo", bizdto);
 			return "/memberB/loginView";
 		}else {
 			return "error";
@@ -65,7 +72,7 @@ public class BusinessMemberController {
 		String phone = phone1 + phone2+ phone3;
 		
 	
-		BusinessMemberDTO dto = new BusinessMemberDTO(id,pw,name,email,phone,null,null);
+		BusinessMemberDTO dto = new BusinessMemberDTO(0,id,pw,name,email,phone,null,null);
 		
 		int result = ser.signup(dto);
 		m.addAttribute("result", result);
@@ -74,9 +81,10 @@ public class BusinessMemberController {
 	}
 	
 	@RequestMapping("myPage")
-	public String myPage() {
-		//String id = (String) session.getAttribute("loginID");
-		//BusinessDTO dto = ser.getBusinessInfo(id);  ????
+	public String myPage(Model m) {
+		int bizSeq = ((BusinessMemberDTO) session.getAttribute("binfo")).getSeq();
+		BusinessDTO bizdto = ser.getBizInfo(bizSeq);
+		m.addAttribute("bizInfo", bizdto);
 		return "/memberB/myPage";
 	}
 	
@@ -88,8 +96,16 @@ public class BusinessMemberController {
 	
 	@RequestMapping("editPersonalInfo")
 	public String editPersonalInfo(BusinessMemberDTO dto) {
-		String pw = SHA256.getSHA512(dto.getPw());
-		dto.setPw(pw);
+		if(dto.getPw()!=null&&dto.getPw()!="") {
+			String pw = SHA256.getSHA512(dto.getPw());
+			dto.setPw(pw);
+		}else {
+			String originPw=((BusinessMemberDTO) session.getAttribute("binfo")).getPw();
+			dto.setPw(originPw);
+		}
+		dto.setSeq(40);
+		dto.setPremium("No");
+		dto.setPrm_exp_date(new Date(0));
 		ser.editPersonalInfo(dto);
 		session.setAttribute("binfo", dto);
 		return "redirect:/bMember/myPage";

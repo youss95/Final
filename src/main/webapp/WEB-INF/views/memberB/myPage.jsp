@@ -28,6 +28,7 @@
  <style>
       p{display:inline-block;}
     .card-body div{ display:inline-block;}
+  
   </style>
 
 <script>
@@ -55,10 +56,13 @@
 		$("#edit").on("click",function(){
 			$(".hiddenInput").css("display","inline-block");
 			$(".hiddenDiv").css("display","none");
+			$(".repwDiv").css("display","inline-block");
 			$("#edit").text("Save");
 			$("#signOut").css("display","none");	
 			
 			$("#edit").on("click",function(){
+				//정규식 검사!
+
 				$("#personalInfoFrm").submit();
 			})
 		})
@@ -70,7 +74,9 @@
 			location.href="${pageContext.request.contextPath}/res/bizSetting";
 		})
 
-		
+		$("#cancel").on("click",function(){
+			location.href="${pageContext.request.contextPath}/bMember/myPage";
+		})
 		
 	})
 	
@@ -108,7 +114,7 @@
            </div>
            <div id="idBox" style="text-align: center;">
             ID  ${loginID} <br>
-            Welcome!
+            반갑습니다.
            </div>
         </div>
 
@@ -215,13 +221,13 @@
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">PW</div>
                         <div class="hiddenDiv" style="width:60%">***</div>
-                        <input class="hiddenInput" name="pw" type=password value="${binfo.pw}" style="display:none">
+                        <input class="hiddenInput" name="pw" id="pw" type=password style="display:none">
                       </div>
 
-<!--                       <div class="card-body" style="width:100%"> -->
-<!--                         <div style="width:30%">PW 재입력</div> -->
-<%--                         <div style="width:60%">${dto.id}</div> --%>
-<!--                       </div> -->
+                      <div class="card-body repwDiv" style="width:100%; display:none">
+                        <div style="width:30%">PW 재입력</div>                 
+                        <input class="hiddenInput" name="repw" id="repw" type=password>
+                      </div>
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">Name</div>
@@ -232,7 +238,7 @@
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">Email</div>
                         <div class="hiddenDiv" style="width:30%">${binfo.email}</div>
-                        <input class="hiddenInput" name="email" type=text value="${binfo.email}" style="display:none">
+                        <input class="hiddenInput" id="email" name="email" type=text value="${binfo.email}" style="display:none">
                       </div>
 
                       <div class="card-body" style="width:100%">
@@ -244,6 +250,7 @@
                      
 
                        <div style="text-align: right; padding:10px">
+                        <button class="btn hiddenInput" id="cancel" class="btn" type="button" style="display:none; color:white; background-color:#f36767;">취소</button>
                         <button id="signOut" class="btn" type="button" style="background-color:tomato">탈퇴하기</button>
                         <button id="edit" class="btn" type="button">Edit</button>
                        </div>
@@ -267,39 +274,58 @@
                       </div>
 
                       <div class="card-body" style="width:100%">
-                        <div style="width:30%">Type</div>
-                        <div style="width:60%">${dto.id}</div>
+                        <div style="width:30%">업종</div>
+                        <div style="width:60%">${bizInfo.biz_type}</div>
                       </div>
 
                       <div class="card-body" style="width:100%">
-                        <div style="width:30%">RegNum</div>
-                        <div style="width:60%">${dto.id}</div>
+                        <div style="width:30%">사업자등록번호</div>
+                        <div style="width:60%">${bizInfo.bizNum}</div>
                       </div>
 
                       <div class="card-body" style="width:100%">
-                        <div style="width:30%">PW 재입력</div>
-                        <div style="width:60%">${dto.id}</div>
+                        <div style="width:30%">업체명</div>
+                        <div style="width:60%">${bizInfo.businessName}</div>
                       </div>
 
                       <div class="card-body" style="width:100%">
-                        <div style="width:30%">Name</div>
-                        <div style="width:60%">${dto.id}</div>
+                        <div style="width:30%">영문 업체명</div>
+                        <div style="width:60%">${bizInfo.businessNameEng}</div>
                       </div>
 
                       <div class="card-body" style="width:100%">
-                        <div style="width:30%">Email</div>
-                        <div style="width:60%">${dto.id}</div>
+                        <div style="width:30%">업체 연락처</div>
+                        <div style="width:60%">${bizInfo.businessContact}</div>
                       </div>
 
                       <div class="card-body" style="width:100%">
-                        <div style="width:30%">Phone</div>
-                        <div style="width:60%">${dto.id}</div>
+                        <div style="width:30%">업체 주소</div>
+                        <div style="width:60%">${bizInfo.address1}</div>
                       </div>
 
                       <div class="card-body" style="width:100%">
-                        <div style="width:30%">Phone</div>
-                        <div style="width:60%">${dto.id}</div>
+                        <div style="width:30%">업체 상세주소</div>
+                        <div style="width:60%">${bizInfo.address2}</div>
                       </div>
+                      
+                      <div class="card-body" style="width:100%">
+                        <div style="width:30%">업체 우편번호</div>
+                        <div style="width:60%">${bizInfo.postcode}</div>
+                      </div>
+                      
+                      <div class="card-body" style="width:100%">
+                        <div style="width:30%">업체 휴무일</div>
+                        <div style="width:60%">${bizInfo.offday}</div>
+                      </div>
+                      
+<!--                       <div class="card-body" style="width:100%"> -->
+<!--                         <div style="width:30%">업체 영엽시간</div> -->
+<%--                         <div style="width:60%">${bizInfo.timeAvailable}</div> --%>
+<!--                       </div> -->
+                      
+                      
+                      
+                      
                       <div style="text-align: right; padding:10px">
                         <button id="bizInfoBtn" class="btn" type="button">Edit</button>
                        </div>
