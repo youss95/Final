@@ -57,14 +57,18 @@
 			$(".hiddenInput").css("display","inline-block");
 			$(".hiddenDiv").css("display","none");
 			$(".repwDiv").css("display","inline-block");
-			$("#edit").text("Save");
+// 			$("#edit").text("Save");
+			$("#edit").css("display","none");
 			$("#signOut").css("display","none");	
 			
-			$("#edit").on("click",function(){
-				//정규식 검사!
-
-				$("#personalInfoFrm").submit();
-			})
+			
+// 			$("#edit").on("click",function(){
+// 				let result = checkBefore();
+// 				console.log(result);
+// 				if(result){
+// 					$("#personalInfoFrm").submit();
+// 				}
+// 			})
 		})
 		
 		
@@ -80,6 +84,49 @@
 		
 	})
 	
+	
+	$(document).on("click","#save",function(){
+		let pw = $("#pw").val();
+		let repw = $("#repw").val();
+		
+		if(pw != repw){
+			alert("패스워드가 일치하지 않습니다.");
+			return false;
+		}
+		
+// 		if (!pwReg.test(pw)) {
+// 			alert('비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.');
+// 			return false;
+// 		}
+		
+
+		let nameReg = /^.{2,30}$/;
+		let name = $("#name").val();
+		if (!nameReg.test(name)) {
+			alert("이름은 2글자 이상 30글자 미만으로 입력해야 합니다.");
+			return false;
+		}
+
+		let emailReg = /^[0-9a-zA-Z_-]*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		let email = $("#email").val();
+
+		if (!emailReg.test(email)) {
+			alert("이메일 형식을 확인해주세요.");
+			return false;
+		}		
+		let phoneReg = /^[0-9]{9,}$/;
+		let phone = $("#phone").val();
+
+		if (!phoneReg.test(phone)) {
+			alert("핸드폰 번호를 확인해주세요.  ex) 01033558989");
+			return false;
+		}
+		
+	})
+			
+	
+	
+
 </script>
 
 </head>
@@ -232,7 +279,7 @@
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">Name</div>
                         <div class="hiddenDiv" style="width:60%">${binfo.name}</div>
-                        <input class="hiddenInput" name="name" type=text value="${binfo.name}" style="display:none">
+                        <input class="hiddenInput" id="name" name="name" type=text value="${binfo.name}" style="display:none">
                       </div>
 
                       <div class="card-body" style="width:100%">
@@ -244,7 +291,7 @@
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">Phone</div>
                         <div class="hiddenDiv" style="width:60%">${binfo.phone}</div>
-                        <input class="hiddenInput" name="phone" type=text value="${binfo.phone}" style="display:none">
+                        <input class="hiddenInput" id="phone" name="phone" type=text value="${binfo.phone}" style="display:none">
                       </div>
 
                      
@@ -253,6 +300,7 @@
                         <button class="btn hiddenInput" id="cancel" class="btn" type="button" style="display:none; color:white; background-color:#f36767;">취소</button>
                         <button id="signOut" class="btn" type="button" style="background-color:tomato">탈퇴하기</button>
                         <button id="edit" class="btn" type="button">Edit</button>
+                        <button id="save" class="btn hiddenInput" style="display:none;">Save</button>
                        </div>
 
                     </div>
