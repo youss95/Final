@@ -5,12 +5,28 @@
   
   <mapper namespace="ResMapper">
   
+  <!-- 휴일 날짜 반환  -->
   <select id="dayoff" resultType="java.lang.String">
-	<![CDATA[
-	SELECT (TO_CHAR((TO_DATE('20210101', 'YYYYMMDD')+ (LEVEL*7)),'yyyy-MM-dd')) from dual CONNECT BY LEVEL <= 52
-	]]>
-	</select>
+  SELECT
+    <if test="offday == 'tue'">
+	 <![CDATA[
+	 TO_CHAR(TRUNC(sysdate,'iw')+(level*7-7) ,'yyyymmdd') mon FROM dual CONNECT BY LEVEL <= 12
+	 ]]>
+	</if>
+  </select>
+	
+	<!-- 휴일 값 가져오기 -->
+  <select id="getOffday" resultType="java.lang.String">
+   select offday from business  where biz_seq =2
+  </select>
   
+  <!-- 영업 가능 시간 가져오기 -->
+  <select id="getOnday" resultType="java.lang.String">
+  select onday from business where seq = #{seq}
+  </select>
+  
+  
+  <!-- 예약 취소  -->
   <delete id="resDelete">
   delete from reservation where res_no = #{res_no}
   </delete>
@@ -39,7 +55,7 @@
   
   <!--비즈니스 세팅  -->
   <insert id="bizSetting" >
-  insert into business values(biz_seq.nextval,#{biz_type},#{bizNum},#{businessName},#{businessNameEng},#{businessContact},#{address1},#{address2},#{postcode},#{address1Kor},#{offdays},#{timeAvailable},sysdate,#{seq})
+  insert into business values(biz_seq.nextval,#{biz_type},#{bizNum},#{businessName},#{businessNameEng},#{businessContact},#{address1},#{address2},#{postcode},#{address1Kor},#{offday},#{timeAvailable},sysdate,#{seq})
   </insert>
   
   

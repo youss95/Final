@@ -48,6 +48,7 @@ header {
   width: 100%;
   height: 126px;
   transition: 0.3s ease-in-out;
+  z-index:999;
 }
 header.shrink {
   height: 96px;
@@ -84,8 +85,13 @@ nav ul li {
 /* Container */
 /************************************************/
 .container {
-  margin: 10em auto 0;
-  width: 75%;
+ min-height: 100vh;
+}
+
+.container > section {
+	margin: 124px auto 0;
+  padding:50px;
+
   text-align: center;
 }
 
@@ -93,3 +99,24 @@ nav ul li {
   height: 50em;
 }
 
+/* 팝오버   */
+ .popover {
+        width: 450px;
+        height: 500px;
+        max-width: 100%;
+        overflow-y: scroll;
+      }
+.popover-body  li {
+        float: left;
+        list-style: none;
+        width: 50%;
+        text-align: center;
+        border-bottom: 1px solid #dbdbdb;
+        padding: 15px;
+      
+      }
+      
+.popover-body  li:hover{
+	cursor:pointer
+}      
+ #myp{float:right;}
