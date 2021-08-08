@@ -162,7 +162,7 @@
       			
       		          calendar.addEvent({
       		            title: " 예약",
-      		            start: strDate+" "+data.data
+      		            start: strDate+" "+data.res_time
 
       		          })
       		       
@@ -211,11 +211,16 @@
       //휴일 이벤트 취소 막기(아직 기능 구현 못함)
       eventClick: function(arg) {
     	
-    	
+    	let title = arg.event.title;
     	let resId = arg.event.id  //저장된 id값 얻기
     	  console.log(arg.event.start)
+    	  console.log(resId)
     	 let eventDt = moment(arg.event.start).format("YYYY-MM-DD")
     	 console.log(eventDt)
+    	 if(title == '휴일'){
+    		 alert("휴일 입니다")
+    		 return;
+    	 }else{
         if (confirm('취소 하시겠습니까?')) {
           arg.event.remove()
           $.ajax({
@@ -225,6 +230,7 @@
         	  console.log(resp)
           })
         }
+    	 }
       },
       editable: true,
       dayMaxEvents: true, // allow "more" link when too many events
@@ -235,11 +241,15 @@
          
      	 
         },
-        {
-        	id: 999,
-        	title: 'Repeating Event',
-        	start: '2021-08-09 16:00'
+        
+        	<c:forEach var="resInfo" items="${resInfo}">
+        	{
+        	id: ${resInfo.res_no},
+        	title: '예약',
+        	start: '${resInfo.res_date}'+" "+'${resInfo.res_time}'
+        		
         	},
+        	</c:forEach>
        
         		<c:forEach var="every" items="${offdays}">
         		{

@@ -37,6 +37,11 @@
   </insert>
   
   
+  <!-- 예약 정보 가져오기  -->
+  <select id="getResInfo" resultType="dream.tk.dto.ReservationDTO">
+  select * from reservation
+  </select>
+  
   <!-- 정액권 결제 -->
   <insert id="resPay">
  insert into res_payment values (pay_seq.nextval,#{memberId},#{imp_uid},#{merchant_uid},#{biz_email},sysdate,#{card_no},#{price},0)

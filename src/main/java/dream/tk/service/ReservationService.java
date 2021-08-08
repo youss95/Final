@@ -39,6 +39,10 @@ public class ReservationService {
 	public int resPay(PaymentDTO dto) {
 		return resDao.resPay(dto);
 	}
+	
+	public List<ReservationDTO> getResInfo(){
+		return resDao.getResInfo();
+	}
 	//정액권 환불
 	public String passRefund(String memberId) {
 		int pay_no = resDao.refundOrderNum(memberId);

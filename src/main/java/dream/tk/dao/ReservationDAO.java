@@ -40,6 +40,10 @@ public class ReservationDAO {
 		return mybatis.insert("ResMapper.registerTime", dto);
 	}
 	
+	public List<ReservationDTO> getResInfo() {
+		return mybatis.selectList("ResMapper.getResInfo");
+	}
+	
 	public int resPay(PaymentDTO dto) {
 		int result = mybatis.insert("ResMapper.resPay",dto);
 		return result;

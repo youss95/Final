@@ -29,14 +29,16 @@ public class ReservationController {
 	
 	@GetMapping("/calendar")
 	public String calendar(String offday,Model model) {
-	System.out.println(offday);
+
 	//String time2 = replyService.restime(time);
 	
 	//System.out.println(time3);
 	//model.addAttribute("time",time2);
+		List<ReservationDTO> resInfo = resService.getResInfo();
 	String od = resService.getOffday();
 	List<String> offdays = resService.dayoff(od);
 	String onday = resService.getOnday(0);
+	model.addAttribute("resInfo",resInfo);
 	model.addAttribute("onday",onday);
 	model.addAttribute("od",od);
 	model.addAttribute("offdays",offdays);
