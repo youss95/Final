@@ -137,7 +137,7 @@
 											</div>
 									
 							<div>휴일</div>			
-	<div class="chk_group">
+	<!-- <div class="chk_group">
 		<label class="inp_chk"> <input type="checkbox" name="offday" id="mon" value="mon">
 			<span class="chkmark"></span> 월
 		</label> 
@@ -160,7 +160,41 @@
 			<span class="chkmark"></span> 일
 		</label>
 	</div>
-						<br>
+ -->
+
+				<div class="rd_group">
+					<span class="inp_rd">
+						<input type="radio" id="mon" name="offday" value="mon"> <label
+							for="m1">월</label>
+					</span>
+					<span class="inp_rd">
+						<input type="radio" id="tue" name="offday" value="tue"> <label
+							for="m2">화</label>
+					</span>
+					<div class="inp_rd">
+						<input type="radio" id="wed" name="offday" value="wed"> <label
+							for="m3">수</label>
+					</div>
+					<div class="inp_rd">
+						<input type="radio" id="thu" name="offday" value="thu"> <label
+							for="m3">목</label>
+					</div>
+					<div class="inp_rd">
+						<input type="radio" id="fri" name="offday" value="fri"> <label
+							for="m3">금</label>
+					</div>
+					<div class="inp_rd">
+						<input type="radio" id="sat" name="offday" value="sat"> <label
+							for="m3">토</label>
+					</div>
+					<div class="inp_rd">
+						<input type="radio" id="sun" name="offday" value="sun"> <label
+							for="m3">일</label>
+					</div>
+				</div>
+
+
+				<br>
 						<div>영업시간</div>				
 <div class="chk_group">
 		<label class="inp_chk"> <input type="checkbox" name="onday" id="times1" value="12:00">

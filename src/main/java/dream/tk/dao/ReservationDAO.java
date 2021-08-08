@@ -15,10 +15,19 @@ public class ReservationDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	public List<String> dayoff(){
-		List<String> list = mybatis.selectList("ResMapper.dayoff");
+	public List<String> dayoff(String od){
+		List<String> list = mybatis.selectList("ResMapper.dayoff",od);
 		System.out.println(list);
 		return list;
+	}
+	
+	public String getOffday() {
+		
+	return mybatis.selectOne("ResMapper.getOffday");
+	}
+	
+	public String getOnday(int seq) {
+		return mybatis.selectOne("ResMapper.getOnday",seq);
 	}
 	
 	public int resDelete(int resId) {
