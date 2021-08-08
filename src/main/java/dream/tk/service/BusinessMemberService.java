@@ -44,4 +44,11 @@ public class BusinessMemberService {
 		return dao.signOut(id);
 	}
 	
+	public BusinessMemberDTO getInfo(String id) {
+		return dao.getInfo(id);
+	}
+	
+	public int editPersonalInfo(BusinessMemberDTO dto) {
+		return dao.editPersonalInfo(dto);
+	}
 }

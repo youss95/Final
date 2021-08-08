@@ -29,4 +29,13 @@ public class BusinessMemberDAO {
 		return mybatis.delete("bMem.signOut", id);
 	}
 	
+	public BusinessMemberDTO getInfo(String id) {
+		return mybatis.selectOne("bMem.getInfo", id);
+	}
+	
+	public int editPersonalInfo(BusinessMemberDTO dto) {
+		return mybatis.delete("bMem.editPersonalInfo", dto);
+	}
+	
+	
 }

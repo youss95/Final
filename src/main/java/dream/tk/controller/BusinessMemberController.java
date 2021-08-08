@@ -37,6 +37,8 @@ public class BusinessMemberController {
 		int result =ser.loginProc(id, SHA256.getSHA512(pw));
 		if(result>0) {
 			session.setAttribute("loginID", id);
+			BusinessMemberDTO dto = ser.getInfo(id);
+			session.setAttribute("binfo", dto);
 			return "/memberB/loginView";
 		}else {
 			return "error";
@@ -73,13 +75,23 @@ public class BusinessMemberController {
 	
 	@RequestMapping("myPage")
 	public String myPage() {
+//		String id = (String) session.getAttribute("loginID");
+//		BusinessMemberDTO dto = ser.getInfo(id);
 		return "/memberB/myPage";
 	}
 	
 	@RequestMapping("signOut")
 	public String signOut(String id) {
-		System.out.println(id);
-		//ser.signOut(id);
+		ser.signOut(id);
 		return "/memberB/login";
+	}
+	
+	@RequestMapping("editPersonalInfo")
+	public String editPersonalInfo(BusinessMemberDTO dto) {
+		String pw = SHA256.getSHA512(dto.getPw());
+		dto.setPw(pw);
+		ser.editPersonalInfo(dto);
+		session.setAttribute("binfo", dto);
+		return "redirect:/bMember/myPage";
 	}
 }

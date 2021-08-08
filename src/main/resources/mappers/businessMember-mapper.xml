@@ -28,4 +28,13 @@
 		delete from business_member where id=#{value}
 	</delete>
 	
+	<select id="getInfo" resultType="dream.tk.dto.BusinessMemberDTO">
+		select * from business_member where id=#{value}
+	</select>
+	
+	<update id="editPersonalInfo">
+	  update business_member set pw=#{pw},name=#{name},email=#{email},phone=#{phone} where id=#{id}
+	</update>
+	
+	
 </mapper>

@@ -51,6 +51,21 @@
 				})
 		})
 		
+		
+		$("#edit").on("click",function(){
+			$(".hiddenInput").css("display","inline-block");
+			$(".hiddenDiv").css("display","none");
+			$("#edit").text("Save");
+			$("#signOut").css("display","none");	
+			
+			$("#edit").on("click",function(){
+				$("#personalInfoFrm").submit();
+			})
+		})
+		
+
+		
+		
 	})
 	
 </script>
@@ -84,7 +99,8 @@
             <i class="material-icons" style="font-size: 100px;">person_outline</i>
            </div>
            <div id="idBox" style="text-align: center;">
-            ID  hhahaHoHo
+            ID  ${loginID} <br>
+            Welcome!
            </div>
         </div>
 
@@ -169,7 +185,8 @@
             <div class="row">  
                 <!-- ==== 개인정보 관련 ==== -->
                 <div class="col-lg-12">
-                    <form id="" action="">
+                
+                    <form id="personalInfoFrm" action="${pageContext.request.contextPath}/bMember/editPersonalInfo">
                     <div class="card">
 
                       <div class="card-header card-header-warning">
@@ -183,38 +200,40 @@
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">ID</div>
-                        <div style="width:60%">${dto.id} <input type=text value="${dto.id}"></div>
+                        <div style="width:60%;">${binfo.id}</div>
+                         <input name="id" type=hidden value="${binfo.id}">
                       </div>
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">PW</div>
-                        <div style="width:60%">${dto.id}</div>
+                        <div class="hiddenDiv" style="width:60%">${binfo.pw}</div>
+                        <input class="hiddenInput" name="pw" type=text value="${binfo.pw}" style="display:none">
                       </div>
 
-                      <div class="card-body" style="width:100%">
-                        <div style="width:30%">PW 재입력</div>
-                        <div style="width:60%">${dto.id}</div>
-                      </div>
+<!--                       <div class="card-body" style="width:100%"> -->
+<!--                         <div style="width:30%">PW 재입력</div> -->
+<%--                         <div style="width:60%">${dto.id}</div> --%>
+<!--                       </div> -->
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">Name</div>
-                        <div style="width:60%">${dto.id}</div>
+                        <div class="hiddenDiv" style="width:60%">${binfo.name}</div>
+                        <input class="hiddenInput" name="name" type=text value="${binfo.name}" style="display:none">
                       </div>
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">Email</div>
-                        <div style="width:60%">${dto.id}</div>
+                        <div class="hiddenDiv" style="width:30%">${binfo.email}</div>
+                        <input class="hiddenInput" name="email" type=text value="${binfo.email}" style="display:none">
                       </div>
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">Phone</div>
-                        <div style="width:60%">${dto.id}</div>
+                        <div class="hiddenDiv" style="width:60%">${binfo.phone}</div>
+                        <input class="hiddenInput" name="phone" type=text value="${binfo.phone}" style="display:none">
                       </div>
 
-                      <div class="card-body" style="width:100%">
-                        <div style="width:30%">Phone</div>
-                        <div style="width:60%">${dto.id}</div>
-                      </div>
+                     
 
                        <div style="text-align: right; padding:10px">
                         <button id="signOut" class="btn" type="button" style="background-color:tomato">탈퇴하기</button>
