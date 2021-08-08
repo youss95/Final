@@ -63,6 +63,12 @@
 			})
 		})
 		
+		
+		
+		
+		$("#bizInfoBtn").on("click",function(){
+			location.href="${pageContext.request.contextPath}/res/bizSetting";
+		})
 
 		
 		
@@ -83,8 +89,10 @@
     -->
 
       <div class="logo">
-          <a href="" class="simple-text logo-normal">
-          Tasty Korea! 로고</a>
+          <a href="${pageContext.request.contextPath}/" class="simple-text logo-normal">
+<!--            <img src="/resources/images/logoPic.png" style="width:50px" > -->
+          <img src="/resources/images/logoTxt.png" style="width:180px">
+          </a>
       </div>
 
 
@@ -206,8 +214,8 @@
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">PW</div>
-                        <div class="hiddenDiv" style="width:60%">${binfo.pw}</div>
-                        <input class="hiddenInput" name="pw" type=text value="${binfo.pw}" style="display:none">
+                        <div class="hiddenDiv" style="width:60%">***</div>
+                        <input class="hiddenInput" name="pw" type=password value="${binfo.pw}" style="display:none">
                       </div>
 
 <!--                       <div class="card-body" style="width:100%"> -->
@@ -293,7 +301,7 @@
                         <div style="width:60%">${dto.id}</div>
                       </div>
                       <div style="text-align: right; padding:10px">
-                        <button class="btn" type="button">Edit</button>
+                        <button id="bizInfoBtn" class="btn" type="button">Edit</button>
                        </div>
                     </div>
                     </form>

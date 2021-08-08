@@ -75,8 +75,8 @@ public class BusinessMemberController {
 	
 	@RequestMapping("myPage")
 	public String myPage() {
-//		String id = (String) session.getAttribute("loginID");
-//		BusinessMemberDTO dto = ser.getInfo(id);
+		//String id = (String) session.getAttribute("loginID");
+		//BusinessDTO dto = ser.getBusinessInfo(id);  ????
 		return "/memberB/myPage";
 	}
 	
