@@ -33,6 +33,7 @@
 
 <script>
 	$(function(){
+		//====Personal Info 관련 
 		$("#signOut").on("click",function(){
 			Swal.fire({
 				  icon: "question",
@@ -57,30 +58,24 @@
 			$(".hiddenInput").css("display","inline-block");
 			$(".hiddenDiv").css("display","none");
 			$(".repwDiv").css("display","inline-block");
-// 			$("#edit").text("Save");
 			$("#edit").css("display","none");
 			$("#signOut").css("display","none");	
-			
-			
-// 			$("#edit").on("click",function(){
-// 				let result = checkBefore();
-// 				console.log(result);
-// 				if(result){
-// 					$("#personalInfoFrm").submit();
-// 				}
-// 			})
 		})
-		
-		
-		
-		
+		//====Personal Info 관련 =========
+	
+			
+			
+		//-------Business Info 관련-------
 		$("#bizInfoBtn").on("click",function(){
 			location.href="${pageContext.request.contextPath}/res/bizSetting";
 		})
-
-		$("#cancel").on("click",function(){
-			location.href="${pageContext.request.contextPath}/bMember/myPage";
+		$("#bizInfoEditBtn").on("click",function(){
+			$(".hiddenInputB").css("display","inline-block");
+			$(".hiddenDivB").css("display","none");
+			$("#bizInfoEditBtn").css("display","none");
 		})
+
+		//-------Business Info 관련 -------
 		
 	})
 	
@@ -126,6 +121,7 @@
 			
 	
 	
+	
 
 </script>
 
@@ -160,7 +156,7 @@
             <i class="material-icons" style="font-size: 100px;">person_outline</i>
            </div>
            <div id="idBox" style="text-align: center;">
-            ID  ${loginID} <br>
+            ${loginID} 님 <br>
             반갑습니다.
            </div>
         </div>
@@ -299,7 +295,7 @@
                        <div style="text-align: right; padding:10px">
                         <button class="btn hiddenInput" id="cancel" class="btn" type="button" style="display:none; color:white; background-color:#f36767;">취소</button>
                         <button id="signOut" class="btn" type="button" style="background-color:tomato">탈퇴하기</button>
-                        <button id="edit" class="btn" type="button">Edit</button>
+                        <button id="edit" class="btn" type="button">수정</button>
                         <button id="save" class="btn hiddenInput" style="display:none;">Save</button>
                        </div>
 
@@ -323,47 +319,69 @@
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">업종</div>
-                        <div style="width:60%">${bizInfo.biz_type}</div>
+                        <div style="width:40%" class="hiddenDivB">${bizInfo.biz_type}</div>
+                        <div style="width:60%; display:none" class="hiddenInputB" >
+                        	<select class="form-control" name="type"> 
+								<option selected="selected">업종을 선택해주세요</option>
+								<option value="KoreanFood" >KoreanFood</option>
+								<option value="ChineseFood">ChineseFood</option>
+								<option value="JapaneseFood">JapaneseFood</option>
+								<option value="WesternFood">WesternFood</option>
+								<option value="WorldFood">WorldFood</option>
+								<option value="Buffet">Buffet</option>
+								<option value="Cafe">Cafe</option>
+								<option value="Bar">Bar</option>
+							</select>
+						</div>
+<%--                         <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.biz_type}" style="display:none"> --%>
                       </div>
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">사업자등록번호</div>
-                        <div style="width:60%">${bizInfo.bizNum}</div>
+                        <div style="width:60%" class="hiddenDivB">${bizInfo.bizNum}</div>
+                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.bizNum}" style="display:none">
                       </div>
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">업체명</div>
-                        <div style="width:60%">${bizInfo.businessName}</div>
+                        <div style="width:60%" class="hiddenDivB">${bizInfo.businessName}</div>
+                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.businessName}" style="display:none">
                       </div>
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">영문 업체명</div>
-                        <div style="width:60%">${bizInfo.businessNameEng}</div>
+                        <div style="width:60%" class="hiddenDivB">${bizInfo.businessNameEng}</div>
+                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.businessNameEng}" style="display:none">
                       </div>
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">업체 연락처</div>
-                        <div style="width:60%">${bizInfo.businessContact}</div>
+                        <div style="width:60%" class="hiddenDivB">${bizInfo.businessContact}</div>
+                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.businessContact}" style="display:none">
                       </div>
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">업체 주소</div>
-                        <div style="width:60%">${bizInfo.address1}</div>
+                        <div style="width:60%" class="hiddenDivB">${bizInfo.address1}</div>
+                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.address1}" style="display:none">
                       </div>
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">업체 상세주소</div>
-                        <div style="width:60%">${bizInfo.address2}</div>
+                        <div style="width:60%" class="hiddenDivB">${bizInfo.address2}</div>
+                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.address2}" style="display:none">
                       </div>
                       
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">업체 우편번호</div>
-                        <div style="width:60%">${bizInfo.postcode}</div>
+                        <div style="width:60%" class="hiddenDivB">${bizInfo.postcode}</div>
+                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.postcode}" style="display:none">
                       </div>
                       
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">업체 휴무일</div>
-                        <div style="width:60%">${bizInfo.offday}</div>
+                        <div style="width:60%" class="hiddenDivB">${bizInfo.offday}</div>
+                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.offday}" style="display:none">
                       </div>
                       
 <!--                       <div class="card-body" style="width:100%"> -->
@@ -375,7 +393,18 @@
                       
                       
                       <div style="text-align: right; padding:10px">
-                        <button id="bizInfoBtn" class="btn" type="button">Edit</button>
+                      <c:choose>
+                     	 <c:when test="${bizInfo.businessName==null}">
+                     	 	<button id="bizInfoBtn" class="btn" type="button">업체정보등록</button>
+                     	 </c:when>
+                     	 <c:otherwise>
+                     	 	<button id="bizInfoEditBtn" class="btn" type="button">업체정보수정</button>
+                     	 </c:otherwise>
+                      </c:choose>
+                      
+                      <button class="btn hiddenInputB" id="cancel" class="btn" type="button" style="display:none; color:white; background-color:#f36767;">취소</button>
+                      <button id="saveBiz" class="btn hiddenInputB" style="display:none;">Save</button>   
+                                     
                        </div>
                     </div>
                     </form>
