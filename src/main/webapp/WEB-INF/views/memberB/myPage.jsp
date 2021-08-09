@@ -28,10 +28,12 @@
  <style>
       p{display:inline-block;}
     .card-body div{ display:inline-block;}
+  
   </style>
 
 <script>
 	$(function(){
+		//====Personal Info 관련 
 		$("#signOut").on("click",function(){
 			Swal.fire({
 				  icon: "question",
@@ -55,19 +57,72 @@
 		$("#edit").on("click",function(){
 			$(".hiddenInput").css("display","inline-block");
 			$(".hiddenDiv").css("display","none");
-			$("#edit").text("Save");
+			$(".repwDiv").css("display","inline-block");
+			$("#edit").css("display","none");
 			$("#signOut").css("display","none");	
-			
-			$("#edit").on("click",function(){
-				$("#personalInfoFrm").submit();
-			})
 		})
-		
+		//====Personal Info 관련 =========
+	
+			
+			
+		//-------Business Info 관련-------
+		$("#bizInfoBtn").on("click",function(){
+			location.href="${pageContext.request.contextPath}/res/bizSetting";
+		})
+		$("#bizInfoEditBtn").on("click",function(){
+			$(".hiddenInputB").css("display","inline-block");
+			$(".hiddenDivB").css("display","none");
+			$("#bizInfoEditBtn").css("display","none");
+		})
 
-		
+		//-------Business Info 관련 -------
 		
 	})
 	
+	
+	$(document).on("click","#save",function(){
+		let pw = $("#pw").val();
+		let repw = $("#repw").val();
+		
+		if(pw != repw){
+			alert("패스워드가 일치하지 않습니다.");
+			return false;
+		}
+		
+// 		if (!pwReg.test(pw)) {
+// 			alert('비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.');
+// 			return false;
+// 		}
+		
+
+		let nameReg = /^.{2,30}$/;
+		let name = $("#name").val();
+		if (!nameReg.test(name)) {
+			alert("이름은 2글자 이상 30글자 미만으로 입력해야 합니다.");
+			return false;
+		}
+
+		let emailReg = /^[0-9a-zA-Z_-]*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		let email = $("#email").val();
+
+		if (!emailReg.test(email)) {
+			alert("이메일 형식을 확인해주세요.");
+			return false;
+		}		
+		let phoneReg = /^[0-9]{9,}$/;
+		let phone = $("#phone").val();
+
+		if (!phoneReg.test(phone)) {
+			alert("핸드폰 번호를 확인해주세요.  ex) 01033558989");
+			return false;
+		}
+		
+	})
+			
+	
+	
+	
+
 </script>
 
 </head>
@@ -83,8 +138,10 @@
     -->
 
       <div class="logo">
-          <a href="" class="simple-text logo-normal">
-          Tasty Korea! 로고</a>
+          <a href="${pageContext.request.contextPath}/" class="simple-text logo-normal">
+<!--            <img src="/resources/images/logoPic.png" style="width:50px" > -->
+          <img src="/resources/images/logoTxt.png" style="width:180px">
+          </a>
       </div>
 
 
@@ -99,8 +156,8 @@
             <i class="material-icons" style="font-size: 100px;">person_outline</i>
            </div>
            <div id="idBox" style="text-align: center;">
-            ID  ${loginID} <br>
-            Welcome!
+            ${loginID} 님 <br>
+            반갑습니다.
            </div>
         </div>
 
@@ -206,38 +263,40 @@
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">PW</div>
-                        <div class="hiddenDiv" style="width:60%">${binfo.pw}</div>
-                        <input class="hiddenInput" name="pw" type=text value="${binfo.pw}" style="display:none">
+                        <div class="hiddenDiv" style="width:60%">***</div>
+                        <input class="hiddenInput" name="pw" id="pw" type=password style="display:none">
                       </div>
 
-<!--                       <div class="card-body" style="width:100%"> -->
-<!--                         <div style="width:30%">PW 재입력</div> -->
-<%--                         <div style="width:60%">${dto.id}</div> --%>
-<!--                       </div> -->
+                      <div class="card-body repwDiv" style="width:100%; display:none">
+                        <div style="width:30%">PW 재입력</div>                 
+                        <input class="hiddenInput" name="repw" id="repw" type=password>
+                      </div>
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">Name</div>
                         <div class="hiddenDiv" style="width:60%">${binfo.name}</div>
-                        <input class="hiddenInput" name="name" type=text value="${binfo.name}" style="display:none">
+                        <input class="hiddenInput" id="name" name="name" type=text value="${binfo.name}" style="display:none">
                       </div>
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">Email</div>
                         <div class="hiddenDiv" style="width:30%">${binfo.email}</div>
-                        <input class="hiddenInput" name="email" type=text value="${binfo.email}" style="display:none">
+                        <input class="hiddenInput" id="email" name="email" type=text value="${binfo.email}" style="display:none">
                       </div>
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">Phone</div>
                         <div class="hiddenDiv" style="width:60%">${binfo.phone}</div>
-                        <input class="hiddenInput" name="phone" type=text value="${binfo.phone}" style="display:none">
+                        <input class="hiddenInput" id="phone" name="phone" type=text value="${binfo.phone}" style="display:none">
                       </div>
 
                      
 
                        <div style="text-align: right; padding:10px">
+                        <button class="btn hiddenInput" id="cancel" class="btn" type="button" style="display:none; color:white; background-color:#f36767;">취소</button>
                         <button id="signOut" class="btn" type="button" style="background-color:tomato">탈퇴하기</button>
-                        <button id="edit" class="btn" type="button">Edit</button>
+                        <button id="edit" class="btn" type="button">수정</button>
+                        <button id="save" class="btn hiddenInput" style="display:none;">Save</button>
                        </div>
 
                     </div>
@@ -259,41 +318,93 @@
                       </div>
 
                       <div class="card-body" style="width:100%">
-                        <div style="width:30%">Type</div>
-                        <div style="width:60%">${dto.id}</div>
+                        <div style="width:30%">업종</div>
+                        <div style="width:40%" class="hiddenDivB">${bizInfo.biz_type}</div>
+                        <div style="width:60%; display:none" class="hiddenInputB" >
+                        	<select class="form-control" name="type"> 
+								<option selected="selected">업종을 선택해주세요</option>
+								<option value="KoreanFood" >KoreanFood</option>
+								<option value="ChineseFood">ChineseFood</option>
+								<option value="JapaneseFood">JapaneseFood</option>
+								<option value="WesternFood">WesternFood</option>
+								<option value="WorldFood">WorldFood</option>
+								<option value="Buffet">Buffet</option>
+								<option value="Cafe">Cafe</option>
+								<option value="Bar">Bar</option>
+							</select>
+						</div>
+<%--                         <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.biz_type}" style="display:none"> --%>
                       </div>
 
                       <div class="card-body" style="width:100%">
-                        <div style="width:30%">RegNum</div>
-                        <div style="width:60%">${dto.id}</div>
+                        <div style="width:30%">사업자등록번호</div>
+                        <div style="width:60%" class="hiddenDivB">${bizInfo.bizNum}</div>
+                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.bizNum}" style="display:none">
                       </div>
 
                       <div class="card-body" style="width:100%">
-                        <div style="width:30%">PW 재입력</div>
-                        <div style="width:60%">${dto.id}</div>
+                        <div style="width:30%">업체명</div>
+                        <div style="width:60%" class="hiddenDivB">${bizInfo.businessName}</div>
+                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.businessName}" style="display:none">
                       </div>
 
                       <div class="card-body" style="width:100%">
-                        <div style="width:30%">Name</div>
-                        <div style="width:60%">${dto.id}</div>
+                        <div style="width:30%">영문 업체명</div>
+                        <div style="width:60%" class="hiddenDivB">${bizInfo.businessNameEng}</div>
+                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.businessNameEng}" style="display:none">
                       </div>
 
                       <div class="card-body" style="width:100%">
-                        <div style="width:30%">Email</div>
-                        <div style="width:60%">${dto.id}</div>
+                        <div style="width:30%">업체 연락처</div>
+                        <div style="width:60%" class="hiddenDivB">${bizInfo.businessContact}</div>
+                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.businessContact}" style="display:none">
                       </div>
 
                       <div class="card-body" style="width:100%">
-                        <div style="width:30%">Phone</div>
-                        <div style="width:60%">${dto.id}</div>
+                        <div style="width:30%">업체 주소</div>
+                        <div style="width:60%" class="hiddenDivB">${bizInfo.address1}</div>
+                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.address1}" style="display:none">
                       </div>
 
                       <div class="card-body" style="width:100%">
-                        <div style="width:30%">Phone</div>
-                        <div style="width:60%">${dto.id}</div>
+                        <div style="width:30%">업체 상세주소</div>
+                        <div style="width:60%" class="hiddenDivB">${bizInfo.address2}</div>
+                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.address2}" style="display:none">
                       </div>
+                      
+                      <div class="card-body" style="width:100%">
+                        <div style="width:30%">업체 우편번호</div>
+                        <div style="width:60%" class="hiddenDivB">${bizInfo.postcode}</div>
+                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.postcode}" style="display:none">
+                      </div>
+                      
+                      <div class="card-body" style="width:100%">
+                        <div style="width:30%">업체 휴무일</div>
+                        <div style="width:60%" class="hiddenDivB">${bizInfo.offday}</div>
+                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.offday}" style="display:none">
+                      </div>
+                      
+<!--                       <div class="card-body" style="width:100%"> -->
+<!--                         <div style="width:30%">업체 영엽시간</div> -->
+<%--                         <div style="width:60%">${bizInfo.timeAvailable}</div> --%>
+<!--                       </div> -->
+                      
+                      
+                      
+                      
                       <div style="text-align: right; padding:10px">
-                        <button class="btn" type="button">Edit</button>
+                      <c:choose>
+                     	 <c:when test="${bizInfo.businessName==null}">
+                     	 	<button id="bizInfoBtn" class="btn" type="button">업체정보등록</button>
+                     	 </c:when>
+                     	 <c:otherwise>
+                     	 	<button id="bizInfoEditBtn" class="btn" type="button">업체정보수정</button>
+                     	 </c:otherwise>
+                      </c:choose>
+                      
+                      <button class="btn hiddenInputB" id="cancel" class="btn" type="button" style="display:none; color:white; background-color:#f36767;">취소</button>
+                      <button id="saveBiz" class="btn hiddenInputB" style="display:none;">Save</button>   
+                                     
                        </div>
                     </div>
                     </form>

@@ -25,7 +25,7 @@ public class ClientMemberController {
 
 	@Autowired
 	private ClientMemberService service;
-	
+
 	@Autowired
 	private EmailService serviceA;
 
@@ -39,21 +39,21 @@ public class ClientMemberController {
 	public int idCheck(String id) {
 		return service.idCheck(id);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value="emailConfirm")
 	public String emailConfirm(String email, String name) throws Exception {
 		return serviceA.sendEmailConfirm(email, name);
 	}
-	
+
 
 	@RequestMapping(value="signupProc")
 	public String signupProc(ClientMemberDTO dto, Model m) {
 		String shaPW = SHA256.getSHA512(dto.getPw());
 		dto.setPw(shaPW);
-		
+
 		int result = service.insert(dto);
-		
+
 		m.addAttribute("result", result);
 		return "memberC/signupResult";
 	}
@@ -77,16 +77,60 @@ public class ClientMemberController {
 	@ResponseBody
 	@RequestMapping(value = "verifyRecaptcha", method = RequestMethod.POST)
 	public int VerifyRecaptcha(HttpServletRequest request) {
-	    VerifyRecaptcha.setSecretKey("6Ld-7eIbAAAAAHKQ6aWGRpvswCfWIykH7oqieuNY");
-	    String gRecaptchaResponse = request.getParameter("recaptcha");
-	    try {
-	       if(VerifyRecaptcha.verify(gRecaptchaResponse))
-	          return 0; // 성공
-	       else return 1; // 실패
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        return -1; //에러
-	    }
+		VerifyRecaptcha.setSecretKey("6Ld-7eIbAAAAAHKQ6aWGRpvswCfWIykH7oqieuNY");
+		String gRecaptchaResponse = request.getParameter("recaptcha");
+		try {
+			if(VerifyRecaptcha.verify(gRecaptchaResponse))
+				return 0; // 성공
+			else return 1; // 실패
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1; //에러
+		}
+	}
+	
+	@RequestMapping(value="findIDForm")
+	public String findIDForm() {
+		return "memberC/findID";
+	}
+
+	@ResponseBody
+	@RequestMapping(value="sendEmailforID")
+	public String sendEmailforID(String name, String email) throws Exception {
+		int resultMatching = service.matchNameEmail(name, email);
+		if(resultMatching>0) {
+			return serviceA.sendEmailConfirm(name, email);
+		}else {
+			return "false";
+		}
+	}
+	@ResponseBody
+	@RequestMapping(value="findID")
+	public String findID(String name, String email) throws Exception {
+		return service.findID(name, email);
+	}
+
+	@RequestMapping(value="findPWForm")
+	public String findPWForm() {
+		return "memberC/findPW";
+	}
+	@ResponseBody
+	@RequestMapping(value="sendEmailforPW")
+	public String sendEmailforPW(String id, String name, String email) throws Exception {
+		int resultMatching = service.matchIdNameEmail(id, name, email);
+		if(resultMatching>0) {
+			return serviceA.sendEmailConfirm(name, email);
+		}else {
+			return "false";
+		}
+	}
+
+	@RequestMapping(value="resetPW")
+	public String resetPW(String id, String pw, Model m) throws Exception {
+		String shaPW = SHA256.getSHA512(pw);
+		int result = service.resetPW(id, shaPW);
+		m.addAttribute("result", result);
+		return "memberC/resetPWResult";
 	}
 
 

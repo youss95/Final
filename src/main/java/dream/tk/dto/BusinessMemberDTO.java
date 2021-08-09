@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class BusinessMemberDTO {
 	
-	
+	private int seq;
 	private String id;
 	private String pw;
 	private String name;
@@ -13,14 +13,13 @@ public class BusinessMemberDTO {
 	private String premium;
 	private Date prm_exp_date;
 	
-	
 	public BusinessMemberDTO() {
 		super();
 	}
-	
-	public BusinessMemberDTO(String id, String pw, String name, String email, String phone, String premium,
+	public BusinessMemberDTO(int seq, String id, String pw, String name, String email, String phone, String premium,
 			Date prm_exp_date) {
 		super();
+		this.seq = seq;
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
@@ -29,8 +28,12 @@ public class BusinessMemberDTO {
 		this.premium = premium;
 		this.prm_exp_date = prm_exp_date;
 	}
-	
-	
+	public int getSeq() {
+		return seq;
+	}
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
 	public String getId() {
 		return id;
 	}
@@ -73,6 +76,9 @@ public class BusinessMemberDTO {
 	public void setPrm_exp_date(Date prm_exp_date) {
 		this.prm_exp_date = prm_exp_date;
 	}
+	
+	
+	
 	
 	
 	
