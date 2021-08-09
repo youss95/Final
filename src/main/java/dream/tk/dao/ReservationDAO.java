@@ -32,7 +32,7 @@ public class ReservationDAO {
 	}
 	
 	public int resDelete(int resId) {
-		int result = mybatis.delete("ResMapper.resDelete");
+		int result = mybatis.delete("ResMapper.resDelete",resId);
 		return result;
 	}
 	

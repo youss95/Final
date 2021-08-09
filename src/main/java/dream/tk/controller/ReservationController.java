@@ -50,6 +50,18 @@ public class ReservationController {
 		return "/reservation/res_bizSetting";
 	}
 	
+	@GetMapping("/btnTest")
+	public String btnTest() {
+		return "/reservation/websocketBtnTest";
+	}
+	
+	@GetMapping("/alarm")
+	@ResponseBody
+	public String at() {
+		System.out.println("dd");
+		return "success";
+	}
+	
 	@PostMapping("/setTime")
 	public String setTime(BusinessDTO dto) {
 		String result = "";
@@ -68,7 +80,7 @@ public class ReservationController {
 		return "/home";
 	}
 	
-	@DeleteMapping("/{resId}")
+	@DeleteMapping(value="/{resId}",produces= {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
 	public ResponseEntity<String> resDelete(@PathVariable int resId){
 		System.out.println(resId);

@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <header id="main-header">
       <nav><a href="/">
         <img src="/resources/images/logoTxt.png" alt="Logo" id="logo" /></a>
         <link rel="stylesheet" href="/resources/css/header.css" />
+        
 <c:choose>
 <c:when test="${loginID!=null }">
 <ul>

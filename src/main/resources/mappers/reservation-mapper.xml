@@ -8,11 +8,45 @@
   <!-- 휴일 날짜 반환  -->
   <select id="dayoff" resultType="java.lang.String">
   SELECT
-    <if test="offday == 'tue'">
-	 <![CDATA[
+<choose>
+<when test="offday == 'mon'">
+ <![CDATA[
 	 TO_CHAR(TRUNC(sysdate,'iw')+(level*7-7) ,'yyyymmdd') mon FROM dual CONNECT BY LEVEL <= 12
-	 ]]>
-	</if>
+ ]]>
+</when>
+<when test="offday == 'tue'">
+ <![CDATA[
+	 TO_CHAR(TRUNC(sysdate,'iw')+(level*7+1-7) ,'yyyymmdd') tue FROM dual CONNECT BY LEVEL <= 12
+ ]]>
+</when>
+<when test="offday == 'wed'">
+ <![CDATA[
+	 TO_CHAR(TRUNC(sysdate,'iw')+(level*7+2-7) ,'yyyymmdd') wed FROM dual CONNECT BY LEVEL <= 12
+ ]]>
+</when>
+<when test="offday == 'thu'">
+ <![CDATA[
+	 TO_CHAR(TRUNC(sysdate,'iw')+(level*7+3-7) ,'yyyymmdd') thu FROM dual CONNECT BY LEVEL <= 12
+ ]]>
+</when>
+<when test="offday == 'fri'">
+ <![CDATA[
+	 TO_CHAR(TRUNC(sysdate,'iw')+(level*7+4-7) ,'yyyymmdd') fri FROM dual CONNECT BY LEVEL <= 12
+ ]]>
+</when>
+<when test="offday == 'sat'">
+ <![CDATA[
+	 TO_CHAR(TRUNC(sysdate,'iw')+(level*7+5-7) ,'yyyymmdd') sat FROM dual CONNECT BY LEVEL <= 12
+ ]]>
+</when>
+<otherwise>
+<![CDATA[
+	 TO_CHAR(TRUNC(sysdate,'iw')+(level*7+6-7) ,'yyyymmdd') sun FROM dual CONNECT BY LEVEL <= 12
+ ]]>
+</otherwise>
+</choose>
+  
+                  
   </select>
 	
 	<!-- 휴일 값 가져오기 -->
