@@ -65,7 +65,7 @@ public class AlarmHandler extends TextWebSocketHandler{
 		if(null == loginUser) {
 			return session.getId();  //웹소켓 아이디
 		}else {
-			return loginUser.getName();  //유저 아이디
+			return loginUser.getName();  //유저 이름을 찾는다.
 		}
 		
 	}

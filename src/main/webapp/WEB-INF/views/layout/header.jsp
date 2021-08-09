@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="/resources/css/header.css" />
         
 <c:choose>
-<c:when test="${loginID!=null }">
+<c:when test="${loginID!=null || binfo.id !=null }">
 <ul>
 
           <li><a href="${pageContext.request.contextPath}/mypage.mp">MyPage</a></li>

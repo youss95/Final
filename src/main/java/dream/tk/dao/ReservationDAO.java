@@ -22,13 +22,13 @@ public class ReservationDAO {
 		return list;
 	}
 	
-	public String getOffday() {
+	public String getOffday(int biz_seq) {
 		
-	return mybatis.selectOne("ResMapper.getOffday");
+	return mybatis.selectOne("ResMapper.getOffday",biz_seq);
 	}
 	
-	public String getOnday(int seq) {
-		return mybatis.selectOne("ResMapper.getOnday",seq);
+	public String getOnday(int biz_seq) {
+		return mybatis.selectOne("ResMapper.getOnday",biz_seq);
 	}
 	
 	public int resDelete(int resId) {

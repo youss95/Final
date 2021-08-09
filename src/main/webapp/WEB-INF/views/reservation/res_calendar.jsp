@@ -185,10 +185,27 @@
     
      /* 클릭하였을때 이벤트 막기 */
     	selectConstraint: {
+    		<c:if test="${od == 'mon'}">
+    		daysOfWeek: [0,2,3,4,5,6]
+    		</c:if>
     		<c:if test="${od == 'tue'}">
     		daysOfWeek: [0,1,3,4,5,6]
     		</c:if>
-    		
+    		<c:if test="${od == 'wed'}">
+    		daysOfWeek: [0,1,2,4,5,6]
+    		</c:if>
+    		<c:if test="${od == 'thu'}">
+    		daysOfWeek: [0,1,2,3,5,6]
+    		</c:if>
+    		<c:if test="${od == 'fri'}">
+    		daysOfWeek: [0,1,2,3,4,6]
+    		</c:if>
+    		<c:if test="${od == 'sat'}">
+    		daysOfWeek: [0,1,2,3,4,5]
+    		</c:if>
+    		<c:if test="${od == 'sun'}">
+    		daysOfWeek: [1,2,3,4,5,6]
+    		</c:if>
     	},
     
       //여기다가 모달창 만들어서 ajax로 데이터 넘겨주자

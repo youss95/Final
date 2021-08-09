@@ -28,17 +28,19 @@ public class ReservationController {
 	private ReservationService resService;
 	
 	@GetMapping("/calendar")
-	public String calendar(String offday,Model model) {
+	public String calendar(int biz_seq,Model model) {
 
 	//String time2 = replyService.restime(time);
 	
 	//System.out.println(time3);
 	//model.addAttribute("time",time2);
+		System.out.println(biz_seq);
 		List<ReservationDTO> resInfo = resService.getResInfo();
-	String od = resService.getOffday();
+	String od = resService.getOffday(biz_seq);
+	System.out.println("od"+od);
 	List<String> offdays = resService.dayoff(od);
-	String onday = resService.getOnday(0);
-	model.addAttribute("resInfo",resInfo);
+	String onday = resService.getOnday(biz_seq);
+	model.addAttribute("resInfo",resInfo); //예약정보
 	model.addAttribute("onday",onday);
 	model.addAttribute("od",od);
 	model.addAttribute("offdays",offdays);
@@ -77,7 +79,7 @@ public class ReservationController {
 		
 		System.out.println(dto.toString());
 		resService.registerBiz(dto);
-		return "/home";
+		return "redirect: /";
 	}
 	
 	@DeleteMapping(value="/{resId}",produces= {MediaType.APPLICATION_JSON_VALUE})

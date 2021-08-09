@@ -20,12 +20,12 @@ public class ReservationService {
 		return resDao.dayoff(od);
 	}
 	
-	public String getOffday() {
-		return resDao.getOffday();
+	public String getOffday(int biz_seq) {
+		return resDao.getOffday(biz_seq);
 	}
 	
-	public String getOnday(int seq) {
-		return resDao.getOnday(seq);
+	public String getOnday(int biz_seq) {
+		return resDao.getOnday(biz_seq);
 	}
 	
 	public int registerTime(ReservationDTO dto) {
