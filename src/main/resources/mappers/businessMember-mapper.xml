@@ -35,6 +35,11 @@
 	<update id="editPersonalInfo">
 	  update business_member set pw=#{pw},name=#{name},email=#{email},phone=#{phone} where id=#{id}
 	</update>
+
+	
+	<select id="getBizInfo" resultType="dream.tk.dto.BusinessDTO">
+		select * from business where seq=#{value}
+	</select>
 	
 	
 </mapper>
