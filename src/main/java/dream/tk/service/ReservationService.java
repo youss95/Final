@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import dream.tk.dao.ReservationDAO;
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.PaymentDTO;
+import dream.tk.dto.ReservationDTO;
 
 @Service
 public class ReservationService {
@@ -19,12 +20,16 @@ public class ReservationService {
 		return resDao.dayoff(od);
 	}
 	
-	public String getOffday() {
-		return resDao.getOffday();
+	public String getOffday(int biz_seq) {
+		return resDao.getOffday(biz_seq);
 	}
 	
-	public String getOnday(int seq) {
-		return resDao.getOnday(seq);
+	public String getOnday(int biz_seq) {
+		return resDao.getOnday(biz_seq);
+	}
+	
+	public int registerTime(ReservationDTO dto) {
+		return resDao.registerTime(dto);
 	}
 	
 	public int resDelete(int resId) {
@@ -33,6 +38,10 @@ public class ReservationService {
 	
 	public int resPay(PaymentDTO dto) {
 		return resDao.resPay(dto);
+	}
+	
+	public List<ReservationDTO> getResInfo(){
+		return resDao.getResInfo();
 	}
 	//정액권 환불
 	public String passRefund(String memberId) {

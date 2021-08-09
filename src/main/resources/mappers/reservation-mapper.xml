@@ -8,21 +8,55 @@
   <!-- 휴일 날짜 반환  -->
   <select id="dayoff" resultType="java.lang.String">
   SELECT
-    <if test="offday == 'tue'">
-	 <![CDATA[
+<choose>
+<when test="offday == 'mon'">
+ <![CDATA[
 	 TO_CHAR(TRUNC(sysdate,'iw')+(level*7-7) ,'yyyymmdd') mon FROM dual CONNECT BY LEVEL <= 12
-	 ]]>
-	</if>
+ ]]>
+</when>
+<when test="offday == 'tue'">
+ <![CDATA[
+	 TO_CHAR(TRUNC(sysdate,'iw')+(level*7+1-7) ,'yyyymmdd') tue FROM dual CONNECT BY LEVEL <= 12
+ ]]>
+</when>
+<when test="offday == 'wed'">
+ <![CDATA[
+	 TO_CHAR(TRUNC(sysdate,'iw')+(level*7+2-7) ,'yyyymmdd') wed FROM dual CONNECT BY LEVEL <= 12
+ ]]>
+</when>
+<when test="offday == 'thu'">
+ <![CDATA[
+	 TO_CHAR(TRUNC(sysdate,'iw')+(level*7+3-7) ,'yyyymmdd') thu FROM dual CONNECT BY LEVEL <= 12
+ ]]>
+</when>
+<when test="offday == 'fri'">
+ <![CDATA[
+	 TO_CHAR(TRUNC(sysdate,'iw')+(level*7+4-7) ,'yyyymmdd') fri FROM dual CONNECT BY LEVEL <= 12
+ ]]>
+</when>
+<when test="offday == 'sat'">
+ <![CDATA[
+	 TO_CHAR(TRUNC(sysdate,'iw')+(level*7+5-7) ,'yyyymmdd') sat FROM dual CONNECT BY LEVEL <= 12
+ ]]>
+</when>
+<otherwise>
+<![CDATA[
+	 TO_CHAR(TRUNC(sysdate,'iw')+(level*7+6-7) ,'yyyymmdd') sun FROM dual CONNECT BY LEVEL <= 12
+ ]]>
+</otherwise>
+</choose>
+  
+                  
   </select>
 	
 	<!-- 휴일 값 가져오기 -->
   <select id="getOffday" resultType="java.lang.String">
-   select offday from business  where biz_seq =2
+   select offday from business  where biz_seq = #{biz_seq}
   </select>
   
   <!-- 영업 가능 시간 가져오기 -->
   <select id="getOnday" resultType="java.lang.String">
-  select onday from business where seq = #{seq}
+  select onday from business where biz_seq = #{biz_seq}
   </select>
   
   
@@ -30,6 +64,17 @@
   <delete id="resDelete">
   delete from reservation where res_no = #{res_no}
   </delete>
+  
+  <!-- 예약 시간 선택 후 예약 하기 -->
+  <insert id="registerTime">
+  insert into reservation values(res_seq.nextval,#{res_name},#{userId},#{res_date},#{res_time},'Y',sysdate)
+  </insert>
+  
+  
+  <!-- 예약 정보 가져오기 수정 필요 select * from reservation where res_name = #{res_name} -->  
+  <select id="getResInfo" resultType="dream.tk.dto.ReservationDTO">
+  select * from reservation
+  </select>
   
   <!-- 정액권 결제 -->
   <insert id="resPay">

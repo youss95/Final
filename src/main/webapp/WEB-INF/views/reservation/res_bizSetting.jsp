@@ -213,6 +213,7 @@
 			<span class="chkmark"></span> 20:00
 		</label>
 	</div>
+	<input type="hidden" name="seq" value="${binfo.seq}">
 	
 	<button type="submit">시간등록</button>
 </form>

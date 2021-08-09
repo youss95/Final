@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.PaymentDTO;
+import dream.tk.dto.ReservationDTO;
 
 @Repository
 public class ReservationDAO {
@@ -21,18 +22,26 @@ public class ReservationDAO {
 		return list;
 	}
 	
-	public String getOffday() {
+	public String getOffday(int biz_seq) {
 		
-	return mybatis.selectOne("ResMapper.getOffday");
+	return mybatis.selectOne("ResMapper.getOffday",biz_seq);
 	}
 	
-	public String getOnday(int seq) {
-		return mybatis.selectOne("ResMapper.getOnday",seq);
+	public String getOnday(int biz_seq) {
+		return mybatis.selectOne("ResMapper.getOnday",biz_seq);
 	}
 	
 	public int resDelete(int resId) {
-		int result = mybatis.delete("ResMapper.resDelete");
+		int result = mybatis.delete("ResMapper.resDelete",resId);
 		return result;
+	}
+	
+	public int registerTime(ReservationDTO dto) {
+		return mybatis.insert("ResMapper.registerTime", dto);
+	}
+	
+	public List<ReservationDTO> getResInfo() {
+		return mybatis.selectList("ResMapper.getResInfo");
 	}
 	
 	public int resPay(PaymentDTO dto) {

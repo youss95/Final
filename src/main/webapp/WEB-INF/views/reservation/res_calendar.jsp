@@ -140,12 +140,17 @@
     	 $("#subBtn").on('click',function(){
       		let selected = $('.clicked').html();
       		console.log(selected)
-      		
-      		let data = {data:selected}
+      		console.log(strDate)
+      		let data = {
+      			res_name:'행복식당',
+      			userId:'${loginID}',
+      			res_date:strDate,
+      			res_time:selected
+      			}
       		//start 컨트롤러에 보내면 시간 초 까지 나옴 가공해야됨
       		let no = 12
       		 $.ajax({
-      			url:"/replies/insertCal",
+      			url:"/res/insertCal",
       			type:"POST",
       			data: JSON.stringify(data),
       			contentType:"application/json;charset=utf-8"
@@ -157,7 +162,7 @@
       			
       		          calendar.addEvent({
       		            title: " 예약",
-      		            start: strDate+" "+data.data
+      		            start: strDate+" "+data.res_time
 
       		          })
       		       
@@ -180,10 +185,27 @@
     
      /* 클릭하였을때 이벤트 막기 */
     	selectConstraint: {
+    		<c:if test="${od == 'mon'}">
+    		daysOfWeek: [0,2,3,4,5,6]
+    		</c:if>
     		<c:if test="${od == 'tue'}">
     		daysOfWeek: [0,1,3,4,5,6]
     		</c:if>
-    		
+    		<c:if test="${od == 'wed'}">
+    		daysOfWeek: [0,1,2,4,5,6]
+    		</c:if>
+    		<c:if test="${od == 'thu'}">
+    		daysOfWeek: [0,1,2,3,5,6]
+    		</c:if>
+    		<c:if test="${od == 'fri'}">
+    		daysOfWeek: [0,1,2,3,4,6]
+    		</c:if>
+    		<c:if test="${od == 'sat'}">
+    		daysOfWeek: [0,1,2,3,4,5]
+    		</c:if>
+    		<c:if test="${od == 'sun'}">
+    		daysOfWeek: [1,2,3,4,5,6]
+    		</c:if>
     	},
     
       //여기다가 모달창 만들어서 ajax로 데이터 넘겨주자
@@ -206,11 +228,16 @@
       //휴일 이벤트 취소 막기(아직 기능 구현 못함)
       eventClick: function(arg) {
     	
-    	
+    	let title = arg.event.title;
     	let resId = arg.event.id  //저장된 id값 얻기
     	  console.log(arg.event.start)
+    	  console.log(resId)
     	 let eventDt = moment(arg.event.start).format("YYYY-MM-DD")
     	 console.log(eventDt)
+    	 if(title == '휴일'){
+    		 alert("휴일 입니다")
+    		 return;
+    	 }else{
         if (confirm('취소 하시겠습니까?')) {
           arg.event.remove()
           $.ajax({
@@ -220,6 +247,7 @@
         	  console.log(resp)
           })
         }
+    	 }
       },
       editable: true,
       dayMaxEvents: true, // allow "more" link when too many events
@@ -230,11 +258,15 @@
          
      	 
         },
-        {
-        	id: 999,
-        	title: 'Repeating Event',
-        	start: '2021-08-09 16:00'
+        
+        	<c:forEach var="resInfo" items="${resInfo}">
+        	{
+        	id: ${resInfo.res_no},
+        	title: '예약',
+        	start: '${resInfo.res_date}'+" "+'${resInfo.res_time}'
+        		
         	},
+        	</c:forEach>
        
         		<c:forEach var="every" items="${offdays}">
         		{
