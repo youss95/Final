@@ -10,7 +10,7 @@ import dream.tk.config.EmailConfig;
 @Service
 public class EmailService {
 	
-	public String sendEmailConfirm(String rcpAccount, String rcpName) throws Exception {
+	public String sendEmailConfirm(String rcpName, String rcpEmail) throws Exception {
 		
 		
 		Email email = new SimpleEmail();
@@ -28,7 +28,7 @@ public class EmailService {
 		String msg4 = String.valueOf((int)(Math.random()*(1000000-100000))+100000);
         String msg = msg1+msg2+msg3+msg4;
 		email.setMsg(msg);
-		email.addTo(rcpAccount, rcpName);
+		email.addTo(rcpEmail, rcpName);
 		email.send();
 		
 		return msg4;

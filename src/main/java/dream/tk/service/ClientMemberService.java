@@ -39,4 +39,31 @@ public class ClientMemberService {
 	public ClientMemberDTO getInfo(String id) {
 		return dao.getInfo(id);
 	}
+	
+	public int matchNameEmail(String name, String email) {
+		Map<String, String> param = new HashMap<>();
+		param.put("name", name);
+		param.put("email", email);
+		return dao.matchNameEmail(param);
+	}
+	public String findID(String name, String email) {
+		Map<String, String> param = new HashMap<>();
+		param.put("name", name);
+		param.put("email", email);
+		return dao.findID(param);
+	}
+	public int matchIdNameEmail(String id, String name, String email) {
+		Map<String, String> param = new HashMap<>();
+		param.put("id", id);
+		param.put("name", name);
+		param.put("email", email);
+		return dao.matchIdNameEmail(param);
+	}
+	public int resetPW(String id, String pw) {
+		Map<String, String> param = new HashMap<>();
+		param.put("id", id);
+		param.put("pw", pw);
+		return dao.resetPW(param);
+	}
+	
 }

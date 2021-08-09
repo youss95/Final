@@ -4,35 +4,53 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cMember">
 
-   <select id="idCheck" resultType="int">
-      select count(*) from
-      client_member where id=#{id}
-   </select>
+	<select id="idCheck" resultType="int">
+		select count(*) from
+		client_member where id=#{id}
+	</select>
 
-   <insert id="insert">
-      insert into client_member values(client_member_seq.nextval,
-      #{id}, #{pw}, #{email}, #{name}, #{yob}, sysdate)
-   </insert>
+	<insert id="insert">
+		insert into client_member values(client_member_seq.nextval,
+		#{id}, #{pw}, #{email}, #{name}, #{yob}, sysdate)
+	</insert>
 
-   <update id="update">
-      update client_member set pw=#{pw},
-      email=#{email}, name=#{name}, yoerOfBirth=#{yob}, reg_date=sysdate 
-      where id=${id}
-   </update>
+	<update id="update">
+		update client_member set pw=#{pw},
+		email=#{email}, name=#{name}, yoerOfBirth=#{yob}, reg_date=sysdate
+		where id=#{id}
+	</update>
 
-   <delete id="delete">
-      delete from client_member where id=#{value}
-   </delete>
+	<delete id="delete">
+		delete from client_member where id=#{value}
+	</delete>
 
 	<select id="login" resultType="int">
 		select count(*) from client_member
 		where id=#{id} and pw=#{pw}
 	</select>
 
+	<select id="matchNameEmail" resultType="int">
+		select count(*) from
+		client_member where name=#{name} and email=#{email}
+	</select>
 
-   <select id="getInfo" resultType="dream.tk.dto.AdminMemberDTO">
-      select * from client_member where
-      id=#{value};
-   </select>
+	<select id="findID" resultType="String">
+		select id from
+		client_member where name=#{name} and email=#{email}
+	</select>
+
+	<select id="matchIdNameEmail" resultType="int">
+		select count(*) from
+		client_member where id=#{id} and name=#{name} and email=#{email}
+	</select>
+
+	<update id="resetPW">
+		update client_member set pw=#{pw} where id=#{id}
+	</update>
+
+	<select id="getInfo" resultType="dream.tk.dto.AdminMemberDTO">
+		select * from client_member where
+		id=#{value};
+	</select>
 
 </mapper>

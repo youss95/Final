@@ -33,5 +33,16 @@ public class ClientMemberDAO {
 	public ClientMemberDTO getInfo(String id) {
 		return mybatis.selectOne("cMember.getInfo", id);
 	}
-	
+	public int matchNameEmail(Map<String, String> param) {
+		return mybatis.selectOne("cMember.matchNameEmail", param);
+	}
+	public String findID(Map<String, String> param) {
+		return mybatis.selectOne("cMember.findID", param);
+	}
+	public int matchIdNameEmail(Map<String, String> param) {
+		return mybatis.selectOne("cMember.matchNameEmail", param);
+	}
+	public int resetPW(Map<String, String> param) {
+		return mybatis.update("cMember.resetPW", param);
+	}
 }
