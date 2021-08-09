@@ -96,7 +96,9 @@
   </update>
   
   <!-- 할인권 구매 하였을때 비즈니스 멤버 기간 , 등급 업데이트 -->
-  
+  <update id="updatePrem">
+  update business_member set premium = 'Y' where id = #{id}
+  </update>
   
   <!--비즈니스 세팅  -->
   <insert id="bizSetting" >

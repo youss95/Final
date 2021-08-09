@@ -44,6 +44,12 @@ public class ReservationDAO {
 		return mybatis.selectList("ResMapper.getResInfo");
 	}
 	
+	public int registerBiz(BusinessDTO dto) {
+		return mybatis.insert("ResMapper.bizSetting",dto);
+	}
+	
+	//-----------------------결제 관련--------------------------
+	
 	public int resPay(PaymentDTO dto) {
 		int result = mybatis.insert("ResMapper.resPay",dto);
 		return result;
@@ -66,7 +72,7 @@ public class ReservationDAO {
 		return mybatis.update("ResMapper.refundCheck",pay_no);
 	}
 	
-	public int registerBiz(BusinessDTO dto) {
-		return mybatis.insert("ResMapper.bizSetting",dto);
+	public int updatePrem(String id) {
+		return mybatis.update("ResMapper.updatePrem",id);
 	}
 }
