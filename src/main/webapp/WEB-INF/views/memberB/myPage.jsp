@@ -29,6 +29,7 @@
       p{display:inline-block;}
     .card-body div{ display:inline-block;}
   
+   
   </style>
 
 <script>
@@ -130,48 +131,45 @@
 <body class="">
 
   <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" style="height:100%;">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
         Tip 2: you can also add an image using data-image tag
     -->
 
-      <div class="logo">
+      <div class="logo" style="height:15%; padding:0px">
           <a href="${pageContext.request.contextPath}/" class="simple-text logo-normal">
 <!--            <img src="/resources/images/logoPic.png" style="width:50px" > -->
-          <img src="/resources/images/logoTxt.png" style="width:180px">
+          <img src="/resources/images/logoTxt.png" style="width:130px">
           </a>
       </div>
 
 
 
-      <div class="sidebar-wrapper">
+      <div class="sidebar-wrapper" style="height:85%; padding-bottom:0px">
 
-        <div id="profileBox"  style="height:30%">
-            <div>
-             <p></p>
-            </div>
+        <div id="profileBox"  style="height:35%;">
+           <div style="height:10px"></div>
            <div style="text-align: center;">
-            <i class="material-icons" style="font-size: 100px;">person_outline</i>
+            <i class="material-icons" style="font-size: 90px;">person_outline</i>
            </div>
            <div id="idBox" style="text-align: center;">
-            ${loginID} 님 <br>
-            반갑습니다.
+            ${loginID} 님
            </div>
         </div>
 
-        <div id="naviBox" style="height:50%">
-        <ul class="nav" style="height:100%">
+        <div id="naviBox" style="height:60%">
+        <ul class="nav" style="height:100%; margin-top:0px">
 
-          <li class="nav-item active ">
+          <li class="nav-item active " style="height:20%;">
              <a class="nav-link" href="">
                   <i class="material-icons">person</i>
                   <p>My Page</p>
              </a>
           </li>
 
-          <li class="nav-item ">
+          <li class="nav-item " style="height:20%;">
             <a class="nav-link" href="">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
@@ -179,7 +177,7 @@
           </li>
           
 
-          <li class="nav-item ">
+          <li class="nav-item " style="height:20%;">
             <a class="nav-link" href="link.html">
               <i class="material-icons">chat</i>
               <p>Chatting</p>
@@ -187,11 +185,13 @@
           </li>
 
 
-          <div style="height:55%"></div>
-
-          
-            <li class="nav-item ">
-              <a class="nav-link" href="">
+<!--           <div style="height:50%"></div> -->
+           <li class="nav-item " style="height:20%;">
+              
+            </li>
+            
+            <li class="nav-item " style="height:20%;">
+              <a class="nav-link" href="${pageContext.request.contextPath}/" id="exit" style="margin-top:0px">
                 <i class="material-icons">west</i>
                 <p>Exit this Page</p>
               </a>
@@ -294,7 +294,7 @@
 
                        <div style="text-align: right; padding:10px">
                         <button class="btn hiddenInput" id="cancel" class="btn" type="button" style="display:none; color:white; background-color:#f36767;">취소</button>
-                        <button id="signOut" class="btn" type="button" style="background-color:tomato">탈퇴하기</button>
+                        <button id="signOut" class="btn" type="button" style="background-color:tomato">탈퇴</button>
                         <button id="edit" class="btn" type="button">수정</button>
                         <button id="save" class="btn hiddenInput" style="display:none;">Save</button>
                        </div>

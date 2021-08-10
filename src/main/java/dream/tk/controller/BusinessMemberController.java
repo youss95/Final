@@ -110,4 +110,38 @@ public class BusinessMemberController {
 		session.setAttribute("binfo", dto);
 		return "redirect:/bMember/myPage";
 	}
+	
+	@RequestMapping("findIDForm")
+	public String findIDForm() {
+		return "/memberB/findID";
+	}
+	
+	@ResponseBody
+	@RequestMapping("findIDProc")
+	public String findIDProc(String name, String email) {
+		String id = ser.findID(name, email);
+		return id;
+	}
+	
+	@RequestMapping("findPWForm")
+	public String findPWForm(){
+		return "/memberB/findPW";
+	}
+	
+	@ResponseBody
+	@RequestMapping("findPWProc")
+	public String findPWProc(String id, String name, String email) {
+		String resultid =ser.findPW(id,name,email);
+		return resultid;
+	}
+	
+	@RequestMapping("changePW")
+	public String changePW(String id, String pw,Model m) {
+		String newpw = SHA256.getSHA512(pw);
+		int result = ser.changePW(id, newpw);
+		m.addAttribute("result", result);
+		return "/memberB/chagePWView";
+	}
+	
+	
 }

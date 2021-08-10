@@ -66,8 +66,8 @@ button {
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6"><a href="">아이디 찾기</a></div>
-                    <div class="col-6"><a href="">비밀번호 찾기</a></div>
+                    <div class="col-6"><a href="${pageContext.request.contextPath}/bMember/findIDForm">아이디 찾기</a></div>
+                    <div class="col-6"><a href="${pageContext.request.contextPath}/bMember/findPWForm">비밀번호 찾기</a></div>
                 </div>
             </div>
 

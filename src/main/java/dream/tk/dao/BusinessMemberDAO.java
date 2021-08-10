@@ -45,4 +45,15 @@ public class BusinessMemberDAO {
 		return mybatis.selectOne("bMem.getBizInfo", bizSeq);
 	}
 	
+	public String findID(Map<String,String> param) {
+		return mybatis.selectOne("bMem.findID",param);
+	}
+	
+	public String findPW(Map<String,String> param) {
+		return mybatis.selectOne("bMem.findPW",param);
+	}
+	
+	public int changePW(Map<String,String> param) {
+		return mybatis.update("bMem.changePW",param);
+	}
 }

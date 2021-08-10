@@ -56,4 +56,27 @@ public class BusinessMemberService {
 	public BusinessDTO getBizInfo(int bizSeq) {
 		return dao.getBizInfo(bizSeq);
 	}
+	
+	public String findID(String name, String email) {
+		Map<String, String> param = new HashMap<>();
+		param.put("name", name);
+		param.put("email", email);
+		return dao.findID(param);
+	}
+	
+	public String findPW(String id, String name, String email) {
+		Map<String, String> param = new HashMap<>();
+		param.put("id", id);
+		param.put("name", name);
+		param.put("email", email);
+		return dao.findPW(param);
+	}
+	
+	public int changePW(String id, String pw) {
+		Map<String, String> param = new HashMap<>();
+		param.put("id", id);
+		param.put("pw", pw);
+		return dao.changePW(param);
+	}
+	
 }
