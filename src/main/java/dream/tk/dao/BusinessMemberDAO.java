@@ -56,4 +56,8 @@ public class BusinessMemberDAO {
 	public int changePW(Map<String,String> param) {
 		return mybatis.update("bMem.changePW",param);
 	}
+	
+	public int editBizInfo(BusinessDTO dto) {
+		return mybatis.update("bMem.editBizInfo", dto);
+	}
 }

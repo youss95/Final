@@ -79,4 +79,7 @@ public class BusinessMemberService {
 		return dao.changePW(param);
 	}
 	
+	public int editBizInfo(BusinessDTO dto) {
+		return dao.editBizInfo(dto);
+	}
 }

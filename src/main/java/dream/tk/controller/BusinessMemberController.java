@@ -1,6 +1,8 @@
 package dream.tk.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -143,5 +145,19 @@ public class BusinessMemberController {
 		return "/memberB/chagePWView";
 	}
 	
+	@RequestMapping("editBizInfo")
+	public String editBizInfo(BusinessDTO dto) {
+		dto.setBiz_seq(0);
+		String[] list = new String[3];
+		dto.setOnday(list);
+		dto.setTimeAvailable("tue");
+		dto.setCreateDate(new Date(0));
+		int memSeq = ((BusinessMemberDTO) session.getAttribute("binfo")).getSeq();
+		dto.setSeq(memSeq);
+		
+		ser.editBizInfo(dto);
+		
+		return "redirect:/bMember/myPage";
+	}
 	
 }
