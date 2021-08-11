@@ -25,10 +25,12 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  <style>
       p{display:inline-block;}
     .card-body div{ display:inline-block;}
   
+   
   </style>
 
 <script>
@@ -75,9 +77,51 @@
 			$("#bizInfoEditBtn").css("display","none");
 		})
 
+		$("#bizFrm").on("submit",function(){
+			if($("#biz_type").val()==null||$("#biz_type").val()==""){
+				alert("업종을 선택해주세요.");
+				return false;
+			}
+			if($("#businessName").val()==null||$("#businessName").val()==""){
+				alert("업체명을 입력해주세요.");
+				return false;
+			}
+			if($("#businessNameEng").val()==null||$("#businessNameEng").val()==""){
+				alert("영문 업체명을 입력해주세요.");
+				return false;
+			}
+			if($("#businessContact").val()==null||$("#businessContact").val()==""){
+				alert("업체 연락처를 입력해주세요.");
+				return false;
+			}
+			if($("#address1").val()==null||$("#address1").val()==""){
+				alert("업체 주소를 입력해주세요.");
+				return false;
+			}
+			if($("#address2").val()==null||$("#address2").val()==""){
+				alert("업체 상세주소를 입력해주세요.");
+				return false;
+			}
+			if($("#postcode").val()==null||$("#postcode").val()==""){
+				alert("업체 우편번호를 입력해주세요.");
+				return false;
+			}
+			if($("#offday").val()==null||$("#offday").val()==""){
+				alert("업체 휴무일을 입력해주세요.");
+				return false;
+			}
+		
+		})
 		//-------Business Info 관련 -------
 		
 	})
+	
+	
+	//취소 버튼 
+	$(document).on("click",".cancelBtn",function(){
+		location.href="${pageCotext.request.contextPath}/bMember/myPage"
+	})
+	//
 	
 	
 	$(document).on("click","#save",function(){
@@ -130,48 +174,45 @@
 <body class="">
 
   <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" style="height:100%;">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
         Tip 2: you can also add an image using data-image tag
     -->
 
-      <div class="logo">
+      <div class="logo" style="height:15%; padding:0px">
           <a href="${pageContext.request.contextPath}/" class="simple-text logo-normal">
 <!--            <img src="/resources/images/logoPic.png" style="width:50px" > -->
-          <img src="/resources/images/logoTxt.png" style="width:180px">
+          <img src="/resources/images/logoTxt.png" style="width:130px">
           </a>
       </div>
 
 
 
-      <div class="sidebar-wrapper">
+      <div class="sidebar-wrapper" style="height:85%; padding-bottom:0px">
 
-        <div id="profileBox"  style="height:30%">
-            <div>
-             <p></p>
-            </div>
+        <div id="profileBox"  style="height:35%;">
+           <div style="height:10px"></div>
            <div style="text-align: center;">
-            <i class="material-icons" style="font-size: 100px;">person_outline</i>
+            <i class="material-icons" style="font-size: 90px;">person_outline</i>
            </div>
            <div id="idBox" style="text-align: center;">
-            ${loginID} 님 <br>
-            반갑습니다.
+            ${loginID} 님
            </div>
         </div>
 
-        <div id="naviBox" style="height:50%">
-        <ul class="nav" style="height:100%">
+        <div id="naviBox" style="height:60%">
+        <ul class="nav" style="height:100%; margin-top:0px">
 
-          <li class="nav-item active ">
+          <li class="nav-item active " style="height:20%;">
              <a class="nav-link" href="">
                   <i class="material-icons">person</i>
                   <p>My Page</p>
              </a>
           </li>
 
-          <li class="nav-item ">
+          <li class="nav-item " style="height:20%;">
             <a class="nav-link" href="">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
@@ -179,7 +220,7 @@
           </li>
           
 
-          <li class="nav-item ">
+          <li class="nav-item " style="height:20%;">
             <a class="nav-link" href="link.html">
               <i class="material-icons">chat</i>
               <p>Chatting</p>
@@ -187,11 +228,13 @@
           </li>
 
 
-          <div style="height:55%"></div>
-
-          
-            <li class="nav-item ">
-              <a class="nav-link" href="">
+<!--           <div style="height:50%"></div> -->
+           <li class="nav-item " style="height:20%;">
+              
+            </li>
+            
+            <li class="nav-item " style="height:20%;">
+              <a class="nav-link" href="${pageContext.request.contextPath}/" id="exit" style="margin-top:0px">
                 <i class="material-icons">west</i>
                 <p>Exit this Page</p>
               </a>
@@ -293,8 +336,8 @@
                      
 
                        <div style="text-align: right; padding:10px">
-                        <button class="btn hiddenInput" id="cancel" class="btn" type="button" style="display:none; color:white; background-color:#f36767;">취소</button>
-                        <button id="signOut" class="btn" type="button" style="background-color:tomato">탈퇴하기</button>
+                        <button class="btn hiddenInput cancelBtn" id="cancel" class="btn" type="button" style="display:none; color:white; background-color:#f36767;">취소</button>
+                        <button id="signOut" class="btn" type="button" style="background-color:tomato">탈퇴</button>
                         <button id="edit" class="btn" type="button">수정</button>
                         <button id="save" class="btn hiddenInput" style="display:none;">Save</button>
                        </div>
@@ -308,7 +351,9 @@
                 
                  <!-- ==== 업체 정보 관련 ==== -->
                  <div class="col-lg-12">
-                    <form id="" action="">
+                   
+                    <form id="bizFrm" action="${pageCotext.request.contextPath}/bMember/editBizInfo">
+                   
                     <div class="card">
 
                       <div class="card-header card-header-success">
@@ -321,8 +366,8 @@
                         <div style="width:30%">업종</div>
                         <div style="width:40%" class="hiddenDivB">${bizInfo.biz_type}</div>
                         <div style="width:60%; display:none" class="hiddenInputB" >
-                        	<select class="form-control" name="type"> 
-								<option selected="selected">업종을 선택해주세요</option>
+                        	<select class="form-control" name="biz_type" id="biz_type"> 
+								<option value="">업종을 선택해주세요</option>
 								<option value="KoreanFood" >KoreanFood</option>
 								<option value="ChineseFood">ChineseFood</option>
 								<option value="JapaneseFood">JapaneseFood</option>
@@ -339,49 +384,50 @@
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">사업자등록번호</div>
                         <div style="width:60%" class="hiddenDivB">${bizInfo.bizNum}</div>
-                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.bizNum}" style="display:none">
+                        <input class="hiddenInputB" id="bizNum" name="bizNum" type=text value="${bizInfo.bizNum}" style="display:none">
                       </div>
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">업체명</div>
                         <div style="width:60%" class="hiddenDivB">${bizInfo.businessName}</div>
-                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.businessName}" style="display:none">
+                        <input class="hiddenInputB" id="businessName" name="businessName" type=text value="${bizInfo.businessName}" style="display:none">
                       </div>
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">영문 업체명</div>
                         <div style="width:60%" class="hiddenDivB">${bizInfo.businessNameEng}</div>
-                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.businessNameEng}" style="display:none">
+                        <input class="hiddenInputB" id="businessNameEng" name="businessNameEng" type=text value="${bizInfo.businessNameEng}" style="display:none">
                       </div>
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">업체 연락처</div>
                         <div style="width:60%" class="hiddenDivB">${bizInfo.businessContact}</div>
-                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.businessContact}" style="display:none">
+                        <input class="hiddenInputB" id="businessContact" name="businessContact" type=text value="${bizInfo.businessContact}" style="display:none">
                       </div>
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">업체 주소</div>
                         <div style="width:60%" class="hiddenDivB">${bizInfo.address1}</div>
-                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.address1}" style="display:none">
+                        <input class="hiddenInputB" id="address1" name="address1" type=text value="${bizInfo.address1}" style="display:none">
+                        <button class="hiddenInputB" type="button" id="addrSearch" style="display:none">찾기</button>
                       </div>
-
+				<input id="address1Kor" name="address1Kor" type=hidden value="${bizInfo.address1Kor}" >
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">업체 상세주소</div>
                         <div style="width:60%" class="hiddenDivB">${bizInfo.address2}</div>
-                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.address2}" style="display:none">
+                        <input class="hiddenInputB" id="address2" name="address2" type=text value="${bizInfo.address2}" style="display:none">
                       </div>
                       
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">업체 우편번호</div>
                         <div style="width:60%" class="hiddenDivB">${bizInfo.postcode}</div>
-                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.postcode}" style="display:none">
+                        <input class="hiddenInputB" id="postcode" name="postcode" type=text value="${bizInfo.postcode}" style="display:none">
                       </div>
                       
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">업체 휴무일</div>
                         <div style="width:60%" class="hiddenDivB">${bizInfo.offday}</div>
-                        <input class="hiddenInputB" id="" name="" type=text value="${bizInfo.offday}" style="display:none">
+                        <input class="hiddenInputB" id="offday" name="offday" type=text value="${bizInfo.offday}" style="display:none">
                       </div>
                       
 <!--                       <div class="card-body" style="width:100%"> -->
@@ -402,7 +448,7 @@
                      	 </c:otherwise>
                       </c:choose>
                       
-                      <button class="btn hiddenInputB" id="cancel" class="btn" type="button" style="display:none; color:white; background-color:#f36767;">취소</button>
+                      <button class="btn hiddenInputB cancelBtn" id="cancel" class="btn" type="button" style="display:none; color:white; background-color:#f36767;">취소</button>
                       <button id="saveBiz" class="btn hiddenInputB" style="display:none;">Save</button>   
                                      
                        </div>
@@ -445,7 +491,23 @@
   </div> 
 </div>      
       
-    
+  <script> 
+ document.getElementById("addrSearch").onclick = function () {
+ 			new daum.Postcode({
+				oncomplete: function (data) {
+				let roadAddr = data.roadAddress; // 도로명 주소 변수
+				let engAddr = data.roadAddressEnglish; //영문 도로명 주소 변수
+
+                    // 우편번호와  주소 정보를 해당 필드에 넣는다.
+                  document.getElementById("postcode").value = data.zonecode;
+                  document.getElementById("address1").value = engAddr;   
+                  document.getElementById("address1Kor").value = roadAddr;   
+                  document.getElementById("address2").value ="";
+                  document.getElementById("address2").focus();
+ 				}
+ 			}).open(); 		};
+
+ </script>   
 
   
 </body>

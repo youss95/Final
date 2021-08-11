@@ -41,5 +41,22 @@
 		select * from business where seq=#{value}
 	</select>
 	
+	<select id="findID" resultType="String">
+		select id from business_member where name=#{name} and email=#{email}
+	</select>
+	
+	<select id="findPW" resultType="String">
+		select id from business_member where id=#{id} and name=#{name} and email=#{email}
+	</select>
+	
+	<update id="changePW">
+		update business_member set pw=#{pw} where id=#{id}
+	</update>
+	
+	<update id="editBizInfo">
+	  update business set biz_type=#{biz_type},bizNum=#{bizNum},businessName=#{businessName},
+	  businessNameEng=#{businessName}, businessContact=#{businessContact}, address1=#{address1}, address2=#{address2}, postcode=#{postcode},address1Kor=#{address1Kor}, offday=#{offday} 
+	  where seq=#{seq}
+	</update>
 	
 </mapper>
