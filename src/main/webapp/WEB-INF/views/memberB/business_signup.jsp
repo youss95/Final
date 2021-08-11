@@ -313,7 +313,7 @@ $(function(){
     <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
     </div> <!-- form-group// -->      
-    <p class="text-center">Have an account? <a href="">Log In</a> </p>                                                                 
+    <p class="text-center">Have an account? <a href="${pageContext.request.contextPath}/bMember/loginForm">Log In</a> </p>                                                                 
 </form>
 </article>
 </div> <!-- card.// -->
@@ -331,22 +331,22 @@ $(function(){
 
 
 
-<script>
-document.getElementById("search").onclick = function () {
-			new daum.Postcode({
-				oncomplete: function (data) {
-					let roadAddr = data.roadAddress; // 도로명 주소 변수
-					let engAddr = data.roadAddressEnglish; //영문 도로명 주소 변수
+<!-- <script> -->
+// document.getElementById("search").onclick = function () {
+// 			new daum.Postcode({
+// 				oncomplete: function (data) {
+// 					let roadAddr = data.roadAddress; // 도로명 주소 변수
+// 					let engAddr = data.roadAddressEnglish; //영문 도로명 주소 변수
 
-                     // 우편번호와  주소 정보를 해당 필드에 넣는다.
-                    document.getElementById("postcode").value = data.zonecode;
-                    document.getElementById("address1").value = engAddr;   
-                    document.getElementById("address1Kor").value = roadAddr;   
-				}
-			}).open();
-		};
+//                      // 우편번호와  주소 정보를 해당 필드에 넣는다.
+//                     document.getElementById("postcode").value = data.zonecode;
+//                     document.getElementById("address1").value = engAddr;   
+//                     document.getElementById("address1Kor").value = roadAddr;   
+// 				}
+// 			}).open();
+// 		};
 
-</script>
+<!-- </script> -->
 
 
 </body>

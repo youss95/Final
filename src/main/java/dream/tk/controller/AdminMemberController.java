@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import dream.tk.config.SHA256;
-import dream.tk.config.VerifyRecaptcha;
+import dream.tk.api.SHA256;
+import dream.tk.api.VerifyRecaptcha;
 import dream.tk.dto.AdminMemberDTO;
 import dream.tk.service.AdminMemberService;
 

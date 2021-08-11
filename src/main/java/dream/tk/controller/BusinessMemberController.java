@@ -1,6 +1,8 @@
 package dream.tk.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import dream.tk.config.SHA256;
+import dream.tk.api.SHA256;
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.BusinessMemberDTO;
 import dream.tk.service.BusinessMemberService;
@@ -110,4 +112,52 @@ public class BusinessMemberController {
 		session.setAttribute("binfo", dto);
 		return "redirect:/bMember/myPage";
 	}
+	
+	@RequestMapping("findIDForm")
+	public String findIDForm() {
+		return "/memberB/findID";
+	}
+	
+	@ResponseBody
+	@RequestMapping("findIDProc")
+	public String findIDProc(String name, String email) {
+		String id = ser.findID(name, email);
+		return id;
+	}
+	
+	@RequestMapping("findPWForm")
+	public String findPWForm(){
+		return "/memberB/findPW";
+	}
+	
+	@ResponseBody
+	@RequestMapping("findPWProc")
+	public String findPWProc(String id, String name, String email) {
+		String resultid =ser.findPW(id,name,email);
+		return resultid;
+	}
+	
+	@RequestMapping("changePW")
+	public String changePW(String id, String pw,Model m) {
+		String newpw = SHA256.getSHA512(pw);
+		int result = ser.changePW(id, newpw);
+		m.addAttribute("result", result);
+		return "/memberB/chagePWView";
+	}
+	
+	@RequestMapping("editBizInfo")
+	public String editBizInfo(BusinessDTO dto) {
+		dto.setBiz_seq(0);
+		String[] list = new String[3];
+		dto.setOnday(list);
+		dto.setTimeAvailable("tue");
+		dto.setCreateDate(new Date(0));
+		int memSeq = ((BusinessMemberDTO) session.getAttribute("binfo")).getSeq();
+		dto.setSeq(memSeq);
+		
+		ser.editBizInfo(dto);
+		
+		return "redirect:/bMember/myPage";
+	}
+	
 }
