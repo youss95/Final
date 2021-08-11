@@ -45,9 +45,9 @@ public class BusinessMemberController {
 			BusinessMemberDTO dto = ser.getInfo(id);
 			session.setAttribute("binfo", dto);
 			
-//			String bizSeq = dto.getSeq();
-//			BusinessDTO bizdto = ser.getBizInfo(bizSeq);
-//			session.setAttribute("bizInfo", bizdto);
+			int bizSeq = dto.getSeq();
+			BusinessDTO bizdto = ser.getBizInfo(bizSeq);
+			session.setAttribute("bizInfo", bizdto);
 			return "/memberB/loginView";
 		}else {
 			return "error";
@@ -108,8 +108,10 @@ public class BusinessMemberController {
 		dto.setSeq(40);
 		dto.setPremium("No");
 		dto.setPrm_exp_date(new Date(0));
+		
 		ser.editPersonalInfo(dto);
-		session.setAttribute("binfo", dto);
+		BusinessMemberDTO newdto =ser.getInfo((String) session.getAttribute("loginID"));
+		session.setAttribute("binfo", newdto);
 		return "redirect:/bMember/myPage";
 	}
 	
@@ -156,8 +158,19 @@ public class BusinessMemberController {
 		dto.setSeq(memSeq);
 		
 		ser.editBizInfo(dto);
+		BusinessDTO newdto = ser.getBizInfo(memSeq);
+		session.setAttribute("bizInfo", newdto);
 		
 		return "redirect:/bMember/myPage";
 	}
 	
+	@RequestMapping("dashboard")
+	public String dashboard() {
+		return "/memberB/dashboard";
+	}
+	
+	@RequestMapping("chatting")
+	public String chatting() {
+		return "/memberB/chatting";
+	}
 }

@@ -206,14 +206,14 @@
         <ul class="nav" style="height:100%; margin-top:0px">
 
           <li class="nav-item active " style="height:20%;">
-             <a class="nav-link" href="">
+             <a class="nav-link" href="${pageContext.request.contextPath}/bMember/myPage">
                   <i class="material-icons">person</i>
                   <p>My Page</p>
              </a>
           </li>
 
           <li class="nav-item " style="height:20%;">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="${pageContext.request.contextPath}/bMember/dashboard">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
@@ -221,7 +221,7 @@
           
 
           <li class="nav-item " style="height:20%;">
-            <a class="nav-link" href="link.html">
+            <a class="nav-link" href="${pageContext.request.contextPath}/bMember/chatting">
               <i class="material-icons">chat</i>
               <p>Chatting</p>
             </a>
