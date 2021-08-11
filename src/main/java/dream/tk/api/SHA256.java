@@ -1,4 +1,4 @@
-package dream.tk.config;
+package dream.tk.api;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

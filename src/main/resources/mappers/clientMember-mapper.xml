@@ -10,14 +10,30 @@
 	</select>
 
 	<insert id="insert">
-		insert into client_member values(client_member_seq.nextval,
-		#{id}, #{pw}, #{email}, #{name}, #{yob}, sysdate)
+		insert into client_member
+		values(client_member_seq.nextval,
+		#{id}, #{pw}, #{email}, #{name},
+		#{yob}, #{nation}, #{agree}, sysdate)
 	</insert>
 
 	<update id="update">
-		update client_member set pw=#{pw},
-		email=#{email}, name=#{name}, yoerOfBirth=#{yob}, reg_date=sysdate
-		where id=#{id}
+		update client_member set 	
+		<if test="pw!=''">
+			pw=#{pw}, 
+		</if>
+		<if test="email!=''">
+			email=#{email}, 
+		</if>
+		<if test="name!=''">
+			and name=#{name}, 
+		</if>
+		<if test="yearOfBirth!=''">
+			and yearOfBirth=#{yob}, 
+		</if>
+		<if test="nation!=''">
+			and nation=#{nation}, 
+		</if>
+		reg_date=sysdate where id=#{id}
 	</update>
 
 	<delete id="delete">
@@ -36,7 +52,8 @@
 
 	<select id="findID" resultType="String">
 		select id from
-		client_member where name=#{name} and email=#{email}
+		client_member where
+		name=#{name} and email=#{email}
 	</select>
 
 	<select id="matchIdNameEmail" resultType="int">
@@ -49,7 +66,8 @@
 	</update>
 
 	<select id="getInfo" resultType="dream.tk.dto.AdminMemberDTO">
-		select * from client_member where
+		select * from client_member
+		where
 		id=#{value};
 	</select>
 
