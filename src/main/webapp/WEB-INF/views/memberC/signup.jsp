@@ -131,6 +131,18 @@ button {
 						</div>
 					</div>
 					<div class="row">
+						<div class="col-12">Nation</div>
+						<div class="col-12">
+							<select name="nation" id="">
+                            <option value="kor">
+                                korea
+                            </option>
+                            <option value="">
+                            </option>
+                        </select>
+						</div>
+					</div>
+					<div class="row">
 						<div class="col" style="text-align: center;"></div>
 
 					</div>

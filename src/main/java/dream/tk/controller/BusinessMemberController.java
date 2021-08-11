@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import dream.tk.config.SHA256;
+import dream.tk.api.SHA256;
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.BusinessMemberDTO;
 import dream.tk.service.BusinessMemberService;
