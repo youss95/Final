@@ -105,5 +105,10 @@
   insert into business values(biz_seq.nextval,#{biz_type},#{bizNum},#{businessName},#{businessNameEng},#{businessContact},#{address1},#{address2},#{postcode},#{address1Kor},#{offday},#{timeAvailable},sysdate,#{seq})
   </insert>
   
+  <!-- 실시간 알람 -->
+  <insert id="alarmInsert">
+  insert into notification  (noti_no,userId,content,noti_createDate)  values (noti_seq.nextval,#{userId},#{content},sysdate)
+  </insert>
+   
   
   </mapper>

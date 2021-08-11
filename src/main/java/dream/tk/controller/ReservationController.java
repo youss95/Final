@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dream.tk.dto.BusinessDTO;
+import dream.tk.dto.NotificationDTO;
 import dream.tk.dto.ReservationDTO;
 import dream.tk.service.ReservationService;
 
@@ -27,6 +28,8 @@ public class ReservationController {
 	@Autowired
 	private ReservationService resService;
 	
+	
+	//?bizs_seq= 붙이자 일단
 	@GetMapping("/calendar")
 	public String calendar(int biz_seq,Model model) {
 
@@ -57,11 +60,15 @@ public class ReservationController {
 		return "/reservation/websocketBtnTest";
 	}
 	
-	@GetMapping("/alarm")
+	@PostMapping("/alarm")
 	@ResponseBody
-	public String at() {
-		System.out.println("dd");
+	public String at(@RequestBody NotificationDTO dto) {
+		System.out.println(dto.toString());
+		int result = resService.alarmInsert(dto);
+		if(result==1)
 		return "success";
+		
+		return "fail";
 	}
 	
 	@PostMapping("/setTime")

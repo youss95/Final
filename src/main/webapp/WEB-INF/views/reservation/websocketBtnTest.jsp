@@ -29,7 +29,7 @@
 
 <div class="container">
 <section class="">
-
+<div id="ala"></div>
 <button id="btnSend">asdf</button>
 ${binfo.id }
      </section>
@@ -48,12 +48,19 @@ $("#btnSend").on('click',function(){
 	let bno = 1
 	let sender = '${binfo.name}'
 	let getter = "스티브"
+	
+	
+	let data ={userId:getter,content:sender+" 님이 좋아요를 눌렀습니다."}
 	$.ajax({
 		url:"/res/alarm",
-		type:"get"
+		type:"post",
+		data:JSON.stringify(data),
+		contentType:"application/json;charset=utf-8"
+		
 	}).done(function(resp){
+		console.log(resp)
 		if(socket){
-			let scktMsg = "like,"+sender+","+getter+","+bno;
+			let scktMsg = "like,"+sender+","+getter+","+bno+","+"1";
 			console.log(scktMsg);
 			socket.send(scktMsg);
 		}
@@ -81,8 +88,13 @@ $('#btnSend2').on('click', function(evt) {
  	   
  }
      ws.onmessage = function (event) {
+    	 console.log(event)
          console.log("받은 메시지: "+ event.data+'\n');
-         toastr.success("알림", event.data);
+    	 let getMsg = event.data.split(",")
+    	 let toMsg = getMsg[0];
+    	 let toAla = getMsg[1]
+         toastr.success("알림", toMsg);
+         $("#ala").append(toAla)
      };
      
      ws.onclose = function (event) { 

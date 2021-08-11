@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import dream.tk.dto.BusinessDTO;
+import dream.tk.dto.NotificationDTO;
 import dream.tk.dto.PaymentDTO;
 import dream.tk.dto.ReservationDTO;
 
@@ -74,5 +75,9 @@ public class ReservationDAO {
 	
 	public int updatePrem(String id) {
 		return mybatis.update("ResMapper.updatePrem",id);
+	}
+	
+	public int alarmInsert(NotificationDTO dto) {
+		return mybatis.insert("ResMapper.alarmInsert",dto);
 	}
 }

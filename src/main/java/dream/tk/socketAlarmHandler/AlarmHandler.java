@@ -5,17 +5,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import dream.tk.dto.BusinessMemberDTO;
+import dream.tk.service.ReservationService;
 
 public class AlarmHandler extends TextWebSocketHandler{
 	
 	List<WebSocketSession> sessions = new ArrayList<>(); //세션을 담앋둠
 	Map<String,WebSocketSession> userSessions = new HashMap<>();
+	
+	@Autowired
+	private ReservationService resService;
 	
      //클라이언트가 서버 접속 성공 했을때
 	@Override
@@ -43,19 +49,24 @@ public class AlarmHandler extends TextWebSocketHandler{
 		System.out.println("msg: "+msg);
 		if(msg != null) {
 		String[] strs = msg.split(",");
-		if(strs != null && strs.length == 4) {
+		if(strs != null && strs.length == 5) {
 			String cmd = strs[0];
 			String replyWriter = strs[1];
 			String boardId = strs[2];
 			String bno = strs[3];
+			String count = strs[4];
 			System.out.println(boardId);
 			System.out.println(bno);
 			WebSocketSession boardWriterSession = userSessions.get(boardId);//게시글 작성자가 있으면
 			System.out.println("받는사람"+boardWriterSession);
 			if("like".equals(cmd) && boardWriterSession != null) {
-				TextMessage tmpMsg = new TextMessage(replyWriter + "님이" + bno + "버튼을 눌렀습니다.");
+				TextMessage tmpMsg = new TextMessage(replyWriter + "님이" + bno + "버튼을 눌렀습니다."+","+count);
+				
+				System.out.println("tmp"+tmpMsg);
 				boardWriterSession.sendMessage(tmpMsg);
+				
 			}
+		
 			}
 		}
 	}
