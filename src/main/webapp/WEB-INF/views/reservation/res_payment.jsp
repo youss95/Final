@@ -14,14 +14,15 @@
 	<div class="rd_group">
 										<div class="inp_rd">
 											<input type="radio" id="m1" name="price" value=100>
+											
 											<label for="m1">1개월</label>
 										</div>
 										<div class="inp_rd">
-											<input type="radio" id="m2" name="price" value=600>
+											<input type="radio" id="m2" name="price" value=200>
 											<label for="m2">6개월</label>
 										</div>
 										<div class="inp_rd">
-											<input type="radio" id="m3" name="price" value=120>
+											<input type="radio" id="m3" name="price" value=300>
 											<label for="m3">12개월</label>
 										</div>
 									</div>

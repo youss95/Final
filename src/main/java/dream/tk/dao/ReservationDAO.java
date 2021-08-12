@@ -1,6 +1,7 @@
 package dream.tk.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,9 +74,15 @@ public class ReservationDAO {
 		return mybatis.update("ResMapper.refundCheck",pay_no);
 	}
 	
-	public int updatePrem(String id) {
-		return mybatis.update("ResMapper.updatePrem",id);
+	public int updatePrem(Map<String,String> param) {
+
+		return mybatis.update("ResMapper.updatePrem",param);
 	}
+	
+	public int downGradePrem(String id) {
+		return mybatis.update("ResMapper.downGradePrem",id);
+	}
+	
 	
 	public int alarmInsert(NotificationDTO dto) {
 		return mybatis.insert("ResMapper.alarmInsert",dto);

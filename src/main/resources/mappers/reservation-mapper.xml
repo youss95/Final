@@ -97,8 +97,29 @@
   
   <!-- 할인권 구매 하였을때 비즈니스 멤버 기간 , 등급 업데이트 -->
   <update id="updatePrem">
-  update business_member set premium = 'Y' where id = #{id}
+  update business_member set premium = 'Y' ,prm_exp_date = 
+  <choose>
+  <when test="price == '100'">
+  add_months(sysdate,+1)
+  </when>
+  <when test="price == '200'">
+  add_months(sysdate,+6)
+  </when>
+<otherwise>
+ add_months(sysdate,+12)
+</otherwise>
+
+  </choose>
+   where id = #{id}
   </update>
+  
+  <!-- 환불 하였을때 등급 업데이트 -->
+  
+  <update id="downGradePrem">
+  update business_member set premium = 'N' where id = #{id}
+  </update>
+  
+  
   
   <!--비즈니스 세팅  -->
   <insert id="bizSetting" >
