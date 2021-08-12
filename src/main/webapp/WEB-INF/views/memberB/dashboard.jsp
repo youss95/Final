@@ -229,18 +229,18 @@
             <div class="row">
 
 
-              <div class="col-md-6" style="width:90%; height:400px">
-                <div class="card card-chart" style="height:100%">
+              <div class="col-md-6" style="height:400px">
+                <div class="card card-chart" style="height:100%" >
 
                   <div class="card-header card-header-success">
                     <div class="ct-chart" id="dailySalesChart">
                     </div>
                   </div>
 
-                  <div class="card-body" style="width:100%; height:100%">
-                    <h4 class="card-title" style="margin-top:10px">연령대별 예약자 수 비교</h4>
+                  <div class="card-body" >
+                    <h4 class="card-title" style="margin-top:10px; text-align:center">연령대별 예약자 수 비교</h4>
                     <p class="card-category"></p>
-                    <div style="width:100%; height:80%">
+                    <div style="width:90%; height:80%">
                     <canvas id="myChart1">
 
                     </canvas>
@@ -250,7 +250,7 @@
               </div>
 
 
-              <div class="col-md-6" style="width:90%; height:400px">
+              <div class="col-md-6" style="height:400px">
                 <div class="card card-chart" style="height:100%">
 
                   <div class="card-header card-header-warning">
@@ -258,10 +258,10 @@
                     </div>
                   </div>
 
-                  <div class="card-body" style="width:100%; height:100%">
-                    <h4 class="card-title" style="margin-top:10px">국적별 예약자 수 비교</h4>
+                  <div class="card-body" >
+                    <h4 class="card-title" style="margin-top:10px; text-align:center">국적별 예약자 수 비교</h4>
                     <p class="card-category"></p>
-                    <div style="width:100%; height:80%">
+                    <div style="width:90%; height:80%">
                     <canvas id="myChart2">
 
                     </canvas>
@@ -271,19 +271,19 @@
               </div>
 
 
-              <div class="col-md-12" style="width:90%; height:400px; margin-top:70px">
-                <div class="card card-chart" style="height:100%">
+              <div class="col-md-12" style="margin-top:70px" >
+                <div class="card card-chart" >
 
                   <div class="card-header card-header-info">
                     <div class="ct-chart" id="dailySalesChart">
                     </div>
                   </div>
 
-                  <div class="card-body" style="width:100%; height:100%">
+                  <div class="card-body" >
                     <h4 class="card-title" style="margin-top:10px">월별 예약자 추세선</h4>
                     <p class="card-category"></p>
-                    <div style="width:100%; height:80%">
-                    <canvas id="myChart2">
+                    <div style="width:90%; height:80%">
+                    <canvas id="myChart3">
 
                     </canvas>
                     </div>
@@ -376,17 +376,37 @@
           }]
       },
       options: {
-    	  
+    	 
     	  reponsive:false,
     	  plugins:{
-        	  legend:{
-        		  display: true,
-        		  position:"bottom"
-          		},
-          		labels:[{
-          			position:'outside',
-          		}]
-        	 },
+    		 
+     		 legend: {
+					position: 'right',      // 범례의 위치를 지정한다. 'top','left','bottom','right'.
+					labels: {
+							fontSize: 16, // 범례 폰트의 사이즈.
+							boxWidth: 10, // 범례 컬러박스의 사이즈.
+              				padding: 20   // 범례 사이의 간격.
+							}
+					},
+			labels: {
+		    		      position: 'outside',
+		    		      render: (args) => {
+		    		        return `${args.label}: ${args.value}%`;
+		    		      }
+		    		    },
+					
+// 			title: {
+// 					display: true,
+// 					text: "국적별 예약자 수 비교",
+// 					fontSize: 80         // 차트 제목 폰트의 사이즈.
+// 					},
+					
+			animation: {
+				animateScale: true,   // true일 경우 차트 생성시 중앙에서부터 커지는 애니메이션. 
+				animateRotate: true   // true일 경우 차트 생성시 회전 애니메이션.
+					}
+          	
+          },
          
           maintainAspectRatio:false,
 
@@ -396,40 +416,39 @@
 
 
   var myChart3 = new Chart(ctx3, {
-      type: 'bar',
-      data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+	  type: 'doughnut',
+	  data: {
+          labels: ['China', 'Japan', 'France'],
           datasets: [{
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
+              data: [2, 6, 3, ],
               backgroundColor: [
                   'rgba(255, 99, 132, 1)',
                   'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
+                  'rgba(255, 206, 86, 0.6)',
+                  
               ],
               borderColor: [
                   'rgba(255, 99, 132, 1)',
                   'rgba(54, 162, 235, 1)',
                   'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
+                  
+              ]
+             
           }]
       },
       options: {
-         /* 비율유지 값을 false 하면 부모를 꽉 채우게 된다 */
-          maintainAspectRatio:false,
-          scales: {
-              y: {
-                  beginAtZero: true
-              }
-          }
-      }
+    	    plugins: {
+    	      datalabels: {
+    	        labels: {
+    	          title: {
+    	            color: 'blue'
+    	          }
+    	        }
+    	      }
+    	    },
+      maintainAspectRatio:false,
+    	  }
+      
   });
   
 
