@@ -170,6 +170,8 @@ public class BusinessMemberController {
 	public String dashboard(Model m) {
 		String businessName ="pipipi";
 		
+		int totalRes = ser.getTotalRes(businessName);
+		
 		List<Map<String, String>> ageResult = ser.getReserveAge(businessName);
 		
 		List<Object> ageData = new ArrayList<>(Arrays.asList(0,0,0,0));	
@@ -245,12 +247,18 @@ public class BusinessMemberController {
 			}
 		}
 		
-		System.out.println(monthData);
+		String biz_type = (String) session.getAttribute("biz_type");
+		biz_type="western";
+		Map<String, String> vsResult = ser.getVs(biz_type);
+		Map<String, String> vsMine = ser.getVsMine(businessName);
 		
+		m.addAttribute("totalRes", totalRes);
 		m.addAttribute("ageData", ageData);
 		m.addAttribute("nationLabel", nationLabel);
 		m.addAttribute("nationData",nationData);
 		m.addAttribute("monthData",monthData);
+		m.addAttribute("vsResult",vsResult);
+		m.addAttribute("vsMine",vsMine);
 		
 		return "/memberB/dashboard";
 	}

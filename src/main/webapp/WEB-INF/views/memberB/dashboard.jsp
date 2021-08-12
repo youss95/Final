@@ -148,7 +148,7 @@
                       <i class="material-icons">star_border</i>
                     </div>
                     <p class="card-category">별점</p>
-                    <h3 class="card-title">4.3
+                    <h3 class="card-title">${vsMine.STAR_AVG}
                       <small>/5.0</small>
                     </h3>
                   </div>
@@ -172,7 +172,7 @@
                       <i class="material-icons">store</i>
                     </div>
                     <p class="card-category">예약자 수</p>
-                    <h3 class="card-title"> 245 
+                    <h3 class="card-title"> ${totalRes}
                       <small>명</small>
                     </h3>
                   </div>
@@ -193,7 +193,7 @@
                       <i class="material-icons">favorite</i>
                     </div>
                     <p class="card-category">찜 수</p>
-                    <h3 class="card-title">75
+                    <h3 class="card-title">${vsMine.KEEP_COUNT}
                       <small>개</small>
                     </h3>
                   </div>
@@ -234,7 +234,8 @@
               <div class="col-md-6" style="height:400px">
                 <div class="card card-chart" style="height:100%" >
 
-                  <div class="card-header card-header-success">
+                  <div class="card-header card-header-rose">
+<!-- 				 <div class="card-header" style="background-color:#C3C3C3;"> -->
                     <div class="ct-chart" id="dailySalesChart">
                     </div>
                   </div>
@@ -255,7 +256,7 @@
               <div class="col-md-6" style="height:400px">
                 <div class="card card-chart" style="height:100%">
 
-                  <div class="card-header card-header-warning">
+                  <div class="card-header card-header-success">
                     <div class="ct-chart" id="dailySalesChart">
                     </div>
                   </div>
@@ -292,6 +293,30 @@
                     </div>
                 </div>
               </div>
+              
+              
+              
+              <div class="col-md-12" style="margin-top:70px" >
+                <div class="card card-chart" >
+
+                  <div class="card-header card-header-info">
+                    <div class="ct-chart" id="dailySalesChart">
+                    </div>
+                  </div>
+
+                  <div class="card-body" >
+                    <h4 class="card-title" style="margin-top:10px">업종 평균 비교차트</h4>
+                    <p class="card-category"></p>
+                    <div style="width:90%; height:80%">
+                    <canvas id="myChart4">
+
+                    </canvas>
+                    </div>
+                    </div>
+                </div>
+              </div>
+              
+              
 
             
             </div>
@@ -316,6 +341,7 @@
   var ctx1 = document.getElementById('myChart1');
   var ctx2 = document.getElementById('myChart2');
   var ctx3 = document.getElementById('myChart3');
+  var ctx4 = document.getElementById('myChart4');
   
   var myChart1 = new Chart(ctx1, {
       type: 'bar',
@@ -327,10 +353,10 @@
             	  "${ad}",
             	  </c:forEach> ],
               backgroundColor: [
-            	  'rgba(75, 192, 192, 1)',
+            	  'rgba(54, 162, 235, 0.6)',
               ],
               borderColor: [
-            	  'rgba(75, 192, 192, 1)', 
+            	  'rgb(54, 162, 235)', 
               ],
               borderWidth: 1
           }]
@@ -437,7 +463,8 @@
 		    	  </c:forEach>
 		      ],
 		      borderColor:'rgb(75, 192, 192)',
-		      fill:true,
+		      pointBackgroundColor:'rgb(75, 192, 192)',
+		      fill:false,
 		      tension: 0.1     
 		    }]
 		  },
@@ -458,6 +485,52 @@
 	      }
       
   });
+  
+  
+  
+  
+  var myChart4 = new Chart(ctx4, 
+		  {
+	  data: {
+	        datasets: [{
+	            type: 'bar',
+	            label: '업종 평균',
+	            data: [
+	            	"${vsResult.STAR_AVG}","${vsResult.KEEP_COUNT}","${vsResult.VIEW_COUNT}"
+	            ],
+// 	            borderColor: 'rgb(153, 102, 255)',
+// 	            backgroundColor: 'rgba(153, 102, 255,0.2)'
+	        }, {
+	            type: 'line',
+	            label: '우리 업체',
+	            data: [
+	            	"${vsMine.STAR_AVG}","${vsMine.KEEP_COUNT}","${vsMine.VIEW_COUNT}"
+	            ],
+	            fill: false,
+	            borderColor: 'rgb(153, 102, 255)',
+	            pointBackgroundColor:'rgb(153, 102, 255)'
+	        }],
+	        labels: ['별점', '찜수', '조회수']
+	    },
+	    
+	    options: {
+	          maintainAspectRatio:false,
+	          scales: {
+	              y: {
+	                  beginAtZero: true,
+	                  max:70
+	              }
+	          },
+	     
+	      plugins:{
+	    	  
+	    	 }
+	      }
+	   
+	  
+	  
+	  
+	  });
   
 
   </script>

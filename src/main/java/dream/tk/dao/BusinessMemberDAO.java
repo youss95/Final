@@ -65,7 +65,9 @@ public class BusinessMemberDAO {
 	
 	
 	
-	
+	public int getTotalRes(String businessName) {
+		return mybatis.selectOne("bMem.getTotalRes", businessName);
+	}
 	
 	public List<Map<String, String>> getReserveAge(String businessName) {
 		//return (List<Map<Object, Object>>) mybatis.selectMap("bMem.getReserveAge",businessName);
@@ -78,6 +80,14 @@ public class BusinessMemberDAO {
 	
 	public List<Map<String, String>> getReserveMonth(String businessName) {
 		return mybatis. selectList("bMem.getReserveMonth",businessName);
+	}
+	
+	public Map<String, String> getVs(String biz_type) {
+		return mybatis. selectOne("bMem.getVs",biz_type);
+	}
+	
+	public Map<String, String> getVsMine(String businessName) {
+		return mybatis. selectOne("bMem.getVsMine",businessName);
 	}
 	
 	

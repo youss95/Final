@@ -61,6 +61,12 @@
 	
 	
 	
+	
+	
+	<select id="getTotalRes" resultType="int">
+		select count(*) from reservation where res_name=#{value}
+	</select>
+	
 	<select id="getReserveAge" resultType="HashMap">
 	
 		select 연령대,count(연령대) from
@@ -100,6 +106,15 @@
     end as 월,
     count(*)
 	from (select res_name,substr(res_date,6,2) 숫자 from reservation where res_name=#{value}) group by 숫자 order by 월
+	</select>
+	
+	
+	<select id="getVs" resultType="HashMap">
+	select round(avg(별점),1) star_avg ,round(avg(찜수),1) keep_count,round(avg(조회수),1) view_count from (select d.star_avg 별점,d.keep_count 찜수, d.view_count 조회수 from business b join store_detail d on b.businessname=d.businessname where b.biz_type=#{value})
+	</select>
+	
+	<select id="getVsMine" resultType="HashMap">
+	select round(avg(별점),1) star_avg ,round(avg(찜수),1) keep_count,round(avg(조회수),1) view_count from (select d.star_avg 별점,d.keep_count 찜수, d.view_count 조회수 from business b join store_detail d on b.businessname=d.businessname where b.businessname=#{value})
 	</select>
 	
 </mapper>

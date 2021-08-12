@@ -85,8 +85,9 @@ public class BusinessMemberService {
 	}
 	
 	
-	
-	
+	public int getTotalRes(String businessName) {
+		return dao.getTotalRes(businessName);
+	}
 	public List<Map<String, String>> getReserveAge(String businessName){
 		return dao.getReserveAge(businessName);
 	}
@@ -96,6 +97,11 @@ public class BusinessMemberService {
 	public List<Map<String, String>> getReserveMonth(String businessName){
 		return dao.getReserveMonth(businessName);
 	}
-	
+	public Map<String, String> getVs(String biz_type){
+		return dao.getVs(biz_type);
+	} 
+	public Map<String, String> getVsMine(String businessName){
+		return dao.getVsMine(businessName);
+	}
 	
 }
