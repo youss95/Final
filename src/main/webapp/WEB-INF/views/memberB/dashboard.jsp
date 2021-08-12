@@ -38,6 +38,23 @@
  <style>
       p{display:inline-block;}
     .card-body div{ display:inline-block;}
+   .chartBlur{
+   -webkit-filter:blur(3px);
+    -moz-filter:blur(3px);
+    -o-filter:blur(3px);
+    -ms-filter:blur(3px);
+    filter:blur(5px);
+   }
+   .hoverBtn{
+   display:none;
+   position:absolute;
+   left:50%;
+   top:50%;
+   transform:translate(-50%,-50%);
+   }
+   .chartBlur:hover .hoverBtn{
+   display:block
+   }
    
 </style>
 
@@ -240,15 +257,16 @@
                     </div>
                   </div>
 
-                  <div class="card-body" >
+                  <div class="card-body chartBlur" >
                     <h4 class="card-title" style="margin-top:10px; text-align:center">연령대별 예약자 수 비교</h4>
                     <p class="card-category"></p>
                     <div style="width:90%; height:80%">
                     <canvas id="myChart1">
 
                     </canvas>
+                    <button type='button' class='btn hoverBtn' style="background-color:black">Premium 결제</button>
                     </div>
-                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -261,13 +279,14 @@
                     </div>
                   </div>
 
-                  <div class="card-body" >
+                  <div class="card-body chartBlur" >
                     <h4 class="card-title" style="margin-top:10px; text-align:center">국적별 예약자 수 비교</h4>
                     <p class="card-category"></p>
                     <div style="width:90%; height:80%">
                     <canvas id="myChart2">
 
                     </canvas>
+                    <button type='button' class='btn hoverBtn' style="background-color:black">Premium 결제</button>
                     </div>
                     </div>
                 </div>
@@ -282,13 +301,14 @@
                     </div>
                   </div>
 
-                  <div class="card-body" >
+                  <div class="card-body chartBlur" >
                     <h4 class="card-title" style="margin-top:10px">월별 예약자 추세선</h4>
                     <p class="card-category"></p>
                     <div style="width:90%; height:80%">
                     <canvas id="myChart3">
 
                     </canvas>
+                    <button type='button' class='btn hoverBtn' style="background-color:black">Premium 결제</button>
                     </div>
                     </div>
                 </div>
@@ -304,13 +324,14 @@
                     </div>
                   </div>
 
-                  <div class="card-body" >
+                  <div class="card-body chartBlur" >
                     <h4 class="card-title" style="margin-top:10px">업종 평균 비교차트</h4>
                     <p class="card-category"></p>
                     <div style="width:90%; height:80%">
                     <canvas id="myChart4">
 
                     </canvas>
+                    <button type='button' class='btn hoverBtn' style="background-color:black">Premium 결제</button>
                     </div>
                     </div>
                 </div>
