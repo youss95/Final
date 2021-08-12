@@ -169,30 +169,89 @@ public class BusinessMemberController {
 	@RequestMapping("dashboard")
 	public String dashboard(Model m) {
 		String businessName ="pipipi";
-		List<Map<String, String>> result = ser.getReserveAge(businessName);
-//		ser.getReserveNation();
-//		ser.getReserveMonth();
 		
-		List<Object> data = new ArrayList<>(Arrays.asList(0,0,0,0));	
-		for(int i=0; i<result.size(); i++) {
+		List<Map<String, String>> ageResult = ser.getReserveAge(businessName);
+		
+		List<Object> ageData = new ArrayList<>(Arrays.asList(0,0,0,0));	
+		for(int i=0; i<ageResult.size(); i++) {
 			
-			if(result.get(i).get("연령대").equals("10대")) {
-				data.set(0,result.get(i).get("COUNT(연령대)"));
+			if(ageResult.get(i).get("연령대").equals("10대")) {
+				ageData.set(0,ageResult.get(i).get("COUNT(연령대)"));
 			}
-			else if(result.get(i).get("연령대").equals("20대")) {
-				data.set(1,result.get(i).get("COUNT(연령대)"));
+			else if(ageResult.get(i).get("연령대").equals("20대")) {
+				ageData.set(1,ageResult.get(i).get("COUNT(연령대)"));
 			}
-			else if(result.get(i).get("연령대").equals("30대")) {
-				data.set(2,result.get(i).get("COUNT(연령대)"));
+			else if(ageResult.get(i).get("연령대").equals("30대")) {
+				ageData.set(2,ageResult.get(i).get("COUNT(연령대)"));
 			}
-			else if(result.get(i).get("연령대").equals("40대")) {
-				data.set(3,result.get(i).get("COUNT(연령대)"));
+			else if(ageResult.get(i).get("연령대").equals("40대")) {
+				ageData.set(3,ageResult.get(i).get("COUNT(연령대)"));
 			}
 		}
 		
-		//m.addAttribute("label", label);
-		System.out.println(data);
-		m.addAttribute("data", data);
+		
+		List<Map<String, String>> nationResult = ser.getReserveNation(businessName);
+		//List<Object> nationData = new ArrayList<>(Arrays.asList(0,0,0,0,0));	
+		List<Object> nationLabel = new ArrayList<>(); 
+		List<Object> nationData = new ArrayList<>(); 
+		
+		for(int i=0; i<nationResult.size(); i++) {
+			nationLabel.add(nationResult.get(i).get("국적"));
+			nationData.add(nationResult.get(i).get("COUNT(*)"));
+		}
+		//System.out.println(nationLabel.get(0)+" : "+nationData.get(0));
+		
+		
+		
+		
+		List<Map<String, String>> monthResult = ser.getReserveMonth(businessName);
+		List<Object> monthData = new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0,0,0,0,0,0));
+		for(int i=0; i<monthResult.size(); i++) {
+			if(monthResult.get(i).get("월").equals("1월")) {
+				monthData.set(0, monthResult.get(i).get("COUNT(*)"));
+			}
+			else if(monthResult.get(i).get("월").equals("2월")) {
+				monthData.set(1, monthResult.get(i).get("COUNT(*)"));
+			}
+			else if(monthResult.get(i).get("월").equals("3월")) {
+				monthData.set(2, monthResult.get(i).get("COUNT(*)"));
+			}
+			else if(monthResult.get(i).get("월").equals("4월")) {
+				monthData.set(3, monthResult.get(i).get("COUNT(*)"));
+			}
+			else if(monthResult.get(i).get("월").equals("5월")) {
+				monthData.set(4, monthResult.get(i).get("COUNT(*)"));
+			}
+			else if(monthResult.get(i).get("월").equals("6월")) {
+				monthData.set(5, monthResult.get(i).get("COUNT(*)"));
+			}
+			else if(monthResult.get(i).get("월").equals("7월")) {
+				monthData.set(6, monthResult.get(i).get("COUNT(*)"));
+			}
+			else if(monthResult.get(i).get("월").equals("8월")) {
+				monthData.set(7, monthResult.get(i).get("COUNT(*)"));
+			}
+			else if(monthResult.get(i).get("월").equals("9월")) {
+				monthData.set(8, monthResult.get(i).get("COUNT(*)"));
+			}
+			else if(monthResult.get(i).get("월").equals("10월")) {
+				monthData.set(9, monthResult.get(i).get("COUNT(*)"));
+			}
+			else if(monthResult.get(i).get("월").equals("11월")) {
+				monthData.set(10, monthResult.get(i).get("COUNT(*)"));
+			}
+			else if(monthResult.get(i).get("월").equals("12월")) {
+				monthData.set(11, monthResult.get(i).get("COUNT(*)"));
+			}
+		}
+		
+		System.out.println(monthData);
+		
+		m.addAttribute("ageData", ageData);
+		m.addAttribute("nationLabel", nationLabel);
+		m.addAttribute("nationData",nationData);
+		m.addAttribute("monthData",monthData);
+		
 		return "/memberB/dashboard";
 	}
 	

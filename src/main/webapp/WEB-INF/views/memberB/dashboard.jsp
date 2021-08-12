@@ -32,6 +32,8 @@
 
 <script src="/com/js/Chart.PieceLabel.js"></script> <!-- your piecelabel -->
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 
  <style>
       p{display:inline-block;}
@@ -321,8 +323,8 @@
           labels: ['10대','20대','30대','40대','50대'],  	  
           datasets: [{   
               data: [
-            	  <c:forEach var="d" items="${data}"> 
-            	  "${d}",
+            	  <c:forEach var="ad" items="${ageData}"> 
+            	  "${ad}",
             	  </c:forEach> ],
               backgroundColor: [
             	  'rgba(75, 192, 192, 1)',
@@ -353,16 +355,24 @@
   var myChart2 = new Chart(ctx2, {
       type: 'pie',
       data: {
-          labels: ['China', 'Japan', 'France', 'USA', 'Spain'],
+          labels: [
+        	  <c:forEach var="nl" items="${nationLabel}">
+        	  "${nl}",
+        	  </c:forEach>
+          ],
           datasets: [{
-              data: [12, 19, 3, 5, 2],
+              data: [
+            	  <c:forEach var="nd" items="${nationData}">
+            	  "${nd}",
+            	  </c:forEach>
+              ],
               backgroundColor: [
                   'rgba(255, 99, 132, 1)',
                   'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 0.6)',
-                  'rgba(75, 192, 192, 0.6)',
-                  'rgba(153, 102, 255, 0.6)',
-                  'rgba(255, 159, 64, 0.6)'
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
               ],
               borderColor: [
                   'rgba(255, 99, 132, 1)',
@@ -415,39 +425,37 @@
 
 
 
-  var myChart3 = new Chart(ctx3, {
-	  type: 'doughnut',
-	  data: {
-          labels: ['China', 'Japan', 'France'],
-          datasets: [{
-              data: [2, 6, 3, ],
-              backgroundColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 0.6)',
-                  
-              ],
-              borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  
-              ]
-             
-          }]
-      },
-      options: {
-    	    plugins: {
-    	      datalabels: {
-    	        labels: {
-    	          title: {
-    	            color: 'blue'
-    	          }
-    	        }
-    	      }
-    	    },
-      maintainAspectRatio:false,
-    	  }
+  var myChart3 = new Chart(ctx3, 
+	  {
+		  type: 'line',
+		  data: {
+		    labels: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		    datasets: [{
+		      data: [
+		    	  <c:forEach var='md' items="${monthData}">
+		    	  "${md}",
+		    	  </c:forEach>
+		      ],
+		      borderColor:'rgb(75, 192, 192)',
+		      fill:true,
+		      tension: 0.1     
+		    }]
+		  },
+		  options: {
+	          maintainAspectRatio:false,
+	          scales: {
+	              y: {
+	                  beginAtZero: true,
+	                  max:5
+	              }
+	          },
+	     
+	      plugins:{
+	    	  legend:{
+	    		  display: false
+	      		}
+	    	 }
+	      }
       
   });
   

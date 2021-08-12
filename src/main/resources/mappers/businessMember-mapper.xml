@@ -75,4 +75,31 @@
 	
 	</select>
 	
+	
+	<select id="getReserveNation" resultType="HashMap">
+	select * from (select 국적,count(*),row_number() over(order by count(*) desc) rnum from 
+	(select name, 
+     			case  when nation='japan'  then '일본'
+         		      when nation='china'  then '중국'
+          		 	  when nation='korea'  then '한국'
+          			  when nation='france'  then '프랑스'
+          		      when nation='spain'  then '스페인'
+               end as 국적
+	from (select nation,yearofbirth, id, name from reservation r, client_member c where r.userid = c.id and r.res_name=#{value})) group by 국적) where rnum between 1 and 3
+	</select>
+	
+	
+	<select id="getReserveMonth" resultType="HashMap">
+	select 
+    case when 숫자 =05 then '5월'
+         when 숫자 =06 then '6월'
+         when 숫자 =07 then '7월'
+         when 숫자 =08 then '8월'
+         when 숫자 =09 then '9월'
+         else '기타 월'
+    end as 월,
+    count(*)
+	from (select res_name,substr(res_date,6,2) 숫자 from reservation where res_name=#{value}) group by 숫자 order by 월
+	</select>
+	
 </mapper>

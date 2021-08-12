@@ -90,4 +90,12 @@ public class BusinessMemberService {
 	public List<Map<String, String>> getReserveAge(String businessName){
 		return dao.getReserveAge(businessName);
 	}
+	public List<Map<String, String>> getReserveNation(String businessName){
+		return dao.getReserveNation(businessName);
+	}
+	public List<Map<String, String>> getReserveMonth(String businessName){
+		return dao.getReserveMonth(businessName);
+	}
+	
+	
 }

@@ -72,5 +72,13 @@ public class BusinessMemberDAO {
 		return mybatis. selectList("bMem.getReserveAge",businessName);
 	}
 	
+	public List<Map<String, String>> getReserveNation(String businessName) {
+		return mybatis. selectList("bMem.getReserveNation",businessName);
+	}
+	
+	public List<Map<String, String>> getReserveMonth(String businessName) {
+		return mybatis. selectList("bMem.getReserveMonth",businessName);
+	}
+	
 	
 }
