@@ -2,7 +2,9 @@ package dream.tk.controller;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -165,7 +167,32 @@ public class BusinessMemberController {
 	}
 	
 	@RequestMapping("dashboard")
-	public String dashboard() {
+	public String dashboard(Model m) {
+		String businessName ="pipipi";
+		List<Map<String, String>> result = ser.getReserveAge(businessName);
+//		ser.getReserveNation();
+//		ser.getReserveMonth();
+		
+		List<Object> data = new ArrayList<>(Arrays.asList(0,0,0,0));	
+		for(int i=0; i<result.size(); i++) {
+			
+			if(result.get(i).get("연령대").equals("10대")) {
+				data.set(0,result.get(i).get("COUNT(연령대)"));
+			}
+			else if(result.get(i).get("연령대").equals("20대")) {
+				data.set(1,result.get(i).get("COUNT(연령대)"));
+			}
+			else if(result.get(i).get("연령대").equals("30대")) {
+				data.set(2,result.get(i).get("COUNT(연령대)"));
+			}
+			else if(result.get(i).get("연령대").equals("40대")) {
+				data.set(3,result.get(i).get("COUNT(연령대)"));
+			}
+		}
+		
+		//m.addAttribute("label", label);
+		System.out.println(data);
+		m.addAttribute("data", data);
 		return "/memberB/dashboard";
 	}
 	
@@ -173,4 +200,15 @@ public class BusinessMemberController {
 	public String chatting() {
 		return "/memberB/chatting";
 	}
+	
+//	@RequestMapping("getDashboard")
+//	public String getStat() {
+//		String businessName ="pipipi";
+//		List<Map<Object, Object>> result = ser.getReserveAge(businessName);
+////		ser.getReserveNation();
+////		ser.getReserveMonth();
+//		System.out.println("결과는? " + result);
+//		System.out.println("결과는? " + result.get(2));
+//		return "/memberB/dashboard";
+//	}
 }

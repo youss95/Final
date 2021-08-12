@@ -1,6 +1,7 @@
 package dream.tk.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,5 +82,12 @@ public class BusinessMemberService {
 	
 	public int editBizInfo(BusinessDTO dto) {
 		return dao.editBizInfo(dto);
+	}
+	
+	
+	
+	
+	public List<Map<String, String>> getReserveAge(String businessName){
+		return dao.getReserveAge(businessName);
 	}
 }

@@ -3,6 +3,7 @@ package dream.tk.dao;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -60,4 +61,16 @@ public class BusinessMemberDAO {
 	public int editBizInfo(BusinessDTO dto) {
 		return mybatis.update("bMem.editBizInfo", dto);
 	}
+	
+	
+	
+	
+	
+	
+	public List<Map<String, String>> getReserveAge(String businessName) {
+		//return (List<Map<Object, Object>>) mybatis.selectMap("bMem.getReserveAge",businessName);
+		return mybatis. selectList("bMem.getReserveAge",businessName);
+	}
+	
+	
 }

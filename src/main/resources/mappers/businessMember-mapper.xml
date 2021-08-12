@@ -59,4 +59,20 @@
 	  where seq=#{seq}
 	</update>
 	
+	
+	
+	<select id="getReserveAge" resultType="HashMap">
+	
+		select 연령대,count(연령대) from
+ 		(select name,
+      	<![CDATA[ case when to_char(sysdate,'yyyy')-to_char(yearofbirth) <= 19  then '10대'
+            when to_char(sysdate,'yyyy')-to_char(yearofbirth) <= 29  then '20대'
+            when to_char(sysdate,'yyyy')-to_char(yearofbirth) <= 39 then '30대'
+            when to_char(sysdate,'yyyy')-to_char(yearofbirth) <= 49  then '40대']]>
+            else '50대 이상'
+      	 end as 연령대
+		from  reservation r, client_member c where r.userid = c.id and r.res_name=#{value}) group by 연령대 order by 연령대
+	
+	</select>
+	
 </mapper>
