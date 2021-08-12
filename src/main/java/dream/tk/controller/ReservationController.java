@@ -60,16 +60,9 @@ public class ReservationController {
 		return "/reservation/websocketBtnTest";
 	}
 	
-	@PostMapping("/alarm")
-	@ResponseBody
-	public String at(@RequestBody NotificationDTO dto) {
-		System.out.println(dto.toString());
-		int result = resService.alarmInsert(dto);
-		if(result==1)
-		return "success";
-		
-		return "fail";
-	}
+	
+	
+	
 	
 	@PostMapping("/setTime")
 	public String setTime(BusinessDTO dto) {

@@ -43,7 +43,17 @@ ${binfo.id }
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="/resources/js/header.js"></script>
 <script>
+$(function(){
+	$.ajax({
+		
+	url:"/noti/alarmCounts",
+	 data:{userId:'${binfo.name}'}
 
+	}).done(function(resp){
+		console.log(resp)
+		$("#ala").append(resp)
+	})
+})
 $("#btnSend").on('click',function(){
 	let bno = 1
 	let sender = '${binfo.name}'
@@ -52,7 +62,7 @@ $("#btnSend").on('click',function(){
 	
 	let data ={userId:getter,content:sender+" 님이 좋아요를 눌렀습니다."}
 	$.ajax({
-		url:"/res/alarm",
+		url:"/noti/alarm",
 		type:"post",
 		data:JSON.stringify(data),
 		contentType:"application/json;charset=utf-8"
@@ -94,7 +104,14 @@ $('#btnSend2').on('click', function(evt) {
     	 let toMsg = getMsg[0];
     	 let toAla = getMsg[1]
          toastr.success("알림", toMsg);
-         $("#ala").append(toAla)
+    	
+    		
+    		 let gs = $("#ala").text();
+    		let total = parseInt(gs)
+    		
+    		  $("#ala").text(total+1)
+    	
+        
      };
      
      ws.onclose = function (event) { 
