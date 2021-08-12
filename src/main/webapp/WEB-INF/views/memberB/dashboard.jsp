@@ -38,12 +38,12 @@
  <style>
       p{display:inline-block;}
     .card-body div{ display:inline-block;}
-   .chartBlur{
+   .myChart{
    -webkit-filter:blur(3px);
     -moz-filter:blur(3px);
     -o-filter:blur(3px);
     -ms-filter:blur(3px);
-    filter:blur(5px);
+    filter:blur(4px);
    }
    .hoverBtn{
    display:none;
@@ -261,7 +261,7 @@
                     <h4 class="card-title" style="margin-top:10px; text-align:center">연령대별 예약자 수 비교</h4>
                     <p class="card-category"></p>
                     <div style="width:90%; height:80%">
-                    <canvas id="myChart1">
+                    <canvas id="myChart1" class="myChart">
 
                     </canvas>
                     <button type='button' class='btn hoverBtn' style="background-color:black">Premium 결제</button>
@@ -283,7 +283,7 @@
                     <h4 class="card-title" style="margin-top:10px; text-align:center">국적별 예약자 수 비교</h4>
                     <p class="card-category"></p>
                     <div style="width:90%; height:80%">
-                    <canvas id="myChart2">
+                    <canvas id="myChart2" class="myChart">
 
                     </canvas>
                     <button type='button' class='btn hoverBtn' style="background-color:black">Premium 결제</button>
@@ -305,7 +305,7 @@
                     <h4 class="card-title" style="margin-top:10px">월별 예약자 추세선</h4>
                     <p class="card-category"></p>
                     <div style="width:90%; height:80%">
-                    <canvas id="myChart3">
+                    <canvas id="myChart3" class="myChart">
 
                     </canvas>
                     <button type='button' class='btn hoverBtn' style="background-color:black">Premium 결제</button>
@@ -328,7 +328,7 @@
                     <h4 class="card-title" style="margin-top:10px">업종 평균 비교차트</h4>
                     <p class="card-category"></p>
                     <div style="width:90%; height:80%">
-                    <canvas id="myChart4">
+                    <canvas id="myChart4" class="myChart">
 
                     </canvas>
                     <button type='button' class='btn hoverBtn' style="background-color:black">Premium 결제</button>
