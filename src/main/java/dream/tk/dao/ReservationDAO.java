@@ -46,6 +46,10 @@ public class ReservationDAO {
 		return mybatis.selectList("ResMapper.getResInfo");
 	}
 	
+	public List<ReservationDTO> resInfoList(String userId){
+		return mybatis.selectList("ResMapper.resInfoList",userId);
+	}
+	
 	public int registerBiz(BusinessDTO dto) {
 		return mybatis.insert("ResMapper.bizSetting",dto);
 	}

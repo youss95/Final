@@ -26,11 +26,11 @@
 											<label for="m3">12개월</label>
 										</div>
 									</div>
-									<button id="chek">체크</button>
+									
 ${loginID}
 <p>
     <p>아임 서포트 결제 모듈 테스트 해보기</p>
-    <button id="check_module" type="button">아임 서포트 결제 모듈 테스트 해보기</button>
+    <button id="check_module" type="button">결제</button>
     <input type="button" id="check2" value="환불">
 </p>
 <script>
