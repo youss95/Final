@@ -38,10 +38,6 @@ public class BusinessFileController {
 	
 	@RequestMapping("editFile")
 	public String editFile(String id, String[] delFiles, MultipartFile[] file) {
-		System.out.println("새롭게 업로드된 파일은? "+file[0].getOriginalFilename());
-		System.out.println("새롭게 업로드된 파일은? "+file[0].getName());
-		System.out.println("새롭게 업로드된 파일은? "+file[0].getSize());
-		
 		
 		String realPath = session.getServletContext().getRealPath("files");
 		try {
@@ -51,14 +47,10 @@ public class BusinessFileController {
 		
 			if(delFiles!=null) {
 				for(int i=0; i<delFiles.length; i++) {
-						//System.out.println("지울 seq "+delFiles[i]);
 						String seq = delFiles[i];
 						String delfileName = fser.getSysName(seq);
-						//System.out.println("지울 파일의 이름은  "+delfileName);
 						File delTarget = new File(realPath+"/"+delfileName);
-						//System.out.println("지울 파일들의 풀  경로는 "+delTarget);
 						boolean delResult = delTarget.delete();
-						//System.out.println("지운 결과는 "+delResult);
 							if(delResult) {
 									fser.delete(seq);
 											}
