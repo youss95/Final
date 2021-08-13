@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import dream.tk.dao.ReservationDAO;
 import dream.tk.dto.BusinessDTO;
+import dream.tk.dto.NotificationDTO;
 import dream.tk.dto.PaymentDTO;
 import dream.tk.dto.ReservationDTO;
 
@@ -57,9 +58,18 @@ public class ReservationService {
 		resDao.refundCheck(pay_no); //refund 1 업데이트
 	}
 	
+	public int updatePrem(String id) {
+		int result = resDao.updatePrem(id);
+		return result;
+	}
+	
 	public int registerBiz(BusinessDTO dto) {
 		
 		return resDao.registerBiz(dto);
+	}
+	
+	public int alarmInsert(NotificationDTO dto) {
+		return resDao.alarmInsert(dto);
 	}
 	
 }

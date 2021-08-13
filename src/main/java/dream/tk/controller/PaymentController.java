@@ -38,6 +38,7 @@ public class PaymentController {
 		System.out.println(dto.toString());
 		int result = resService.resPay(dto);
 		if(result == 1) {
+			resService.updatePrem(dto.getMemberId());
 			return new ResponseEntity<String>("성공",HttpStatus.OK);
 		}
 		return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -66,5 +67,7 @@ public class PaymentController {
 		 
 		return "fail";
 	}
+	
+	
 	
 }

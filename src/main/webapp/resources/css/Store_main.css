@@ -1,0 +1,486 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic);
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    font-family: "Open Sans", "Roboto", helvetica, arial, sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    font-size: 62.5%;
+}
+
+body {
+    background: #f4f5f6;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #67c;
+}
+
+p,
+li,
+time {
+    font-size: 1.6rem;
+    line-height: 3.6rem;
+    margin: 0 0 2.4rem;
+}
+
+h2 {
+    font-size: 2.4rem;
+    line-height: 3.6rem;
+    font-weight: 400;
+    margin: 2.4rem 0;
+}
+
+img {
+    border: 0;
+    height: auto;
+    max-width: 100%;
+}
+
+img:hover {
+    filter: alpha(opacity=9000);
+    opacity: 0.90;
+    filter: alpha(opacity=90);
+}
+
+figure {
+    margin: 0;
+    line-height: 0;
+}
+
+article,
+figure,
+footer,
+header,
+main {
+    display: block;
+}
+
+
+/*--- Clearings ---*/
+
+header:before,
+header:after,
+main:before,
+main:after {
+    content: "";
+    display: table;
+}
+
+header:after,
+main:after {
+    clear: both;
+}
+
+
+/*===
+MAGIC (Auto adjust + Equal Height) === */
+
+.flexgrid {
+    margin: 0 auto;
+    padding: 0;
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flexgrid li {
+    position: relative;
+    list-style: none;
+    display: -webkit-flex;
+    display: flex;
+    margin: 0;
+    flex: auto;
+    width: 100%;
+    /* <-- more control */
+}
+
+.flexgrid li>a {
+    position: relative;
+    padding: 2.4rem;
+    width: 100%;
+    /*making paragraphs and linked block*/
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+@media (min-width:768px) {
+    .flexgrid li {
+        width: 33.333%;
+    }
+}
+
+.flexgrid li h2,
+.flexgrid li h3 {
+    margin: 0;
+}
+
+
+/*=== News/Recommended === */
+
+.flexgrid.columns-news li {
+    margin-bottom: 4.8rem;
+}
+
+.flexgrid.columns-news li a {
+    padding: 0;
+}
+
+.flexgrid.columns-news li figcaption {
+    position: relative;
+    z-index: 9999;
+}
+
+.flexgrid.columns-news li p {
+    margin: -3.6rem 0 0;
+    padding: 0 1.2rem;
+    font-size: .7em;
+    text-transform: uppercase;
+}
+
+.flexgrid.columns-news li h2 {
+    padding: 1.2rem;
+    font-size: 1.5rem;
+    line-height: 1.2rem;
+    font-weight: 400;
+}
+
+.flexgrid.columns-news li h3 {
+    padding: 1.2rem;
+    font-size: 1.0rem;
+    line-height: 1.2rem;
+    font-weight: 400;
+}
+
+.columns-news li:hover {
+    transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+    -webkit-transform: translateY(-2px);
+    -moz-transform: translateY(-2px);
+    -o-transform: translateY(-2px);
+    -ms-transform: translateY(-2px);
+    transform: translateY(-2px);
+}
+
+@media (min-width:568px) {
+    .flexgrid.columns-news {
+        margin: 0 -2%;
+    }
+    .flexgrid.columns-news li {
+        margin-right: 2%;
+        margin-left: 2%;
+        width: 46%;
+    }
+}
+
+@media (min-width:1024px) {
+    .flexgrid.columns-news li {
+        width: 25%;
+    }
+}
+
+
+/* --- Favorite/Save (heart, star...) --- */
+
+.ribbon.icon {
+    font-size: 2.4rem;
+}
+
+
+/* --- Number: most popular --- */
+
+.grid-number {
+    position: absolute;
+    top: 1.2rem;
+    left: 1.2rem;
+    line-height: 1;
+    font-weight: 600;
+    z-index: 9999;
+    padding: .6rem 1.2rem;
+    border-radius: 50%;
+}
+
+
+/* Ribbon --- */
+
+.ribbon {
+    position: absolute;
+    top: 0;
+    right: -1.3rem;
+    padding: .6rem 1.2rem;
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+    text-align: center;
+    z-index: 9999;
+    letter-spacing: 1px;
+}
+
+.ribbon:before {
+    position: absolute;
+    right: .3rem;
+    bottom: -1rem;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    pointer-events: none;
+    border-width: 10px;
+    -ms-transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+}
+
+
+/*=== Colors === */
+
+.flexgrid.columns-news li {
+    background: #fff;
+    border: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.flexgrid.columns-news li a {
+    color: inherit;
+}
+
+.columns-news li:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+}
+
+.flexgrid.columns-news li p {
+    color: #fff;
+    text-shadow: 0 1px 0 #000;
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.4)));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+    /* W3C */
+}
+
+.grid-number {
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    border: none;
+}
+
+.ribbon {
+    background: salmon;
+}
+
+.ribbon,
+.ribbon a {
+    color: #fff;
+}
+
+.ribbon:before {
+    border-color: rgba(136, 183, 213, 0);
+    border-top-color: #ccc;
+    ;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#wrap {
+    width: 1400px;
+    margin: 0 auto;
+}
+
+header {
+    width: 100%;
+    height: 100px;
+    float: center
+}
+
+aside {
+    float: left;
+    width: 60%;
+    height: 700px;
+}
+
+line {
+    float: left;
+    width: 5%;
+}
+
+section {
+    float: left;
+    width: 35%;
+    height: 700px;
+}
+
+
+/* 화면 너비 0 ~ 1540px */
+
+@media (max-width: 1540px) {
+    #wrap {
+        width: 95%;
+    }
+}
+
+
+/* 화면 너비 0 ~ 768px */
+
+@media (max-width: 768px) {
+    #wrap {
+        width: 100%;
+    }
+}
+
+
+/* 화면 너비 0 ~ 480px */
+
+@media (max-width: 480px) {
+    #wrap {
+        width: 100%;
+    }
+    header {
+        height: 80px;
+    }
+    aside {
+        float: none;
+        width: 100%;
+        height: 1400px;
+    }
+    section {
+        float: none;
+        width: 100%;
+        height: 1400px;
+    }
+}
+
+
+/*찾기 버튼*/
+
+form {
+    position: relative;
+    width: 510px;
+    margin: 1 auto;
+}
+
+.d1 {
+    background: #A3D0C3;
+}
+
+.d1 input {
+    width: 100%;
+    height: 42px;
+    padding-left: 10px;
+    border: 2px solid #7BA7AB;
+    border-radius: 5px;
+    outline: none;
+    background: #F9F0DA;
+    color: #9E9C9C;
+    box-sizing: border-box;
+}
+
+.d1 button {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    width: 42px;
+    height: 42px;
+    border: none;
+    background: #7BA7AB;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.d1 button:before {
+    content: "\f002";
+    font-family: FontAwesome;
+    font-size: 16px;
+    color: #F9F0DA;
+}
+
+.card-box {
+    padding-bottom: 70px;
+    display: block;
+    width: 100%;
+}
+
+.card-box>ul::before {
+    float: center;
+    content: "메뉴 리스트";
+    font-size: 25px;
+    font-weight: bold;
+    padding-left: 205px;
+    top: 10px;
+}
+
+.card-box>ul {
+    text-align: left;
+    display: block;
+    padding: 0 10px;
+}
+
+.card-box>ul>li {
+    display: block;
+    width: 100%;
+    padding: 10px;
+}
+
+
+/*카드*/
+
+@media (min-width: 770px) {
+    .card-box {
+        padding-bottom: 70px;
+        display: block;
+    }
+    .card-box>ul {
+        display: block;
+        margin: 0 -10px;
+    }
+    .card-box>ul>li {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+.card-box>ul>li>a {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.card-box>ul>li>a>img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+
+/*카드 텍스트*/
+
+.card-box>ul>li {
+    text-align: left;
+}
+
+.card-box>ul>li .text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1;
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: normal;
+}
