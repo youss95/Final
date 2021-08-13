@@ -6,7 +6,7 @@ public class StoreDTO {
 	private String store;
 	private String phone;
 	private String post;
-	private String Road_name;
+	private String road_name;
 	private String store_x;
 	private String store_y;
 	private int count;
@@ -22,7 +22,7 @@ public class StoreDTO {
 		this.store = store;
 		this.phone = phone;
 		this.post = post;
-		this.Road_name = road_name;
+		this.road_name = road_name;
 		this.store_x = store_x;
 		this.store_y = store_y;
 		this.count = count;
@@ -62,10 +62,10 @@ public class StoreDTO {
 		this.post = post;
 	}
 	public String getRoad_name() {
-		return Road_name;
+		return road_name;
 	}
 	public void setRoad_name(String road_name) {
-		Road_name = road_name;
+		this.road_name = road_name;
 	}
 	public String getStore_x() {
 		return store_x;
