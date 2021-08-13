@@ -29,7 +29,7 @@
 
 <div class="container">
 <section class="">
-
+<div id="ala"></div>
 <button id="btnSend">asdf</button>
 ${binfo.id }
      </section>
@@ -43,17 +43,34 @@ ${binfo.id }
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="/resources/js/header.js"></script>
 <script>
+$(function(){
+	$.ajax({
+		
+	url:"/noti/alarmCounts",
+	 data:{userId:'${binfo.name}'}
 
+	}).done(function(resp){
+		console.log(resp)
+		$("#ala").append(resp)
+	})
+})
 $("#btnSend").on('click',function(){
 	let bno = 1
 	let sender = '${binfo.name}'
 	let getter = "스티브"
+	
+	
+	let data ={userId:getter,content:sender+" 님이 좋아요를 눌렀습니다."}
 	$.ajax({
-		url:"/res/alarm",
-		type:"get"
+		url:"/noti/alarm",
+		type:"post",
+		data:JSON.stringify(data),
+		contentType:"application/json;charset=utf-8"
+		
 	}).done(function(resp){
+		console.log(resp)
 		if(socket){
-			let scktMsg = "like,"+sender+","+getter+","+bno;
+			let scktMsg = "like,"+sender+","+getter+","+bno+","+"1";
 			console.log(scktMsg);
 			socket.send(scktMsg);
 		}
@@ -81,8 +98,20 @@ $('#btnSend2').on('click', function(evt) {
  	   
  }
      ws.onmessage = function (event) {
+    	 console.log(event)
          console.log("받은 메시지: "+ event.data+'\n');
-         toastr.success("알림", event.data);
+    	 let getMsg = event.data.split(",")
+    	 let toMsg = getMsg[0];
+    	 let toAla = getMsg[1]
+         toastr.success("알림", toMsg);
+    	
+    		
+    		 let gs = $("#ala").text();
+    		let total = parseInt(gs)
+    		
+    		  $("#ala").text(total+1)
+    	
+        
      };
      
      ws.onclose = function (event) { 
