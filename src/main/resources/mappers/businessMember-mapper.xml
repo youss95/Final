@@ -32,6 +32,10 @@
 		select * from business_member where id=#{value}
 	</select>
 	
+	<select id="getSeq" resultType="int">
+		select seq from business_member where id=#{value}
+	</select>
+	
 	<update id="editPersonalInfo">
 	  update business_member set pw=#{pw},name=#{name},email=#{email},phone=#{phone} where id=#{id}
 	</update>

@@ -35,6 +35,7 @@
 
 <script>
 	$(function(){
+	
 		//====Personal Info 관련 
 		$("#signOut").on("click",function(){
 			Swal.fire({
@@ -114,15 +115,114 @@
 		})
 		//-------Business Info 관련 -------
 		
+		
+		
+			
+		
+		// 사진 등록 서비스 관련
+		$("#uploadBtn1").on("click",function(){    
+			//let reg = /(.*?)\.(jpg|jpeg|png)$/;
+			let reg = /^\S*\.(jpg|jpeg|png)$/;
+			let files=$('input[name="file"]')[0].files;
+		       	         
+		    let regResult = true;
+		    for(var i= 0; i<files.length; i++){
+		        if(!reg.test(files[i].name)){
+		        	alert("사진은 jpg, jpeg, png 형식만 등록 가능합니다.");
+		        	regResult = false;
+		        	break;
+		        }
+		     }
+		            	     
+			if(regResult){
+				Swal.fire({
+					  icon: "question",
+					  title: "사진을 등록하시겠습니까?",
+					  text: "확인 버튼을 클릭 시, 사진이 등록됩니다.",
+					  showConfirmButton:true,
+					  showCancelButton:true,
+					  confirmButtonText:"확인",
+					  cancelButtonText:"취소",
+					}).then((result) =>{
+						if(result.isConfirmed){
+							$("#uploadFrm1").submit();
+						}else{
+							return false;
+						}						
+					})
+					}						
+			})	
+	     // ===========사진 등록 서비스 관련
+			
+			
+		// 사진 수정 서비스 관련
+		$("#editFileBtn").on("click",function(){
+			$("#editFileDiv").css("display","block");
+			$("#editFileDiv2").css("display","none");
+		})
+		
+		
+		$("#uploadBtn2").on("click",function(){
+			let reg = /^\S*\.(jpg|jpeg|png)$/;
+			let files=$('input[name="file"]')[0].files;
+		       	         
+		    let regResult = true;
+		    for(var i= 0; i<files.length; i++){
+		        if(!reg.test(files[i].name)){
+		        	alert("사진은 jpg, jpeg, png 형식만 등록 가능합니다.");
+		        	regResult = false;
+		        	break;
+		        }
+		     }
+		            	     
+			if(regResult){
+				Swal.fire({
+					  icon: "question",
+					  title: "사진을 등록하시겠습니까?",
+					  text: "확인 버튼을 클릭 시, 사진이 등록됩니다.",
+					  showConfirmButton:true,
+					  showCancelButton:true,
+					  confirmButtonText:"확인",
+					  cancelButtonText:"취소",
+					}).then((result) =>{
+						if(result.isConfirmed){
+							$("#uploadFrm2").submit();
+						}else{
+							return false;
+						}						
+					})
+					}	
+		})
+		// ======= 사진 수정 서비스 관련
+		
+		//등록된 사진 삭제 서비스 관련
+		$(".delTarget").on("click",function(){
+		let fileSeq=$(this).attr("seq");
+		let del = $("<input type='hidden' name='delFiles'>");
+		del.val(fileSeq);
+		$("#uploadFrm2").append(del);
+		$(this).parent().parent().remove();
+		})
+		//=========  등록된 사진 삭제 서비스 관련
+		
 	})
 	
 	
-	//취소 버튼 
-	$(document).on("click",".cancelBtn",function(){
+	//취소 버튼 1
+	$(document).on("click","#cancelPersonal",function(){
 		location.href="${pageCotext.request.contextPath}/bMember/myPage"
 	})
 	//
-	
+	//취소 버튼 2
+	$(document).on("click","#cancelBiz",function(){
+		location.href="${pageCotext.request.contextPath}/bMember/myPage"
+	})
+	//
+	//취소 버튼 3
+	$(document).on("click","#cancelFile",function(){
+		location.href="${pageCotext.request.contextPath}/bMember/myPage"
+	})
+	//
 	
 	$(document).on("click","#save",function(){
 		let pw = $("#pw").val();
@@ -336,7 +436,7 @@
                      
 
                        <div style="text-align: right; padding:10px">
-                        <button class="btn hiddenInput cancelBtn" id="cancel" class="btn" type="button" style="display:none; color:white; background-color:#f36767;">취소</button>
+                        <button class="btn hiddenInput cancelBtn" id="cancelPersonal" class="btn" type="button" style="display:none; color:white; background-color:#f36767;">취소</button>
                         <button id="signOut" class="btn" type="button" style="background-color:tomato">탈퇴</button>
                         <button id="edit" class="btn" type="button">수정</button>
                         <button id="save" class="btn hiddenInput" style="display:none;">Save</button>
@@ -448,7 +548,7 @@
                      	 </c:otherwise>
                       </c:choose>
                       
-                      <button class="btn hiddenInputB cancelBtn" id="cancel" class="btn" type="button" style="display:none; color:white; background-color:#f36767;">취소</button>
+                      <button class="btn hiddenInputB cancelBtn" id="cancelBiz" class="btn" type="button" style="display:none; color:white; background-color:#f36767;">취소</button>
                       <button id="saveBiz" class="btn hiddenInputB" style="display:none;">Save</button>   
                                      
                        </div>
@@ -471,20 +571,79 @@
                       </div>
                     </div>
                     
-                    <div class="card-body" style="width:100%">
+                    <div class="card-body" style="width:100%;">
                       <div style="width:30%">메뉴판 번역 서비스</div>
                       <div style="width:60%"><button class="btn" type="button">번역 서비스</button></div>
                     </div>
-
-                    <div class="card-body" style="width:100%">
+					<hr>	
+		
+				<c:choose>
+					<c:when test="${flist[0] eq null || flist[0] eq ''}">
+					 <div class="card-body" style="width:100%">
                       <div style="width:30%">업체 사진 등록 서비스</div>
-                      <div style="width:60%"><input type=file><button class="btn" type="button">업로드</button></div>
+                      <div style="width:60%">
+                      <form id="uploadFrm1" action="${pageContext.request.contextPath}/bFile/upload" method="post" enctype="multipart/form-data">
+                      <input id='fileInput' type=file name="file" multiple accept="image/jpeg, image/jpg, image/png"><button class="btn" type='button' id='uploadBtn1'>업로드</button>
+                      <input type='hidden' name="id" value="${binfo.id}">
+                      </form>
+                      </div>
                     </div>
-
+                    </c:when>
+                    
+                    <c:otherwise>
+                     <div class="card-body" style="width:100%" id="editFileDiv2">
+                      <div style="width:30%">업체 사진 등록 서비스 내역</div>
+                      <div style="width:60%">
+                     	 <div style="width:70%; margin-left:15px">
+                      		<c:forEach var="list" items="${flist}">
+                      		
+                      		${list.oriName}<br>
+                      		
+                      		</c:forEach>
+                      	 </div>	
+                      	 <div style="width:20%"><button class="btn" id="editFileBtn" type="button">수정</button></div>
+                      </div>
+                    </div>
+                    </c:otherwise>
+				</c:choose>
+				
+				 <div class="card-body" style="display:none; width:100%" id="editFileDiv">
+                      <div style="width:30%">업체 사진 수정 서비스</div>
+                      <div style="width:67%">
+                      
+                     	 <div style="width:62%">
+                      		<form id="uploadFrm2" action="${pageContext.request.contextPath}/bFile/editFile" method="post" enctype="multipart/form-data">
+                      		<input id='fileInput' type=file name="file" multiple accept="image/jpeg, image/jpg, image/png" style="width:100%">
+                     		 <c:forEach var="f" items="${flist}">
+			 					<div class="input-group" style="width:100%">
+			 						<div style="width:50%">
+                    				<a style="margin:0 20px 0 5px; display:block">${f.oriName}</a>
+                    				</div>     
+                   		 			<div class="input-group-btn" style="display: inline; width:10%">
+									<button class="btn btn-danger delTarget" type="button" seq=${f.seq} style="padding:0; margin:0; width:15px; height:16px">X</button>
+			  						</div>
+			  				   </div>	
+             				</c:forEach>
+             				<input type='hidden' name="id" value="${binfo.id}">
+             				</form>
+             			 </div>
+             			
+             			 <div style="width:35%; text-align:center">
+                      		<button class="btn" id="cancelFile" class="btn" type="button" style="color:white; background-color:#f36767; ">취소</button>
+                      		<button class="btn" type='button' id='uploadBtn2' >저장</button>
+                      	</div>
+                      	
+                      </div>
+                    </div>
+				
+				
+				
+				
                   </div>
               </div>
               </div>
                <!-- ==== 메뉴판 및 사진 업로드 관련  끝! ==== -->
+           
     
     </div>
     </div>

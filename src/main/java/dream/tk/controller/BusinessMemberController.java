@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import dream.tk.api.SHA256;
 import dream.tk.dto.BusinessDTO;
+import dream.tk.dto.BusinessFileDTO;
 import dream.tk.dto.BusinessMemberDTO;
+import dream.tk.service.BusinessFileService;
 import dream.tk.service.BusinessMemberService;
 
 @RequestMapping("/bMember")
@@ -26,6 +28,10 @@ public class BusinessMemberController {
 	
 	@Autowired
 	private BusinessMemberService ser;
+	
+	@Autowired
+	private BusinessFileService fser;
+	
 	@Autowired
 	private HttpSession session;
 	
@@ -47,7 +53,9 @@ public class BusinessMemberController {
 			BusinessMemberDTO dto = ser.getInfo(id);
 			session.setAttribute("binfo", dto);
 			
-			int bizSeq = dto.getSeq();
+			//int bizSeq = ser.getSeq(id);
+			BusinessMemberDTO sessiondto = (BusinessMemberDTO) session.getAttribute("binfo");
+			int bizSeq = sessiondto.getSeq();
 			BusinessDTO bizdto = ser.getBizInfo(bizSeq);
 			session.setAttribute("bizInfo", bizdto);
 			return "/memberB/loginView";
@@ -86,9 +94,17 @@ public class BusinessMemberController {
 	
 	@RequestMapping("myPage")
 	public String myPage(Model m) {
-		int bizSeq = ((BusinessMemberDTO) session.getAttribute("binfo")).getSeq();
+		
+		BusinessMemberDTO dto = (BusinessMemberDTO) session.getAttribute("binfo");
+		int bizSeq = dto.getSeq();
+
 		BusinessDTO bizdto = ser.getBizInfo(bizSeq);
 		m.addAttribute("bizInfo", bizdto);
+		
+		String id = dto.getId();
+		List<BusinessFileDTO> flist = fser.getFlist(id);
+		m.addAttribute("flist", flist);
+	
 		return "/memberB/myPage";
 	}
 	
@@ -268,6 +284,10 @@ public class BusinessMemberController {
 		return "/memberB/chatting";
 	}
 	
+	@RequestMapping("store")
+	public String store() {
+		return "/Store/StoreDetail";
+	}
 //	@RequestMapping("getDashboard")
 //	public String getStat() {
 //		String businessName ="pipipi";

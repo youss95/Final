@@ -58,6 +58,14 @@
    
 </style>
 
+<script>
+$(function(){
+	$(".hoverBtn").on("click",function(){
+		location.href="${pageContext.request.contextPath}/pay/res_payment";
+	})
+})
+</script>
+
 </head>
 
 <body>

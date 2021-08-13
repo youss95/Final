@@ -50,6 +50,11 @@ public class BusinessMemberService {
 		return dao.getInfo(id);
 	}
 	
+	public int getSeq(String id) {
+		return dao.getSeq(id);
+	}
+	
+	
 	public int editPersonalInfo(BusinessMemberDTO dto) {
 		return dao.editPersonalInfo(dto);
 	}

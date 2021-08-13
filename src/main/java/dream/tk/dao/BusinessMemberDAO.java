@@ -38,6 +38,10 @@ public class BusinessMemberDAO {
 		return mybatis.selectOne("bMem.getInfo", id);
 	}
 	
+	public int getSeq(String id) {
+		return mybatis.selectOne("bMem.getSeq", id);
+	}
+	
 	public int editPersonalInfo(BusinessMemberDTO dto) {
 		return mybatis.delete("bMem.editPersonalInfo", dto);
 	}
