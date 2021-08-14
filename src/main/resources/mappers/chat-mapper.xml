@@ -13,7 +13,7 @@
 		values(CHAT_CLIENT_SEQ.nextval,'chatnum','id','store',#{contents},#{nickname}, sysdate)
 	</insert> 
 	
-	<select id="selectAll" resultType="kh.spring.dto.ChatDTO">
+	<select id="selectAll" resultType="dream.tk.dto.ChatDTO">
 		select seq, chatnum, id, store, contents, nickname, to_char(write_date, 'HH : MM  am') "write_date" from CHAT_CLIENT
 	</select>
 	
