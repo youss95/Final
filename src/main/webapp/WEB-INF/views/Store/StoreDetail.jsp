@@ -380,7 +380,7 @@ feOffset {
 
 	<!-- ---------------------------------------------- -->
 
-	<feOffset> <a href="naver.com">
+	<feOffset> <a href="/chat/toChat">
 		<div class="chat" onclick="this.classList.toggle('active')">
 			<div class="background"></div>
 			<svg class="chat-bubble" width="100" height="100"
