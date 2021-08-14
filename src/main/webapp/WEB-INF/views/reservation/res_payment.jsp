@@ -14,22 +14,23 @@
 	<div class="rd_group">
 										<div class="inp_rd">
 											<input type="radio" id="m1" name="price" value=100>
+											
 											<label for="m1">1개월</label>
 										</div>
 										<div class="inp_rd">
-											<input type="radio" id="m2" name="price" value=600>
+											<input type="radio" id="m2" name="price" value=200>
 											<label for="m2">6개월</label>
 										</div>
 										<div class="inp_rd">
-											<input type="radio" id="m3" name="price" value=120>
+											<input type="radio" id="m3" name="price" value=300>
 											<label for="m3">12개월</label>
 										</div>
 									</div>
-									<button id="chek">체크</button>
+									
 ${loginID}
 <p>
     <p>아임 서포트 결제 모듈 테스트 해보기</p>
-    <button id="check_module" type="button">아임 서포트 결제 모듈 테스트 해보기</button>
+    <button id="check_module" type="button">결제</button>
     <input type="button" id="check2" value="환불">
 </p>
 <script>

@@ -91,7 +91,7 @@ $('#btnSend2').on('click', function(evt) {
  })
 
  function connectWS(){
- 	var ws = new WebSocket("ws://192.168.219.110:8080/replyEcho");
+ 	var ws = new WebSocket("ws://122.45.84.154:8080/replyEcho");
  	socket = ws;
  	ws.onopen = function () { //커넥션 연결되었을떄
  	    console.log('Info: connection opened.');

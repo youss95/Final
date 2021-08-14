@@ -134,8 +134,8 @@ feOffset {
 					<div>
 						<input type="hidden" id="x" name="x" value="${list.store_x }">
 						<input type="hidden" id="y" name="y" value="${list.store_y }">
-					
-						<a><img src="/img/start.png"> 찜하기</a>
+						<input type="hidden" id="store" value="${list.store }"> <a><img
+							src="/img/start.png"> 찜하기</a>
 						<h1 style="float: center;">음식점명</h1>
 						<div>
 							<img src="/img/view.png"> ${list.count} <img
@@ -153,10 +153,14 @@ feOffset {
 							</tr>
 							<tr>
 								<th>가게이름</th>
-								<td id="store">${list.store }</td>
-								
+								<td>${list.store }</td>
 							</tr>
+							<tr>
+								<th>가게 주소</th>
+								<td>${list.road_name }</td>
+							</tr>					
 						</table>
+						<button>예약하기</button>
 						<script type="text/javascript">
 							var xid = $('#x').val();
 							var yid = $('#y').val();
@@ -179,12 +183,13 @@ feOffset {
 				// 이미지 지도에 표시할 마커를 아래와 같이 배열로 넣어주면 여러개의 마커를 표시할 수 있습니다 
 				var markers = [ {
 					position : new kakao.maps.LatLng(xid, yid),
-					text : store // text 옵션을 설정하면 마커 위에 텍스트를 함께 표시할 수 있습니다     
+					text : store
+				// text 옵션을 설정하면 마커 위에 텍스트를 함께 표시할 수 있습니다     
 				} ];
 
 				var staticMapContainer = document.getElementById('staticMap'), // 이미지 지도를 표시할 div  
 				staticMapOption = {
-					center : new kakao.maps.LatLng(xid,  yid), // 이미지 지도의 중심좌표
+					center : new kakao.maps.LatLng(xid, yid), // 이미지 지도의 중심좌표
 					level : 4, // 이미지 지도의 확대 레벨
 					marker : markers
 				// 이미지 지도에 표시할 마커 
@@ -198,35 +203,35 @@ feOffset {
 			<br>
 			<!-- 별점 radio 박스-->
 			<h3 style="text-align: center">점수 주시겠어요?</h3>
-			
-			<div class="rating">
-				<input type="radio" id="star5" name="rating" value="5" /> <label
-					class="full" for="star5" title="Awesome - 5 stars"></label> <input
-					type="radio" id="star4half" name="rating" value="4 and a half" />
-				<label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+			<form action="myform" id="myform" method="post" action="/store/star">
+				<div class="rating">
+					<input type="radio" id="star5" name="rating" value="5" /> <label
+						class="full" for="star5" title="Awesome - 5 stars"></label> <input
+						type="radio" id="star4half" name="rating" value="4 and a half" />
+					<label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
 
-				<input type="radio" id="star4" name="rating" value="4" /> <label
-					class="full" for="star4" title="Pretty good - 4 stars"></label> <input
-					type="radio" id="star3half" name="rating" value="3 and a half" />
-				<label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+					<input type="radio" id="star4" name="rating" value="4" /> <label
+						class="full" for="star4" title="Pretty good - 4 stars"></label> <input
+						type="radio" id="star3half" name="rating" value="3 and a half" />
+					<label class="half" for="star3half" title="Meh - 3.5 stars"></label>
 
-				<input type="radio" id="star3" name="rating" value="3" /> <label
-					class="full" for="star3" title="Meh - 3 stars"></label> <input
-					type="radio" id="star2half" name="rating" value="2 and a half" />
-				<label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+					<input type="radio" id="star3" name="rating" value="3" /> <label
+						class="full" for="star3" title="Meh - 3 stars"></label> <input
+						type="radio" id="star2half" name="rating" value="2 and a half" />
+					<label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
 
-				<input type="radio" id="star2" name="rating" value="2" /> <label
-					class="full" for="star2" title="Kinda bad - 2 stars"></label> <input
-					type="radio" id="star1half" name="rating" value="1 and a half" />
-				<label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+					<input type="radio" id="star2" name="rating" value="2" /> <label
+						class="full" for="star2" title="Kinda bad - 2 stars"></label> <input
+						type="radio" id="star1half" name="rating" value="1 and a half" />
+					<label class="half" for="star1half" title="Meh - 1.5 stars"></label>
 
-				<input type="radio" id="star1" name="rating" value="1" /> <label
-					class="full" for="star1" title="Sucks big time - 1 star"></label> <input
-					type="radio" id="starhalf" name="rating" value="half" /> <label
-					class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-			</div>
-			
-			<button>별점 주기</button>
+					<input type="radio" id="star1" name="rating" value="1" /> <label
+						class="full" for="star1" title="Sucks big time - 1 star"></label>
+					<input type="radio" id="starhalf" name="rating" value="half" /> <label
+						class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+				</div>
+				<button>별점 주기</button>
+			</form>
 			<script
 				src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js'></script>
 			<script
@@ -265,25 +270,27 @@ feOffset {
 		});
 		//댓글 목록 
 		function commentList() {
-			$
-					.ajax({
-						url : '/comment/list',
-						type : 'get',
-						data : {
-							'bno' : bno
-						},
-						success : function(data) {
-							var a = '';
-							$
-									.each(
-											data,
-											function(key, value) {
-												a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+			$.ajax({
+			url : '/comment/list',
+			type : 'get',
+			data : {
+			'bno' : bno
+				},
+			success : function(data) {
+			var a = '';
+				$
+				.each(
+							data,
+									function(key, value) {
+												a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 20px;">';
 												a += '<div class="commentInfo'+value.cno+'">'
 														+ '댓글번호 : '
 														+ value.cno
 														+ ' / 작성자 : '
 														+ value.writer;
+														+ ' / 작성 시간 : '
+														+ value.reg_Date;		
+												
 												a += '<a onclick="commentUpdate('
 														+ value.cno
 														+ ',\''
@@ -318,10 +325,12 @@ feOffset {
 				}
 			});
 		}
+		
+		
 		//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
 		function commentUpdate(cno, content) {
 			var a = '';
-
+			a += '<br>'
 			a += '<div class="input-group">';
 			a += '<input type="text" class="form-control" name="content_'+cno+'" value="'+content+'"/>';
 			a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('
@@ -371,7 +380,7 @@ feOffset {
 
 	<!-- ---------------------------------------------- -->
 
-	<feOffset> <a href="naver.com">
+	<feOffset> <a href="/chat/toChat">
 		<div class="chat" onclick="this.classList.toggle('active')">
 			<div class="background"></div>
 			<svg class="chat-bubble" width="100" height="100"

@@ -38,7 +38,7 @@ public class PaymentController {
 		System.out.println(dto.toString());
 		int result = resService.resPay(dto);
 		if(result == 1) {
-			resService.updatePrem(dto.getMemberId());
+			resService.updatePrem(dto.getMemberId(),dto.getPrice());
 			return new ResponseEntity<String>("성공",HttpStatus.OK);
 		}
 		return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -62,6 +62,7 @@ public class PaymentController {
 		System.out.println(res);
 		  if(res == 1) { 
 			  resService.refundCheck(memberId); //환불이 되었다는 체크
+			  resService.downGradePrem(memberId);
 			  return "success"; 
 			  }
 		 

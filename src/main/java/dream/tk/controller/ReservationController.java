@@ -1,6 +1,8 @@
 package dream.tk.controller;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.Gson;
 
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.NotificationDTO;
@@ -52,6 +56,9 @@ public class ReservationController {
 	
 	@GetMapping("/bizSetting")
 	public String bizSetting() {
+		
+		
+		
 		return "/reservation/res_bizSetting";
 	}
 	
@@ -108,6 +115,14 @@ public class ReservationController {
 		return "fail";
 	}
 	
+	@GetMapping(value= "/resInfoList",produces= {MediaType.APPLICATION_JSON_VALUE})
+	@ResponseBody
+	public List<ReservationDTO> resInfoList(String userId){
+		List<ReservationDTO> list = resService.resInfoList(userId);
+		
+		
+		return list;
+	}
 	
 	
 }
