@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*) FROM comments
 	</select>
 
-	<select id="commentList" resultType="kh.spring.dto.StoreCommentDTO">
+	<select id="commentList" resultType="dream.tk.dto.StoreCommentDTO">
 		SELECT *
 		FROM COMMENTS
 		where BNO = ${bno}
@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 	<update id="commentUpdate"
-		parameterType="kh.spring.dto.StoreCommentDTO">
+		parameterType="dream.tk.dto.StoreCommentDTO">
 		UPDATE comments SET CONTENT = #{content} WHERE CNO = ${cno}
 	</update>
 
