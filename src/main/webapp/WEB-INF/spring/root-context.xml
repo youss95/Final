@@ -44,5 +44,9 @@
 		base-package="dream.tk.dao" />
 	<context:component-scan
 		base-package="dream.tk.service" />
+	<context:component-scan
+		base-package="dream.tk.configurator" />
+	<context:component-scan
+		base-package="dream.tk.endpoint" />
 
 </beans>
