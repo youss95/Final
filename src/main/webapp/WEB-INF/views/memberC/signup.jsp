@@ -29,7 +29,7 @@
 }
 
 .row {
-	margin: 5px;
+	margin-top: 10px;
 }
 
 .logo {
@@ -50,6 +50,10 @@
 
 button {
 	width: 30%;
+}
+
+.confirm {
+	display: none;
 }
 
 #submit {
@@ -73,7 +77,7 @@ button {
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-12" id="idCheck"></div>
+					<div class="col-12 idCheck"></div>
 				</div>
 
 				<div class="row">
@@ -82,6 +86,9 @@ button {
 						<input type="password" class="ipF" name="pw" id="ipw"
 							placeholder="Enter your PW" required>
 					</div>
+				</div>
+				<div class="row">
+					<div class="col-12 pwCheck"></div>
 				</div>
 				<div class="row">
 					<div class="col-12">Confirm PW</div>
@@ -100,7 +107,9 @@ button {
 							placeholder="Username (Only Visible for Reservation)" required>
 					</div>
 				</div>
-
+				<div class="row">
+					<div class="col-12 nameCheck"></div>
+				</div>
 				<div class="row">
 					<div class="col-12">Email</div>
 					<div class="col-12">
@@ -109,7 +118,12 @@ button {
 						<button id="sendEmail">send</button>
 					</div>
 				</div>
+
 				<div class="row">
+					<div class="col-12" id="waiting"></div>
+				</div>
+
+				<div class="row confirm">
 					<div class="col-12">
 						<input type=text class="ipB" name="check" id="confirmInput"
 							placeholder="인증번호입력"><input type="hidden"
@@ -130,6 +144,9 @@ button {
 							<input type="number" class="ipF" name="yob" id="iyob"
 								placeholder="ex) 1995" required>
 						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 yobCheck"></div>
 					</div>
 					<div class="row">
 						<div class="col-12">Nation</div>
@@ -158,10 +175,7 @@ button {
 							</select>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col" style="text-align: center;"></div>
 
-					</div>
 					<div class="row">
 						<div class="col-12">
 							<input type="checkbox" class="ipF" name="agree" id="agree"
@@ -179,11 +193,11 @@ button {
 					</div>
 
 				</div>
-				<div class="row" style="margin: 10px;">
+				<div class="row"">
 					<div class="col-12" style="text-align: center;">
-						<button type="submit" id="submit">Sign Up</button>
+						<button class="btn btn-primary" type="submit" id="submit">Sign
+							Up</button>
 					</div>
-
 				</div>
 
 			</div>
@@ -192,30 +206,32 @@ button {
 	</div>
 
 	<script>
+	let idRegex = /^[a-z0-9]{4,}$/;
+	let emailRegex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	let pwRegex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+	let yobRegex = /^\d{4,4}$/;
 		$('#signupForm').on("submit", function() {
-							$.ajax({
-										url : '/cMember/verifyRecaptcha',
-										type : 'post',
-										data : {
-											recaptcha : $(
-													"#g-recaptcha-response")
-													.val()
-										},
-										success : function(data) {
-											console.log(data);
-											if(data==0){
-												console.log("자동 가입 방지 봇 통과");
-												$("#signupForm").submit();
-											}else{
-												alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
-												console.log(data);
-												return false;
-											}
-										
-										}
-									});
+			$.ajax({
+				url : '/cMember/verifyRecaptcha',
+				type : 'post',
+				data : {
+					recaptcha : $("#g-recaptcha-response").val()
+				},
+				success : function(data) {
+					console.log(data);
+					if (data == 0) {
+						console.log("자동 가입 방지 봇 통과");
+						$("#signupForm").submit();
+					} else {
+						alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
+						console.log(data);
+						return false;
+					}
 
-						});
+				}
+			});
+
+		});
 
 		$("#idCheck").on("click", function() {
 			$.ajax({
@@ -237,6 +253,8 @@ button {
 			})
 		})
 		$("#sendEmail").on("click", function() {
+			$("#waiting").css("color", "rgb(245, 147, 0)");
+			$("#waiting").html("Please wait a second for sending email.");
 			$.ajax({
 				url : "/cMember/emailConfirm",
 				type : "get",
@@ -245,8 +263,10 @@ button {
 					"name" : $("#iname").val()
 				}
 			}).done(function(res) {
+				$("#waiting").css("display", "none");
+				$(".confirm").css("display", "block");
 				$("#confirmNumber").val(res);
-				alert("인증 메일 전송이 완료되었습니다. 메일함을 확인해보세요.");
+
 			}).fail(function(a, b, c) {
 				alert("서버와의 통신이 불안정 합니다.");
 			})
@@ -259,23 +279,21 @@ button {
 				$("#hiddenBox").css("display", "block");
 			} else {
 				$("#emailCheck").css("color", "red");
-				$("#emailCheck").html("Unmatched Password");
+				$("#emailCheck").html("Wrong Number");
 			}
 		})
 
-		let idRegex = /^[a-z0-9]{4,}$/;
-		let emailRegex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-		let pwRegex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
-		let yobRegex = /^[0-9]{4}$/;
+
 
 		$("#iid").on("blur", function() {
 			let resultid = idRegex.test($("#iid").val());
 			if (resultid) {
 				return;
 			} else {
-				alert("ID must be over 4 characters.");
-				$("#iid").val() = "";
-				$("#iid").focus();
+				$(".idCheck").html("");
+				$(".idCheck").css("color", "red");
+				$(".idCheck").html("ID must be over 4 characters.");
+				$("#iid").val("");
 			}
 		})
 
@@ -285,11 +303,13 @@ button {
 						function() {
 							let resultpw = pwRegex.test($("#ipw").val());
 							if (resultpw) {
-								return;
+								$(".pwCheck").html("");
 							} else {
-								alert("Password must contain at least 8 characters, at least one number, letter and special characters");
-								$("#ipw").val() = "";
-								$("#ipw").focus();
+								$(".pwCheck").html("");
+								$(".pwCheck").css("color", "red");
+								$(".pwCheck").html("Password must contain at least 8 characters, at least one number, letter and special characters");
+								$("#ipw").val("");
+								$("#pwCheck").html("");
 							}
 						})
 
@@ -299,6 +319,7 @@ button {
 			if ($("#ipw").val() != $("#ipwC").val()) {
 				$("#pwCheck").css("color", "red");
 				$("#pwCheck").html("Unmatched Password");
+				 $("#ipwC").val("");
 			} else {
 				$("#pwCheck").css("color", "blue");
 				$("#pwCheck").html("Matched Password");
@@ -315,13 +336,14 @@ button {
 			}
 		})
 		$("#iyob").on("blur", function() {
-			let resultpw = yobRegex.test($("#iyob").val());
-			if (resultpw) {
-				return;
+			let resultyob = yobRegex.test($("#iyob").val());
+			console.log(resultyob)
+			if (resultyob) {
+				$(".yobCheck").html("");
 			} else {
-				alert("Enter your birth of year in CORRECT FORMAT");
-				$("#iyob").val() = "";
-				$("#iyob").focus();
+				$(".yobCheck").css("color", "red");
+				$(".yobCheck").html("Enter your Year of Birth in 4 characters.");
+				$("#iyob").val("");
 			}
 		})
 	</script>
