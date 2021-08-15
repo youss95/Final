@@ -40,6 +40,7 @@
 
 .findPW {
 	display: none;
+	margin-top: 10px;
 }
 
 .ipB {
@@ -52,6 +53,9 @@
 
 button {
 	width: 30%;
+}
+#resetPW{
+	width: 100%;
 }
 </style>
 </head>
@@ -120,7 +124,7 @@ button {
 				</div>
 				<div class="row findPW">
 					<div class="col-12">
-						<button type="submit" id="resetPW">Reset Password</button>
+						<button type="submit" class="btn btn-primary" id="resetPW">Reset Password</button>
 					</div>
 				</div>
 			</form>
@@ -135,7 +139,7 @@ button {
 				.on(
 						"click",
 						function() {
-							$("#waiting").css("color", "red");
+							$("#waiting").css("color", "rgb(245, 147, 0)");
 							$("#waiting").html("Please wait a second for sending email.");
 							$
 									.ajax({
