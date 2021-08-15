@@ -1,12 +1,15 @@
 package dream.tk.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dream.tk.dao.ReservationDAO;
 import dream.tk.dto.BusinessDTO;
+import dream.tk.dto.NotificationDTO;
 import dream.tk.dto.PaymentDTO;
 import dream.tk.dto.ReservationDTO;
 
@@ -43,6 +46,10 @@ public class ReservationService {
 	public List<ReservationDTO> getResInfo(){
 		return resDao.getResInfo();
 	}
+	
+	public List<ReservationDTO> resInfoList(String userId){
+		return resDao.resInfoList(userId);
+	}
 	//정액권 환불
 	public String passRefund(String memberId) {
 		int pay_no = resDao.refundOrderNum(memberId);
@@ -57,9 +64,27 @@ public class ReservationService {
 		resDao.refundCheck(pay_no); //refund 1 업데이트
 	}
 	
+	public int updatePrem(String id,int price) {
+		Map<String,String> param = new HashMap<>();
+		String strPrice = String.valueOf(price);
+		System.out.println(strPrice);
+		param.put("id", id);
+		param.put("price", strPrice);
+		int result = resDao.updatePrem(param);
+		return result;
+	}
+	
+	public int downGradePrem(String id) {
+		return resDao.downGradePrem(id);
+	}
+	
 	public int registerBiz(BusinessDTO dto) {
 		
 		return resDao.registerBiz(dto);
+	}
+	
+	public int alarmInsert(NotificationDTO dto) {
+		return resDao.alarmInsert(dto);
 	}
 	
 }

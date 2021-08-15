@@ -76,6 +76,11 @@
   select * from reservation
   </select>
   
+  <!-- 팝오버에 뿌릴 예약 정보 가져오기 -->
+  <select id="resInfoList" resultType="dream.tk.dto.ReservationDTO">
+  select * from reservation where userId=#{userId}
+  </select>
+  
   <!-- 정액권 결제 -->
   <insert id="resPay">
  insert into res_payment values (pay_seq.nextval,#{memberId},#{imp_uid},#{merchant_uid},#{biz_email},sysdate,#{card_no},#{price},0)
@@ -96,6 +101,33 @@
   </update>
   
   <!-- 할인권 구매 하였을때 비즈니스 멤버 기간 , 등급 업데이트 -->
+  <update id="updatePrem">
+  update business_member set premium = 'Y' ,prm_exp_date = 
+  <choose>
+  <when test="price == '100'">
+  add_months(sysdate,+1)
+  </when>
+  <when test="price == '200'">
+  add_months(sysdate,+6)
+  </when>
+<otherwise>
+ add_months(sysdate,+12)
+</otherwise>
+
+  </choose>
+   where id = #{id}
+  </update>
+  
+  <!-- 환불 하였을때 등급 업데이트 -->
+  
+  <update id="downGradePrem">
+  update business_member set premium = 'N' where id = #{id}
+  </update>
+  
+  <!-- 정액권 남은 요일 계산 -->
+  <select id="daysLeft" resultType="int">
+  select ceil(#{prm_exp_date}-sysdate) from business_member where  (#{prm_exp_date}-sysdate) > 0 and id = #{id}
+  </select>
   
   
   <!--비즈니스 세팅  -->
@@ -103,5 +135,10 @@
   insert into business values(biz_seq.nextval,#{biz_type},#{bizNum},#{businessName},#{businessNameEng},#{businessContact},#{address1},#{address2},#{postcode},#{address1Kor},#{offday},#{timeAvailable},sysdate,#{seq})
   </insert>
   
+  <!-- 실시간 알람 -->
+  <insert id="alarmInsert">
+  insert into notification  (noti_no,userId,content,noti_createDate)  values (noti_seq.nextval,#{userId},#{content},sysdate)
+  </insert>
+   
   
   </mapper>

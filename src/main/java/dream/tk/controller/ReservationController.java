@@ -1,6 +1,8 @@
 package dream.tk.controller;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
 import dream.tk.dto.BusinessDTO;
+import dream.tk.dto.NotificationDTO;
 import dream.tk.dto.ReservationDTO;
 import dream.tk.service.ReservationService;
 
@@ -27,6 +32,8 @@ public class ReservationController {
 	@Autowired
 	private ReservationService resService;
 	
+	
+	//?bizs_seq= 붙이자 일단
 	@GetMapping("/calendar")
 	public String calendar(int biz_seq,Model model) {
 
@@ -49,6 +56,9 @@ public class ReservationController {
 	
 	@GetMapping("/bizSetting")
 	public String bizSetting() {
+		
+		
+		
 		return "/reservation/res_bizSetting";
 	}
 	
@@ -57,12 +67,9 @@ public class ReservationController {
 		return "/reservation/websocketBtnTest";
 	}
 	
-	@GetMapping("/alarm")
-	@ResponseBody
-	public String at() {
-		System.out.println("dd");
-		return "success";
-	}
+	
+	
+	
 	
 	@PostMapping("/setTime")
 	public String setTime(BusinessDTO dto) {
@@ -108,6 +115,14 @@ public class ReservationController {
 		return "fail";
 	}
 	
+	@GetMapping(value= "/resInfoList",produces= {MediaType.APPLICATION_JSON_VALUE})
+	@ResponseBody
+	public List<ReservationDTO> resInfoList(String userId){
+		List<ReservationDTO> list = resService.resInfoList(userId);
+		
+		
+		return list;
+	}
 	
 	
 }
