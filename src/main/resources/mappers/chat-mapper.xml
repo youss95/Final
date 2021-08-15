@@ -14,7 +14,7 @@
 	</insert> 
 	
 	<select id="selectAll" resultType="dream.tk.dto.ChatDTO">
-		select seq, chatnum, id, store, contents, nickname, to_char(write_date, 'HH : MM  am') "write_date" from CHAT_CLIENT
+		select seq, chatnum, id, store, contents, nickname, to_char(write_date, 'HH : MM  am') "write_date" from CHAT_CLIENT order by seq
 	</select>
 	
 
