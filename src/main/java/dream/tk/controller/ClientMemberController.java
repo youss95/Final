@@ -27,7 +27,7 @@ public class ClientMemberController {
 	private ClientMemberService service;
 
 	@Autowired
-	private EmailService serviceA;
+	private EmailService serviceE;
 
 	@RequestMapping(value="signupForm")
 	public String signupForm() {
@@ -43,7 +43,7 @@ public class ClientMemberController {
 	@ResponseBody
 	@RequestMapping(value="emailConfirm")
 	public String emailConfirm(String name, String email) throws Exception {
-		return serviceA.sendEmailConfirm(name, email);
+		return serviceE.sendEmailConfirm(name, email);
 	}
 
 
@@ -101,7 +101,7 @@ public class ClientMemberController {
 	public String sendEmailforID(String name, String email) throws Exception {
 		int resultMatching = service.matchNameEmail(name, email);
 		if(resultMatching>0) {
-			return serviceA.sendEmailConfirm(name, email);
+			return serviceE.sendEmailConfirm(name, email);
 		}else {
 			return "false";
 		}
@@ -121,8 +121,8 @@ public class ClientMemberController {
 	public String sendEmailforPW(String id, String name, String email) throws Exception {
 		int resultMatching = service.matchIdNameEmail(id, name, email);
 		if(resultMatching>0) {
-			return serviceA.sendEmailConfirm(name, email);
-		}else {
+			return serviceE.sendEmailConfirm(name, email);
+		}else { 
 			return "false";
 		}
 	}
