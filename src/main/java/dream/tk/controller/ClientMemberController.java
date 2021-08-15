@@ -42,13 +42,15 @@ public class ClientMemberController {
 
 	@ResponseBody
 	@RequestMapping(value="emailConfirm")
-	public String emailConfirm(String email, String name) throws Exception {
-		return serviceA.sendEmailConfirm(email, name);
+	public String emailConfirm(String name, String email) throws Exception {
+		return serviceA.sendEmailConfirm(name, email);
 	}
 
 
 	@RequestMapping(value="signupProc")
 	public String signupProc(ClientMemberDTO dto, Model m) {
+		
+		System.out.println("signupProc");
 		String shaPW = SHA256.getSHA512(dto.getPw());
 		dto.setPw(shaPW);
 
