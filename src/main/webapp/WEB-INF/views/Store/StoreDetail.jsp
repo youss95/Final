@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!--틀 리스트-->
-<link rel="stylesheet" href="/css/Store_main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Store_main.css">
 <!--슬라이드-->
 <link rel="stylesheet"
 	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
@@ -15,7 +15,7 @@
 <!--별점-->
 <link rel='stylesheet'
 	href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-<link rel="stylesheet" href="/css/Store_detail.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Store_detail.css">
 <link rel='stylesheet'
 	href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -135,11 +135,11 @@ feOffset {
 						<input type="hidden" id="x" name="x" value="${list.store_x }">
 						<input type="hidden" id="y" name="y" value="${list.store_y }">
 						<input type="hidden" id="store" value="${list.store }"> <a><img
-							src="/img/start.png"> 찜하기</a>
-						<h1 style="float: center;">음식점명</h1>
+							src="${pageContext.request.contextPath}/resources/img/start.png"> 찜하기</a>
+						<h1 style="float: center;">${list.store }</h1>
 						<div>
-							<img src="/img/view.png"> ${list.count} <img
-								src="/img/start.png"> ${list.report_count}
+							<img src="${pageContext.request.contextPath}/resources/img/view.png"> ${list.count} <img
+								src="${pageContext.request.contextPath}/resources/img/start.png"> ${list.report_count}
 						</div>
 						<br>
 						<table class='table'>
@@ -150,10 +150,6 @@ feOffset {
 							<tr>
 								<th>맛집 전화번호</th>
 								<td>${list.phone}</td>
-							</tr>
-							<tr>
-								<th>가게이름</th>
-								<td>${list.store }</td>
 							</tr>
 							<tr>
 								<th>가게 주소</th>
@@ -379,8 +375,8 @@ feOffset {
 
 
 	<!-- ---------------------------------------------- -->
-
-	<feOffset> <a href="/chat/toChat">
+	
+	<feOffset> <a href="/chat/makeChat?store=${list.store }">
 		<div class="chat" onclick="this.classList.toggle('active')">
 			<div class="background"></div>
 			<svg class="chat-bubble" width="100" height="100"

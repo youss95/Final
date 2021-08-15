@@ -25,9 +25,16 @@ public class ChatController {
 	
 	@RequestMapping("toChat")
 	public String chat(Model model) throws Exception {
-		List<ChatDTO> list = service.selectAll();
+		
+		List<ChatDTO> list = service.selectAll((String)session.getAttribute("loginID") + (String) session.getAttribute("storeName"));
 		model.addAttribute("chatlist", list);
 		return "chat/chat";
+	}
+	
+	@RequestMapping("makeChat")
+	public String makeChat(String store) throws Exception{
+		session.setAttribute("storeName", store);
+		return "redirect:toChat";
 	}
 	
 	@ExceptionHandler

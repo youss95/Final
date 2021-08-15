@@ -23,8 +23,8 @@ public class ChatService {
 		  return dao.insert(dto); 
 	}
 	  
-	  public List<ChatDTO> selectAll() throws Exception{
-		  return dao.selectAll();
+	  public List<ChatDTO> selectAll(String chatnum) throws Exception{
+		  return dao.selectAll(chatnum);
 	  }
 	  
 	  
