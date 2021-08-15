@@ -10,7 +10,7 @@
 	</insert>  -->
 	<insert id="insert">
 		insert into CHAT_CLIENT
-		values(CHAT_CLIENT_SEQ.nextval,'chatnum','id','store',#{contents},#{nickname}, sysdate)
+		values(CHAT_CLIENT_SEQ.nextval,'chatnum',#{nickname},'store',#{contents},#{nickname}, sysdate)
 	</insert> 
 	
 	<select id="selectAll" resultType="dream.tk.dto.ChatDTO">

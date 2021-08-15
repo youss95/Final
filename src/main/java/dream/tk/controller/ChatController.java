@@ -33,6 +33,12 @@ public class ChatController {
 		return "chat/chat";
 	}
 	
+	@RequestMapping("makeChat")
+	public String makeChat(String store) throws Exception{
+		System.out.println(store);
+		return "chat/toChat";
+	}
+	
 	@ExceptionHandler
 	public String exceptionHandler(Exception e) {
 		e.printStackTrace();
