@@ -7,12 +7,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Store_main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/map.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
 * {
 	margin: 0;
@@ -207,274 +208,273 @@ form {
 
 			<main role="main">
 				<ul class="flexgrid columns-news">
-					<c:choose>
-						<c:when test="${list != null}">
-							<c:forEach var="list" items="${list}">
-								<li><span class="grid-number">임의</span> <span class="ribbon"><a
-										href="/Store/view?seq=">2.5</a></span> <a
-									href="/store/view?store_seq=${list.store_seq }">
-										<figure>
-											<img src="https://source.unsplash.com/mZS7cne5iY0/800x600"
-												alt="Photo of Brooklyn Park">
-											<figcaption>
-												<p>${list.city }</p>
-												<h2>${list.store }</h2>
-												<h3>조회수 : ${list.count }</h3>
-									
-											
-												<script type="text/javascript">
-
-												$(document).ready(function() {
-												   var list = new Array();
-												   $("input[name=x]").each(function(index, item){
-													   list.push($(item).val());
-												   });
-												   consol.log(list);
-												});
-												</script>
-												
-											</figcaption>
-										</figure>
-								</a></li>
-							</c:forEach>
-						</c:when>
-
-						<c:otherwise>
-							<c:forEach var="searchlist" items="${searchList}">
-								<li><span class="grid-number"></span> <span class="ribbon"><a
-										href="/rate" title="Rate"></a></span> <a href="#">
-										<figure>
-											<img src="https://source.unsplash.com/mZS7cne5iY0/800x600"
-												alt="Photo of Brooklyn Park">
-											<figcaption>
-												<p>${searchList.road_name }</p>
-												<h2>${searchList.store }</h2>
-												<h3>조회수 : ${searchList.count }</h3>
-											</figcaption>
-										</figure>
-								</a></li>
-							</c:forEach>
-						</c:otherwise>
-					</c:choose>
-
+					<c:forEach var="list" items="${viewAll}">
+						<li><span class="grid-number">임의</span> <span class="ribbon"><a
+								href="/Store/view?seq=">2.5</a></span> <a
+							href="/store/view?store_seq=${list.store_seq }">
+								<figure>
+									<img src="https://source.unsplash.com/mZS7cne5iY0/800x600"
+										alt="Photo of Brooklyn Park">
+									<figcaption>
+										<p>${list.city }</p>
+										<h2>${list.store }</h2>
+										<h3>조회수 : ${list.count }</h3>
+									</figcaption>
+								</figure>
+						</a></li>
+					</c:forEach>
 				</ul>
 			</main>
 			<!-- 페이징바!! -->
-			<div class="col-12" style="float: center">
-				<ul class="pagination" style="list-style: none; padding: 0px">
-
-					<c:forEach var="i" items="${navi}" varStatus="s">
-						<c:choose>
-							<c:when test="${i=='>'}">
-								<li class="page-item"><a
-									href="/store/signup?cpage=${navi[s.index-1]+1}&category=${category}&keyword=${keyword}">Next</a>
-							</c:when>
-							<c:when test="${i=='<'}">
-								<li class="page-item"><a
-									href="/store/signup?cpage=${navi[s.index+1]-1}&category=${category}&keyword=${keyword}">Previous</a>
-							</c:when>
-							<c:when test="${i==cpage}">
-								<li class="page-item" id="currentPage"
-									style="background-color: #17a2b8"><a style="color: white"
-									href="/store/signup?cpage=${i}&category=${category}&keyword=${keyword}">${i}</a>
-							</c:when>
-							<c:otherwise>
-								<li class="page-item" id="currentPage"><a
-									href="/store/signup?cpage=${i}&category=${category}&keyword=${keyword}">${i}</a>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-				</ul>
+			<div style="display: block; text-align: center;">
+				<c:if test="${paging.startPage != 1 }">
+					<a
+						href="/store/signup?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+				</c:if>
+				<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
+					var="p">
+					<c:choose>
+						<c:when test="${p == paging.nowPage }">
+							<b>${p }</b>
+						</c:when>
+						<c:when test="${p != paging.nowPage }">
+							<a
+								href="/store/signup?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+				<c:if test="${paging.endPage != paging.lastPage}">
+					<a
+						href="/store/signup?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+				</c:if>
 			</div>
 		</aside>
 
 
 		<!--경계선-->
-		<line>br</line>
+		<line>b</line>
 
 		<section>
+
+			<form:form commandName="searchVO" method="get" name="listForm"
+				id="listForm" action="/store/signup">
+
+				<div>
+					<input type="text" class="text" id="searchWrd" name="searchWrd"
+						placeholder="검색어를 입력해주세요" style="width: 300px;"
+						value="${searchVO.searchWrd }" /> <a href="#"
+						onclick="fn_search();" class="btn-login"
+						style="width: 100px; height: 40px; margin-left: 5px;"><spring:message
+							code="btn.search" text="검색" /></a>
+				</div>
+				<div>
+					<div class="map_wrap">
+						<div id="map"
+							style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+						<!-- 지도타입 컨트롤 div 입니다 -->
+						<div class="custom_typecontrol radius_border">
+							<span id="btnRoadmap" class="selected_btn"
+								onclick="setMapType('roadmap')">지도</span> <span id="btnSkyview"
+								class="btn" onclick="setMapType('skyview')">스카이뷰</span>
+						</div>
+						<!-- 지도 확대, 축소 컨트롤 div 입니다 -->
+						<div class="custom_zoomcontrol radius_border">
+							<span onclick="zoomIn()"><img
+								src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png"
+								alt="확대"></span> <span onclick="zoomOut()"><img
+								src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png"
+								alt="축소"></span>
+						</div>
+					</div>
+				</div>
+			</form:form>
+
+
 			<div class="map_wrap">
 				<div class="hAddr" style="float: center;">
 					<div id="centerAddr" style="font-size: 20px; padding-left: 170px;"></div>
 					<br>
 				</div>
-				<div id="map" style="width: 100%; height: 550px;"></div>
+
 				<div>
 					<br>
 					<div class="d1">
 						<form>
-							<input type="text" placeholder="검색어 입력" id="resultAdd">
+							<input type="text" id="searchWrd" name="searchWrd"
+								placeholder="검색어 입력" value="${searchVO.searchWrd }">
 							<button type="button" class="pulse"></button>
 						</form>
 					</div>
 
 				</div>
 			</div>
-		
-			
-				<script type="text/javascript"
-					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2fa91fa0473f76d7311f40d80a8f1521&libraries=services"></script>
-				<script>
-					const $addFind = document.querySelector('#resultAdd');
-					const $button = document.querySelector('button')
-					console.log($addFind.value)
-					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-					mapOption = {
-						center : new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-						level : 12
-					// 지도의 확대 레벨
-					};
 
-					// 지도를 생성합니다    
-					var map = new kakao.maps.Map(mapContainer, mapOption);
 
-					// 마커 생성
-					//오늘 오후 갑시다
-					
-					var positions = [ {
-						content : '<div>카카오</div>',
-						latlng : new kakao.maps.LatLng($('#x').val(), $('#y').val())
-					}, {
-						content : '<div>생태연못</div>',
-						latlng : new kakao.maps.LatLng(33.450936, 126.569477)
-					}, {
-						content : '<div>텃밭</div>',
-						latlng : new kakao.maps.LatLng(33.450879, 126.569940)
-					}, {
-						content : '<div>근린공원</div>',
-						latlng : new kakao.maps.LatLng(33.451393, 126.570738)
-					} ];
 
-					for (var i = 0; i < positions.length; i++) {
-						// 마커를 생성합니다
-						var marker = new kakao.maps.Marker({
-							map : map, // 마커를 표시할 지도
-							position : positions[i].latlng
-						// 마커의 위치
-						});
 
-						// 마커에 표시할 인포윈도우를 생성합니다 
-						var infowindow = new kakao.maps.InfoWindow({
-							content : positions[i].content
-						// 인포윈도우에 표시할 내용
-						});
 
-						// 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
-						// 이벤트 리스너로는 클로저를 만들어 등록합니다 
-						// for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-						kakao.maps.event.addListener(marker, 'mouseover',
-								makeOverListener(map, marker, infowindow));
-						kakao.maps.event.addListener(marker, 'mouseout',
-								makeOutListener(infowindow));
+			<script type="text/javascript"
+				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2fa91fa0473f76d7311f40d80a8f1521&libraries=services"></script>
+			<script>
+				var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+				mapOption = {
+					center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+					level : 3, // 지도의 확대 레벨
+				};
+
+				var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+				//지도타입 컨트롤의 지도 또는 스카이뷰 버튼을 클릭하면 호출되어 지도타입을 바꾸는 함수입니다
+				function setMapType(maptype) {
+					var roadmapControl = document.getElementById('btnRoadmap');
+					var skyviewControl = document.getElementById('btnSkyview');
+					if (maptype === 'roadmap') {
+						map.setMapTypeId(kakao.maps.MapTypeId.ROADMAP);
+						roadmapControl.className = 'selected_btn';
+						skyviewControl.className = 'btn';
+					} else {
+						map.setMapTypeId(kakao.maps.MapTypeId.HYBRID);
+						skyviewControl.className = 'selected_btn';
+						roadmapControl.className = 'btn';
 					}
+				}
 
-					// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-					function makeOverListener(map, marker, infowindow) {
-						return function() {
-							infowindow.open(map, marker);
-						};
-					}
+				// 지도 확대, 축소 컨트롤에서 확대 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
+				function zoomIn() {
+					map.setLevel(map.getLevel() - 1);
+				}
 
-					// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
-					function makeOutListener(infowindow) {
-						return function() {
-							infowindow.close();
-						};
-					}
+				// 지도 확대, 축소 컨트롤에서 축소 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
+				function zoomOut() {
+					map.setLevel(map.getLevel() + 1);
+				}
 
-					//----------------------------- 등록
-					// 주소-좌표 변환 객체를 생성합니다
-					var geocoder = new kakao.maps.services.Geocoder();
+				//주소-좌표 변환 객체를 생성합니다
+				var geocoder = new kakao.maps.services.Geocoder();
 
-					//검색 주소 찾기
-					$button.addEventListener('click', function() {
+				var rdnmadrList = new Array();
+				var cmpnmList = new Array();
 
-						geocoder.addressSearch($addFind.value, function(result,
-								status) {
+				var rdnList = JSON.parse('${rdnmadrListJson}');
 
-							// 정상적으로 검색이 완료됐으면 
-							if (status === kakao.maps.services.Status.OK) {
+				for ( var k in rdnList) {
+					var $obj = rdnList[k];
+					var aa = $obj.road_name;
+					var bb = $obj.store;
+					rdnmadrList.push(aa);
+					cmpnmList.push(bb);
 
-								var coords = new kakao.maps.LatLng(result[0].y,
-										result[0].x);
+				}
 
-								// 인포윈도우로 장소에 대한 설명을 표시합니다
+				//주소 리스트 
+				rdnmadrList.forEach(function(addr, index) {
+					// 주소로 좌표를 검색합니다
+					geocoder.addressSearch(addr, function(result, status) {
+						// 정상적으로 검색이 완료됐으면 
+						if (status === kakao.maps.services.Status.OK) {
 
-								infowindow.open(map, marker);
+							var coords = new kakao.maps.LatLng(result[0].y,
+									result[0].x);
 
-								// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-								map.setCenter(coords);
-							}
-						})
-					});
-
-					var marker = new kakao.maps.Marker(), // 클릭한 위치를 표시할 마커입니다
-					infowindow = new kakao.maps.InfoWindow({
-						zindex : 1
-					}); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
-
-					// 현재 지도 중심좌표로 주소를 검색해서 지도 좌측 상단에 표시합니다
-					searchAddrFromCoords(map.getCenter(), displayCenterInfo);
-
-					// 지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
-					kakao.maps.event
-							.addListener(
-									map,
-									'click',
-									function(mouseEvent) {
-										searchDetailAddrFromCoords(
-												mouseEvent.latLng,
-												function(result, status) {
-													if (status === kakao.maps.services.Status.OK) {
-														var detailAddr = !!result[0].road_address ? '<div>도로명주소 : '
-																+ result[0].road_address.address_name
-																+ '</div>'
-																: '';
-														detailAddr += '<div>지번 주소 : '
-																+ result[0].address.address_name
-																+ '</div>';
-
-													}
-												});
-									});
-
-					// 중심 좌표나 확대 수준이 변경됐을 때 지도 중심 좌표에 대한 주소 정보를 표시하도록 이벤트를 등록합니다
-					kakao.maps.event.addListener(map, 'idle',
-							function() {
-								searchAddrFromCoords(map.getCenter(),
-										displayCenterInfo);
+							// 결과값으로 받은 위치를 마커로 표시합니다
+							var marker = new kakao.maps.Marker({
+								map : map,
+								position : coords
 							});
 
-					function searchAddrFromCoords(coords, callback) {
-						// 좌표로 행정동 주소 정보를 요청합니다
-						geocoder.coord2RegionCode(coords.getLng(), coords
-								.getLat(), callback);
-					}
+							var content = '<div class="overlay_info">';
+							content += '    <a><strong>' + cmpnmList[index]
+									+ '</strong></a>';
+							content += '    <div class="desc">';
+							content += '        <span class="address">'
+									+ rdnmadrList[index] + '</span>';
+							content += '    </div>';
+							content += '</div>';
 
-					function searchDetailAddrFromCoords(coords, callback) {
-						// 좌표로 법정동 상세 주소 정보를 요청합니다
-						geocoder.coord2Address(coords.getLng(),
-								coords.getLat(), callback);
-					}
+							// 인포윈도우로 장소에 대한 설명을 표시합니다
+							var infowindow = new kakao.maps.InfoWindow({
+								//  content: cmpnmList[index], 
+								content : content,
+								disableAutoPan : true
+								
+							});
+							infowindow.open(map, marker);
 
-					// 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
-					function displayCenterInfo(result, status) {
-						if (status === kakao.maps.services.Status.OK) {
-							var infoDiv = document.getElementById('centerAddr');
-
-							for (var i = 0; i < result.length; i++) {
-								// 행정동의 region_type 값은 'H' 이므로
-								if (result[i].region_type === 'H') {
-									infoDiv.innerHTML = result[i].address_name;
-									break;
-								}
+							// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+							if (index == 0) {
+								map.setCenter(coords);
 							}
 						}
-					}
-				</script>
-		
+					});
+				});
+			</script>
+			<script>
+				var rdnList = JSON.parse('${rdnmadrListJson}');
 
+				var rdnmadrList = new Array();
+				var cmpnmList = new Array();
 
+				for ( var k in rdnList) {
+					var $obj = rdnList[k];
+					var aa = $obj.road_name;
+					var bb = $obj.store;
+					rdnmadrList.push(aa);
+					cmpnmList.push(bb);
+
+				}
+
+				//주소 리스트 
+				rdnmadrList
+						.forEach(function(addr, index) {
+							// 주소로 좌표를 검색합니다
+							geocoder
+									.addressSearch(
+											addr,
+											function(result, status) {
+												// 정상적으로 검색이 완료됐으면 
+												if (status === kakao.maps.services.Status.OK) {
+
+													var coords = new kakao.maps.LatLng(
+															result[0].y,
+															result[0].x);
+
+													// 결과값으로 받은 위치를 마커로 표시합니다
+													var marker = new kakao.maps.Marker(
+															{
+																map : map,
+																position : coords
+															});
+
+													var content = '<div class="overlay_info">';
+													content += '    <a><strong>'
+															+ cmpnmList[index]
+															+ '</strong></a>';
+													content += '    <div class="desc">';
+													content += '        <span class="address">'
+															+ rdnmadrList[index]
+															+ '</span>';
+													content += '    </div>';
+													content += '</div>';
+
+													// 인포윈도우로 장소에 대한 설명을 표시합니다
+													var infowindow = new kakao.maps.InfoWindow(
+															{
+																//  content: cmpnmList[index], 
+																content : content,
+																disableAutoPan : true
+
+															});
+													infowindow
+															.open(map, marker);
+
+													// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+													if (index == 0) {
+														map.setCenter(coords);
+													}
+												}
+											});
+						});
+			</script>
 
 			<!-- 하단 추천바!! -->
 			<br> <br>
