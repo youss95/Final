@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,8 +94,17 @@
         <dt>사업장 영어이름</dt>
 		<dd><input type="text" class="inpform" name="businessNameEng" placeholder="영어이름"></dd>
 		 <dt>사업장 전화번호</dt>
-		<dd><input type="text" class="inpform" name="businessContact" placeholder="01012341234"></dd>
-		 <dt>사업장 번호</dt>
+		 
+		<dd><input type="text" class="inpform" id="businessContact" name="businessContact" placeholder="01012341234"></dd>
+				<spring:hasBindErrors name="businessDTO">
+					<c:if test="${errors.hasFieldErrors('businessContact') }">
+
+						<strong style="color:red">${errors.getFieldError( 'businessContact' ).defaultMessage }</strong>
+
+					</c:if>
+
+				</spring:hasBindErrors>
+				<dt>사업장 번호</dt>
 		<dd><input type="text" class="inpform" name="bizNum" placeholder="01012341234"></dd>
 		<dt>분류</dt>
 								<dd>
@@ -125,7 +136,7 @@
 												<h3>도로명 주소</h3>
 												<input type="text" name="address1" id="address1"
 													class="inpform" placeholder="도로명/지번"
-													maxlength=100 required>
+													maxlength=100 >
 											</div>
 											<div>
 												<h3>상세 주소</h3>
@@ -239,6 +250,14 @@ $(function() {
             }
         }).open();
     }
+	let phoneRegex = /^010\d{3,4}\d{4}$/;
+	$("#businessContact").on("blur", function() {
+		if(!phoneRegex.test($("#businessContact").val())){
+			alert("번호 확인")
+			return;
+		}
+	
+	})
 })
 
 

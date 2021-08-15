@@ -4,14 +4,19 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -72,7 +77,15 @@ public class ReservationController {
 	
 	
 	@PostMapping("/setTime")
-	public String setTime(BusinessDTO dto) {
+	public String setTime(@Valid BusinessDTO dto, BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {
+			
+			List<ObjectError> list = bindingResult.getAllErrors();
+			for(ObjectError error: list) {
+				System.out.println(error);
+			}
+			return "/reservation/res_bizSetting";
+		}
 		String result = "";
 		
 		for(String time : dto.getOnday()) {
