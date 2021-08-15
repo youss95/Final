@@ -37,9 +37,7 @@
 		where emp_id=#{emp_id} and pw=#{pw}
 	</select>
 
-	<select id="getInfo" resultType="dream.tk.dto.AdminMemberDTO">
-		select * from admin_member where
-		emp_id=#{value};
-	</select>
+
+
 
 </mapper>

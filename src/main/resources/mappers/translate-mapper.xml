@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="trans">
+
+	<insert id="insertMenu">
+		insert into menu_translate
+		values(menu_translate_seq.nextval,
+		#{menu_kor}, #{menu_eng}, #{price},
+		#{business_id}, #{business_name}, sysdate, null, 'N')
+	</insert>
+
+	<update id="directConfirm">
+		update menu_translate set confirm_YN='Y'
+		where seq=${value}
+	</update>
+
+	<update id="modiConfirm">
+		update menu_translate set menu_eng=#{menu_eng},
+		confirm_date=sysdate, confirm_YN='Y'
+		where seq=${seq}
+	</update>
+
+	<delete id="deleteAllMenu">
+		delete from menu_translate where
+		business_id=#{business_id}
+	</delete>
+
+	<select id="select" resultType="dream.tk.dto.TranslateDTO">
+		select seq, menu_kor, menu_eng, price from menu_translate
+		where business_id=#{value}
+	</select>
+
+	<select id="getRecordCount" resultType="int">
+		select count(*) from (
+		select business_id, count(business_id)
+		from
+		menu_translate
+		group by business_id)
+	</select>
+
+	<select id="getPageList" resultType="dream.tk.dto.TranslateDTO">
+		select business_id,
+		business_name, reg_date, confirm_yn from (select * from (select
+		row_number() over(order by seq desc) rnum, seq, business_id,
+		business_name,
+		reg_date, confirm_YN from menu_translate where seq
+		in(select max(seq)
+		from menu_translate group by business_id)) where
+		rnum between #{startNum} and
+		#{endNum}) order by confirm_yn desc
+	</select>
+
+
+</mapper>
