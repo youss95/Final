@@ -506,14 +506,14 @@
                       </div>
 
                       <div class="card-body" style="width:100%">
-                        <div style="width:30%">업체 주소</div>
+                        <div style="width:30%">업체 주소(영문)</div>
                         <div style="width:60%" class="hiddenDivB">${bizInfo.address1}</div>
                         <input class="hiddenInputB" id="address1" name="address1" type=text value="${bizInfo.address1}" style="display:none">
-                        <button class="hiddenInputB" type="button" id="addrSearch" style="display:none">찾기</button>
+                        <button class="hiddenInputB btn" type="button" id="addrSearch" style="display:none">찾기</button>
                       </div>
 				<input id="address1Kor" name="address1Kor" type=hidden value="${bizInfo.address1Kor}" >
                       <div class="card-body" style="width:100%">
-                        <div style="width:30%">업체 상세주소</div>
+                        <div style="width:30%">업체 상세주소(영문)</div>
                         <div style="width:60%" class="hiddenDivB">${bizInfo.address2}</div>
                         <input class="hiddenInputB" id="address2" name="address2" type=text value="${bizInfo.address2}" style="display:none">
                       </div>

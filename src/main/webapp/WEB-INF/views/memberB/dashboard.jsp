@@ -265,11 +265,11 @@ $(function(){
                     </div>
                   </div>
 
-                  <div class="card-body chartBlur" >
+                  <div class="card-body <c:if test="${binfo.premium eq 'N'}"> chartBlur</c:if>" >
                     <h4 class="card-title" style="margin-top:10px; text-align:center">연령대별 예약자 수 비교</h4>
                     <p class="card-category"></p>
                     <div style="width:90%; height:80%">
-                    <canvas id="myChart1" class="myChart">
+                    <canvas id="myChart1" <c:if test="${binfo.premium eq 'N'}"> class="myChart"</c:if>>
 
                     </canvas>
                     <button type='button' class='btn hoverBtn' style="background-color:black">Premium 결제</button>
@@ -287,11 +287,11 @@ $(function(){
                     </div>
                   </div>
 
-                  <div class="card-body chartBlur" >
+                  <div class="card-body <c:if test="${binfo.premium eq 'N'}"> chartBlur</c:if>" >
                     <h4 class="card-title" style="margin-top:10px; text-align:center">국적별 예약자 수 비교</h4>
                     <p class="card-category"></p>
                     <div style="width:90%; height:80%">
-                    <canvas id="myChart2" class="myChart">
+                    <canvas id="myChart2" <c:if test="${binfo.premium eq 'N'}"> class="myChart"</c:if>>
 
                     </canvas>
                     <button type='button' class='btn hoverBtn' style="background-color:black">Premium 결제</button>
@@ -309,11 +309,11 @@ $(function(){
                     </div>
                   </div>
 
-                  <div class="card-body chartBlur" >
+                  <div class="card-body <c:if test="${binfo.premium eq 'N'}"> chartBlur</c:if>" >
                     <h4 class="card-title" style="margin-top:10px">월별 예약자 추세선</h4>
                     <p class="card-category"></p>
                     <div style="width:90%; height:80%">
-                    <canvas id="myChart3" class="myChart">
+                    <canvas id="myChart3" <c:if test="${binfo.premium eq 'N'}"> class="myChart"</c:if>>
 
                     </canvas>
                     <button type='button' class='btn hoverBtn' style="background-color:black">Premium 결제</button>
@@ -332,11 +332,11 @@ $(function(){
                     </div>
                   </div>
 
-                  <div class="card-body chartBlur" >
+                  <div class="card-body <c:if test="${binfo.premium eq 'N'}"> chartBlur</c:if>" >
                     <h4 class="card-title" style="margin-top:10px">업종 평균 비교차트</h4>
                     <p class="card-category"></p>
                     <div style="width:90%; height:80%">
-                    <canvas id="myChart4" class="myChart">
+                    <canvas id="myChart4" <c:if test="${binfo.premium eq 'N'}"> class="myChart"</c:if>>
 
                     </canvas>
                     <button type='button' class='btn hoverBtn' style="background-color:black">Premium 결제</button>
