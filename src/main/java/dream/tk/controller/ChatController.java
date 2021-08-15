@@ -25,6 +25,9 @@ public class ChatController {
 	
 	@RequestMapping("toChat")
 	public String chat(Model model) throws Exception {
+		
+		System.out.println("확인 : " + (String)session.getAttribute("loginID"));
+		
 		List<ChatDTO> list = service.selectAll();
 		model.addAttribute("chatlist", list);
 		return "chat/chat";
