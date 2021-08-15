@@ -28,8 +28,9 @@ public class ChatDTO {
 		this.nickname = nickname;
 	}
 	
-	public ChatDTO(String id, String contents, String nickname) {
-		this.id = id;
+	public ChatDTO(String chatnum, String store, String contents, String nickname) {
+		this.chatnum = chatnum;
+		this.store = store;
 		this.contents = contents;
 		this.nickname = nickname;
 	}
