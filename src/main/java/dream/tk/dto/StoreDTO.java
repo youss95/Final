@@ -12,7 +12,7 @@ public class StoreDTO {
 	private int count;
 	private int report_count;
 	private String grade;
-	
+	private String searchWrd;
 	
 	public StoreDTO(int store_seq, String city, String store, String phone, String post, String road_name,
 			String store_x, String store_y, int count, int report_count, String grade) {
@@ -31,6 +31,12 @@ public class StoreDTO {
 	}
 	
 	public StoreDTO() {}
+	
+	public StoreDTO(String store, String road_name) {
+		this.store = store;
+		this.road_name = road_name;
+	}
+	
 	public int getStore_seq() {
 		return store_seq;
 	}
@@ -98,6 +104,12 @@ public class StoreDTO {
 		this.grade = grade;
 	}
 	
+	public String getsearchWrd() {
+		return searchWrd;
+	}
+	public void setsearchWrd(String searchWrd) {
+		this.searchWrd = searchWrd;
+	}
 	
 	
 	

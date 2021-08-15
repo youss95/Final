@@ -19,8 +19,8 @@ public class ChatDAO {
 		  return mybatis.insert("Chat.insert", dto); 
 	}
 	  
-	  public List<ChatDTO> selectAll(){
-		  return mybatis.selectList("Chat.selectAll");
+	  public List<ChatDTO> selectAll(String chatnum){
+		  return mybatis.selectList("Chat.selectAll", chatnum);
 	  }
 	  
 	 

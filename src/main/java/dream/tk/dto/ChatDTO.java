@@ -27,6 +27,13 @@ public class ChatDTO {
 		this.contents = contents;
 		this.nickname = nickname;
 	}
+	
+	public ChatDTO(String chatnum, String store, String contents, String nickname) {
+		this.chatnum = chatnum;
+		this.store = store;
+		this.contents = contents;
+		this.nickname = nickname;
+	}
 
 	public int getSeq() {
 		return seq;

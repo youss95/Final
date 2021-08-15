@@ -245,6 +245,10 @@ button:hover {
 	clear: both;
 	height: 0;
 }
+
+.pleft{
+	text-align : left;
+}
 </style>
 <script>
 	$(document).ready(function() {
@@ -271,9 +275,9 @@ button:hover {
 			let text = JSON.parse(event.data);
 			let li = $("<li class='clearfix'>");
 			let line = $("<div class='message-data align-right'>");
-			let time = $("<span class='message-data-time'>now &nbsp; &nbsp; me</span>");
+			let time = $("<span class='message-data-time'>now</span> &nbsp; &nbsp; <span class='message-data-name'>me</span><i class='fa fa-circle me'></i>");
 
-			let msgLine = $("<div class='message other-message float-right'>");
+			let msgLine = $("<div class='message other-message float-right pleft'>");
 			msgLine.append(text.contents);
 			line.append(time);
 			line.append(msgLine);

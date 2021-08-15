@@ -46,13 +46,15 @@ public class ChatEndPoint {
             	
             	
             	JsonObject json = new JsonObject();
+            	json.addProperty("store", (String)hsession.getAttribute("storeName"));
             	json.addProperty("nickname", (String)hsession.getAttribute("loginID"));
             	json.addProperty("contents", contents);
             	String nickname = (String)hsession.getAttribute("loginID");
-            	
+            	String store = (String)hsession.getAttribute("storeName");
+            	String chatnum = nickname+store;
             	try {
-					 dao.insert(new ChatDTO(contents,nickname));
-					 dao.selectAll();
+					 dao.insert(new ChatDTO(chatnum,store,contents,nickname));
+					 dao.selectAll(chatnum);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

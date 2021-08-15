@@ -10,11 +10,14 @@
 	</insert>  -->
 	<insert id="insert">
 		insert into CHAT_CLIENT
-		values(CHAT_CLIENT_SEQ.nextval,'chatnum','id','store',#{contents},#{nickname}, sysdate)
+		values(CHAT_CLIENT_SEQ.nextval,#{chatnum},#{nickname},#{store},#{contents},#{nickname}, sysdate)
 	</insert> 
 	
 	<select id="selectAll" resultType="dream.tk.dto.ChatDTO">
-		select seq, chatnum, id, store, contents, nickname, to_char(write_date, 'HH : MM  am') "write_date" from CHAT_CLIENT
+		select seq, chatnum, id, store, contents, nickname, to_char(write_date, 'HH : MM  am') "write_date" 
+		from CHAT_CLIENT 
+		where chatnum = #{chatnum}
+		order by seq
 	</select>
 	
 
