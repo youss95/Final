@@ -58,7 +58,7 @@
 			store
 		WHERE
 		 <!--  <if test="searchWrd != null and searchWrd !=''">--> 
-			(Store LIKE '%${searchWrd}%'   and
+			(Store LIKE '%${searchWrd}%'   or
 			road_name LIKE '%${searchWrd}%')
 		 <!--  </if> -->
 	</select>
