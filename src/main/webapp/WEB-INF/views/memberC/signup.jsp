@@ -93,6 +93,13 @@ button {
 				<div class="row">
 					<div class="col-12" id="pwCheck"></div>
 				</div>
+				<div class="row">
+					<div class="col-12">Name</div>
+					<div class="col-12">
+						<input type="text" class="ipF" name="name" id="iname"
+							placeholder="Username (Only Visible for Reservation)" required>
+					</div>
+				</div>
 
 				<div class="row">
 					<div class="col-12">Email</div>
@@ -116,13 +123,7 @@ button {
 				</div>
 
 				<div id="hiddenBox">
-					<div class="row">
-						<div class="col-12">Name</div>
-						<div class="col-12">
-							<input type="text" class="ipF" name="name" id="iname"
-								placeholder="Username (Only Visible for Reservation)" required>
-						</div>
-					</div>
+
 					<div class="row">
 						<div class="col-12">Year Of Birth</div>
 						<div class="col-12">
@@ -133,13 +134,28 @@ button {
 					<div class="row">
 						<div class="col-12">Nation</div>
 						<div class="col-12">
-							<select name="nation" id="">
-                            <option value="kor">
-                                korea
-                            </option>
-                            <option value="">
-                            </option>
-                        </select>
+							<select name="nation" id="nation" required="required">
+								<option value="AR">Argentina</option>
+								<option value="AU">Australia</option>
+								<option value="BR">Brazil</option>
+								<option value="CA">Canada</option>
+								<option value="CN">China</option>
+								<option value="FR">France</option>
+								<option value="DE">Germany</option>
+								<option value="IN">India</option>
+								<option value="ID">Indonesia</option>
+								<option value="IT">Italy</option>
+								<option value="JP">Japan</option>
+								<option value="KR">Korea, Republic of</option>
+								<option value="MX">Mexico</option>
+								<option value="RU">Russian Federation</option>
+								<option value="SA">Saudi Arabia</option>
+								<option value="ZA">South Africa</option>
+								<option value="TR">Turkey</option>
+								<option value="GB">United Kingdom</option>
+								<option value="US">United States</option>
+
+							</select>
 						</div>
 					</div>
 					<div class="row">
@@ -176,13 +192,8 @@ button {
 	</div>
 
 	<script>
-		$('#submit')
-				.on(
-						"click",
-						function() {
-							var captcha = 1;
-							$
-									.ajax({
+		$('#signupForm').on("submit", function() {
+							$.ajax({
 										url : '/cMember/verifyRecaptcha',
 										type : 'post',
 										data : {
@@ -191,25 +202,19 @@ button {
 													.val()
 										},
 										success : function(data) {
-											switch (data) {
-											case 0:
+											console.log(data);
+											if(data==0){
 												console.log("자동 가입 방지 봇 통과");
-												captcha = 0;
 												$("#signupForm").submit();
-												break;
-											case 1:
+											}else{
 												alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
-												break;
-											default:
-												alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : "
-														+ Number(data) + "]");
-												break;
+												console.log(data);
+												return false;
 											}
+										
 										}
 									});
-							if (captcha != 0) {
-								return false;
-							}
+
 						});
 
 		$("#idCheck").on("click", function() {
@@ -241,6 +246,7 @@ button {
 				}
 			}).done(function(res) {
 				$("#confirmNumber").val(res);
+				alert("인증 메일 전송이 완료되었습니다. 메일함을 확인해보세요.");
 			}).fail(function(a, b, c) {
 				alert("서버와의 통신이 불안정 합니다.");
 			})

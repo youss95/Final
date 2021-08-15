@@ -13,7 +13,7 @@
 		insert into client_member
 		values(client_member_seq.nextval,
 		#{id}, #{pw}, #{email}, #{name},
-		#{yob}, #{nation}, #{agree}, sysdate)
+		#{yob}, #{nation}, #{agree}, 0, sysdate)
 	</insert>
 
 	<update id="update">
