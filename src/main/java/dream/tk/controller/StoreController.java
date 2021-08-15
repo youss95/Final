@@ -64,9 +64,11 @@ public class StoreController {
 	
 	//디테일 페이지로
 	@RequestMapping("view")
-	public String view(int store_seq, Model m) throws Exception{
+	public String view(int store_seq, Model m, String store) throws Exception{
 		StoreDTO dto = service.select(store_seq);
 		m.addAttribute("list", dto);
+		session.setAttribute("store", store);
+		System.out.println(store);
 		return "/Store/StoreDetail";
 	}
 	
