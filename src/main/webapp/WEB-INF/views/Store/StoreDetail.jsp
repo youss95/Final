@@ -376,7 +376,7 @@ feOffset {
 
 	<!-- ---------------------------------------------- -->
 	
-	<feOffset> <a href="/chat/makeChat?=${list.store }">
+	<feOffset> <a href="/chat/makeChat?store=${list.store }">
 		<div class="chat" onclick="this.classList.toggle('active')">
 			<div class="background"></div>
 			<svg class="chat-bubble" width="100" height="100"
