@@ -1,8 +1,12 @@
 package dream.tk.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import dream.tk.dto.NotificationDTO;
 
 @Repository
 public class NotificationDAO {
@@ -14,6 +18,8 @@ public class NotificationDAO {
 		return mybatis.selectOne("notiMapper.countNoti", userId);
 	}
 	
-	
+	public List<NotificationDTO> allNotis(String userId){
+		return mybatis.selectList("notiMapper.allNotis",userId);
+	}
 	
 }

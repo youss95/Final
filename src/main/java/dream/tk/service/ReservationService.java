@@ -11,7 +11,9 @@ import dream.tk.dao.ReservationDAO;
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.NotificationDTO;
 import dream.tk.dto.PaymentDTO;
+import dream.tk.dto.ResInfoDTO;
 import dream.tk.dto.ReservationDTO;
+import dream.tk.dto.ReserveCheckDTO;
 
 @Service
 public class ReservationService {
@@ -43,12 +45,18 @@ public class ReservationService {
 		return resDao.resPay(dto);
 	}
 	
-	public List<ReservationDTO> getResInfo(){
-		return resDao.getResInfo();
+	public List<ReservationDTO> getResInfo(ResInfoDTO dto){
+		
+		return resDao.getResInfo(dto);
 	}
 	
 	public List<ReservationDTO> resInfoList(String userId){
 		return resDao.resInfoList(userId);
+	}
+	
+	public String resCheck(ReserveCheckDTO dto) {
+		System.out.println("res"+dto.toString());
+		return resDao.resCheck(dto);
 	}
 	//정액권 환불
 	public String passRefund(String memberId) {

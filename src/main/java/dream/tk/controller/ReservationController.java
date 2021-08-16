@@ -1,6 +1,8 @@
 package dream.tk.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +30,9 @@ import com.google.gson.Gson;
 
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.NotificationDTO;
+import dream.tk.dto.ResInfoDTO;
 import dream.tk.dto.ReservationDTO;
+import dream.tk.dto.ReserveCheckDTO;
 import dream.tk.service.ReservationService;
 
 @Controller
@@ -37,17 +42,19 @@ public class ReservationController {
 	@Autowired
 	private ReservationService resService;
 	
+	//test
+	@GetMapping("/testtest")
+	public String gogo() {
+		return "/reservation/testtest";
+	}
+	
 	
 	//?bizs_seq= 붙이자 일단
 	@GetMapping("/calendar")
-	public String calendar(int biz_seq,Model model) {
-
-	//String time2 = replyService.restime(time);
-	
-	//System.out.println(time3);
-	//model.addAttribute("time",time2);
+	public String calendar(int biz_seq,String userId,Model model) {
 		System.out.println(biz_seq);
-		List<ReservationDTO> resInfo = resService.getResInfo();
+		ResInfoDTO resdto = new ResInfoDTO(userId,biz_seq);
+		List<ReservationDTO> resInfo = resService.getResInfo(resdto);
 	String od = resService.getOffday(biz_seq);
 	System.out.println("od"+od);
 	List<String> offdays = resService.dayoff(od);
@@ -56,6 +63,7 @@ public class ReservationController {
 	model.addAttribute("onday",onday);
 	model.addAttribute("od",od);
 	model.addAttribute("offdays",offdays);
+	model.addAttribute("biz_seq", biz_seq);
 		return "/reservation/res_calendar";
 	}
 	
@@ -79,11 +87,12 @@ public class ReservationController {
 	@PostMapping("/setTime")
 	public String setTime(@Valid BusinessDTO dto, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
+			Map<String,String> errorMap = new HashMap<>();
 			
-			List<ObjectError> list = bindingResult.getAllErrors();
-			for(ObjectError error: list) {
-				System.out.println(error);
+			for(FieldError error : bindingResult.getFieldErrors()) {
+				errorMap.put(error.getField(), error.getDefaultMessage());
 			}
+		System.out.println("유효성 검사 실패 메시지: "+errorMap.get("businessContact"));
 			return "/reservation/res_bizSetting";
 		}
 		String result = "";
@@ -109,10 +118,10 @@ public class ReservationController {
 		//삭제
 		int result= resService.resDelete(resId);
 		if(result == 1) {
-			//200번
+			
 			return new ResponseEntity<String>("삭제성공",HttpStatus.OK);
 		}
-		//500번
+		
 		return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
@@ -135,6 +144,15 @@ public class ReservationController {
 		
 		
 		return list;
+	}
+	
+	@PostMapping("/reserveCheck")
+	@ResponseBody
+	public String reserveCheck(@RequestBody ReserveCheckDTO dto) {
+		System.out.println(dto.toString());
+		String resCheck = resService.resCheck(dto);
+		System.out.println("체크:" +resCheck);
+	return resCheck;	
 	}
 	
 	

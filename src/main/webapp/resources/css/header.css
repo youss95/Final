@@ -52,7 +52,7 @@ header {
 }
 header.shrink {
   height: 96px;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255);
 }
 
 header.shrink nav ul li {
@@ -89,10 +89,9 @@ nav ul li {
 }
 
 .container > section {
-	margin: 124px auto 0;
-  padding:50px;
-
-  text-align: center;
+  width: 1100px;
+  margin: auto;
+margin-top:150px;
 }
 
 .container main p {
