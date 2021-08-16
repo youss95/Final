@@ -529,17 +529,17 @@ section {
 					<li class="cell"><a href="#">
 							<div class="text">
 								망고 <br>플레이트
-							</div> <img src="/img/mango.png" alt="">
+							</div> <img src="${pageContext.request.contextPath}/resources/images/mango.png" alt="">
 					</a></li>
 					<li class="cell"><a href="#">
 							<div class="text">
 								음식점 <br>맛나요
-							</div> <img src="/img/mango.png" alt="">
+							</div> <img src="${pageContext.request.contextPath}/resources/images/mango.png" alt="">
 					</a></li>
 					<li class="cell"><a href="#">
 							<div class="text">
 								여기 <br>어때요?
-							</div> <img src="/img/mango.png" alt="">
+							</div> <img src="${pageContext.request.contextPath}/resources/images/mango.png" alt="">
 					</a></li>
 				</ul>
 			</div>
