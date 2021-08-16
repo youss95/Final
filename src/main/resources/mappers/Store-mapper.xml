@@ -53,12 +53,13 @@
 	<select id="getList"  parameterType="dream.tk.dto.StoreDTO" resultType="dream.tk.dto.StoreDTO">
 		SELECT
 			Store,
-			road_name
+			road_name,
+			store_seq
 		FROM
 			store
 		WHERE
 		 <!--  <if test="searchWrd != null and searchWrd !=''">--> 
-			(Store LIKE '%${searchWrd}%'   and
+			(Store LIKE '%${searchWrd}%'   or
 			road_name LIKE '%${searchWrd}%')
 		 <!--  </if> -->
 	</select>

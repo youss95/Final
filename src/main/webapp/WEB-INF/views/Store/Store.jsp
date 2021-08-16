@@ -11,8 +11,7 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
 * {
@@ -86,7 +85,7 @@ section {
 }
 
 /*찾기 버튼*/
-form {
+.search {
 	position: relative;
 	width: 510px;
 	margin: 1 auto;
@@ -197,6 +196,99 @@ form {
 	font-weight: bold;
 	line-height: normal;
 }
+
+.overlay_info .address {
+	font-size: 12px;
+	color: #333;
+	position: absolute;
+	left: 14px;
+	right: 14px;
+	top: 13px;
+	white-space: normal
+}
+
+<!--
+페이징 -->
+
+.page {
+	text-align: center;	
+	width: 50%;
+}
+
+.pagination {
+	list-style: none;
+	display: inline-block;
+	padding: 0;
+	margin-top: 20px;
+}
+
+.pagination modal{
+	text-align: center;
+}
+.pagination li {
+	display: inline;
+	text-align: center;
+}
+
+.pagination a {
+	float: left;
+	display: block;
+	font-size: 24px;
+	text-decoration: none;
+	padding: 5px 12px;
+	color: #96a0ad;
+	line-height: 1.5;
+}
+
+.first {
+	margin-right: 15px;
+}
+
+.last {
+	margin-left: 15px;
+}
+
+.first:hover, .last:hover, .left:hover, .right:hover {
+	color: #2e9cdf;
+}
+
+.pagination a.active {
+	cursor: default;
+	color: #ffffff;
+}
+
+.pagination a:active {
+	outline: none;
+}
+
+.modal .num {
+	margin-left: 10px;
+	padding: 0;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	-moz-border-radius: 100%;
+	-webkit-border-radius: 100%;
+	border-radius: 100%;
+}
+
+.modal .num:hover {
+	background-color: #2e9cdf;
+	color: #ffffff;
+}
+
+.modal .num.active, .modal .num:active {
+	background-color: #2e9cdf;
+	cursor: pointer;
+}
+
+.arrow-left {
+	width: 0;
+	height: 0;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-right: 10px solid blue;
+}
 </style>
 </head>
 <body>
@@ -212,6 +304,7 @@ form {
 						<li><span class="grid-number">임의</span> <span class="ribbon"><a
 								href="/Store/view?seq=">2.5</a></span> <a
 							href="/store/view?store_seq=${list.store_seq }">
+							<input type="hidden" id="click" value="${list.store_seq }">
 								<figure>
 									<img src="https://source.unsplash.com/mZS7cne5iY0/800x600"
 										alt="Photo of Brooklyn Park">
@@ -226,28 +319,31 @@ form {
 				</ul>
 			</main>
 			<!-- 페이징바!! -->
-			<div style="display: block; text-align: center;">
-				<c:if test="${paging.startPage != 1 }">
-					<a
-						href="/store/signup?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
-				</c:if>
-				<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
-					var="p">
-					<c:choose>
-						<c:when test="${p == paging.nowPage }">
-							<b>${p }</b>
-						</c:when>
-						<c:when test="${p != paging.nowPage }">
-							<a
-								href="/store/signup?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
-						</c:when>
-					</c:choose>
-				</c:forEach>
-				<c:if test="${paging.endPage != paging.lastPage}">
-					<a
-						href="/store/signup?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
-				</c:if>
+			<div class="page" style="text-align: center; margin-left:1px ">
+				<ul class="pagination modal">
+					<c:if test="${paging.startPage != 1 }">
+						<li><a class="active num"
+							href="/store/signup?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+					</c:if>
+					<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
+						var="p">
+						<c:choose>
+							<c:when test="${p == paging.nowPage }">
+								<li><a class="active num ">${p }</a>
+							</c:when>
+							<c:when test="${p != paging.nowPage }">
+								<li><a class="num"
+									href="/store/signup?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${paging.endPage != paging.lastPage}">
+						<li><a class="num"
+							href="/store/signup?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+					</c:if>
+				</ul>
 			</div>
+
 		</aside>
 
 
@@ -259,14 +355,7 @@ form {
 			<form:form commandName="searchVO" method="get" name="listForm"
 				id="listForm" action="/store/signup">
 
-				<div>
-					<input type="text" class="text" id="searchWrd" name="searchWrd"
-						placeholder="검색어를 입력해주세요" style="width: 300px;"
-						value="${searchVO.searchWrd }" /> <a href="#"
-						onclick="fn_search();" class="btn-login"
-						style="width: 100px; height: 40px; margin-left: 5px;"><spring:message
-							code="btn.search" text="검색" /></a>
-				</div>
+
 				<div>
 					<div class="map_wrap">
 						<div id="map"
@@ -275,7 +364,7 @@ form {
 						<div class="custom_typecontrol radius_border">
 							<span id="btnRoadmap" class="selected_btn"
 								onclick="setMapType('roadmap')">지도</span> <span id="btnSkyview"
-								class="btn" onclick="setMapType('skyview')">스카이뷰</span>
+								class="btn" onclick="setMapType('skyview')">스카이</span>
 						</div>
 						<!-- 지도 확대, 축소 컨트롤 div 입니다 -->
 						<div class="custom_zoomcontrol radius_border">
@@ -287,39 +376,39 @@ form {
 						</div>
 					</div>
 				</div>
-			</form:form>
-
-
-			<div class="map_wrap">
-				<div class="hAddr" style="float: center;">
-					<div id="centerAddr" style="font-size: 20px; padding-left: 170px;"></div>
-					<br>
-				</div>
-
-				<div>
-					<br>
-					<div class="d1">
-						<form>
-							<input type="text" id="searchWrd" name="searchWrd"
-								placeholder="검색어 입력" value="${searchVO.searchWrd }">
-							<button type="button" class="pulse"></button>
-						</form>
+				<!--  <div>
+				
+					<input type="text" class="text" id="searchWrd" name="searchWrd"
+						placeholder="검색어를 입력해주세요" style="width: 300px;"
+						value="${searchVO.searchWrd }" />
+						
+						
+						 <a href="" onclick="fn_search();" class="btn-login"
+						style="width: 100px; height: 40px; margin-left: 5px;"><spring:message code="btn.search" text="검색하세요" /></a>
+				</div>-->
+				<br>
+				<div class="d1">
+					<div class="search">
+						<input type="text" id="searchWrd" name="searchWrd"
+							placeholder="검색어 입력" value="${searchVO.searchWrd }"> <a
+							href="" onclick="fn_search();" class="btn-login"><button
+								type="button" class="pulse"></button></a>
 					</div>
-
 				</div>
-			</div>
 
 
 
-
+			</form:form>
 
 			<script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2fa91fa0473f76d7311f40d80a8f1521&libraries=services"></script>
 			<script>
+				var click = document.getElementById('click').value;
+				
 				var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 				mapOption = {
 					center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-					level : 3, // 지도의 확대 레벨
+					level : 5, // 지도의 확대 레벨
 				};
 
 				var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -351,19 +440,20 @@ form {
 
 				//주소-좌표 변환 객체를 생성합니다
 				var geocoder = new kakao.maps.services.Geocoder();
-
 				var rdnmadrList = new Array();
 				var cmpnmList = new Array();
+				var num = new Array();
 
 				var rdnList = JSON.parse('${rdnmadrListJson}');
-
+				// 값 받는곳!! 
 				for ( var k in rdnList) {
 					var $obj = rdnList[k];
 					var aa = $obj.road_name;
 					var bb = $obj.store;
+					var cc = $obj.store_seq;
 					rdnmadrList.push(aa);
 					cmpnmList.push(bb);
-
+					num.push(cc);
 				}
 
 				//주소 리스트 
@@ -372,18 +462,22 @@ form {
 					geocoder.addressSearch(addr, function(result, status) {
 						// 정상적으로 검색이 완료됐으면 
 						if (status === kakao.maps.services.Status.OK) {
-
+							
+							// 받은 리스트! 객체 배열
 							var coords = new kakao.maps.LatLng(result[0].y,
 									result[0].x);
-
+						
+							
+							// 지워지지 않ㄱ
 							// 결과값으로 받은 위치를 마커로 표시합니다
 							var marker = new kakao.maps.Marker({
 								map : map,
-								position : coords
+								position : coords,
+								clickable: true
 							});
 
 							var content = '<div class="overlay_info">';
-							content += '    <a><strong>' + cmpnmList[index]
+							content += "    <a><strong>" + cmpnmList[index]
 									+ '</strong></a>';
 							content += '    <div class="desc">';
 							content += '        <span class="address">'
@@ -395,11 +489,32 @@ form {
 							var infowindow = new kakao.maps.InfoWindow({
 								//  content: cmpnmList[index], 
 								content : content,
-								disableAutoPan : true
-								
 							});
-							infowindow.open(map, marker);
-
+							
+														
+							 kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+							 kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+							
+							
+							
+							function makeOverListener(map, marker, infowindow) {
+							    return function() {
+							        infowindow.open(map, marker);
+							    };
+							}
+							
+							function makeOutListener(infowindow) {
+							    return function() {
+							        infowindow.close();
+							    };
+							}
+							
+							kakao.maps.event.addListener(marker, 'click', function() {
+							      // 마커 위에 인포윈도우를 표시합니다
+								location.href = '/store/view?store_seq='+num[index];  
+							});
+							
+							
 							// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 							if (index == 0) {
 								map.setCenter(coords);
@@ -408,73 +523,7 @@ form {
 					});
 				});
 			</script>
-			<script>
-				var rdnList = JSON.parse('${rdnmadrListJson}');
-
-				var rdnmadrList = new Array();
-				var cmpnmList = new Array();
-
-				for ( var k in rdnList) {
-					var $obj = rdnList[k];
-					var aa = $obj.road_name;
-					var bb = $obj.store;
-					rdnmadrList.push(aa);
-					cmpnmList.push(bb);
-
-				}
-
-				//주소 리스트 
-				rdnmadrList
-						.forEach(function(addr, index) {
-							// 주소로 좌표를 검색합니다
-							geocoder
-									.addressSearch(
-											addr,
-											function(result, status) {
-												// 정상적으로 검색이 완료됐으면 
-												if (status === kakao.maps.services.Status.OK) {
-
-													var coords = new kakao.maps.LatLng(
-															result[0].y,
-															result[0].x);
-
-													// 결과값으로 받은 위치를 마커로 표시합니다
-													var marker = new kakao.maps.Marker(
-															{
-																map : map,
-																position : coords
-															});
-
-													var content = '<div class="overlay_info">';
-													content += '    <a><strong>'
-															+ cmpnmList[index]
-															+ '</strong></a>';
-													content += '    <div class="desc">';
-													content += '        <span class="address">'
-															+ rdnmadrList[index]
-															+ '</span>';
-													content += '    </div>';
-													content += '</div>';
-
-													// 인포윈도우로 장소에 대한 설명을 표시합니다
-													var infowindow = new kakao.maps.InfoWindow(
-															{
-																//  content: cmpnmList[index], 
-																content : content,
-																disableAutoPan : true
-
-															});
-													infowindow
-															.open(map, marker);
-
-													// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-													if (index == 0) {
-														map.setCenter(coords);
-													}
-												}
-											});
-						});
-			</script>
+			
 
 			<!-- 하단 추천바!! -->
 			<br> <br>
@@ -483,17 +532,17 @@ form {
 					<li class="cell"><a href="#">
 							<div class="text">
 								망고 <br>플레이트
-							</div> <img src="/img/mango.png" alt="">
+							</div> <img src="${pageContext.request.contextPath}/resources/images/mango.png" alt="">
 					</a></li>
 					<li class="cell"><a href="#">
 							<div class="text">
 								음식점 <br>맛나요
-							</div> <img src="/img/mango.png" alt="">
+							</div> <img src="${pageContext.request.contextPath}/resources/images/mango.png" alt="">
 					</a></li>
 					<li class="cell"><a href="#">
 							<div class="text">
 								여기 <br>어때요?
-							</div> <img src="/img/mango.png" alt="">
+							</div> <img src="${pageContext.request.contextPath}/resources/images/mango.png" alt="">
 					</a></li>
 				</ul>
 			</div>

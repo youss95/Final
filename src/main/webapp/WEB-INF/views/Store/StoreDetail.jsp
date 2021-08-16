@@ -135,11 +135,11 @@ feOffset {
 						<input type="hidden" id="x" name="x" value="${list.store_x }">
 						<input type="hidden" id="y" name="y" value="${list.store_y }">
 						<input type="hidden" id="store" value="${list.store }"> <a><img
-							src="${pageContext.request.contextPath}/resources/img/start.png"> 찜하기</a>
+							src="${pageContext.request.contextPath}/resources/images/start.png"> 찜하기</a>
 						<h1 style="float: center;">${list.store }</h1>
 						<div>
-							<img src="${pageContext.request.contextPath}/resources/img/view.png"> ${list.count} <img
-								src="${pageContext.request.contextPath}/resources/img/start.png"> ${list.report_count}
+							<img src="${pageContext.request.contextPath}/resources/images/view.png"> ${list.count} <img
+								src="${pageContext.request.contextPath}/resources/images/start.png"> ${list.report_count}
 						</div>
 						<br>
 						<table class='table'>
