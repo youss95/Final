@@ -440,19 +440,20 @@ section {
 
 				//주소-좌표 변환 객체를 생성합니다
 				var geocoder = new kakao.maps.services.Geocoder();
-
 				var rdnmadrList = new Array();
 				var cmpnmList = new Array();
+				var num = new Array();
 
 				var rdnList = JSON.parse('${rdnmadrListJson}');
-
+				// 값 받는곳!! 
 				for ( var k in rdnList) {
 					var $obj = rdnList[k];
 					var aa = $obj.road_name;
 					var bb = $obj.store;
+					var cc = $obj.store_seq;
 					rdnmadrList.push(aa);
 					cmpnmList.push(bb);
-
+					num.push(cc);
 				}
 
 				//주소 리스트 
@@ -465,6 +466,8 @@ section {
 							// 받은 리스트! 객체 배열
 							var coords = new kakao.maps.LatLng(result[0].y,
 									result[0].x);
+						
+							
 							// 지워지지 않ㄱ
 							// 결과값으로 받은 위치를 마커로 표시합니다
 							var marker = new kakao.maps.Marker({
@@ -508,7 +511,7 @@ section {
 							
 							kakao.maps.event.addListener(marker, 'click', function() {
 							      // 마커 위에 인포윈도우를 표시합니다
-								location.href = '/store/view?store_seq='+click;  
+								location.href = '/store/view?store_seq='+num[index];  
 							});
 							
 							
