@@ -49,6 +49,14 @@
 button {
 	width: 30%;
 }
+
+#login {
+	width: 100%;
+}
+
+.footer {
+	margin-top: 20px;
+}
 </style>
 </head>
 
@@ -75,6 +83,9 @@ button {
 				</div>
 			</div>
 
+			<div class="row">
+				<div class="col-12" id="waiting"></div>
+			</div>
 
 			<div class="row hidden">
 				<div class="col-12">
@@ -87,7 +98,11 @@ button {
 			<div class="row hidden">
 				<div class="col-12" id="FindID"></div>
 			</div>
-
+			<div class="row footer">
+				<div class="col-12" id="btlogin">
+					<button class="btn btn-warning" id="login">Back to Log-In</button>
+				</div>
+			</div>
 
 		</div>
 
@@ -98,6 +113,9 @@ button {
 				.on(
 						"click",
 						function() {
+							$("#waiting").css("color", "rgb(245, 147, 0)");
+							$("#waiting").html(
+									"Please wait a second for sending email.");
 							$
 									.ajax({
 										url : "/cMember/sendEmailforID",
@@ -110,8 +128,10 @@ button {
 									.done(
 											function(res) {
 												if (res == "false") {
+													$("#waiting").css("display", "none");
 													alert("There is no matching member with your NAME and EMAIL. Check your NAME and EMAIL again.");
 												} else {
+													$("#waiting").css("display", "none");
 													$("#confirmNumber")
 															.val(res);
 													$(".hidden").css("display",
@@ -127,20 +147,29 @@ button {
 					url : "/cMember/findID",
 					type : "get",
 					data : {
-						"name":$("#iname").val(), "email" : $("#iemail").val()
+						"name" : $("#iname").val(),
+						"email" : $("#iemail").val()
 					}
 				}).done(function(res) {
 					$("#FindID").css("color", "blue");
-					$("#FindID").html("Your ID is \""+res+"\".");
+					$("#FindID").html("Your ID is \"" + res + "\".");
+
 				}).fail(function(a, b, c) {
-					alert("서버와의 통신이 불안정 합니다.");
-				})			
+					alert("Server Connection is unstable.");
+				})
 
 			} else {
 				$("#FindID").css("color", "red");
 				$("#FindID").html("Wrong Number");
 			}
 		})
+
+		$("#login")
+				.on(
+						"click",
+						function() {
+							location.href = "${pageContext.request.contextPath}/cMember/loginForm";
+						})
 	</script>
 </body>
 </html>

@@ -14,6 +14,7 @@ import dream.tk.api.SHA256;
 import dream.tk.api.VerifyRecaptcha;
 import dream.tk.dto.AdminMemberDTO;
 import dream.tk.service.AdminMemberService;
+import dream.tk.service.EmailService;
 
 @Controller
 @RequestMapping("/aMember")
@@ -25,8 +26,9 @@ public class AdminMemberController {
 
 	@Autowired
 	private AdminMemberService service;
-
-
+	
+	@Autowired
+	private EmailService serviceE;
 
 	@RequestMapping(value="signupForm")
 	public String signupForm() {
@@ -45,6 +47,13 @@ public class AdminMemberController {
 
 		return service.nameExist(name);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="emailConfirm")
+	public String emailConfirm(String name, String email) throws Exception {
+		return serviceE.sendEmailConfirm(name, email);
+	}
+
 
 	@RequestMapping(value="signupProc")
 	public String signupProc(AdminMemberDTO dto, Model m) {
