@@ -12,15 +12,19 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dream.tk.api.SHA256;
+import dream.tk.api.VerifyRecaptcha;
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.BusinessFileDTO;
 import dream.tk.dto.BusinessMemberDTO;
 import dream.tk.service.BusinessFileService;
 import dream.tk.service.BusinessMemberService;
+import dream.tk.service.EmailService;
 
 @RequestMapping("/bMember")
 @Controller
@@ -33,7 +37,16 @@ public class BusinessMemberController {
 	private BusinessFileService fser;
 	
 	@Autowired
+	private EmailService eser;
+	
+	@Autowired
 	private HttpSession session;
+	
+	@ExceptionHandler
+	public String exceptionHandler(Exception e) {
+		e.printStackTrace();
+		return "error";
+	}
 	
 	@RequestMapping("signupForm")
 	public String test() {
@@ -69,6 +82,26 @@ public class BusinessMemberController {
 	public String dupleCheck(String id) {
 		int result = ser.dupleCheck(id);
 		return String.valueOf(result);
+	}
+	
+	@ResponseBody
+	@RequestMapping("emailSend")
+	public String emailSend(String name, String email) throws Exception {
+		return eser.sendEmailConfirm(name, email);
+	}
+	@ResponseBody
+	@RequestMapping(value = "verifyRecaptcha", method = RequestMethod.POST)
+	public int VerifyRecaptcha(HttpServletRequest request) {
+		VerifyRecaptcha.setSecretKey("6Ld-7eIbAAAAAHKQ6aWGRpvswCfWIykH7oqieuNY");
+		String gRecaptchaResponse = request.getParameter("recaptcha");
+		try {
+			if(VerifyRecaptcha.verify(gRecaptchaResponse))
+				return 0; // 성공
+			else return 1; // 실패
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1; //에러
+		}
 	}
 	
 	@RequestMapping("signup")
@@ -184,13 +217,14 @@ public class BusinessMemberController {
 	
 	@RequestMapping("dashboard")
 	public String dashboard(Model m) {
-		String businessName ="pipipi";
+		if(session.getAttribute("bizInfo")!=null) {
+		String businessName =((BusinessDTO) session.getAttribute("bizInfo")).getBusinessName();
 		
 		int totalRes = ser.getTotalRes(businessName);
 		
 		List<Map<String, String>> ageResult = ser.getReserveAge(businessName);
 		
-		List<Object> ageData = new ArrayList<>(Arrays.asList(0,0,0,0));	
+		List<Object> ageData = new ArrayList<>(Arrays.asList(0,0,0,0,0));	
 		for(int i=0; i<ageResult.size(); i++) {
 			
 			if(ageResult.get(i).get("연령대").equals("10대")) {
@@ -204,6 +238,9 @@ public class BusinessMemberController {
 			}
 			else if(ageResult.get(i).get("연령대").equals("40대")) {
 				ageData.set(3,ageResult.get(i).get("COUNT(연령대)"));
+			}
+			else if(ageResult.get(i).get("연령대").equals("50대")) {
+				ageData.set(4,ageResult.get(i).get("COUNT(연령대)"));
 			}
 		}
 		
@@ -263,8 +300,7 @@ public class BusinessMemberController {
 			}
 		}
 		
-		String biz_type = (String) session.getAttribute("biz_type");
-		biz_type="western";
+		String biz_type = ((BusinessDTO) session.getAttribute("bizInfo")).getBiz_type();
 		Map<String, String> vsResult = ser.getVs(biz_type);
 		Map<String, String> vsMine = ser.getVsMine(businessName);
 		
@@ -275,6 +311,7 @@ public class BusinessMemberController {
 		m.addAttribute("monthData",monthData);
 		m.addAttribute("vsResult",vsResult);
 		m.addAttribute("vsMine",vsMine);
+		}
 		
 		return "/memberB/dashboard";
 	}

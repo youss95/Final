@@ -30,7 +30,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.0/chart.min.js"></script>
 
-<script src="/com/js/Chart.PieceLabel.js"></script> <!-- your piecelabel -->
+<!-- <script src="/com/js/Chart.PieceLabel.js"></script> your piecelabel -->
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
@@ -60,9 +60,9 @@
 
 <script>
 $(function(){
-	$(".hoverBtn").on("click",function(){
-		location.href="${pageContext.request.contextPath}/pay/res_payment";
-	})
+   $(".hoverBtn").on("click",function(){
+      location.href="${pageContext.request.contextPath}/pay/res_payment";
+   })
 })
 </script>
 
@@ -146,17 +146,13 @@ $(function(){
 
     <div class="main-panel">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " style="margin:24px 0 0 35px">
           <div class="container-fluid">
-            <div class="navbar-wrapper">
-              <a class="navbar-brand" href="javascript:;">Dashboard</a>
+            <div class="navbar-wrapper" style="font-size:20px; font-weight:400">
+            <c:if test="${bizInfo.businessName eq null}"> 
+             <a href="${pageContext.request.contextPath}/bMember/myPage" style="color:purple"> My Page </a>에서 나의 업체 정보를 등록하고,&nbsp;&nbsp;Dashboard 의 정보를 받아보세요!
+            </c:if>
             </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="navbar-toggler-icon icon-bar"></span>
-              <span class="navbar-toggler-icon icon-bar"></span>
-              <span class="navbar-toggler-icon icon-bar"></span>
-            </button>
           </div>
         </nav>
         <!-- End Navbar -->
@@ -173,7 +169,8 @@ $(function(){
                       <i class="material-icons">star_border</i>
                     </div>
                     <p class="card-category">별점</p>
-                    <h3 class="card-title">${vsMine.STAR_AVG}
+                    <h3 class="card-title"><c:if test="${vsMine.STAR_AVG eq null}">0</c:if>
+                    ${vsMine.STAR_AVG}
                       <small>/5.0</small>
                     </h3>
                   </div>
@@ -197,7 +194,8 @@ $(function(){
                       <i class="material-icons">store</i>
                     </div>
                     <p class="card-category">예약자 수</p>
-                    <h3 class="card-title"> ${totalRes}
+                    <h3 class="card-title"><c:if test="${totalRes eq null}">0</c:if>
+                     ${totalRes}
                       <small>명</small>
                     </h3>
                   </div>
@@ -218,7 +216,8 @@ $(function(){
                       <i class="material-icons">favorite</i>
                     </div>
                     <p class="card-category">찜 수</p>
-                    <h3 class="card-title">${vsMine.KEEP_COUNT}
+                    <h3 class="card-title"><c:if test="${vsMine.KEEP_COUNT eq null}">0</c:if>
+                    ${vsMine.KEEP_COUNT}
                       <small>개</small>
                     </h3>
                   </div>
@@ -260,7 +259,7 @@ $(function(){
                 <div class="card card-chart" style="height:100%" >
 
                   <div class="card-header card-header-rose">
-<!-- 				 <div class="card-header" style="background-color:#C3C3C3;"> -->
+<!--              <div class="card-header" style="background-color:#C3C3C3;"> -->
                     <div class="ct-chart" id="dailySalesChart">
                     </div>
                   </div>
@@ -375,17 +374,17 @@ $(function(){
   var myChart1 = new Chart(ctx1, {
       type: 'bar',
       data: {
-          labels: ['10대','20대','30대','40대','50대'],  	  
+          labels: ['10대','20대','30대','40대','50대'],       
           datasets: [{   
               data: [
-            	  <c:forEach var="ad" items="${ageData}"> 
-            	  "${ad}",
-            	  </c:forEach> ],
+                 <c:forEach var="ad" items="${ageData}"> 
+                 "${ad}",
+                 </c:forEach> ],
               backgroundColor: [
-            	  'rgba(54, 162, 235, 0.6)',
+                 'rgba(54, 162, 235, 0.6)',
               ],
               borderColor: [
-            	  'rgb(54, 162, 235)', 
+                 'rgb(54, 162, 235)', 
               ],
               borderWidth: 1
           }]
@@ -395,15 +394,16 @@ $(function(){
           scales: {
               y: {
                   beginAtZero: true,
-                  max:10
+                  stepSize:5,
+                  max:20
               }
           },
      
       plugins:{
-    	  legend:{
-    		  display: false
-      		}
-    	 }
+         legend:{
+            display: false
+            }
+        }
       }
   });
 
@@ -411,15 +411,15 @@ $(function(){
       type: 'pie',
       data: {
           labels: [
-        	  <c:forEach var="nl" items="${nationLabel}">
-        	  "${nl}",
-        	  </c:forEach>
+             <c:forEach var="nl" items="${nationLabel}">
+             "${nl}",
+             </c:forEach>
           ],
           datasets: [{
               data: [
-            	  <c:forEach var="nd" items="${nationData}">
-            	  "${nd}",
-            	  </c:forEach>
+                 <c:forEach var="nd" items="${nationData}">
+                 "${nd}",
+                 </c:forEach>
               ],
               backgroundColor: [
                   'rgba(255, 99, 132, 1)',
@@ -441,36 +441,36 @@ $(function(){
           }]
       },
       options: {
-    	 
-    	  reponsive:false,
-    	  plugins:{
-    		 
-     		 legend: {
-					position: 'right',      // 범례의 위치를 지정한다. 'top','left','bottom','right'.
-					labels: {
-							fontSize: 16, // 범례 폰트의 사이즈.
-							boxWidth: 10, // 범례 컬러박스의 사이즈.
-              				padding: 20   // 범례 사이의 간격.
-							}
-					},
-			labels: {
-		    		      position: 'outside',
-		    		      render: (args) => {
-		    		        return `${args.label}: ${args.value}%`;
-		    		      }
-		    		    },
-					
-// 			title: {
-// 					display: true,
-// 					text: "국적별 예약자 수 비교",
-// 					fontSize: 80         // 차트 제목 폰트의 사이즈.
-// 					},
-					
-			animation: {
-				animateScale: true,   // true일 경우 차트 생성시 중앙에서부터 커지는 애니메이션. 
-				animateRotate: true   // true일 경우 차트 생성시 회전 애니메이션.
-					}
-          	
+        
+         reponsive:false,
+         plugins:{
+           
+            legend: {
+               position: 'right',      // 범례의 위치를 지정한다. 'top','left','bottom','right'.
+               labels: {
+                     fontSize: 16, // 범례 폰트의 사이즈.
+                     boxWidth: 10, // 범례 컬러박스의 사이즈.
+                          padding: 20   // 범례 사이의 간격.
+                     }
+               },
+         labels: {
+                      position: 'outside',
+                      render: (args) => {
+                        return `${args.label}: ${args.value}%`;
+                      }
+                    },
+               
+//          title: {
+//                display: true,
+//                text: "국적별 예약자 수 비교",
+//                fontSize: 80         // 차트 제목 폰트의 사이즈.
+//                },
+               
+         animation: {
+            animateScale: true,   // true일 경우 차트 생성시 중앙에서부터 커지는 애니메이션. 
+            animateRotate: true   // true일 경우 차트 생성시 회전 애니메이션.
+               }
+             
           },
          
           maintainAspectRatio:false,
@@ -481,37 +481,37 @@ $(function(){
 
 
   var myChart3 = new Chart(ctx3, 
-	  {
-		  type: 'line',
-		  data: {
-		    labels: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-		    datasets: [{
-		      data: [
-		    	  <c:forEach var='md' items="${monthData}">
-		    	  "${md}",
-		    	  </c:forEach>
-		      ],
-		      borderColor:'rgb(75, 192, 192)',
-		      pointBackgroundColor:'rgb(75, 192, 192)',
-		      fill:false,
-		      tension: 0.1     
-		    }]
-		  },
-		  options: {
-	          maintainAspectRatio:false,
-	          scales: {
-	              y: {
-	                  beginAtZero: true,
-	                  max:5
-	              }
-	          },
-	     
-	      plugins:{
-	    	  legend:{
-	    		  display: false
-	      		}
-	    	 }
-	      }
+     {
+        type: 'line',
+        data: {
+          labels: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+          datasets: [{
+            data: [
+               <c:forEach var='md' items="${monthData}">
+               "${md}",
+               </c:forEach>
+            ],
+            borderColor:'rgb(75, 192, 192)',
+            pointBackgroundColor:'rgb(75, 192, 192)',
+            fill:false,
+            tension: 0.1     
+          }]
+        },
+        options: {
+             maintainAspectRatio:false,
+             scales: {
+                 y: {
+                     beginAtZero: true,
+                     max:25
+                 }
+             },
+        
+         plugins:{
+            legend:{
+               display: false
+               }
+           }
+         }
       
   });
   
@@ -519,47 +519,47 @@ $(function(){
   
   
   var myChart4 = new Chart(ctx4, 
-		  {
-	  data: {
-	        datasets: [{
-	            type: 'bar',
-	            label: '업종 평균',
-	            data: [
-	            	"${vsResult.STAR_AVG}","${vsResult.KEEP_COUNT}","${vsResult.VIEW_COUNT}"
-	            ],
-// 	            borderColor: 'rgb(153, 102, 255)',
-// 	            backgroundColor: 'rgba(153, 102, 255,0.2)'
-	        }, {
-	            type: 'line',
-	            label: '우리 업체',
-	            data: [
-	            	"${vsMine.STAR_AVG}","${vsMine.KEEP_COUNT}","${vsMine.VIEW_COUNT}"
-	            ],
-	            fill: false,
-	            borderColor: 'rgb(153, 102, 255)',
-	            pointBackgroundColor:'rgb(153, 102, 255)'
-	        }],
-	        labels: ['별점', '찜수', '조회수']
-	    },
-	    
-	    options: {
-	          maintainAspectRatio:false,
-	          scales: {
-	              y: {
-	                  beginAtZero: true,
-	                  max:70
-	              }
-	          },
-	     
-	      plugins:{
-	    	  
-	    	 }
-	      }
-	   
-	  
-	  
-	  
-	  });
+        {
+     data: {
+           datasets: [{
+               type: 'bar',
+               label: '업종 평균',
+               data: [
+                  "${vsResult.STAR_AVG}","${vsResult.KEEP_COUNT}","${vsResult.VIEW_COUNT}"
+               ],
+//                borderColor: 'rgb(153, 102, 255)',
+//                backgroundColor: 'rgba(153, 102, 255,0.2)'
+           }, {
+               type: 'line',
+               label: '우리 업체',
+               data: [
+                  "${vsMine.STAR_AVG}","${vsMine.KEEP_COUNT}","${vsMine.VIEW_COUNT}"
+               ],
+               fill: false,
+               borderColor: 'rgb(153, 102, 255)',
+               pointBackgroundColor:'rgb(153, 102, 255)'
+           }],
+           labels: ['별점', '찜수', '조회수']
+       },
+       
+       options: {
+             maintainAspectRatio:false,
+             scales: {
+                 y: {
+                     beginAtZero: true,
+                     max:50
+                 }
+             },
+        
+         plugins:{
+            
+           }
+         }
+      
+     
+     
+     
+     });
   
 
   </script>
