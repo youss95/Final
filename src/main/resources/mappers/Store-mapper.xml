@@ -44,7 +44,7 @@
 
 	<!-- 조회수 -->
 	<update id="count">
-		update store set count = count+1 where store_seq =
+		update store set view_count = view_count+1 where store_seq =
 		#{store_seq}
 	</update>
 
@@ -52,14 +52,14 @@
 	<!-- 검색 다중 마커 및 마커 조회 -->
 	<select id="getList"  parameterType="dream.tk.dto.StoreDTO" resultType="dream.tk.dto.StoreDTO">
 		SELECT
-			Store,
+			BusinessName,
 			road_name,
 			store_seq
 		FROM
 			store
 		WHERE
 		 <!--  <if test="searchWrd != null and searchWrd !=''">--> 
-			(Store LIKE '%${searchWrd}%'   or
+			(BusinessName LIKE '%${searchWrd}%'   or
 			road_name LIKE '%${searchWrd}%')
 		 <!--  </if> -->
 	</select>
