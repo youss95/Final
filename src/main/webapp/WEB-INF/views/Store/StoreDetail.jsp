@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!--틀 리스트-->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Store_main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Store_main.css?after">
 <!--슬라이드-->
 <link rel="stylesheet"
 	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
@@ -15,12 +15,15 @@
 <!--별점-->
 <link rel='stylesheet'
 	href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Store_detail.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Store_detail.css?after">
 <link rel='stylesheet'
 	href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 
 
@@ -30,17 +33,27 @@
 	padding: 0;
 }
 
-header {
+.contain {
+	width: 100%;
+	height: 106px;
+	float: center
+	-webkit-font-smoothing: antialiased;
+    box-sizing: border-box; 
+}
+
+
+.headers {
 	width: 100%;
 	height: 250px;
 }
+
+
 
 aside {
 	float: left;
 	width: 65%;
 	height: 700px;
 }
-
 section {
 	float: left;
 	width: 35%;
@@ -58,9 +71,9 @@ feOffset {
 	height: 300px;
 }
 
-@media ( max-width : 1220px) {
+@media ( max-width : 1540px) {
 	#wrap {
-		width: 95%;
+		width: 100%;
 	}
 }
 /* 화면 너비 0 ~ 768px */
@@ -92,7 +105,11 @@ feOffset {
 </head>
 <body>
 	<div id="wrap">
-		<header>
+	<br>
+		<div class="contain">
+			<%@include file="../layout/header_main.jsp" %>
+		</div>
+		<div class="headers">
 			<div class="swiper-container mySwiper">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide">Slide 1</div>
@@ -106,7 +123,7 @@ feOffset {
 				<div class="swiper-button-prev"></div>
 				<div class="swiper-pagination"></div>
 			</div>
-		</header>
+		</div>
 		<!--슬라이드 Script-->
 		<script>
 			var swiper = new Swiper(".mySwiper", {
@@ -195,45 +212,53 @@ feOffset {
 				var staticMap = new kakao.maps.StaticMap(staticMapContainer,
 						staticMapOption);
 			</script>
-			</script>
 			<br>
-			<!-- 별점 radio 박스-->
-			<h3 style="text-align: center">점수 주시겠어요?</h3>
-			<form action="myform" id="myform" method="post" action="/store/star">
-				<div class="rating">
-					<input type="radio" id="star5" name="rating" value="5" /> <label
-						class="full" for="star5" title="Awesome - 5 stars"></label> <input
-						type="radio" id="star4half" name="rating" value="4 and a half" />
-					<label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+            <!-- 1번쨰 -->
+            <script>
+                function random_imglink() {
+                    var myimages = new Array()
 
-					<input type="radio" id="star4" name="rating" value="4" /> <label
-						class="full" for="star4" title="Pretty good - 4 stars"></label> <input
-						type="radio" id="star3half" name="rating" value="3 and a half" />
-					<label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                    /* 각각의 이미지 경로 지정 */
+                    myimages[1] = "${pageContext.request.contextPath}/resources/images/3.png"
+                    myimages[2] = "${pageContext.request.contextPath}/resources/images/4.png"
+                    myimages[3] = "${pageContext.request.contextPath}/resources/images/6.png"
 
-					<input type="radio" id="star3" name="rating" value="3" /> <label
-						class="full" for="star3" title="Meh - 3 stars"></label> <input
-						type="radio" id="star2half" name="rating" value="2 and a half" />
-					<label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                    /* 각각의 이미지 링크 지정 */
+                    var imagelinks = new Array()
+                    imagelinks[1] = "https://www.tripadvisor.com/Restaurants-g294197-zfn7778638-Seoul.html"
+                    imagelinks[2] = "https://www.willflyforfood.net/seoul-food-guide-25-must-eat-restaurants-in-seoul-south-korea/"
+                    imagelinks[3] = "https://www.creatrip.com/en/blog/1822/TOP-5-Busan-Pork-Rice-Soup-Restaurants"
+                    
+                    var ry = Math.floor(Math.random() * myimages.length)
+                    if (ry == 0)
+                        ry = 1
+                    document.write('<a href=' + '"' + imagelinks[ry] + '"' + ' target=_blank><img src="' + myimages[ry] + '" border=0></a>')
+                }
+                random_imglink();
+            </script>
+            <br><br><br>
+			<script>
+                function random_imglink() {
+                    var myimages = new Array()
 
-					<input type="radio" id="star2" name="rating" value="2" /> <label
-						class="full" for="star2" title="Kinda bad - 2 stars"></label> <input
-						type="radio" id="star1half" name="rating" value="1 and a half" />
-					<label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                    /* 각각의 이미지 경로 지정 */
+                    myimages[1] = "${pageContext.request.contextPath}/resources/images/1.png"
+                    myimages[2] = "${pageContext.request.contextPath}/resources/images/2.png"
+                    myimages[3] = "${pageContext.request.contextPath}/resources/images/5.png"
 
-					<input type="radio" id="star1" name="rating" value="1" /> <label
-						class="full" for="star1" title="Sucks big time - 1 star"></label>
-					<input type="radio" id="starhalf" name="rating" value="half" /> <label
-						class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-				</div>
-				<button>별점 주기</button>
-			</form>
-			<script
-				src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js'></script>
-			<script
-				src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
-
-
+                    /* 각각의 이미지 링크 지정 */
+                    var imagelinks = new Array()
+                    imagelinks[1] = "https://www.tripadvisor.com/Restaurants-g294197-zfn7778640-Seoul.html"
+                    imagelinks[2] = "https://theculturetrip.com/asia/south-korea/articles/korean-cuisine-crash-course-top-10-dishes-to-know/"
+                    imagelinks[3] = "https://www.tripadvisor.com/Restaurants-g294197-zfn7778650-Seoul.html"
+                    var ry = Math.floor(Math.random() * myimages.length)
+                    if (ry == 0)
+                        ry = 1
+                    document.write('<a href=' + '"' + imagelinks[ry] + '"' + ' target=_blank><img src="' + myimages[ry] + '" border=0></a>')
+                }
+                random_imglink();
+            </script>
+            <br><br>
 		</section>
 		<footer>
 			<!--  댓글  -->
