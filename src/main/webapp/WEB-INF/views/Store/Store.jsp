@@ -527,26 +527,79 @@ section {
 			
 
 			<!-- 하단 추천바!! -->
-			<br> <br>
-			<div class="card-box con text-align-center">
-				<ul class="row">
-					<li class="cell"><a href="#">
-							<div class="text">
-								망고 <br>플레이트
-							</div> <img src="${pageContext.request.contextPath}/resources/images/mango.png" alt="">
-					</a></li>
-					<li class="cell"><a href="#">
-							<div class="text">
-								음식점 <br>맛나요
-							</div> <img src="${pageContext.request.contextPath}/resources/images/mango.png" alt="">
-					</a></li>
-					<li class="cell"><a href="#">
-							<div class="text">
-								여기 <br>어때요?
-							</div> <img src="${pageContext.request.contextPath}/resources/images/mango.png" alt="">
-					</a></li>
-				</ul>
-			</div>
+			
+			<br><br></br>
+			<!-- 1번쨰 -->
+			<script>
+                function random_imglink() {
+                    var myimages = new Array()
+
+                    /* 각각의 이미지 경로 지정 */
+                    myimages[1] = "${pageContext.request.contextPath}/resources/images/1.png"
+                    myimages[2] = "${pageContext.request.contextPath}/resources/images/2.png"
+
+                    /* 각각의 이미지 링크 지정 */
+                    var imagelinks = new Array()
+                    imagelinks[1] = "https://www.tripadvisor.com/Restaurants-g294197-zfn7778640-Seoul.html"
+                    imagelinks[2] = "https://theculturetrip.com/asia/south-korea/articles/korean-cuisine-crash-course-top-10-dishes-to-know/"
+
+                    var ry = Math.floor(Math.random() * myimages.length)
+                    if (ry == 0)
+                        ry = 1
+                    document.write('<a href=' + '"' + imagelinks[ry] + '"' + ' target=_blank><img src="' + myimages[ry] + '" border=0></a>')
+                }
+                random_imglink();
+            </script>
+            <br><br></br>
+            <!-- 2번쨰 -->
+            <script>
+                function random_imglink() {
+                    var myimages = new Array()
+
+                    /* 각각의 이미지 경로 지정 */
+                    myimages[1] = "${pageContext.request.contextPath}/resources/images/3.png"
+                    myimages[2] = "${pageContext.request.contextPath}/resources/images/4.png"
+
+                    /* 각각의 이미지 링크 지정 */
+                    var imagelinks = new Array()
+                    imagelinks[1] = "https://www.tripadvisor.com/Restaurants-g294197-zfn7778638-Seoul.html"
+                    imagelinks[2] = "https://www.willflyforfood.net/seoul-food-guide-25-must-eat-restaurants-in-seoul-south-korea/"
+
+                    var ry = Math.floor(Math.random() * myimages.length)
+                    if (ry == 0)
+                        ry = 1
+                    document.write('<a href=' + '"' + imagelinks[ry] + '"' + ' target=_blank><img src="' + myimages[ry] + '" border=0></a>')
+                }
+                random_imglink();
+            </script>
+            <br><br></br>
+            <!-- 3번쨰 -->
+            <script>
+                function random_imglink() {
+                    var myimages = new Array()
+
+                    /* 각각의 이미지 경로 지정 */
+                    myimages[1] = "${pageContext.request.contextPath}/resources/images/5.png"
+                    myimages[2] = "${pageContext.request.contextPath}/resources/images/6.png"
+
+                    /* 각각의 이미지 링크 지정 */
+                    var imagelinks = new Array()
+                    imagelinks[1] = "https://www.tripadvisor.com/Restaurants-g294197-zfn7778650-Seoul.html"
+                    imagelinks[2] = "https://www.creatrip.com/en/blog/1822/TOP-5-Busan-Pork-Rice-Soup-Restaurants"
+
+                    var ry = Math.floor(Math.random() * myimages.length)
+                    if (ry == 0)
+                        ry = 1
+                    document.write('<a href=' + '"' + imagelinks[ry] + '"' + ' target=_blank><img src="' + myimages[ry] + '" border=0></a>')
+                }
+                random_imglink();
+            </script>
+            
+            
+            
+            
+            
+            
 		</section>
 	</div>
 </body>
