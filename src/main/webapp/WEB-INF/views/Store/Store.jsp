@@ -310,8 +310,8 @@ section {
 										alt="Photo of Brooklyn Park">
 									<figcaption>
 										<p>${list.city }</p>
-										<h2>${list.store }</h2>
-										<h3>조회수 : ${list.count }</h3>
+										<h2>${list.businessName }</h2>
+										<h3>조회수 : ${list.view_count }</h3>
 									</figcaption>
 								</figure>
 						</a></li>
@@ -445,11 +445,12 @@ section {
 				var num = new Array();
 
 				var rdnList = JSON.parse('${rdnmadrListJson}');
+				
 				// 값 받는곳!! 
 				for ( var k in rdnList) {
 					var $obj = rdnList[k];
 					var aa = $obj.road_name;
-					var bb = $obj.store;
+					var bb = $obj.businessName;
 					var cc = $obj.store_seq;
 					rdnmadrList.push(aa);
 					cmpnmList.push(bb);

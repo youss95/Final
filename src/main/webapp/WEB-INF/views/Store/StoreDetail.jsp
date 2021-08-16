@@ -134,11 +134,11 @@ feOffset {
 					<div>
 						<input type="hidden" id="x" name="x" value="${list.store_x }">
 						<input type="hidden" id="y" name="y" value="${list.store_y }">
-						<input type="hidden" id="store" value="${list.store }"> <a><img
+						<input type="hidden" id="store" value="${list.businessName }"> <a><img
 							src="${pageContext.request.contextPath}/resources/images/start.png"> 찜하기</a>
-						<h1 style="float: center;">${list.store }</h1>
+						<h1 style="float: center;">${list.businessName }</h1>
 						<div>
-							<img src="${pageContext.request.contextPath}/resources/images/view.png"> ${list.count} <img
+							<img src="${pageContext.request.contextPath}/resources/images/view.png"> ${list.view_count} <img
 								src="${pageContext.request.contextPath}/resources/images/start.png"> ${list.report_count}
 						</div>
 						<br>
@@ -160,7 +160,7 @@ feOffset {
 						<script type="text/javascript">
 							var xid = $('#x').val();
 							var yid = $('#y').val();
-							var store = $('#store').val();
+							var businessName = $('#businessName').val();
 							console.log(xid);
 							console.log(yid);
 							console.log(store);
@@ -179,7 +179,7 @@ feOffset {
 				// 이미지 지도에 표시할 마커를 아래와 같이 배열로 넣어주면 여러개의 마커를 표시할 수 있습니다 
 				var markers = [ {
 					position : new kakao.maps.LatLng(xid, yid),
-					text : store
+					text : businessName
 				// text 옵션을 설정하면 마커 위에 텍스트를 함께 표시할 수 있습니다     
 				} ];
 
@@ -376,7 +376,7 @@ feOffset {
 
 	<!-- ---------------------------------------------- -->
 	
-	<feOffset> <a href="/chat/makeChat?store=${list.store }">
+	<feOffset> <a href="/chat/makeChat?store=${list.businessName }">
 		<div class="chat" onclick="this.classList.toggle('active')">
 			<div class="background"></div>
 			<svg class="chat-bubble" width="100" height="100"
