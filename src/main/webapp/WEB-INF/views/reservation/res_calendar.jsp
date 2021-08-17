@@ -94,6 +94,8 @@
  <script>
  let select = document.getElementsByClassName("select_time");
  
+
+ 
  function handleClick(e){
 	
 	 
@@ -145,7 +147,8 @@
       			res_name:'행복식당',
       			userId:'${loginID}',
       			res_date:strDate,
-      			res_time:selected
+      			res_time:selected,
+      			biz_seq:${biz_seq}
       			}
       		//start 컨트롤러에 보내면 시간 초 까지 나옴 가공해야됨
       		let no = 12
@@ -212,10 +215,41 @@
      
       select: function(arg) {
     	   strDate = moment(arg.start).format("YYYY-MM-DD")
+    	   console.log(strDate)
+    	 
      /*모달창  띄우기*/
      $("#exampleModal").modal('show');
-	
-     
+    	  /* 예약됬는지 체크 */
+    	   for(let i=0; i<select.length; i++){
+    		   let data = {
+        			   res_time:select[i].innerText,
+        			   res_date:strDate,
+        			   biz_seq:${biz_seq}
+        			   }
+    			 console.log(select[i].innerText)
+    			 $.ajax({
+    				 url:"/res/reserveCheck",
+    				 data:JSON.stringify(data),
+    				 type:"POST",
+    				 contentType:"application/json;charset=utf-8"
+    			 }).done(function(resp){
+    				 console.log(resp)
+    				 if(resp == 'Y'){
+    					 select[i].style.backgroundColor = 'blue'
+    				 }
+    			 })
+    		 }
+    		 
+    	 /*   <c:forTokens var="onday" items="${onday}" delims=",">
+           <span class="select_time">${onday}</span>
+           $.ajax({
+        	   url:"",
+        	   data:{'res_name':'행복식당'}
+           }).done(function(){
+        	   
+           })
+          </c:forTokens>
+      */
      
         //title 값이 있으면 json형식으로 일정을 추가 -> ajax통신 성공하면 추가로 변경하자
        if(strDate == '2021-08-08'){
@@ -225,7 +259,7 @@
       },
      
       //이벤트 클릭 취소하기
-      //휴일 이벤트 취소 막기(아직 기능 구현 못함)
+      
       eventClick: function(arg) {
     	
     	let title = arg.event.title;

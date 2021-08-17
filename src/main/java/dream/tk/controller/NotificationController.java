@@ -1,7 +1,10 @@
 package dream.tk.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,6 +42,13 @@ public class NotificationController {
 		System.out.println(userId);
 		int counts = notiService.countNoti(userId);
 		return counts;
+	}
+	
+	@GetMapping("/detail")
+	public String notiDetail(String userId,Model model) {
+		List<NotificationDTO> list = notiService.getAllNotis(userId);
+		model.addAttribute("notiList",list);
+		return "/reservation/notiDetail";
 	}
 	
 }

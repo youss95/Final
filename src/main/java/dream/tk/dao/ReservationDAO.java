@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.NotificationDTO;
 import dream.tk.dto.PaymentDTO;
+import dream.tk.dto.ResInfoDTO;
 import dream.tk.dto.ReservationDTO;
+import dream.tk.dto.ReserveCheckDTO;
 
 @Repository
 public class ReservationDAO {
@@ -42,8 +44,8 @@ public class ReservationDAO {
 		return mybatis.insert("ResMapper.registerTime", dto);
 	}
 	
-	public List<ReservationDTO> getResInfo() {
-		return mybatis.selectList("ResMapper.getResInfo");
+	public List<ReservationDTO> getResInfo(ResInfoDTO dto) {
+		return mybatis.selectList("ResMapper.getResInfo",dto);
 	}
 	
 	public List<ReservationDTO> resInfoList(String userId){
@@ -52,6 +54,13 @@ public class ReservationDAO {
 	
 	public int registerBiz(BusinessDTO dto) {
 		return mybatis.insert("ResMapper.bizSetting",dto);
+	}
+	
+	public String resCheck(ReserveCheckDTO dto) {
+		System.out.println("dat"+dto.toString());
+		String result = mybatis.selectOne("ResMapper.reservedTime",dto);
+		System.out.println(result);
+		return mybatis.selectOne("ResMapper.reservedTime",dto);
 	}
 	
 	//-----------------------결제 관련--------------------------

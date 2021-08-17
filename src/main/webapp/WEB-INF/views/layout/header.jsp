@@ -12,7 +12,7 @@
 
           <li><a href="${pageContext.request.contextPath}/mypage.mp">MyPage</a></li>
          <li><a href="${pageContext.request.contextPath}/member/logout"><i class="fas fa-sign-out-alt"></i></a></li>
-					<li><a href="#" class="button" style="position: relative"><i
+					<li><a href="/noti/detail?userId=${loginID}" class="button" style="position: relative"><i
 							class="fas fa-bell fa-2x"></i><span class="nav-counter"></span></a></li>
 					<li><i class="fas fa-user-alt userIcon" id="popBtn"
 						data-placement="bottom" class="btn btn-lg btn-danger"
@@ -39,7 +39,7 @@
   $(function(){
 	  $.ajax({
 		  url:"/noti/alarmCounts",
-		  data:{userId:'스티브'}
+		  data:{userId:'${loginID}'}
 	  }).done(function(res){
 		  console.log(res)
 		  $('.nav-counter').append(res)
