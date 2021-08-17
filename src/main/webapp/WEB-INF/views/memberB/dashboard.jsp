@@ -365,7 +365,8 @@ $(function(){
 
 </div>      
 <script>
-
+console.log("${nationLabel}");
+console.log("${nationLabel[1]}");
   var ctx1 = document.getElementById('myChart1');
   var ctx2 = document.getElementById('myChart2');
   var ctx3 = document.getElementById('myChart3');
@@ -411,15 +412,29 @@ $(function(){
       type: 'pie',
       data: {
           labels: [
-             <c:forEach var="nl" items="${nationLabel}">
-             "${nl}",
-             </c:forEach>
+        	  <c:choose>
+        	  	<c:when test="${nationLabel[1] ne null}">
+             		<c:forEach var="nl" items="${nationLabel}">
+            		 "${nl}",
+             		</c:forEach>
+            	 </c:when>
+             	<c:otherwise>
+             	"프랑스","중국","일본","미국","인도"
+             	</c:otherwise>		
+             </c:choose>
           ],
           datasets: [{
               data: [
-                 <c:forEach var="nd" items="${nationData}">
-                 "${nd}",
-                 </c:forEach>
+            	  <c:choose>
+          	  			<c:when test="${nationLabel[1] ne null}">
+                		 <c:forEach var="nd" items="${nationData}">
+                			 "${nd}",
+                		 </c:forEach>
+                		</c:when>
+                         <c:otherwise>
+                          	"10","9","5","3","1"
+                         </c:otherwise>		
+                   </c:choose>
               ],
               backgroundColor: [
                   'rgba(255, 99, 132, 1)',

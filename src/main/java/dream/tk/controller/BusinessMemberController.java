@@ -311,8 +311,9 @@ public class BusinessMemberController {
 		m.addAttribute("monthData",monthData);
 		m.addAttribute("vsResult",vsResult);
 		m.addAttribute("vsMine",vsMine);
+		System.out.println(nationData);
 		}
-		
+		System.out.println("비지니스네임"+session.getAttribute("bizInfo"));
 		return "/memberB/dashboard";
 	}
 	
