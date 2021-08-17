@@ -1,0 +1,156 @@
+@charset "UTF-8";
+
+
+body {
+  color: #333;
+}
+
+hr {
+  margin: 48px 0;
+  background-color: #ccc;
+  height: 1px;
+  border: none;
+}
+
+p {
+  margin-bottom: 3em;
+}
+
+.logo_pic {
+  	 width: 140px;
+      height: 80px;   
+}
+
+a {
+  text-decoration: none;
+  color: #555;
+  text-transform: uppercase;
+  font-size: 85%;
+  font-weight: bold;
+}
+
+/************************************************/
+/* Header */
+/************************************************/
+header {
+  padding: 0 2em;
+  position: fixed;
+  top: 0;
+  background: #fff;
+  border-bottom: 2px solid #ccc;
+  width: 100%;
+  height: 126px;
+  transition: 0.3s ease-in-out;
+  z-index:10000;
+}
+
+header.shrink {
+  height: 96px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+header.shrink nav ul li {
+  line-height: 96px;
+}
+
+nav ul {
+  float: right;
+  margin: 0;
+
+}
+
+nav ul li {
+  display: inline;
+ 
+  margin-left: 24px;
+  list-style: none;
+  line-height: 126px;
+  transition: 0.3s ease-in-out;
+  font-size:24px;
+}
+
+#logo {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/************************************************/
+/* Container */
+/************************************************/
+.container {
+ min-height: 100px;
+}
+
+.container > section {
+	margin: 124px auto 0;
+  padding:50px;
+
+  text-align: center;
+}
+
+.container main p {
+  height: 50em;
+}
+
+/* 팝오버   */
+ .popover {
+        width: 450px;
+        height: 500px;
+        max-width: 100%;
+        overflow-y: scroll;
+      }
+.popover-body  li {
+        float: left;
+        list-style: none;
+        width: 50%;
+        text-align: center;
+        border-bottom: 1px solid #dbdbdb;
+        padding: 15px;
+      
+      }
+      
+.popover-body  li:hover{
+	cursor:pointer
+}      
+ #myp{float:right;}
+ 
+ .section{
+ margin-top:70px;
+ }
+ 
+i{
+	padding-top:10px;
+}
+
+/* 알람 */
+  .nav-counter {
+        position: absolute;
+        top: 1px;
+        right: 10px;
+        min-width: 8px;
+        height: 20px;
+        line-height: 20px;
+        margin-top: -11px;
+        padding: 0 6px;
+        font-weight: normal;
+        font-size: small;
+        color: white;
+        text-align: center;
+        text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+        background: #e23442;
+        border: 1px solid #911f28;
+        border-radius: 10px;
+        background-image: -webkit-linear-gradient(top, #e8616c, #dd202f);
+        background-image: -moz-linear-gradient(top, #e8616c, #dd202f);
+        background-image: -o-linear-gradient(top, #e8616c, #dd202f);
+        background-image: linear-gradient(to bottom, #e8616c, #dd202f);
+        -webkit-box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.1),
+          0 1px rgba(0, 0, 0, 0.12);
+        box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.1),
+          0 1px rgba(0, 0, 0, 0.12);
+      }
+
+.userIcon{
+	font-size:30px;
+}

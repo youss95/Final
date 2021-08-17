@@ -6,13 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Store_main.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/map.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Store_main.css?after">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/map.css?after">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+
 <style>
 * {
 	margin: 0;
@@ -24,10 +25,12 @@
 	margin: 0 auto;
 }
 
-header {
+.contain {
 	width: 100%;
-	height: 100px;
+	height: 127px;
 	float: center
+	-webkit-font-smoothing: antialiased;
+    box-sizing: border-box; 
 }
 
 aside {
@@ -49,7 +52,7 @@ section {
 /* 화면 너비 0 ~ 1540px */
 @media ( max-width : 1540px) {
 	#wrap {
-		width: 95%;
+		width: 100%;
 	}
 }
 /* 화면 너비 0 ~ 768px */
@@ -64,7 +67,7 @@ section {
 		width: 100%;
 	}
 	header {
-		height: 80px;
+		height: 300px;
 	}
 	aside {
 		float: none;
@@ -294,10 +297,12 @@ section {
 <body>
 	<div id="wrap">
 		<br>
-		<header style="font-size: 50px;">어서와? 한국은 처음이지?</header>
+		<div class="contain">
+			<%@include file="../layout/header_main.jsp" %>
+		</div>
+		
 		<aside>
 			<!-- 왼쪽 -->
-
 			<main role="main">
 				<ul class="flexgrid columns-news">
 					<c:forEach var="list" items="${viewAll}">
