@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,77 +9,12 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+ <link rel="stylesheet" href="/resources/css/formstyle.css" />
 </head>
 
 <style>
 
-.container  > section {
-  width: 1100px;
-  margin:0 auto;
-}
-.inp_chk {
-  display: inline-block;
-  height: 18px;
-  position: relative;
-  padding-left: 20px;
-  cursor: pointer;
-  line-height: 18px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  vertical-align: top;
-  text-indent: 5px;
-}
-.inp_chk input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-.inp_chk input:checked ~ .chkmark {
-  border-color: #ff3d68;
-  background-color: #ff3d68;
-}
-.inp_chk input:checked ~ .chkmark:after {
-  content: "";
-  position: absolute;
-  left: 4px;
-  top: 0;
-  width: 6px;
-  height: 9px;
-  border: solid #fff;
-  border-width: 0 2px 2px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-.inp_chk .chkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 18px;
-  width: 18px;
-  background-color: #fff;
-  border: 1px solid #ff3d68;
-  border-radius: 2px;
-  -webkit-transition: all ease 0.1s;
-  transition: all ease 0.1s;
-}
-.chk_group {
-  display: -webkit-flex;
-  display: -ms-flex;
-  display: flex;
-}
-.chk_group .inp_chk + .inp_chk {
-  margin-left: 20px;
-}
-.chk_group .chk_info {
-  display: inline-block;
-  margin-left: 5px;
-  color: #888dac;
-  line-height: 1.2;
-  vertical-align: top;
-}
+
 
 </style>
 
@@ -87,17 +24,33 @@
         <section class="prototype">
         
         <form action="/res/setTime" method="post">
-        <dt>사업장 이름</dt>
-		<dd><input type="text" class="inpform" name="businessName" placeholder="이름"></dd>
-        <dt>사업장 영어이름</dt>
-		<dd><input type="text" class="inpform" name="businessNameEng" placeholder="영어이름"></dd>
-		 <dt>사업장 전화번호</dt>
-		<dd><input type="text" class="inpform" name="businessContact" placeholder="01012341234"></dd>
-		 <dt>사업장 번호</dt>
-		<dd><input type="text" class="inpform" name="bizNum" placeholder="01012341234"></dd>
-		<dt>분류</dt>
-								<dd>
-									<div class="inp_slct">
+        <div>
+        <h3>사업장 이름</h3>
+		<input type="text" class="inpform" name="businessName" placeholder="이름">
+		</div>
+		<div>
+		<h3>사업장 영어이름</h3>
+		<input type="text" class="inpform" name="businessNameEng" placeholder="영어이름">
+		 </div>
+		 <div>
+		 <h3>사업장 전화번호</h3>
+		<input type="text" class="inpform" id="businessContact" name="businessContact" placeholder="01012341234">
+				<spring:hasBindErrors name="businessDTO">
+					<c:if test="${errors.hasFieldErrors('businessContact') }">
+
+						<strong style="color:red">${errors.getFieldError( 'businessContact' ).defaultMessage }</strong>
+
+					</c:if>
+
+				</spring:hasBindErrors>
+				</div>
+				<div>
+				<h3>사업장 번호</h3>
+		<input type="text" class="inpform" name="bizNum" placeholder="01012341234">
+		</div>
+		<h3>분류</h3>
+								
+									<div class="inp_slct" id="classify">
 										<select name="biz_type" id="biz_type">
 											<option value="">선택</option>
 											<option value="korean">Korean food</option>
@@ -110,14 +63,14 @@
 											<option value="bar">Bar</option>
 										</select>
 									</div>
-								</dd>
+								
 		
 		
 		
 											<div>
 												<h3 class="ad_h3 su_address">우편번호</h3>
-												<input type="text" " name="postcode" id="postcode"
-													class="inpform su_s_ip su_address" maxlength=5 required>
+												<input type="text"  name="postcode" id="postcode"
+													class="inpform" maxlength=5 required>
 												<button type="button" id="searchAddr"
 													class="btn_m btn_default su_btn_detail">우편번호검색</button>
 											</div>
@@ -125,52 +78,29 @@
 												<h3>도로명 주소</h3>
 												<input type="text" name="address1" id="address1"
 													class="inpform" placeholder="도로명/지번"
-													maxlength=100 required>
+													maxlength=100 >
 											</div>
 											<div>
 												<h3>상세 주소</h3>
-												<dd><input type="text" class="inpform" name="address2" id="address2" placeholder="Placeholder"></dd>
+												<input type="text" class="inpform" name="address2" id="address2" placeholder="Placeholder">
 												</div>
 											<div>
 											<h3>한글주소</h3>
-										<dd><input type="text" class="inpform" name="address1Kor" id="address1Kor" placeholder="한글주소"></dd>
+										<input type="text" class="inpform" name="address1Kor" id="address1Kor" placeholder="한글주소">
 											</div>
 									
-							<div>휴일</div>			
-	<!-- <div class="chk_group">
-		<label class="inp_chk"> <input type="checkbox" name="offday" id="mon" value="mon">
-			<span class="chkmark"></span> 월
-		</label> 
-		<label class="inp_chk"> <input type="checkbox" name="offday" id="tue" value="tue">
-			<span class="chkmark"></span> 화
-		</label>
-		<label class="inp_chk"> <input type="checkbox" name="offday" id="wedn" value="wedn">
-			<span class="chkmark"></span> 수
-		</label>
-		<label class="inp_chk"> <input type="checkbox" name="offday" id="thur" value="thur">
-			<span class="chkmark"></span> 목
-		</label>
-		<label class="inp_chk"> <input type="checkbox" name="offday" id="fri" value="fri">
-			<span class="chkmark"></span> 금
-		</label>
-		<label class="inp_chk"> <input type="checkbox" name="offday" id="sat" value="sat">
-			<span class="chkmark"></span> 토
-		</label>
-		<label class="inp_chk"> <input type="checkbox" name="offday" id="sun" value="sun">
-			<span class="chkmark"></span> 일
-		</label>
-	</div>
- -->
-
+								
+									
+							<h3>휴일</h3>			
 				<div class="rd_group">
-					<span class="inp_rd">
+					<div class="inp_rd">
 						<input type="radio" id="mon" name="offday" value="mon"> <label
 							for="m1">월</label>
-					</span>
-					<span class="inp_rd">
+					</div>
+					<div class="inp_rd">
 						<input type="radio" id="tue" name="offday" value="tue"> <label
 							for="m2">화</label>
-					</span>
+					</div>
 					<div class="inp_rd">
 						<input type="radio" id="wed" name="offday" value="wed"> <label
 							for="m3">수</label>
@@ -195,7 +125,7 @@
 
 
 				<br>
-						<div>영업시간</div>				
+						<h3>영업시간</h3>				
 <div class="chk_group">
 		<label class="inp_chk"> <input type="checkbox" name="onday" id="times1" value="12:00">
 			<span class="chkmark"></span> 12:00
@@ -214,9 +144,12 @@
 		</label>
 	</div>
 	<input type="hidden" name="seq" value="${binfo.seq}">
-	
-	<button type="submit">시간등록</button>
-</form>
+
+				<button type="button" id="submit"
+					class="btn_m btn_primary">등록</button>
+
+				
+			</form>
         
           </section>
       </div>
@@ -239,6 +172,14 @@ $(function() {
             }
         }).open();
     }
+	let phoneRegex = /^010\d{3,4}\d{4}$/;
+	/* $("#businessContact").on("blur", function() {
+		if(!phoneRegex.test($("#businessContact").val())){
+			alert("번호 확인")
+			return;
+		}
+	
+	}) */
 })
 
 

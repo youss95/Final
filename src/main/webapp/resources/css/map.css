@@ -7,6 +7,8 @@
 	height: 700px;
 }
 
+<!--
+-->
 .radius_border {
 	border: 1px solid #919191;
 	border-radius: 5px;
@@ -17,6 +19,7 @@
 	top: 10px;
 	right: 10px;
 	overflow: hidden;
+	width: 130px;
 	height: 30px;
 	margin: 0;
 	padding: 0;
@@ -89,7 +92,6 @@
 .custom_zoomcontrol span:first-child {
 	border-bottom: 1px solid #bfbfbf;
 }
-
 /* overlay */
 .overlay_info a {
 	display: block;
@@ -112,7 +114,7 @@
 .overlay_info .desc {
 	padding: 14px;
 	position: relative;
-	min-width: 190px;
+	min-width: 188px;
 	height: 56px
 }
 
@@ -120,8 +122,8 @@
 	font-size: 12px;
 	color: #333;
 	position: absolute;
-	left: 80px;
+	left: 14px;
 	right: 14px;
-	top: 24px;
+	top: 13px;
 	white-space: normal
 }
