@@ -77,4 +77,7 @@ public class StoreController {
 	public String detail() {
 		return "Store/StoreDetail";
 	}
+	
+	
+	
 }
