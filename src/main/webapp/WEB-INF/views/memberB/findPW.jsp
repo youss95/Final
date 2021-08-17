@@ -56,50 +56,88 @@ margin-bottom:15px;
 display:none
 }
 
+ .emailDnone{ 
+ display:none 
+ } 
+ 
+
     </style>
 
 
 <script>
 $(function(){
 	
-	$("#confirm").on("click",function(){
-		
-		let idReg = /^[a-z]+[a-z0-9]{5,19}$/g;
-		let id = $("#id").val();
-		let nameReg = /^.{2,30}$/;
-		let name = $("#name").val();
-		let emailReg = /^[0-9a-zA-Z_-]*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-		let email = $("#email").val();
-		
-		if (!idReg.test(id)) {
-			alert("아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.");
-			$("#id").focus();
-		}else if (!nameReg.test(name)) {
-			alert("이름은 2글자 이상 30글자 미만으로 입력해야 합니다.");
-			$("#name").focus();
-		}else if (!emailReg.test(email)) {
-			alert("이메일 형식을 확인해주세요.");
-			$("#email").focus();
-		}
-		
-		else{
-			$.ajax({
-				url:"/bMember/findPWProc",
-				data:{"id":$("#id").val(),"name":$("#name").val(), "email":$("#email").val()},
-			}).done(function(resp){
-				if(resp!=null&&resp!=''){
-					$("#checkId").val(resp);
-					$(".noneDiv").css("display","flex");
-					$("#noneDiv2").css("display","none");
-				}else{
-					$("#noneDiv2").css("display","block");
-					$("#noneDiv").css("display","none");
-				}
-				
-			})
-		}
-		
+	
+	//이메일 인증번호 & 회원정보 일치 체크
+	$("#emailSend").on("click",function(){
+		$.ajax({
+			url:"${pageContext.request.contextPath}/bMember/checkAndEmailSend",
+			data:{"id":$("#id").val(),"name":$("#name").val(), "email":$("#email").val()}
+		}).done(function(resp){
+			if(resp=="0"){
+				$("#noneDiv2").css("display","block");
+			}
+			else{
+				$("#sendNum").val(resp);
+				$("#checkId").val($("#id").val());
+				$("#noneDiv2").css("display","none");
+				$(".emailDnone").css("display","flex");
+			}
+		}).fail(function(){
+			alert("이메일 발송에 실패하였습니다. 다시 시도해주세요.")
+		})
 	})
+	//이메일 인증번호 확인
+	$("#emailConfirm").on("click",function(){
+	if($("#emailNum").val() == $("#sendNum").val()){
+		$("#eResult").text("이메일 주소가 인증되었습니다.");
+		$(".noneDiv").css("display","flex");
+	}else{
+		$("#eResult").text("이메일 인증 실패! 다시 시도해주세요.")
+	}
+	})
+	
+	
+	
+	
+// 	$("#confirm").on("click",function(){
+		
+// 		let idReg = /^[a-z]+[a-z0-9]{5,19}$/g;
+// 		let id = $("#id").val();
+// 		let nameReg = /^.{2,30}$/;
+// 		let name = $("#name").val();
+// 		let emailReg = /^[0-9a-zA-Z_-]*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+// 		let email = $("#email").val();
+		
+// 		if (!idReg.test(id)) {
+// 			alert("아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.");
+// 			$("#id").focus();
+// 		}else if (!nameReg.test(name)) {
+// 			alert("이름은 2글자 이상 30글자 미만으로 입력해야 합니다.");
+// 			$("#name").focus();
+// 		}else if (!emailReg.test(email)) {
+// 			alert("이메일 형식을 확인해주세요.");
+// 			$("#email").focus();
+// 		}
+		
+// 		else{
+// 			$.ajax({
+// 				url:"/bMember/findPWProc",
+// 				data:{"id":$("#id").val(),"name":$("#name").val(), "email":$("#email").val()},
+// 			}).done(function(resp){
+// 				if(resp!=null&&resp!=''){
+// 					$("#checkId").val(resp);
+// 					$(".noneDiv").css("display","flex");
+// 					$("#noneDiv2").css("display","none");
+// 				}else{
+// 					$("#noneDiv2").css("display","block");
+// 					$("#noneDiv").css("display","none");
+// 				}
+				
+// 			})
+// 		}
+		
+// 	})
 	
 	
 	$("#pwFrm").on("submit",function(){
@@ -164,11 +202,23 @@ $(function(){
                     <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                  </div>
                 <input id="email" name="email" class="form-control" placeholder="Email address" type="email">
+                <button id="emailSend" type="button" class="btn btn-primary">&nbsp;Send&nbsp;</button>
             </div> <!-- form-group// -->
             
-            <div class="form-group">
-        		<button id="confirm" type="button" class="btn btn-primary btn-block"> Confirm  </button>
-    		</div> <!-- form-group// -->      
+            <div class="form-group input-group emailDnone">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                 </div>
+                <input name="emailNum" id="emailNum" class="form-control" placeholder="이메일 인증번호" type="text">
+                <input type='hidden' id='sendNum'>
+                <button id="emailConfirm" type="button" class="btn btn-primary" style="font-size:13px">Confirm</button>
+            </div> <!-- form-group// -->
+			<div id="eResult" class="result"></div>
+			
+            
+<!--             <div class="form-group noneBtn"> -->
+<!--         		<button id="confirm" type="button" class="btn btn-primary btn-block"> Change Your PW </button> -->
+<!--     		</div> form-group//       -->
             
             
             <form id="pwFrm" action="${pageContext.request.contextPath}/bMember/changePW" >

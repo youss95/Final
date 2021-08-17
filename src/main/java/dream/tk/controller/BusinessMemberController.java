@@ -103,6 +103,15 @@ public class BusinessMemberController {
 			return -1; //에러
 		}
 	}
+	@ResponseBody
+	@RequestMapping("checkAndEmailSend")
+	public String checkAndEmailSend(String id, String name, String email) throws Exception {
+		String resultid= ser.findPW(id, name, email);
+		if(resultid != null) {
+		return eser.sendEmailConfirm(name, email);
+		}
+		return "0";
+	}
 	
 	@RequestMapping("signup")
 	public String signup(HttpServletRequest request, Model m) {
