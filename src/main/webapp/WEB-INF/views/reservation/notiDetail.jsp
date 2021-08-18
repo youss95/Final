@@ -23,7 +23,9 @@ margin-top:300px;
         <section class="notiDetail">
         <div>  <h3>알람</h3></div>
      
-       
+       <c:forEach var="notiList" items="${notiList}">
+       ${notiList.content}
+       </c:forEach>
         
           </section>
  </div>

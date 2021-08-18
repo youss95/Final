@@ -47,6 +47,8 @@ public class NotificationController {
 	@GetMapping("/detail")
 	public String notiDetail(String userId,Model model) {
 		List<NotificationDTO> list = notiService.getAllNotis(userId);
+		notiService.alarmRead();  //알람 읽음을 표시
+		System.out.println(list.toString());
 		model.addAttribute("notiList",list);
 		return "/reservation/notiDetail";
 	}

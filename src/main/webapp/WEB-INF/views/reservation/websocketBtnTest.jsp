@@ -47,7 +47,7 @@ $(function(){
 	$.ajax({
 		
 	url:"/noti/alarmCounts",
-	 data:{userId:'${binfo.name}'}
+	 data:{userId:'${loginID}'}
 
 	}).done(function(resp){
 		console.log(resp)

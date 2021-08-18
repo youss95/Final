@@ -19,7 +19,11 @@ public class NotificationService {
 	}
 	
 	public List<NotificationDTO> getAllNotis(String userId){
+		System.out.println(notiDao.allNotis(userId));
 		return notiDao.allNotis(userId);
 	}
-	
+
+	public void alarmRead() {
+		notiDao.alarmRead();
+	}
 }

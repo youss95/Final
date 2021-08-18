@@ -19,7 +19,12 @@ public class NotificationDAO {
 	}
 	
 	public List<NotificationDTO> allNotis(String userId){
+		System.out.println("dao 이름: "+userId);
 		return mybatis.selectList("notiMapper.allNotis",userId);
+	}
+	
+	public void alarmRead() {
+		mybatis.update("notiMapper.alarmRead");
 	}
 	
 }

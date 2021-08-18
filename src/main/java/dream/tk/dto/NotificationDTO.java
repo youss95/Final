@@ -8,7 +8,7 @@ public class NotificationDTO {
 	private String userId;
 	private String content;
 	private Date noti_createDate;
-	private Date noti_readDate;
+	private String noti_readDate;
 	public int getNoti_no() {
 		return noti_no;
 	}
@@ -33,13 +33,13 @@ public class NotificationDTO {
 	public void setNoti_createDate(Date noti_createDate) {
 		this.noti_createDate = noti_createDate;
 	}
-	public Date getNoti_readDate() {
+	public String getNoti_readDate() {
 		return noti_readDate;
 	}
-	public void setNoti_readDate(Date noti_readDate) {
+	public void setNoti_readDate(String noti_readDate) {
 		this.noti_readDate = noti_readDate;
 	}
-	public NotificationDTO(int noti_no, String userId, String content, Date noti_createDate, Date noti_readDate) {
+	public NotificationDTO(int noti_no, String userId, String content, Date noti_createDate, String noti_readDate) {
 		super();
 		this.noti_no = noti_no;
 		this.userId = userId;
@@ -55,6 +55,9 @@ public class NotificationDTO {
 		return "NotificationDTO [noti_no=" + noti_no + ", userId=" + userId + ", content=" + content
 				+ ", noti_createDate=" + noti_createDate + ", noti_readDate=" + noti_readDate + "]";
 	}
+	
+	
+	
 	
 	
 	
