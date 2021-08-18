@@ -28,5 +28,4 @@ margin-top:300px;
           </section>
  </div>
 
-</body>
-</html>
+<%@include file="../layout/alarm.jsp" %>
