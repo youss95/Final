@@ -300,6 +300,9 @@ section {
 		<div class="contain">
 			<%@include file="../layout/header_main.jsp" %>
 		</div>
+			<%@include file="banner.jsp" %>
+		
+		
 		
 		<aside>
 			<!-- 왼쪽 -->

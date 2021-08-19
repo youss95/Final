@@ -13,17 +13,17 @@
 	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <!--별점-->
-<link rel='stylesheet'
-	href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Store_detail.css?after">
 <link rel='stylesheet'
 	href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 
 
 
@@ -60,13 +60,13 @@ section {
 	height: 700px;
 }
 
-footer {
+.foot {
 	float: left;
 	width: 65%;
 	height: 300px;
 }
 
-feOffset {
+.footer {
 	width: 35%;
 	height: 300px;
 }
@@ -100,6 +100,14 @@ feOffset {
 		width: 100%;
 		height: 300px;
 	}
+}
+.form-group{
+	width:600px;
+	height:100px;
+}
+.form-group > input{
+	width:800px;
+	height:100%;
 }
 </style>
 </head>
@@ -260,28 +268,30 @@ feOffset {
             </script>
             <br><br>
 		</section>
-		<footer>
+		<div class="foot">
+			<!-- 지워지면 망 -->
 			<!--  댓글  -->
-			<div class="container">
-				<label for="content">comment</label>
-				<form name="commentInsertForm">
-					<div class="input-group">
-						<input type="hidden" id="bno" name="bno"
-							value="${list.store_seq }" /> <input type="text"
-							class="form-control" id="content" name="content"
-							placeholder="내용을 입력하세요."> <span class="input-group-btn">
-							<button class="btn btn-default" type="button"
-								name="commentInsertBtn">등록</button>
-						</span>
-					</div>
-				</form>
-			</div>
-			<div class="container">
+			
+	<div class="containers">
+			 <div class="well">
+                    <h4><i class="fa fa-paper-plane-o"></i> Leave a Comment:</h4>
+                    <form role="form" name="commentInsertForm">
+                         <input type="hidden" id="bno" name="bno" value="${list.store_seq }"  /> 
+                        <div class="form-group">
+                      		<input type="text"  class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">                
+                        </div>
+                        <button type="button"  value="" class="btn btn-primary" name="commentInsertBtn" style="left: 0;"><i class="fa fa-reply"></i>Submit</button>
+                    </form>
+                </div>
+                </div>
+			
+			<div class="containers">
 				<div class="commentList"></div>
 			</div>
 	</div>
+	
 
-	</footer>
+	
 
 	<script>
 		var bno = $("#bno").val(); //게시글 번호
@@ -289,7 +299,7 @@ feOffset {
 			var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
 			commentInsert(insertData); //Insert 함수호출(아래)
 		});
-		//댓글 목록 
+		//댓글 목록
 		function commentList() {
 			$.ajax({
 			url : '/comment/list',
@@ -303,27 +313,26 @@ feOffset {
 				.each(
 							data,
 									function(key, value) {
-												a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 20px;">';
-												a += '<div class="commentInfo'+value.cno+'">'
-														+ '댓글번호 : '
-														+ value.cno
-														+ ' / 작성자 : '
-														+ value.writer;
-														+ ' / 작성 시간 : '
-														+ value.reg_Date;		
-												
+												a += '<div class="col-sm-12"><div class="panel panel-default"><div class="panel-heading">'
+												a += '<h3><i class="fa fa-comment"></i> '+ value.writer +'<small> 날짜 : ' + value.reg_date;
+												a += ' <div class="commentInfo'+ value.cno+'">'
+												a += '<br>'
 												a += '<a onclick="commentUpdate('
-														+ value.cno
-														+ ',\''
-														+ value.content
-														+ '\');"> 수정 </a>';
+													+ value.cno
+													+ ',\''
+													+ value.content
+													+ '\');"> 수정하기 </a>';
+														
+														
 												a += '<a onclick="commentDelete('
 														+ value.cno
-														+ ');"> 삭제 </a> </div>';
-												a += '<div class="commentContent'+value.cno+'"> <p> 내용 : '
+														+ ');"> 삭제하기 </a></div></small></h3></div>';
+														
+												a += '<div class="panel-body"><div class="panel-body'+ value.cno + '"><p>'
 														+ value.content
 														+ '</p>';
-												a += '</div></div>';
+														
+												a += '</div></div></div></div>';
 											});
 
 							$(".commentList").html(a);
@@ -351,21 +360,21 @@ feOffset {
 		//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
 		function commentUpdate(cno, content) {
 			var a = '';
-			a += '<br>'
-			a += '<div class="input-group">';
-			a += '<input type="text" class="form-control" name="content_'+cno+'" value="'+content+'"/>';
-			a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('
-					+ cno + ');">수정</button> </span>';
-			a += '</div>';
 
-			$('.commentContent' + cno).html(a);
+			a += '<div class="col-sm-12"><div class="panel panel-default"><div class="panel-heading" style="height:145px">';
+			a += '<div class="form-group">';
+			a += '<input type="text" class="form-control" name="content_'+cno+'" value="'+content+'"/>';
+			a += '<button class="btn btn-primary" style="left:0" type="button" onclick="commentUpdateProc('
+					+ cno + ');">수정하기</button>';
+			a += '</div></div></div>';
+
+			$('.panel-body' + cno).html(a);
 
 		}
 
 		//댓글 수정
 		function commentUpdateProc(cno) {
 			var updateContent = $('[name=content_' + cno + ']').val();
-
 			$.ajax({
 				url : '/comment/update',
 				type : 'post',
@@ -401,7 +410,7 @@ feOffset {
 
 	<!-- ---------------------------------------------- -->
 	
-	<feOffset> <a href="/chat/makeChat?store=${list.businessName }">
+	<div class="footer"> <a href="/chat/makeChat?store=${list.businessName }">
 		<div class="chat" onclick="this.classList.toggle('active')">
 			<div class="background"></div>
 			<svg class="chat-bubble" width="100" height="100"
@@ -437,7 +446,8 @@ feOffset {
 				//위의 if문에 대한 조건 아닌경우 fix라는 class를 삭제함  
 			}
 		});
-	</script> </feOffset>
+	</script> 
+	</div>
 	</div>
 </body>
 </html>
