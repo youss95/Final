@@ -2,7 +2,9 @@ package dream.tk.controller;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,13 +12,19 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dream.tk.api.SHA256;
+import dream.tk.api.VerifyRecaptcha;
 import dream.tk.dto.BusinessDTO;
+import dream.tk.dto.BusinessFileDTO;
 import dream.tk.dto.BusinessMemberDTO;
+import dream.tk.service.BusinessFileService;
 import dream.tk.service.BusinessMemberService;
+import dream.tk.service.EmailService;
 
 @RequestMapping("/bMember")
 @Controller
@@ -24,8 +32,21 @@ public class BusinessMemberController {
 	
 	@Autowired
 	private BusinessMemberService ser;
+	
+	@Autowired
+	private BusinessFileService fser;
+	
+	@Autowired
+	private EmailService eser;
+	
 	@Autowired
 	private HttpSession session;
+	
+	@ExceptionHandler
+	public String exceptionHandler(Exception e) {
+		e.printStackTrace();
+		return "error";
+	}
 	
 	@RequestMapping("signupForm")
 	public String test() {
@@ -45,7 +66,9 @@ public class BusinessMemberController {
 			BusinessMemberDTO dto = ser.getInfo(id);
 			session.setAttribute("binfo", dto);
 			
-			int bizSeq = dto.getSeq();
+			//int bizSeq = ser.getSeq(id);
+			BusinessMemberDTO sessiondto = (BusinessMemberDTO) session.getAttribute("binfo");
+			int bizSeq = sessiondto.getSeq();
 			BusinessDTO bizdto = ser.getBizInfo(bizSeq);
 			session.setAttribute("bizInfo", bizdto);
 			return "/memberB/loginView";
@@ -61,6 +84,35 @@ public class BusinessMemberController {
 		return String.valueOf(result);
 	}
 	
+	@ResponseBody
+	@RequestMapping("emailSend")
+	public String emailSend(String name, String email) throws Exception {
+		return eser.sendEmailConfirm(name, email);
+	}
+	@ResponseBody
+	@RequestMapping(value = "verifyRecaptcha", method = RequestMethod.POST)
+	public int VerifyRecaptcha(HttpServletRequest request) {
+		VerifyRecaptcha.setSecretKey("6Ld-7eIbAAAAAHKQ6aWGRpvswCfWIykH7oqieuNY");
+		String gRecaptchaResponse = request.getParameter("recaptcha");
+		try {
+			if(VerifyRecaptcha.verify(gRecaptchaResponse))
+				return 0; // 성공
+			else return 1; // 실패
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1; //에러
+		}
+	}
+	@ResponseBody
+	@RequestMapping("checkAndEmailSend")
+	public String checkAndEmailSend(String id, String name, String email) throws Exception {
+		String resultid= ser.findPW(id, name, email);
+		if(resultid != null) {
+		return eser.sendEmailConfirm(name, email);
+		}
+		return "0";
+	}
+	
 	@RequestMapping("signup")
 	public String signup(HttpServletRequest request, Model m) {
 		String id = request.getParameter("id");
@@ -74,7 +126,7 @@ public class BusinessMemberController {
 		String phone = phone1 + phone2+ phone3;
 		
 	
-		BusinessMemberDTO dto = new BusinessMemberDTO(0,id,pw,name,email,phone,null,null);
+		BusinessMemberDTO dto = new BusinessMemberDTO(0,id,pw,name,email,phone,null,null,null);
 		
 		int result = ser.signup(dto);
 		m.addAttribute("result", result);
@@ -84,9 +136,17 @@ public class BusinessMemberController {
 	
 	@RequestMapping("myPage")
 	public String myPage(Model m) {
-		int bizSeq = ((BusinessMemberDTO) session.getAttribute("binfo")).getSeq();
+		
+		BusinessMemberDTO dto = (BusinessMemberDTO) session.getAttribute("binfo");
+		int bizSeq = dto.getSeq();
+
 		BusinessDTO bizdto = ser.getBizInfo(bizSeq);
 		m.addAttribute("bizInfo", bizdto);
+		
+		String id = dto.getId();
+		List<BusinessFileDTO> flist = fser.getFlist(id);
+		m.addAttribute("flist", flist);
+	
 		return "/memberB/myPage";
 	}
 	
@@ -105,9 +165,9 @@ public class BusinessMemberController {
 			String originPw=((BusinessMemberDTO) session.getAttribute("binfo")).getPw();
 			dto.setPw(originPw);
 		}
-		dto.setSeq(40);
-		dto.setPremium("No");
-		dto.setPrm_exp_date(new Date(0));
+//		dto.setSeq(0);
+//		dto.setPremium("No");
+//		dto.setPrm_exp_date(new Date(0));
 		
 		ser.editPersonalInfo(dto);
 		BusinessMemberDTO newdto =ser.getInfo((String) session.getAttribute("loginID"));
@@ -130,7 +190,7 @@ public class BusinessMemberController {
 	@RequestMapping("findPWForm")
 	public String findPWForm(){
 		return "/memberB/findPW";
-	}
+	} 
 	
 	@ResponseBody
 	@RequestMapping("findPWProc")
@@ -165,7 +225,103 @@ public class BusinessMemberController {
 	}
 	
 	@RequestMapping("dashboard")
-	public String dashboard() {
+	public String dashboard(Model m) {
+		if(session.getAttribute("bizInfo")!=null) {
+		String businessName =((BusinessDTO) session.getAttribute("bizInfo")).getBusinessName();
+		
+		int totalRes = ser.getTotalRes(businessName);
+		
+		List<Map<String, String>> ageResult = ser.getReserveAge(businessName);
+		
+		List<Object> ageData = new ArrayList<>(Arrays.asList(0,0,0,0,0));	
+		for(int i=0; i<ageResult.size(); i++) {
+			
+			if(ageResult.get(i).get("연령대").equals("10대")) {
+				ageData.set(0,ageResult.get(i).get("COUNT(연령대)"));
+			}
+			else if(ageResult.get(i).get("연령대").equals("20대")) {
+				ageData.set(1,ageResult.get(i).get("COUNT(연령대)"));
+			}
+			else if(ageResult.get(i).get("연령대").equals("30대")) {
+				ageData.set(2,ageResult.get(i).get("COUNT(연령대)"));
+			}
+			else if(ageResult.get(i).get("연령대").equals("40대")) {
+				ageData.set(3,ageResult.get(i).get("COUNT(연령대)"));
+			}
+			else if(ageResult.get(i).get("연령대").equals("50대")) {
+				ageData.set(4,ageResult.get(i).get("COUNT(연령대)"));
+			}
+		}
+		
+		
+		List<Map<String, String>> nationResult = ser.getReserveNation(businessName);
+
+		List<Object> nationLabel = new ArrayList<>(); 
+		List<Object> nationData = new ArrayList<>(); 
+		
+		for(int i=0; i<nationResult.size(); i++) {
+			nationLabel.add(nationResult.get(i).get("국적"));
+			nationData.add(nationResult.get(i).get("COUNT(*)"));
+		}
+		
+		
+		
+		
+		
+		List<Map<String, String>> monthResult = ser.getReserveMonth(businessName);
+		List<Object> monthData = new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0,0,0,0,0,0));
+		for(int i=0; i<monthResult.size(); i++) {
+			if(monthResult.get(i).get("월").equals("1월")) {
+				monthData.set(0, monthResult.get(i).get("COUNT(*)"));
+			}
+			else if(monthResult.get(i).get("월").equals("2월")) {
+				monthData.set(1, monthResult.get(i).get("COUNT(*)"));
+			}
+			else if(monthResult.get(i).get("월").equals("3월")) {
+				monthData.set(2, monthResult.get(i).get("COUNT(*)"));
+			}
+			else if(monthResult.get(i).get("월").equals("4월")) {
+				monthData.set(3, monthResult.get(i).get("COUNT(*)"));
+			}
+			else if(monthResult.get(i).get("월").equals("5월")) {
+				monthData.set(4, monthResult.get(i).get("COUNT(*)"));
+			}
+			else if(monthResult.get(i).get("월").equals("6월")) {
+				monthData.set(5, monthResult.get(i).get("COUNT(*)"));
+			}
+			else if(monthResult.get(i).get("월").equals("7월")) {
+				monthData.set(6, monthResult.get(i).get("COUNT(*)"));
+			}
+			else if(monthResult.get(i).get("월").equals("8월")) {
+				monthData.set(7, monthResult.get(i).get("COUNT(*)"));
+			}
+			else if(monthResult.get(i).get("월").equals("9월")) {
+				monthData.set(8, monthResult.get(i).get("COUNT(*)"));
+			}
+			else if(monthResult.get(i).get("월").equals("10월")) {
+				monthData.set(9, monthResult.get(i).get("COUNT(*)"));
+			}
+			else if(monthResult.get(i).get("월").equals("11월")) {
+				monthData.set(10, monthResult.get(i).get("COUNT(*)"));
+			}
+			else if(monthResult.get(i).get("월").equals("12월")) {
+				monthData.set(11, monthResult.get(i).get("COUNT(*)"));
+			}
+		}
+		
+		String biz_type = ((BusinessDTO) session.getAttribute("bizInfo")).getBiz_type();
+		Map<String, String> vsResult = ser.getVs(biz_type);
+		Map<String, String> vsMine = ser.getVsMine(businessName);
+		
+		m.addAttribute("totalRes", totalRes);
+		m.addAttribute("ageData", ageData);
+		m.addAttribute("nationLabel", nationLabel);
+		m.addAttribute("nationData",nationData);
+		m.addAttribute("monthData",monthData);
+		m.addAttribute("vsResult",vsResult);
+		m.addAttribute("vsMine",vsMine);
+		
+		}
 		return "/memberB/dashboard";
 	}
 	
@@ -173,4 +329,10 @@ public class BusinessMemberController {
 	public String chatting() {
 		return "/memberB/chatting";
 	}
+	
+	@RequestMapping("store")
+	public String store() {
+		return "/Store/StoreDetail";
+	}
+
 }
