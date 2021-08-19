@@ -1,5 +1,6 @@
 package dream.tk.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import dream.tk.dao.NotificationDAO;
 import dream.tk.dto.NotificationDTO;
+import dream.tk.util.DateFormatChange;
 
 @Service
 public class NotificationService {
@@ -20,6 +22,7 @@ public class NotificationService {
 	
 	public List<NotificationDTO> getAllNotis(String userId){
 		System.out.println(notiDao.allNotis(userId));
+	
 		return notiDao.allNotis(userId);
 	}
 
