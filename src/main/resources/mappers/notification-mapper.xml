@@ -9,8 +9,16 @@
   select count(*) from notification where userId = #{userId} and noti_readDate = 'N'
   </select>
   
+  <select id="countForPaging" resultType="int">
+  select count(*) from notification where userId= #{userId}
+  </select>
+  
   <select id="allNotis" resultType="dream.tk.dto.NotificationDTO">
-  select noti_no,userId,content,noti_createDate ,noti_readDate from notification where userId = #{userId}
+   <![CDATA[
+  select * from (select row_number() over(order by noti_no desc) rnum,
+noti_no,userId,content,noti_createDate,noti_readDate from notification where userId= #{userId}) 
+where rnum between #{firstNum} and #{secondNum}
+   ]]>
   </select>
   
   <!-- 읽지 않은 알람을 읽으면 읽음으로 update  -->

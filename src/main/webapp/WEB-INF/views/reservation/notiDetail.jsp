@@ -44,8 +44,33 @@ margin-top:300px;
   </tbody>
  
 </table>
-      
-        
+     
+        <navi aria-label="Page navigation example ">
+  <ul class="pagination mt-4 justify-content-center align-items-center">
+  <c:choose>
+  <c:when test="${param.page<=1}">
+   <li class="page-item  "><a class="page-link"     onclick="alert('이전 페이지가 없습니다.');">Previous</a></li>
+    </c:when>
+    <c:otherwise>
+     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/noti/detail?userId=${loginID}&page=${param.page-1}">Previous</a></li>
+     </c:otherwise>
+    </c:choose>
+    <c:forEach var="i" begin="${paging.startNum}" end="${paging.endPage}" step="1">
+    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/noti/detail?userId=${loginID}&page=${param.page+1}">${i}</a></li>
+   </c:forEach>
+   
+   <c:choose>
+   
+   	<c:when test="${param.page >= paging.endPage }">
+   		<li class="page-item  "><a class="page-link"     onclick="alert('마지막 페이지 입니다.');">Next</a></li>
+   	</c:when>
+   	<c:otherwise>
+   	 <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/noti/detail?userId=${loginID}&page=${param.page+1}">Next</a></li>
+   	</c:otherwise>
+    </c:choose>
+  </ul>
+  
+</navi>
           </section>
  </div>
 

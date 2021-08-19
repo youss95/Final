@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import dream.tk.dto.AlarmPaginDTO;
 import dream.tk.dto.NotificationDTO;
 import dream.tk.service.NotificationService;
 import dream.tk.service.ReservationService;
@@ -45,10 +46,15 @@ public class NotificationController {
 	}
 	
 	@GetMapping("/detail")
-	public String notiDetail(String userId,Model model) {
-		List<NotificationDTO> list = notiService.getAllNotis(userId);
+	public String notiDetail(String userId,int page, Model model) {
+		
+		
+		
+		List<NotificationDTO> list = notiService.getAllNotis(userId,page);
+		AlarmPaginDTO dto = notiService.getPaging(userId, page);
 		notiService.alarmRead();  //알람 읽음을 표시
 		System.out.println(list.toString());
+		model.addAttribute("paging",dto);
 		model.addAttribute("notiList",list);
 		return "/reservation/notiDetail";
 	}
