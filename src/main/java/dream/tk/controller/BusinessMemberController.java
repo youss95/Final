@@ -126,7 +126,7 @@ public class BusinessMemberController {
 		String phone = phone1 + phone2+ phone3;
 		
 	
-		BusinessMemberDTO dto = new BusinessMemberDTO(0,id,pw,name,email,phone,null,null);
+		BusinessMemberDTO dto = new BusinessMemberDTO(0,id,pw,name,email,phone,null,null,null);
 		
 		int result = ser.signup(dto);
 		m.addAttribute("result", result);
@@ -165,9 +165,9 @@ public class BusinessMemberController {
 			String originPw=((BusinessMemberDTO) session.getAttribute("binfo")).getPw();
 			dto.setPw(originPw);
 		}
-		dto.setSeq(40);
-		dto.setPremium("No");
-		dto.setPrm_exp_date(new Date(0));
+//		dto.setSeq(0);
+//		dto.setPremium("No");
+//		dto.setPrm_exp_date(new Date(0));
 		
 		ser.editPersonalInfo(dto);
 		BusinessMemberDTO newdto =ser.getInfo((String) session.getAttribute("loginID"));
@@ -190,7 +190,7 @@ public class BusinessMemberController {
 	@RequestMapping("findPWForm")
 	public String findPWForm(){
 		return "/memberB/findPW";
-	}
+	} 
 	
 	@ResponseBody
 	@RequestMapping("findPWProc")
@@ -255,7 +255,7 @@ public class BusinessMemberController {
 		
 		
 		List<Map<String, String>> nationResult = ser.getReserveNation(businessName);
-		//List<Object> nationData = new ArrayList<>(Arrays.asList(0,0,0,0,0));	
+
 		List<Object> nationLabel = new ArrayList<>(); 
 		List<Object> nationData = new ArrayList<>(); 
 		
@@ -263,7 +263,7 @@ public class BusinessMemberController {
 			nationLabel.add(nationResult.get(i).get("국적"));
 			nationData.add(nationResult.get(i).get("COUNT(*)"));
 		}
-		//System.out.println(nationLabel.get(0)+" : "+nationData.get(0));
+		
 		
 		
 		
@@ -320,9 +320,8 @@ public class BusinessMemberController {
 		m.addAttribute("monthData",monthData);
 		m.addAttribute("vsResult",vsResult);
 		m.addAttribute("vsMine",vsMine);
-		System.out.println(nationData);
+		
 		}
-		System.out.println("비지니스네임"+session.getAttribute("bizInfo"));
 		return "/memberB/dashboard";
 	}
 	
@@ -335,14 +334,5 @@ public class BusinessMemberController {
 	public String store() {
 		return "/Store/StoreDetail";
 	}
-//	@RequestMapping("getDashboard")
-//	public String getStat() {
-//		String businessName ="pipipi";
-//		List<Map<Object, Object>> result = ser.getReserveAge(businessName);
-////		ser.getReserveNation();
-////		ser.getReserveMonth();
-//		System.out.println("결과는? " + result);
-//		System.out.println("결과는? " + result.get(2));
-//		return "/memberB/dashboard";
-//	}
+
 }
