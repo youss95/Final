@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bFile">
+
+	<insert id="insert">
+		insert into business_file values(business_file_seq.nextval, #{oriName},#{sysName},#{id},sysdate)
+	</insert>
+
+	
+	<select id="getFlist" resultType="dream.tk.dto.BusinessFileDTO">
+		select * from business_file where parent_id=#{value}
+	</select>
+
+
+	<delete id="delete">
+		delete business_file where seq=#{value}
+	</delete>
+
+	<select id="getSysName" resultType="string">
+		select sysname from business_file where seq=#{value}
+	</select>
+	
+</mapper>

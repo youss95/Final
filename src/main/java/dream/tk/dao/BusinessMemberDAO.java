@@ -3,6 +3,7 @@ package dream.tk.dao;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -37,6 +38,10 @@ public class BusinessMemberDAO {
 		return mybatis.selectOne("bMem.getInfo", id);
 	}
 	
+	public int getSeq(String id) {
+		return mybatis.selectOne("bMem.getSeq", id);
+	}
+	
 	public int editPersonalInfo(BusinessMemberDTO dto) {
 		return mybatis.delete("bMem.editPersonalInfo", dto);
 	}
@@ -60,4 +65,34 @@ public class BusinessMemberDAO {
 	public int editBizInfo(BusinessDTO dto) {
 		return mybatis.update("bMem.editBizInfo", dto);
 	}
+	
+	
+	
+	
+	public int getTotalRes(String businessName) {
+		return mybatis.selectOne("bMem.getTotalRes", businessName);
+	}
+	
+	public List<Map<String, String>> getReserveAge(String businessName) {
+		//return (List<Map<Object, Object>>) mybatis.selectMap("bMem.getReserveAge",businessName);
+		return mybatis. selectList("bMem.getReserveAge",businessName);
+	}
+	
+	public List<Map<String, String>> getReserveNation(String businessName) {
+		return mybatis. selectList("bMem.getReserveNation",businessName);
+	}
+	
+	public List<Map<String, String>> getReserveMonth(String businessName) {
+		return mybatis. selectList("bMem.getReserveMonth",businessName);
+	}
+	
+	public Map<String, String> getVs(String biz_type) {
+		return mybatis. selectOne("bMem.getVs",biz_type);
+	}
+	
+	public Map<String, String> getVsMine(String businessName) {
+		return mybatis. selectOne("bMem.getVsMine",businessName);
+	}
+	
+	
 }
