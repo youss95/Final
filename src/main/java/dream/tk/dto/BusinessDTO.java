@@ -5,6 +5,9 @@ package dream.tk.dto;
 import java.util.Arrays;
 import java.util.Date;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 public class BusinessDTO {
 
 	private int biz_seq;
@@ -12,6 +15,8 @@ public class BusinessDTO {
 	private String bizNum;
 	private String businessName;
 	private String businessNameEng;
+	@Size(min=4,max=10)
+	@Pattern(regexp ="^010\\d{3,4}\\d{4}$",message = "핸드폰 번호를 확인하세요. ex)01012341234")
 	private String businessContact;
 	private String address1;
 	private String address2;

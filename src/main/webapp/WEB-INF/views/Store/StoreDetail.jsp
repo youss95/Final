@@ -7,20 +7,23 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!--틀 리스트-->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Store_main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Store_main.css?after">
 <!--슬라이드-->
 <link rel="stylesheet"
 	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <!--별점-->
-<link rel='stylesheet'
-	href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Store_detail.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Store_detail.css?after">
 <link rel='stylesheet'
 	href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 
 
 
@@ -30,37 +33,47 @@
 	padding: 0;
 }
 
-header {
+.contain {
+	width: 100%;
+	height: 106px;
+	float: center
+	-webkit-font-smoothing: antialiased;
+    box-sizing: border-box; 
+}
+
+
+.headers {
 	width: 100%;
 	height: 250px;
 }
+
+
 
 aside {
 	float: left;
 	width: 65%;
 	height: 700px;
 }
-
 section {
 	float: left;
 	width: 35%;
 	height: 700px;
 }
 
-footer {
+.foot {
 	float: left;
 	width: 65%;
 	height: 300px;
 }
 
-feOffset {
+.footer {
 	width: 35%;
 	height: 300px;
 }
 
-@media ( max-width : 1220px) {
+@media ( max-width : 1540px) {
 	#wrap {
-		width: 95%;
+		width: 100%;
 	}
 }
 /* 화면 너비 0 ~ 768px */
@@ -88,11 +101,23 @@ feOffset {
 		height: 300px;
 	}
 }
+.form-group{
+	width:600px;
+	height:100px;
+}
+.form-group > input{
+	width:800px;
+	height:100%;
+}
 </style>
 </head>
 <body>
 	<div id="wrap">
-		<header>
+	<br>
+		<div class="contain">
+			<%@include file="../layout/header_main.jsp" %>
+		</div>
+		<div class="headers">
 			<div class="swiper-container mySwiper">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide">Slide 1</div>
@@ -106,7 +131,7 @@ feOffset {
 				<div class="swiper-button-prev"></div>
 				<div class="swiper-pagination"></div>
 			</div>
-		</header>
+		</div>
 		<!--슬라이드 Script-->
 		<script>
 			var swiper = new Swiper(".mySwiper", {
@@ -134,12 +159,12 @@ feOffset {
 					<div>
 						<input type="hidden" id="x" name="x" value="${list.store_x }">
 						<input type="hidden" id="y" name="y" value="${list.store_y }">
-						<input type="hidden" id="store" value="${list.store }"> <a><img
-							src="${pageContext.request.contextPath}/resources/img/start.png"> 찜하기</a>
-						<h1 style="float: center;">${list.store }</h1>
+						<input type="hidden" id="store" value="${list.businessName }"> <a><img
+							src="${pageContext.request.contextPath}/resources/images/start.png"> 찜하기</a>
+						<h1 style="float: center;">${list.businessName }</h1>
 						<div>
-							<img src="${pageContext.request.contextPath}/resources/img/view.png"> ${list.count} <img
-								src="${pageContext.request.contextPath}/resources/img/start.png"> ${list.report_count}
+							<img src="${pageContext.request.contextPath}/resources/images/view.png"> ${list.view_count} <img
+								src="${pageContext.request.contextPath}/resources/images/start.png"> ${list.report_count}
 						</div>
 						<br>
 						<table class='table'>
@@ -160,7 +185,7 @@ feOffset {
 						<script type="text/javascript">
 							var xid = $('#x').val();
 							var yid = $('#y').val();
-							var store = $('#store').val();
+							var businessName = $('#businessName').val();
 							console.log(xid);
 							console.log(yid);
 							console.log(store);
@@ -179,7 +204,7 @@ feOffset {
 				// 이미지 지도에 표시할 마커를 아래와 같이 배열로 넣어주면 여러개의 마커를 표시할 수 있습니다 
 				var markers = [ {
 					position : new kakao.maps.LatLng(xid, yid),
-					text : store
+					text : businessName
 				// text 옵션을 설정하면 마커 위에 텍스트를 함께 표시할 수 있습니다     
 				} ];
 
@@ -195,68 +220,78 @@ feOffset {
 				var staticMap = new kakao.maps.StaticMap(staticMapContainer,
 						staticMapOption);
 			</script>
-			</script>
 			<br>
-			<!-- 별점 radio 박스-->
-			<h3 style="text-align: center">점수 주시겠어요?</h3>
-			<form action="myform" id="myform" method="post" action="/store/star">
-				<div class="rating">
-					<input type="radio" id="star5" name="rating" value="5" /> <label
-						class="full" for="star5" title="Awesome - 5 stars"></label> <input
-						type="radio" id="star4half" name="rating" value="4 and a half" />
-					<label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+            <!-- 1번쨰 -->
+            <script>
+                function random_imglink() {
+                    var myimages = new Array()
 
-					<input type="radio" id="star4" name="rating" value="4" /> <label
-						class="full" for="star4" title="Pretty good - 4 stars"></label> <input
-						type="radio" id="star3half" name="rating" value="3 and a half" />
-					<label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                    /* 각각의 이미지 경로 지정 */
+                    myimages[1] = "${pageContext.request.contextPath}/resources/images/3.png"
+                    myimages[2] = "${pageContext.request.contextPath}/resources/images/4.png"
+                    myimages[3] = "${pageContext.request.contextPath}/resources/images/6.png"
 
-					<input type="radio" id="star3" name="rating" value="3" /> <label
-						class="full" for="star3" title="Meh - 3 stars"></label> <input
-						type="radio" id="star2half" name="rating" value="2 and a half" />
-					<label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                    /* 각각의 이미지 링크 지정 */
+                    var imagelinks = new Array()
+                    imagelinks[1] = "https://www.tripadvisor.com/Restaurants-g294197-zfn7778638-Seoul.html"
+                    imagelinks[2] = "https://www.willflyforfood.net/seoul-food-guide-25-must-eat-restaurants-in-seoul-south-korea/"
+                    imagelinks[3] = "https://www.creatrip.com/en/blog/1822/TOP-5-Busan-Pork-Rice-Soup-Restaurants"
+                    
+                    var ry = Math.floor(Math.random() * myimages.length)
+                    if (ry == 0)
+                        ry = 1
+                    document.write('<a href=' + '"' + imagelinks[ry] + '"' + ' target=_blank><img src="' + myimages[ry] + '" border=0></a>')
+                }
+                random_imglink();
+            </script>
+            <br><br><br>
+			<script>
+                function random_imglink() {
+                    var myimages = new Array()
 
-					<input type="radio" id="star2" name="rating" value="2" /> <label
-						class="full" for="star2" title="Kinda bad - 2 stars"></label> <input
-						type="radio" id="star1half" name="rating" value="1 and a half" />
-					<label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                    /* 각각의 이미지 경로 지정 */
+                    myimages[1] = "${pageContext.request.contextPath}/resources/images/1.png"
+                    myimages[2] = "${pageContext.request.contextPath}/resources/images/2.png"
+                    myimages[3] = "${pageContext.request.contextPath}/resources/images/5.png"
 
-					<input type="radio" id="star1" name="rating" value="1" /> <label
-						class="full" for="star1" title="Sucks big time - 1 star"></label>
-					<input type="radio" id="starhalf" name="rating" value="half" /> <label
-						class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-				</div>
-				<button>별점 주기</button>
-			</form>
-			<script
-				src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js'></script>
-			<script
-				src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
-
-
+                    /* 각각의 이미지 링크 지정 */
+                    var imagelinks = new Array()
+                    imagelinks[1] = "https://www.tripadvisor.com/Restaurants-g294197-zfn7778640-Seoul.html"
+                    imagelinks[2] = "https://theculturetrip.com/asia/south-korea/articles/korean-cuisine-crash-course-top-10-dishes-to-know/"
+                    imagelinks[3] = "https://www.tripadvisor.com/Restaurants-g294197-zfn7778650-Seoul.html"
+                    var ry = Math.floor(Math.random() * myimages.length)
+                    if (ry == 0)
+                        ry = 1
+                    document.write('<a href=' + '"' + imagelinks[ry] + '"' + ' target=_blank><img src="' + myimages[ry] + '" border=0></a>')
+                }
+                random_imglink();
+            </script>
+            <br><br>
 		</section>
-		<footer>
+		<div class="foot">
+			<!-- 지워지면 망 -->
 			<!--  댓글  -->
-			<div class="container">
-				<label for="content">comment</label>
-				<form name="commentInsertForm">
-					<div class="input-group">
-						<input type="hidden" id="bno" name="bno"
-							value="${list.store_seq }" /> <input type="text"
-							class="form-control" id="content" name="content"
-							placeholder="내용을 입력하세요."> <span class="input-group-btn">
-							<button class="btn btn-default" type="button"
-								name="commentInsertBtn">등록</button>
-						</span>
-					</div>
-				</form>
-			</div>
-			<div class="container">
+			
+	<div class="containers">
+			 <div class="well">
+                    <h4><i class="fa fa-paper-plane-o"></i> Leave a Comment:</h4>
+                    <form role="form" name="commentInsertForm">
+                         <input type="hidden" id="bno" name="bno" value="${list.store_seq }"  /> 
+                        <div class="form-group">
+                      		<input type="text"  class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">                
+                        </div>
+                        <button type="button"  value="" class="btn btn-primary" name="commentInsertBtn" style="left: 0;"><i class="fa fa-reply"></i>Submit</button>
+                    </form>
+                </div>
+                </div>
+			
+			<div class="containers">
 				<div class="commentList"></div>
 			</div>
 	</div>
+	
 
-	</footer>
+	
 
 	<script>
 		var bno = $("#bno").val(); //게시글 번호
@@ -264,7 +299,7 @@ feOffset {
 			var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
 			commentInsert(insertData); //Insert 함수호출(아래)
 		});
-		//댓글 목록 
+		//댓글 목록
 		function commentList() {
 			$.ajax({
 			url : '/comment/list',
@@ -278,27 +313,26 @@ feOffset {
 				.each(
 							data,
 									function(key, value) {
-												a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 20px;">';
-												a += '<div class="commentInfo'+value.cno+'">'
-														+ '댓글번호 : '
-														+ value.cno
-														+ ' / 작성자 : '
-														+ value.writer;
-														+ ' / 작성 시간 : '
-														+ value.reg_Date;		
-												
+												a += '<div class="col-sm-12"><div class="panel panel-default"><div class="panel-heading">'
+												a += '<h3><i class="fa fa-comment"></i> '+ value.writer +'<small> 날짜 : ' + value.reg_date;
+												a += ' <div class="commentInfo'+ value.cno+'">'
+												a += '<br>'
 												a += '<a onclick="commentUpdate('
-														+ value.cno
-														+ ',\''
-														+ value.content
-														+ '\');"> 수정 </a>';
+													+ value.cno
+													+ ',\''
+													+ value.content
+													+ '\');"> 수정하기 </a>';
+														
+														
 												a += '<a onclick="commentDelete('
 														+ value.cno
-														+ ');"> 삭제 </a> </div>';
-												a += '<div class="commentContent'+value.cno+'"> <p> 내용 : '
+														+ ');"> 삭제하기 </a></div></small></h3></div>';
+														
+												a += '<div class="panel-body"><div class="panel-body'+ value.cno + '"><p>'
 														+ value.content
 														+ '</p>';
-												a += '</div></div>';
+														
+												a += '</div></div></div></div>';
 											});
 
 							$(".commentList").html(a);
@@ -326,21 +360,21 @@ feOffset {
 		//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
 		function commentUpdate(cno, content) {
 			var a = '';
-			a += '<br>'
-			a += '<div class="input-group">';
-			a += '<input type="text" class="form-control" name="content_'+cno+'" value="'+content+'"/>';
-			a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('
-					+ cno + ');">수정</button> </span>';
-			a += '</div>';
 
-			$('.commentContent' + cno).html(a);
+			a += '<div class="col-sm-12"><div class="panel panel-default"><div class="panel-heading" style="height:145px">';
+			a += '<div class="form-group">';
+			a += '<input type="text" class="form-control" name="content_'+cno+'" value="'+content+'"/>';
+			a += '<button class="btn btn-primary" style="left:0" type="button" onclick="commentUpdateProc('
+					+ cno + ');">수정하기</button>';
+			a += '</div></div></div>';
+
+			$('.panel-body' + cno).html(a);
 
 		}
 
 		//댓글 수정
 		function commentUpdateProc(cno) {
 			var updateContent = $('[name=content_' + cno + ']').val();
-
 			$.ajax({
 				url : '/comment/update',
 				type : 'post',
@@ -376,7 +410,7 @@ feOffset {
 
 	<!-- ---------------------------------------------- -->
 	
-	<feOffset> <a href="/chat/makeChat?store=${list.store }">
+	<div class="footer"> <a href="/chat/makeChat?store=${list.businessName }">
 		<div class="chat" onclick="this.classList.toggle('active')">
 			<div class="background"></div>
 			<svg class="chat-bubble" width="100" height="100"
@@ -412,7 +446,8 @@ feOffset {
 				//위의 if문에 대한 조건 아닌경우 fix라는 class를 삭제함  
 			}
 		});
-	</script> </feOffset>
+	</script> 
+	</div>
 	</div>
 </body>
 </html>

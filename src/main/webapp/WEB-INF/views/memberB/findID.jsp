@@ -53,6 +53,12 @@
 margin-bottom:15px;
 }
 
+ .emailDnone{ 
+ display:none 
+ } 
+  .emailDnone2{ 
+ display:none 
+ } 
 
     </style>
 
@@ -60,16 +66,41 @@ margin-bottom:15px;
 <script>
 $(function(){
 	
-	$("#confirm").on("click",function(){
-		
-		let emailReg = /^[0-9a-zA-Z_-]*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-		let email = $("#email").val();
-
-		if (!emailReg.test(email)) {
-			alert("이메일 형식을 확인해주세요.");
-			$("#email").focus();
-			
+	
+		//이메일 인증번호
+		$("#emailSend").on("click",function(){
+			$.ajax({
+				url:"${pageContext.request.contextPath}/bMember/emailSend",
+				data:{"name":$("#name").val(), "email":$("#email").val()}
+			}).done(function(resp){
+				$("#sendNum").val(resp);
+				$(".emailDnone").css("display","flex");
+			}).fail(function(){
+				alert("이메일 발송에 실패하였습니다. 다시 시도해주세요.")
+			})
+		})
+		//이메일 인증번호 확인
+		$("#emailConfirm").on("click",function(){
+		if($("#emailNum").val() == $("#sendNum").val()){
+			$("#eResult").text("이메일 주소가 인증되었습니다.");
+			$(".emailDnone2").css("display","flex");
 		}else{
+			$("#eResult").text("이메일 인증 실패! 다시 시도해주세요.")
+		}
+		})
+	
+	
+	
+	$("#findIdBtn").on("click",function(){
+		
+// 		let emailReg = /^[0-9a-zA-Z_-]*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+// 		let email = $("#email").val();
+
+// 		if (!emailReg.test(email)) {
+// 			alert("이메일 형식을 확인해주세요.");
+// 			$("#email").focus();
+			
+// 		}else{
 			$.ajax({
 				url:"/bMember/findIDProc",
 				data:{"name":$("#name").val(), "email":$("#email").val()}
@@ -83,7 +114,7 @@ $(function(){
 					$("#noneDiv").css("display","none");
 				}
 			})
-		}
+		
 		
 	})
 	
@@ -126,10 +157,22 @@ $(function(){
                     <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                  </div>
                 <input id="email" name="email" class="form-control" placeholder="Email address" type="email">
+                <button id="emailSend" type="button" class="btn btn-primary">&nbsp;Send&nbsp;</button>
             </div> <!-- form-group// -->
             
-            <div class="form-group">
-        		<button id="confirm" type="button" class="btn btn-primary btn-block"> Confirm  </button>
+            <div class="form-group input-group emailDnone">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                 </div>
+                <input name="emailNum" id="emailNum" class="form-control" placeholder="이메일 인증번호" type="text">
+                <input type='hidden' id='sendNum'>
+                <button id="emailConfirm" type="button" class="btn btn-primary" style="font-size:13px">Confirm</button>
+            </div> <!-- form-group// -->
+			<div id="eResult" class="result"></div>
+            
+            
+            <div class="form-group emailDnone2">
+        		<button id="findIdBtn" type="button" class="btn btn-primary btn-block"> Find My ID </button>
     		</div> <!-- form-group// -->      
             
             

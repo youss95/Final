@@ -3,8 +3,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <header id="main-header">
       <nav><a href="/">
-        <img src="/resources/images/logoTxt.png" alt="Logo" id="logo" /></a>
-        <link rel="stylesheet" href="/resources/css/header.css" />
+      
+
+      
+        <img src="/resources/images/logoTxt.png" alt="Logo" id="logo" style="width: 140px; height: 80px"/></a>
+        <link rel="stylesheet" href="/resources/css/header_main.css?after" />
         
 <c:choose>
 <c:when test="${loginID!=null || binfo.id !=null }">
@@ -12,7 +15,7 @@
 
           <li><a href="${pageContext.request.contextPath}/mypage.mp">MyPage</a></li>
          <li><a href="${pageContext.request.contextPath}/member/logout"><i class="fas fa-sign-out-alt"></i></a></li>
-					<li><a href="/noti/detail?userId=${loginID}" class="button" style="position: relative"><i
+					<li><a href="#" class="button" style="position: relative"><i
 							class="fas fa-bell fa-2x"></i><span class="nav-counter"></span></a></li>
 					<li><i class="fas fa-user-alt userIcon" id="popBtn"
 						data-placement="bottom" class="btn btn-lg btn-danger"
@@ -39,7 +42,7 @@
   $(function(){
 	  $.ajax({
 		  url:"/noti/alarmCounts",
-		  data:{userId:'${loginID}'}
+		  data:{userId:'스티브'}
 	  }).done(function(res){
 		  console.log(res)
 		  $('.nav-counter').append(res)
