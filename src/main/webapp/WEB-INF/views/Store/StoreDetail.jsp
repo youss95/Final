@@ -112,9 +112,6 @@ section {
 	width: 800px;
 	height: 100%;
 }
-
-
-
 </style>
 </head>
 <body>
@@ -158,7 +155,7 @@ section {
 		</script>
 
 
-<!--  -->
+		<!--  -->
 		<aside>
 			<div id='store'>
 				<input type="hidden" id="x" name="x" value="${list.store_x }">
@@ -194,45 +191,84 @@ section {
 					</tr>
 				</table>
 
-				<div id="bottom" style="top: 100px; left: 0">
-					<button style="left: 0;">예약하기</button>
-				</div>
-				<div id="bottom_bottom" style="padding: 20px; margin: 5px; float:right; height: 100px; position: relative; bottom: -170px;">
-					<script></script>
-					
-					<script type="text/javascript"
-						src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
-					<script type="text/javascript">
-						new ShareNaver.makeButton({
-							"type" : "f"
-						});
-					</script>					
-					<!--트위터 공유 하기 버튼-->
-					<a href="#"
-						onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20' +encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;"
-						target="_blank" alt="Share on Twitter"><img
-						src="${pageContext.request.contextPath}/resources/images/twiter.png"></a>
-					<!----------페이스북 공유 하기 -->
-					<a href="#"
-						onclick="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u=' +encodeURIComponent(document.URL)+'&t='+encodeURIComponent(document.title), 'facebooksharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;"
-						target="_blank" alt="Share on Facebook"><img
-						src="${pageContext.request.contextPath}/resources/images/fackebook.png"></a>
-					<!-----------카카오 페이지------------------->
-					<a href="#"
-						onclick="javascript:window.open('https://story.kakao.com/s/share?url=' +encodeURIComponent(document.URL), 'kakaostorysharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes, height=400,width=600');return false;"
-						target="_blank" alt="Share on kakaostory"><img
-						src="${pageContext.request.contextPath}/resources/images/kakao.png"></a>
-					<!---------구글 플러스----->
-					<a href="#"
-						onclick="javascript:window.open('https://plus.google.com/share?url=' +encodeURIComponent(document.URL), 'googleplussharedialog','menubar=no,toolbar=no,resizable=yes, scrollbars=yes,height=350,width=600');return false;"
-						target="_blank" alt="Share on Google+"><img
-						src="${pageContext.request.contextPath}/resources/images/google.jpg"></a>
-				
-				
-				</div>
+
+				<c:choose>
+					<c:when test="${loginID != null}">
+						<div id="bottom" style="top: 300px; left: 0">
+							<button style="left: 0;">예약하기</button>
+						</div>
+						<div id="bottom_bottom"
+							style="padding: 20px; margin: 5px; float: right; height: 100px; position: relative; bottom: -170px;">
+
+							<script type="text/javascript"
+								src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
+							<script type="text/javascript">
+								new ShareNaver.makeButton({
+									"type" : "f"
+								});
+							</script>
+							<!--트위터 공유 하기 버튼-->
+							<a href="#"
+								onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20' +encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;"
+								target="_blank" alt="Share on Twitter"><img
+								src="${pageContext.request.contextPath}/resources/images/twiter.png"></a>
+							<!----------페이스북 공유 하기 -->
+							<a href="#"
+								onclick="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u=' +encodeURIComponent(document.URL)+'&t='+encodeURIComponent(document.title), 'facebooksharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;"
+								target="_blank" alt="Share on Facebook"><img
+								src="${pageContext.request.contextPath}/resources/images/fackebook.png"></a>
+							<!-----------카카오 페이지------------------->
+							<a href="#"
+								onclick="javascript:window.open('https://story.kakao.com/s/share?url=' +encodeURIComponent(document.URL), 'kakaostorysharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes, height=400,width=600');return false;"
+								target="_blank" alt="Share on kakaostory"><img
+								src="${pageContext.request.contextPath}/resources/images/kakao.png"></a>
+							<!---------구글 플러스----->
+							<a href="#"
+								onclick="javascript:window.open('https://plus.google.com/share?url=' +encodeURIComponent(document.URL), 'googleplussharedialog','menubar=no,toolbar=no,resizable=yes, scrollbars=yes,height=350,width=600');return false;"
+								target="_blank" alt="Share on Google+"><img
+								src="${pageContext.request.contextPath}/resources/images/google.jpg"></a>
+						</div>
+
+					</c:when>
+					<c:otherwise>
+						<div id="bottom" style="top: 300px; left: 0"></div>
+
+
+						<div id="bottom_bottom"
+							style="padding: 20px; margin: 5px; float: right; height: 100px; position: relative; bottom: -234px;">
+
+							<script type="text/javascript"
+								src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
+							<script type="text/javascript">
+								new ShareNaver.makeButton({
+									"type" : "f"
+								});
+							</script>
+							<!--트위터 공유 하기 버튼-->
+							<a href="#"
+								onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20' +encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;"
+								target="_blank" alt="Share on Twitter"><img
+								src="${pageContext.request.contextPath}/resources/images/twiter.png"></a>
+							<!----------페이스북 공유 하기 -->
+							<a href="#"
+								onclick="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u=' +encodeURIComponent(document.URL)+'&t='+encodeURIComponent(document.title), 'facebooksharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;"
+								target="_blank" alt="Share on Facebook"><img
+								src="${pageContext.request.contextPath}/resources/images/fackebook.png"></a>
+							<!-----------카카오 페이지------------------->
+							<a href="#"
+								onclick="javascript:window.open('https://story.kakao.com/s/share?url=' +encodeURIComponent(document.URL), 'kakaostorysharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes, height=400,width=600');return false;"
+								target="_blank" alt="Share on kakaostory"><img
+								src="${pageContext.request.contextPath}/resources/images/kakao.png"></a>
+							<!---------구글 플러스----->
+							<a href="#"
+								onclick="javascript:window.open('https://plus.google.com/share?url=' +encodeURIComponent(document.URL), 'googleplussharedialog','menubar=no,toolbar=no,resizable=yes, scrollbars=yes,height=350,width=600');return false;"
+								target="_blank" alt="Share on Google+"><img
+								src="${pageContext.request.contextPath}/resources/images/google.jpg"></a>
+						</div>
+					</c:otherwise>
+				</c:choose>
+
 			</div>
-
-
 
 
 			<script type="text/javascript">
