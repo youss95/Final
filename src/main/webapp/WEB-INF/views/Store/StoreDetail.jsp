@@ -158,7 +158,7 @@ section {
 		</script>
 
 
-
+<!--  -->
 		<aside>
 			<div id='store'>
 				<input type="hidden" id="x" name="x" value="${list.store_x }">
