@@ -6,32 +6,49 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="Comment">
 
 	<select id="commentCount" resultType="int">
-		SELECT COUNT(*) FROM comments
+		SELECT COUNT(*) FROM
+		comments
 	</select>
 
-	<select id="commentList" resultType="dream.tk.dto.StoreCommentDTO">
-		SELECT *
-		FROM COMMENTS
-		where BNO = ${bno}
-	</select>
-
-
-
-
+	 <!-- <select id="commentList" resultType="dream.tk.dto.StoreCommentDTO">
+		SELECT cno, bno, content, writer, to_char(reg_date, 'HH : MM  am') "reg_date" 
+		FROM COMMENTS 
+		where bno = ${bno}
+	</select> --> 
+	
+	<!--  댓글 리스트 -->
+	 <select id="commentList" resultType="dream.tk.dto.StoreCommentDTO">
+		select * from comments where bno = ${bno}
+	</select> 
+	<!--  댓글 삽입 -->
 	<insert id="commentInsert">
 		INSERT INTO
-		comments 
-		VALUES(cno_seq.nextval,${bno},#{content},#{writer}, sysdate)
+		comments
+		VALUES(cno_seq.nextval,${bno},#{content},#{writer}, ${star_age}, 0, sysdate)
 	</insert>
-
-	<update id="commentUpdate"
-		parameterType="dream.tk.dto.StoreCommentDTO">
-		UPDATE comments SET CONTENT = #{content} WHERE CNO = ${cno}
+	<!--  댓글 수정 -->
+	<update id="commentUpdate" parameterType="dream.tk.dto.StoreCommentDTO">
+		UPDATE comments SET CONTENT = #{content} WHERE CNO =
+		${cno}
 	</update>
-
+	<!--  댓글 삭제 -->
 	<delete id="commentDelete" parameterType="int">
-		DELETE FROM comments WHERE CNO = ${cno}
+		DELETE FROM comments
+		WHERE CNO = ${cno}
 	</delete>
+	
+	<!--  댓글 개수 뽑기 -->
+	<select id="count" resultType="int">
+		select count(*) from comments where bno = #{bno}
+	</select>
+	<!-- select count(*) from comments group by bno having bno = ${bno} -->	
+	
+	
+	<!--  
+	<select id="avg" resultType="int">
+		select ROUND(AVG(star_age),1) from comments where bno = ${bno}
+	</select>
+	-->
 </mapper>
  
 
