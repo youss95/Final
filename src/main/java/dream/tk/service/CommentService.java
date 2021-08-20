@@ -19,11 +19,11 @@ public class CommentService {
     
     
     public List<StoreCommentDTO> commentListService(int bno) throws Exception{
-        return dao.commentList(bno);
+    	return dao.commentList(bno);
     }
     
     public int commentInsertService(StoreCommentDTO comment) throws Exception{
-        return dao.commentInsert(comment);
+    	return dao.commentInsert(comment);
     }
     
     public int commentUpdateService(StoreCommentDTO comment) throws Exception{
@@ -33,9 +33,16 @@ public class CommentService {
     public int commentDeleteService(int cno) throws Exception{
         return dao.commentDelete(cno);
     }
-
-
-
-
+    
+    // 댓글 개수 뽑기
+    public int count(int bno) throws Exception{
+    	return dao.count(bno);
+    }
+	
+	/*
+	  public int avg(int bno) throws Exception{ 
+		return dao.avg(bno); 
+	}
+	 */
 
 }

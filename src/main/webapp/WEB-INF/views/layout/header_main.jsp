@@ -3,19 +3,16 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <header id="main-header">
       <nav><a href="/">
-      
-
-      
-        <img src="/resources/images/logoTxt.png" alt="Logo" id="logo" style="width: 140px; height: 80px"/></a>
-        <link rel="stylesheet" href="/resources/css/header_main.css?after" />
-        
+        <img src="${pageContext.request.contextPath}/resources/images/logoTxt.png" alt="Logo" id="logo" style="width: 140px; height: 80px"/></a>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header_main.css?after" />
+       <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <c:choose>
 <c:when test="${loginID!=null || binfo.id !=null }">
 <ul>
 
           <li><a href="${pageContext.request.contextPath}/mypage.mp">MyPage</a></li>
          <li><a href="${pageContext.request.contextPath}/member/logout"><i class="fas fa-sign-out-alt"></i></a></li>
-					<li><a href="#" class="button" style="position: relative"><i
+					<li><a href="${pageContext.request.contextPath}/noti/detail?userId=${loginID}" class="button" style="position: relative"><i
 							class="fas fa-bell fa-2x"></i><span class="nav-counter"></span></a></li>
 					<li><i class="fas fa-user-alt userIcon" id="popBtn"
 						data-placement="bottom" class="btn btn-lg btn-danger"
@@ -36,13 +33,13 @@
   </body>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="/resources/js/header.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/header.js"></script>
   <script>
 
   $(function(){
 	  $.ajax({
 		  url:"/noti/alarmCounts",
-		  data:{userId:'스티브'}
+		  data:{userId:'${loginID}'}
 	  }).done(function(res){
 		  console.log(res)
 		  $('.nav-counter').append(res)
