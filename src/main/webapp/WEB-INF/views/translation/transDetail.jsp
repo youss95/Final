@@ -187,8 +187,7 @@ width:100%;
 	                                checkSign.addClass("fas fa-check check");
 	                                here.parent().append(checkSign);
 	                                
-	                                here.remove();    
-	                                alert("저장 완료");
+	                                here.remove();
 	            				}else{
 	            					alert("저장 실패");
 	            				}
@@ -221,7 +220,6 @@ width:100%;
 	                            checkSign.addClass("fas fa-check check");
 	                            here.parent().append(checkSign);
 	                            here.remove();
-	                            alert("저장 완료");
 	        				}else{
 	        					alert("저장 실패");
 	        				}

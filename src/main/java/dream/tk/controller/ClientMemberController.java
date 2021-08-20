@@ -54,7 +54,7 @@ public class ClientMemberController {
 		String shaPW = SHA256.getSHA512(dto.getPw());
 		dto.setPw(shaPW);
 
-		int result = service.insert(dto);
+		int result = service.signup(dto);
 
 		m.addAttribute("result", result);
 		return "memberC/signupResult";
