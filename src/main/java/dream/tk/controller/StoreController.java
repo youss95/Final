@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import dream.tk.config.PagingVO;
 import dream.tk.dto.StoreDTO;
+import dream.tk.service.CommentService;
 import dream.tk.service.StoreService;
 import net.sf.json.JSONArray;
 
@@ -31,6 +32,9 @@ public class StoreController {
 	
 	@Autowired
 	private StoreService service;
+	
+	@Autowired
+	private CommentService serviceC;
 	
 	
 	@GetMapping("signup")
@@ -66,9 +70,9 @@ public class StoreController {
 	@RequestMapping("view")
 	public String view(int store_seq, Model m, String store) throws Exception{
 		StoreDTO dto = service.select(store_seq);
+		m.addAttribute("countCmt", serviceC.count(store_seq));
 		m.addAttribute("list", dto);
 		session.setAttribute("store", store);
-		System.out.println(store);
 		return "/Store/StoreDetail";
 	}
 	
