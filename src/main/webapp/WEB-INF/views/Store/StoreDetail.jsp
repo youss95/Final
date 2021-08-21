@@ -128,6 +128,9 @@ section {
 		</div>
 		<!--슬라이드 Script-->
 		<script>
+		
+		
+		
 			var swiper = new Swiper(".mySwiper", {
 				slidesPerView : 3,
 				spaceBetween : 30,
@@ -352,19 +355,15 @@ section {
 							<form role="form" name="commentInsertForm">
 								<h4>
 									<i class="fa fa-paper-plane-o"></i> Leave a Comment:
-									<fieldset class="rating">
-										<input type="radio" id="star5" name="star_age" value="5" /><label
-											class="full" for="star5" title="Awesome - 5 stars"></label> <input
-											type="radio" id="star4" name="star_age" value="4" /><label
-											class="full" for="star4" title="Pretty good - 4 stars"></label>
-										<input type="radio" id="star3" name="star_age" value="3" /><label
-											class="full" for="star3" title="Meh - 3 stars"></label> <input
-											type="radio" id="star2" name="star_age" value="2" /><label
-											class="full" for="star2" title="Kinda bad - 2 stars"></label>
-										<input type="radio" id="star1" name="star_age" value="1"
-											checked /><label class="full" for="star1"
-											title="Sucks big time - 1 star"></label>
-									</fieldset>
+									<div class="make_star">
+      <div class="rating" data-rate="3">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+      </div>
+    </div>
 								</h4>
 								<input type="hidden" id="writer" name="writer"
 									value="${loginID}"> <input type="hidden" id="bno"
@@ -400,7 +399,15 @@ section {
 					</c:choose>
 				</div>
 			</div>
-
+<div class="review">
+      <div class="rating" data-rate="4">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+      </div>
+    </div>
 			<div class="containers">
 				<div class="commentList"></div>
 			</div>
@@ -411,13 +418,33 @@ section {
 
 		<!-- 이거 지워지면 안된다 -->
 		<script>
-			var bno = $("#bno").val(); //게시글 번호
+		
+		 $(function () {
+			 /* 등록후 리스트 */
+			
+		        /* 별점 등록할떄 */
+		        let targetNum=0;
+		 $(".make_star i").click(function () {
+			 targetNum = $(this).index() + 1; //별점 값
+	        
+	          $(".make_star i").css({ color: "#000" });
+	          $(".make_star")
+	            .find(".rating")
+	            .find("i:nth-child(-n" + targetNum + ")")
+	            .css({ color: "yellow" });
+	       
+	        });
+	     console.log(targetNum)
+		   var bno = $("#bno").val(); //게시글 번호
 			$('[name=commentInsertBtn]').click(function() { //댓글 등록 버튼 클릭시 
-				var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
-				commentInsert(insertData); //Insert 함수호출(아래)
+				//var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
+				let data = {bno:${list.store_seq },writer:'${loginID}' ,content:'코멘트테스트',star_age:targetNum}
+				commentInsert(data); //Insert 함수호출(아래)
 			});
+			
 			//댓글 목록
 			function commentList() {
+				
 				$
 						.ajax({
 							url : '/comment/list',
@@ -437,14 +464,16 @@ section {
 															+ value.writer
 															+ '<small> 날짜 : '
 															+ value.reg_date
-															+ '<input name=star type="hidden" value=' + value.star_age + '>'
-															+ '<fieldset class="rating">'
-															+ '<input type="radio" id="star5" name="rating" value="5" checked/><label class="full" for="star5" title="Awesome - 5 stars"></label>'
-															+ '<input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>'
-															+ '<input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>'
-															+ '<input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>'
-															+ '<input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>'
-															+ '</fieldset>'
+															
+															+ '<div class="review">'
+															+ ' <div class="rating" data-rate='+value.star_age+'>'
+															+ ' <i class="fas fa-star"></i>'
+															+ ' <i class="fas fa-star"></i>'
+															+ ' <i class="fas fa-star"></i>'
+															+ ' <i class="fas fa-star"></i>'
+															+ ' <i class="fas fa-star"></i>'
+															+ '</div>'
+															+ '</div>'
 													if (value.writer === $(
 															"#writer").val()) {
 														a += ' <div class="commentInfo'+ value.cno+'">'
@@ -465,17 +494,27 @@ section {
 													a += '</div></div></div></div>';
 												});
 								$(".commentList").html(a);
+								 let rating = $(".review .rating");
+									console.log(rating)
+								        rating.each(function () {
+								          let targetScore = $(this).attr("data-rate");
+								          console.log(targetScore)
+								          $(this)
+								            .find("i:nth-child(-n" + targetScore + ")")
+								            .css({ color: "yellow" });
+								        });
 							}
 						});
 			}
 			//댓글 등록
-			function commentInsert(insertData) {
+			function commentInsert(data) {
 				$.ajax({
 					url : '/comment/insert',
 					type : 'post',
-					data : insertData,
-					success : function(data) {
-						if (data == 1) {
+					data : JSON.stringify(data),
+					contentType:"application/json;charset=utf-8",
+					success : function(res) {
+						if (res == 1) {
 							commentList(); //댓글 작성 후 댓글 목록 reload
 							$('[name=content]').val('');
 						}
@@ -522,7 +561,10 @@ section {
 			}
 			$(document).ready(function() {
 				commentList(); //페이지 로딩시 댓글 목록 출력 
+				
 			});
+			
+		 });
 		</script>
 
 
@@ -556,6 +598,7 @@ section {
 				</div>
 			</a>
 			<script>
+			
 				$(window).scroll(function() {
 					//스크롤의 위치가 상단에서 450보다 크면  
 					if ($(window).scrollTop() > 450) {
