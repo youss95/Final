@@ -23,5 +23,7 @@ public class ChatDAO {
 		  return mybatis.selectList("Chat.selectAll", chatnum);
 	  }
 	  
-	 
+	 public List<ChatDTO> selectList(String nickname){
+		 return mybatis.selectList("Chat.selectList", nickname);
+	 }
 }

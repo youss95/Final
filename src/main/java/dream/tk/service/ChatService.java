@@ -27,6 +27,9 @@ public class ChatService {
 		  return dao.selectAll(chatnum);
 	  }
 	  
+	  public List<ChatDTO> selectList(String nickname) throws Exception{
+		  return dao.selectList(nickname);
+	  }
 	  
 	 
 }
