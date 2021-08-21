@@ -25,9 +25,19 @@ public class ChatController {
 	
 	@RequestMapping("toChat")
 	public String chat(Model model) throws Exception {
+		String nickname = (String)session.getAttribute("loginID");
+		String storeName = (String) session.getAttribute("storeName");
+		String roomid = nickname + storeName;
+		session.setAttribute("roomid", roomid);
 		
-		List<ChatDTO> list = service.selectAll((String)session.getAttribute("loginID") + (String) session.getAttribute("storeName"));
-		model.addAttribute("chatlist", list);
+		List<ChatDTO> list = service.selectAll(roomid); 
+		List<ChatDTO> list2 = service.selectList(nickname);
+		
+		System.out.println("ChatController 안에서 출력한 채팅방 리스트"+list);
+		System.out.println("ChatController 안에서 출력한 식당 리스트"+list2);
+		
+		model.addAttribute("chatlist", list); // 해당 채팅 방
+		model.addAttribute("chatStore",list2); // 채팅 리스트
 		return "chat/chat";
 	}
 	

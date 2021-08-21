@@ -23,6 +23,10 @@ public class ChatDTO {
 		this.write_date = write_date;
 	}
 	
+	public ChatDTO(String store) {
+		this.store = store;
+	}
+	
 	public ChatDTO(String contents, String nickname) {
 		this.contents = contents;
 		this.nickname = nickname;
