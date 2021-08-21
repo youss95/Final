@@ -329,8 +329,10 @@ public class BusinessMemberController {
 	public String chatting() {
 		return "/memberB/chatting";
 	}
-
 	
-	
+	@RequestMapping("reservation")
+	public String reservation() {
+		return "/memberB/myReservation";
+	}
 
 }
