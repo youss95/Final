@@ -274,24 +274,18 @@
 <body class="">
 
   <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" style="height:100%;">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
-
+     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" style="height:100%;">
+   
       <div class="logo" style="height:15%; padding:0px">
           <a href="${pageContext.request.contextPath}/" class="simple-text logo-normal">
 <!--            <img src="/resources/images/logoPic.png" style="width:50px" > -->
-          <img src="/resources/images/logoTxt.png" style="width:130px">
+          <img src="/resources/images/logoTxt&Pic.png" style="width:160px">
           </a>
       </div>
 
 
 
       <div class="sidebar-wrapper" style="height:85%; padding-bottom:0px">
-
         <div id="profileBox"  style="height:35%;">
            <div style="height:10px"></div>
            <div style="text-align: center;">
@@ -305,14 +299,14 @@
         <div id="naviBox" style="height:60%">
         <ul class="nav" style="height:100%; margin-top:0px">
 
-          <li class="nav-item active " style="height:20%;">
+          <li class="nav-item active" style="height:20%;">
              <a class="nav-link" href="${pageContext.request.contextPath}/bMember/myPage">
                   <i class="material-icons">person</i>
                   <p>My Page</p>
              </a>
           </li>
 
-          <li class="nav-item " style="height:20%;">
+          <li class="nav-item" style="height:20%;">
             <a class="nav-link" href="${pageContext.request.contextPath}/bMember/dashboard">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
@@ -320,18 +314,20 @@
           </li>
           
 
-          <li class="nav-item " style="height:20%;">
+          <li class="nav-item" style="height:20%;">
             <a class="nav-link" href="${pageContext.request.contextPath}/bMember/chatting">
               <i class="material-icons">chat</i>
               <p>Chatting</p>
             </a>
           </li>
+          
+          <li class="nav-item" style="height:20%;">
+            <a class="nav-link" href="${pageContext.request.contextPath}/bMember/reservation">
+               <i class="material-icons">content_paste</i>
+              <p>Reservation 관리</p>
+            </a>
+          </li>
 
-
-<!--           <div style="height:50%"></div> -->
-           <li class="nav-item " style="height:20%;">
-              
-            </li>
             
             <li class="nav-item " style="height:20%;">
               <a class="nav-link" href="${pageContext.request.contextPath}/" id="exit" style="margin-top:0px">
@@ -339,16 +335,8 @@
                 <p>Exit this Page</p>
               </a>
             </li>
-          
-
         </ul>
         </div>
-
-        <!-- <div id="outBox" style="height:20%">
-        
-        </div> -->
-
-
       </div>
     </div>
 
