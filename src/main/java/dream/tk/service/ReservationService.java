@@ -87,6 +87,14 @@ public class ReservationService {
 	}
 	
 	public int registerBiz(BusinessDTO dto) {
+		String result = "";
+		
+		for(String time : dto.getOnday()) {
+			result = result + time + "," ;
+		}
+		
+		System.out.println(result);
+		dto.setTimeAvailable(result);
 		
 		return resDao.registerBiz(dto);
 	}

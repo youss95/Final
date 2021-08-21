@@ -7,12 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.6.0.js"
-	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-	crossorigin="anonymous"></script>
-<script
-	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<link rel="stylesheet" href="/resources/css/formstyle.css" />
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+ <link rel="stylesheet" href="/resources/css/formstyle.css" />
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <style>
@@ -153,6 +154,11 @@
 
 				<button type="button" id="submit" class="btn_m btn_primary">등록</button>
 
+<<<<<<< HEAD
+=======
+				<button type="submit" id="submit"
+					class="btn_m btn_primary">등록</button>
+>>>>>>> 9b798cc163c5cb9eb5d4941d1a32ea4ae7a38973
 
 			</form>
 
@@ -178,17 +184,17 @@ $(function() {
         }).open();
     }
 	let phoneRegex = /^010\d{3,4}\d{4}$/;
-	/* $("#businessContact").on("blur", function() {
+	 $("#businessContact").on("blur", function() {
 		if(!phoneRegex.test($("#businessContact").val())){
 			alert("번호 확인")
 			return;
 		}
 	
-	}) */
+	}) 
 })
 
 
-/*
+
 	$("#testBtn").on('click', function() {
 		location.href = "/board/testBtn"
 	})
@@ -217,7 +223,6 @@ $(function() {
 			location.href = "/res/calendar?time=" + data
 		})
 	})
-	*/
+	
 </script>
-</body>
-</html>
+<%@include file="../layout/alarm.jsp" %>
