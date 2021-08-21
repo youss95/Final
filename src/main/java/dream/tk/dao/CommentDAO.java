@@ -24,7 +24,7 @@ public class CommentDAO {
 	    // 댓글 목록
 	    public List<StoreCommentDTO> commentList(int bno) throws Exception{
 	    	return mybatis.selectList("Comment.commentList", bno);
-	    };
+	    }
 	 
 	    // 댓글 작성
 	    public int commentInsert(StoreCommentDTO comment) throws Exception{
@@ -40,8 +40,18 @@ public class CommentDAO {
 	    public int commentDelete(int cno) throws Exception{
 	    	return mybatis.update("Comment.commentDelete", cno);
 	    }
-
-
+	    
+	    // 댓글 개수
+	    public int count(int bno) throws Exception{
+	    	return mybatis.selectOne("Comment.count", bno);
+	    }
+	    
+	    /*
+		// 평균 구하기
+		 public int avg(int bno) throws Exception { 
+			 return mybatis.selectOne("Comment.avg", bno); 
+		 }
+		 */
 	
 	
 }

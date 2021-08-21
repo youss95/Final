@@ -9,6 +9,8 @@
   select count(*) from notification where userId = #{userId}
   </select>
   
-  
+  <select id="allNotis" resultType="dream.tk.dto.NotificationDTO">
+  select * from notification where userId = #{userId}
+  </select>
   
   </mapper>

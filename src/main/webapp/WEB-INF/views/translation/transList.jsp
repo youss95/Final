@@ -101,7 +101,7 @@ a {
 	<div class="container p-4 shadow bg-white rounded">
 		<div class="row header">
 			<h2 style="width: 100%;">
-				<b>과제</b>
+				<b>번역 요청함</b>
 			</h2>
 		</div>
 
@@ -120,20 +120,25 @@ a {
 						<div class="col-2">
 							<i class="fas fa-bell"></i>
 						</div>
+						<div class="col-7">
+							<a
+								href="${pageContext.request.contextPath}/trans/transDetail?business_id=${item.business_id }">
+								${item.business_name} </a>
+						</div>
+						<div class="col-3">${item.reg_date}</div>
 					</c:when>
 					<c:otherwise>
 						<div class="col-2">
 							<i class="fas fa-check"></i>
 						</div>
+						<div class="col-7">${item.business_name}</div>
+						<div class="col-3">${item.reg_date}</div>
+
 					</c:otherwise>
 				</c:choose>
 
-				<div class="col-7">
-					<a href="${pageContext.request.contextPath}/trans/transDetail?business_id=${item.business_id }">
-					${item.business_name}
-					</a>
-				</div>
-				<div class="col-3">${item.reg_date}</div>
+
+
 			</div>
 		</c:forEach>
 

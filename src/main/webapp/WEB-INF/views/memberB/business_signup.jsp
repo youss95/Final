@@ -18,6 +18,8 @@
     
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    
     <style>
 .divider-text {
     position: relative;
@@ -53,13 +55,23 @@
 margin-bottom:15px;
 }
 
+ .emailDnone{ 
+ display:none 
+ } 
 
-    </style>
+#recaptcha{
+transform:scale(1.04);
+}
+
+
+</style>
 
 
 <script>
 $(function(){
 	let idDupleCheck = false;
+	let eResultB = false;
+	let capcha =false;
 	
 	
 	$("#dupleCheck").on("click",function(){
@@ -84,6 +96,9 @@ $(function(){
 	$("#frm").on("submit",function() {
 		let idReg = /^[a-z]+[a-z0-9]{5,19}$/g;
 		let id = $("#id").val();
+		
+		
+		
 		if (!idReg.test(id)) {
 			alert("아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.");
 			return false;
@@ -120,24 +135,66 @@ $(function(){
 		}
 
 		let phoneReg = /^\d{3}\d{3,4}\d{4}$/;
-		let phone = $("#contact1 option:selected")
-				.val()
-				+ $("#contact2").val()
-				+ $("#contact3").val();
-
+		let phone = $("#contact1 option:selected").val() + $("#contact2").val() + $("#contact3").val()
 		if (!phoneReg.test(phone)) {
 			alert("핸드폰 번호를 확인해주세요.");
 			return false;
 		}
 		
 		if (idDupleCheck== false) {
-			alert("ID를 중복체크해주세요.")
+			alert("ID를 중복체크해주세요.");
 			return false;
 		}
+		if(eResultB == false){
+			alert("이메일을 인증해주세요.");
+			return false;
+		}
+		
+		
+		$.ajax({
+			url : '/bMember/verifyRecaptcha',
+			type : 'post',
+			async:false,
+			data : {
+				recaptcha : $("#g-recaptcha-response").val()
+			},
+			success : function(data) {
+				console.log(data);
+				if (data == 0) {
+					capcha =true;
+					$("#frm").submit();
+				} 
+			}
+		});	
+	 if(capcha == false){
+			alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
+			return false;
+		}	
 	})
 	
 	
-	
+	//이메일 인증번호
+	$("#emailSend").on("click",function(){
+		$.ajax({
+			url:"${pageContext.request.contextPath}/bMember/emailSend",
+			data:{"name":$("#name").val(), "email":$("#email").val()}
+		}).done(function(resp){
+			$("#sendNum").val(resp);
+			$(".emailDnone").css("display","flex");
+		}).fail(function(){
+			alert("이메일 발송에 실패하였습니다. 다시 시도해주세요.")
+		})
+	})
+   
+	//이메일 인증번호 확인
+	$("#emailConfirm").on("click",function(){
+		if($("#emailNum").val() == $("#sendNum").val()){
+			$("#eResult").text("이메일 주소가 인증되었습니다.");
+			eResultB = true;
+		}else{
+			$("#eResult").text("이메일 인증 실패! 다시 시도해주세요.")
+		}
+	})
 	
 })
 
@@ -200,7 +257,20 @@ $(function(){
                     <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                  </div>
                 <input id="email" name="email" class="form-control" placeholder="Email address" type="email">
+                <button id="emailSend" type="button" class="btn btn-primary">&nbsp;Send&nbsp;</button>
             </div> <!-- form-group// -->
+            
+			<div class="form-group input-group emailDnone">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                 </div>
+                <input name="emailNum" id="emailNum" class="form-control" placeholder="이메일 인증번호" type="text">
+                <input type='hidden' id='sendNum'>
+                <button id="emailConfirm" type="button" class="btn btn-primary" style="font-size:13px">Confirm</button>
+            </div> <!-- form-group// -->
+			<div id="eResult" class="result"></div>
+
+
 
 
             <div class="form-group input-group">
@@ -217,6 +287,12 @@ $(function(){
             </div> <!-- form-group// -->
 
 
+ 			<div class="form-group input-group">
+                <div class="input-group-prepend" style="margin-right:6px">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                 </div>
+                <div id='recaptcha' class="g-recaptcha" data-sitekey="6Ld-7eIbAAAAAO070jFLpuiXkJbkX408OJwZS2ZO" ></div>
+            </div> <!-- form-group// -->
 
 
             
@@ -332,19 +408,19 @@ $(function(){
 
 
 <!-- <script> -->
-// document.getElementById("search").onclick = function () {
-// 			new daum.Postcode({
-// 				oncomplete: function (data) {
-// 					let roadAddr = data.roadAddress; // 도로명 주소 변수
-// 					let engAddr = data.roadAddressEnglish; //영문 도로명 주소 변수
+<!--  document.getElementById("search").onclick = function () { -->
+<!--  			new daum.Postcode({ -->
+<!--  				oncomplete: function (data) { -->
+<!--  					let roadAddr = data.roadAddress; // 도로명 주소 변수 -->
+<!--  					let engAddr = data.roadAddressEnglish; //영문 도로명 주소 변수 -->
 
-//                      // 우편번호와  주소 정보를 해당 필드에 넣는다.
-//                     document.getElementById("postcode").value = data.zonecode;
-//                     document.getElementById("address1").value = engAddr;   
-//                     document.getElementById("address1Kor").value = roadAddr;   
-// 				}
-// 			}).open();
-// 		};
+<!--                       // 우편번호와  주소 정보를 해당 필드에 넣는다. -->
+<!--                      document.getElementById("postcode").value = data.zonecode; -->
+<!--                      document.getElementById("address1").value = engAddr;    -->
+<!--                      document.getElementById("address1Kor").value = roadAddr;    -->
+<!--  				} -->
+<!--  			}).open(); -->
+<!--  		}; -->
 
 <!-- </script> -->
 

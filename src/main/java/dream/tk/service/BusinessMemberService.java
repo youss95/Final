@@ -1,6 +1,7 @@
 package dream.tk.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,11 @@ public class BusinessMemberService {
 		return dao.getInfo(id);
 	}
 	
+	public int getSeq(String id) {
+		return dao.getSeq(id);
+	}
+	
+	
 	public int editPersonalInfo(BusinessMemberDTO dto) {
 		return dao.editPersonalInfo(dto);
 	}
@@ -82,4 +88,25 @@ public class BusinessMemberService {
 	public int editBizInfo(BusinessDTO dto) {
 		return dao.editBizInfo(dto);
 	}
+	
+	
+	public int getTotalRes(String businessName) {
+		return dao.getTotalRes(businessName);
+	}
+	public List<Map<String, String>> getReserveAge(String businessName){
+		return dao.getReserveAge(businessName);
+	}
+	public List<Map<String, String>> getReserveNation(String businessName){
+		return dao.getReserveNation(businessName);
+	}
+	public List<Map<String, String>> getReserveMonth(String businessName){
+		return dao.getReserveMonth(businessName);
+	}
+	public Map<String, String> getVs(String biz_type){
+		return dao.getVs(biz_type);
+	} 
+	public Map<String, String> getVsMine(String businessName){
+		return dao.getVsMine(businessName);
+	}
+	
 }

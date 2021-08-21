@@ -2,6 +2,8 @@ package dream.tk.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,22 +21,30 @@ import dream.tk.service.CommentService;
 public class CommentController {
 	
 	@Autowired
+	private HttpSession session;
+	
+	@Autowired
 	private CommentService service;
 	
 	 @RequestMapping("/list") //댓글 리스트
 	 @ResponseBody
-	    private List<StoreCommentDTO> mCommentServiceList(int bno, Model model) throws Exception{
-		 System.out.println(bno);
-	        return service.commentListService(bno);
+	    private List<StoreCommentDTO> mCommentServiceList(int bno, Model m) throws Exception{
+		 //댓글 개수 뽑기
+		 m.addAttribute("commentCount", service.count(bno));
+		 System.out.println(service.count(bno));
+	    // int avg = service.avg(bno);
+	     return service.commentListService(bno);
 	    }
 	    
 	    @RequestMapping("/insert") //댓글 작성 
 	    @ResponseBody
-	    private int mCommentServiceInsert(@RequestParam int bno, @RequestParam String content) throws Exception{
+	    private int mCommentServiceInsert(@RequestParam int bno, @RequestParam String content, @RequestParam String writer, @RequestParam int star_age) throws Exception{
 	    	StoreCommentDTO comment = new StoreCommentDTO();
 	    	comment.setBno(bno);
 	        comment.setContent(content);
-	        comment.setWriter("test");  
+	        comment.setWriter(writer);  
+	        comment.setStar_age(star_age);
+	       
 	        return service.commentInsertService(comment);
 	    }
 	    
@@ -51,7 +61,6 @@ public class CommentController {
 	    @RequestMapping("/delete/{cno}") //댓글 삭제  
 	    @ResponseBody
 	    private int mCommentServiceDelete(@PathVariable int cno) throws Exception{
-	        
 	        return service.commentDeleteService(cno);
 	    }
 

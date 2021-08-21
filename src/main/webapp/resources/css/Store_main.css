@@ -202,7 +202,7 @@ MAGIC (Auto adjust + Equal Height) === */
     left: 1.2rem;
     line-height: 1;
     font-weight: 600;
-    z-index: 9999;
+    z-index: 1;
     padding: .6rem 1.2rem;
     border-radius: 50%;
 }
@@ -218,7 +218,7 @@ MAGIC (Auto adjust + Equal Height) === */
     font-size: 1.4rem;
     line-height: 2.4rem;
     text-align: center;
-    z-index: 9999;
+    z-index: 1;
     letter-spacing: 1px;
 }
 

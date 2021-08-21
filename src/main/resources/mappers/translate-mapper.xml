@@ -49,7 +49,7 @@
 		in(select max(seq)
 		from menu_translate group by business_id)) where
 		rnum between #{startNum} and
-		#{endNum}) order by confirm_yn desc
+		#{endNum}) order by confirm_yn
 	</select>
 
 
