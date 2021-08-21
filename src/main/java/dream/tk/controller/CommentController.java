@@ -31,7 +31,6 @@ public class CommentController {
 	    private List<StoreCommentDTO> mCommentServiceList(int bno, Model m) throws Exception{
 		 //댓글 개수 뽑기
 		 m.addAttribute("commentCount", service.count(bno));
-		 System.out.println(service.count(bno));
 	    // int avg = service.avg(bno);
 	     return service.commentListService(bno);
 	    }

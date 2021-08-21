@@ -363,8 +363,6 @@ section {
 
 			<div class="containers">
 				<div class="well">
-
-
 					<c:choose>
 						<c:when test="${loginID != null}">
 							<form role="form" name="commentInsertForm">
@@ -379,10 +377,10 @@ section {
 											class="full" for="star3" title="Meh - 3 stars"></label> <input
 											type="radio" id="star2" name="star_age" value="2" /><label
 											class="full" for="star2" title="Kinda bad - 2 stars"></label>
-										<input type="radio" id="star1" name="star_age" value="1" /><label
-											class="full" for="star1" title="Sucks big time - 1 star"></label>
+										<input type="radio" id="star1" name="star_age" value="1"
+											checked /><label class="full" for="star1"
+											title="Sucks big time - 1 star"></label>
 									</fieldset>
-
 								</h4>
 								<input type="hidden" id="writer" name="writer"
 									value="${loginID}"> <input type="hidden" id="bno"
@@ -427,7 +425,7 @@ section {
 
 		</div>
 
-
+		<!-- 이거 지워지면 안된다 -->
 		<script>
 			var bno = $("#bno").val(); //게시글 번호
 			$('[name=commentInsertBtn]').click(function() { //댓글 등록 버튼 클릭시 
@@ -445,15 +443,26 @@ section {
 							},
 							success : function(data) {
 								var a = '';
+
 								$
 										.each(
 												data,
 												function(key, value) {
+
 													a += '<div class="col-sm-12"><div class="panel panel-default"><div class="panel-heading">'
 													a += '<h3><i class="fa fa-comment"></i> '
 															+ value.writer
 															+ '<small> 날짜 : '
 															+ value.reg_date
+
+															+ '<input name=star type="hidden" value=' + value.star_age + '>'
+															+ '<fieldset class="rating">'
+															+ '<input type="radio" id="star5" name="rating" value="5" checked/><label class="full" for="star5" title="Awesome - 5 stars"></label>'
+															+ '<input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>'
+															+ '<input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>'
+															+ '<input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>'
+															+ '<input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>'
+															+ '</fieldset>'
 
 													if (value.writer === $(
 															"#writer").val()) {
@@ -470,7 +479,6 @@ section {
 																+ ');"> 삭제하기 </a></div>';
 													}
 													a += '</small></h3></div>';
-
 													a += '<div class="panel-body"><div class="panel-body'+ value.cno + '"><p>'
 															+ value.content
 															+ '</p>';
