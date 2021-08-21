@@ -4,21 +4,27 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Chat">
-	 <!-- <insert id="insert">
-		insert into CHAT_CLIENT
-		values(CHAT_CLIENT_SEQ.nextval,#{chatnum},#{id},#{store},#{contents},#{nickname},sysdate)
-	</insert>  -->
+	<!-- <insert id="insert"> insert into CHAT_CLIENT values(CHAT_CLIENT_SEQ.nextval,#{chatnum},#{id},#{store},#{contents},#{nickname},sysdate) 
+		</insert> -->
 	<insert id="insert">
 		insert into CHAT_CLIENT
-		values(CHAT_CLIENT_SEQ.nextval,#{chatnum},#{nickname},#{store},#{contents},#{nickname}, sysdate)
-	</insert> 
-	
+		values(CHAT_CLIENT_SEQ.nextval,#{chatnum},#{nickname},#{store},#{contents},#{nickname},
+		sysdate)
+	</insert>
+
 	<select id="selectAll" resultType="dream.tk.dto.ChatDTO">
-		select seq, chatnum, id, store, contents, nickname, to_char(write_date, 'HH : MM  am') "write_date" 
-		from CHAT_CLIENT 
+		select seq, chatnum, id,
+		store, contents, nickname, to_char(write_date, 'HH : MM am')
+		"write_date"
+		from CHAT_CLIENT
 		where chatnum = #{chatnum}
 		order by seq
 	</select>
-	
+
+	<select id="selectList" resultType="dream.tk.dto.ChatDTO">
+		select * from chat_client 
+		where seq in(select max(seq) from CHAT_CLIENT where chatnum like '%${value}%' group by store) 
+		order by seq desc
+	</select>
 
 </mapper>
