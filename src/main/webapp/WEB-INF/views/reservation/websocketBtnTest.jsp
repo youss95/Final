@@ -50,14 +50,14 @@ $(function(){
 	 data:{userId:'${loginID}'}
 
 	}).done(function(resp){
-		console.log(resp)
+		console.log("rresp",resp)
 		$("#ala").append(resp)
 	})
 })
 $("#btnSend").on('click',function(){
 	let bno = 1
 	let sender = '${loginID}'
-	let getter = "happytable"
+	let getter = "testgo"
 	
 	
 	let data ={userId:getter,content:sender+" 님이 좋아요를 눌렀습니다."}
@@ -77,12 +77,7 @@ $("#btnSend").on('click',function(){
 	})
 })
 
-$('#btnSend2').on('click', function(evt) {
- 	  evt.preventDefault();
-  if (socket.readyState !== 1) return;
-    	  let msg = "like";
-    	  ws.send(msg);
-    });
+
 </script>
  <%@include file="../layout/alarm.jsp" %>
 </body>

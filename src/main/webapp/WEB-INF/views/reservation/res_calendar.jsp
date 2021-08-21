@@ -171,7 +171,8 @@ pointer-events:none;
 
       		          })
       		       
-      		       reset();
+      		      // reset();
+      		        location.reload()
       			$("#cancelBtn").click();
       		}) 
       	})
@@ -289,6 +290,7 @@ pointer-events:none;
         	  type:"delete"
           }).done(function(resp){
         	  console.log(resp)
+        	 
           })
         }
     	 }

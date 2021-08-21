@@ -36,42 +36,35 @@
 	margin: 0;
 	padding: 0;
 }
-
 .contain {
 	width: 100%;
 	height: 106px;
 	float: center -webkit-font-smoothing: antialiased;
 	box-sizing: border-box;
 }
-
 .headers {
 	width: 100%;
 	height: 250px;
 }
-
 aside {
 	float: left;
 	width: 65%;
 	height: 700px;
 }
-
 section {
 	float: left;
 	width: 35%;
 	height: 700px;
 }
-
 .foot {
 	float: left;
 	width: 65%;
 	height: 300px;
 }
-
 .footer {
 	width: 35%;
 	height: 300px;
 }
-
 @media ( max-width : 1540px) {
 	#wrap {
 		width: 100%;
@@ -102,12 +95,10 @@ section {
 		height: 300px;
 	}
 }
-
 .form-group {
 	width: 600px;
 	height: 100px;
 }
-
 .form-group>input {
 	width: 800px;
 	height: 100%;
@@ -294,7 +285,6 @@ section {
 					text : businessName
 				// text 옵션을 설정하면 마커 위에 텍스트를 함께 표시할 수 있습니다     
 				} ];
-
 				var staticMapContainer = document.getElementById('staticMap'), // 이미지 지도를 표시할 div  
 				staticMapOption = {
 					center : new kakao.maps.LatLng(xid, yid), // 이미지 지도의 중심좌표
@@ -302,7 +292,6 @@ section {
 					marker : markers
 				// 이미지 지도에 표시할 마커 
 				};
-
 				// 이미지 지도를 생성합니다
 				var staticMap = new kakao.maps.StaticMap(staticMapContainer,
 						staticMapOption);
@@ -312,18 +301,15 @@ section {
 			<script>
 				function random_imglink() {
 					var myimages = new Array()
-
 					/* 각각의 이미지 경로 지정 */
 					myimages[1] = "${pageContext.request.contextPath}/resources/images/3.png"
 					myimages[2] = "${pageContext.request.contextPath}/resources/images/4.png"
 					myimages[3] = "${pageContext.request.contextPath}/resources/images/6.png"
-
 					/* 각각의 이미지 링크 지정 */
 					var imagelinks = new Array()
 					imagelinks[1] = "https://www.tripadvisor.com/Restaurants-g294197-zfn7778638-Seoul.html"
 					imagelinks[2] = "https://www.willflyforfood.net/seoul-food-guide-25-must-eat-restaurants-in-seoul-south-korea/"
 					imagelinks[3] = "https://www.creatrip.com/en/blog/1822/TOP-5-Busan-Pork-Rice-Soup-Restaurants"
-
 					var ry = Math.floor(Math.random() * myimages.length)
 					if (ry == 0)
 						ry = 1
@@ -336,12 +322,10 @@ section {
 			<script>
 				function random_imglink() {
 					var myimages = new Array()
-
 					/* 각각의 이미지 경로 지정 */
 					myimages[1] = "${pageContext.request.contextPath}/resources/images/1.png"
 					myimages[2] = "${pageContext.request.contextPath}/resources/images/2.png"
 					myimages[3] = "${pageContext.request.contextPath}/resources/images/5.png"
-
 					/* 각각의 이미지 링크 지정 */
 					var imagelinks = new Array()
 					imagelinks[1] = "https://www.tripadvisor.com/Restaurants-g294197-zfn7778640-Seoul.html"
@@ -443,18 +427,16 @@ section {
 							},
 							success : function(data) {
 								var a = '';
-
 								$
 										.each(
 												data,
 												function(key, value) {
-
+													console.log("vale",value)
 													a += '<div class="col-sm-12"><div class="panel panel-default"><div class="panel-heading">'
 													a += '<h3><i class="fa fa-comment"></i> '
 															+ value.writer
 															+ '<small> 날짜 : '
 															+ value.reg_date
-
 															+ '<input name=star type="hidden" value=' + value.star_age + '>'
 															+ '<fieldset class="rating">'
 															+ '<input type="radio" id="star5" name="rating" value="5" checked/><label class="full" for="star5" title="Awesome - 5 stars"></label>'
@@ -463,7 +445,6 @@ section {
 															+ '<input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>'
 															+ '<input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>'
 															+ '</fieldset>'
-
 													if (value.writer === $(
 															"#writer").val()) {
 														a += ' <div class="commentInfo'+ value.cno+'">'
@@ -473,7 +454,6 @@ section {
 																+ ',\''
 																+ value.content
 																+ '\');"> 수정하기 </a>';
-
 														a += '<a onclick="commentDelete('
 																+ value.cno
 																+ ');"> 삭제하기 </a></div>';
@@ -482,22 +462,18 @@ section {
 													a += '<div class="panel-body"><div class="panel-body'+ value.cno + '"><p>'
 															+ value.content
 															+ '</p>';
-
 													a += '</div></div></div></div>';
 												});
-
 								$(".commentList").html(a);
 							}
 						});
 			}
-
 			//댓글 등록
 			function commentInsert(insertData) {
 				$.ajax({
 					url : '/comment/insert',
 					type : 'post',
 					data : insertData,
-
 					success : function(data) {
 						if (data == 1) {
 							commentList(); //댓글 작성 후 댓글 목록 reload
@@ -506,22 +482,17 @@ section {
 					}
 				});
 			}
-
 			//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
 			function commentUpdate(cno, content) {
 				var a = '';
-
 				a += '<div class="col-sm-12"><div class="panel panel-default"><div class="panel-heading" style="height:145px">';
 				a += '<div class="form-group">';
 				a += '<input type="text" class="form-control" name="content_'+cno+'" value="'+content+'"/>';
 				a += '<button class="btn btn-primary" style="left:0" type="button" onclick="commentUpdateProc('
 						+ cno + ');">수정하기</button>';
 				a += '</div></div></div>';
-
 				$('.panel-body' + cno).html(a);
-
 			}
-
 			//댓글 수정
 			function commentUpdateProc(cno) {
 				var updateContent = $('[name=content_' + cno + ']').val();
@@ -538,7 +509,6 @@ section {
 					}
 				});
 			}
-
 			//댓글 삭제 
 			function commentDelete(cno) {
 				$.ajax({
@@ -550,7 +520,6 @@ section {
 					}
 				});
 			}
-
 			$(document).ready(function() {
 				commentList(); //페이지 로딩시 댓글 목록 출력 
 			});

@@ -56,7 +56,7 @@ margin-top:300px;
      </c:otherwise>
     </c:choose>
     <c:forEach var="i" begin="${paging.startNum}" end="${paging.endPage}" step="1">
-    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/noti/detail?userId=${loginID}&page=${param.page+1}">${i}</a></li>
+    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/noti/detail?userId=${loginID}&page=${i}">${i}</a></li>
    </c:forEach>
    
    <c:choose>

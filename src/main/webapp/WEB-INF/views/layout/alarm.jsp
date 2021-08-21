@@ -22,10 +22,10 @@
          toastr.success("알림", toMsg);
     	
     		
-    		 let gs = $("#ala").text();
+    		 let gs = $('.nav-counter').text();
     		let total = parseInt(gs)
     		
-    		  $("#ala").text(total+1)
+    		  $('.nav-counter').text(total+1)
     	
         
      };
