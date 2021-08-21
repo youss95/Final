@@ -39,9 +39,8 @@ public class CommentController {
 	    @RequestMapping("/insert") //댓글 작성 
 	    @ResponseBody
 	    private int mCommentServiceInsert(@RequestBody StoreCommentDTO dto) throws Exception{
-	    	
-	       
 	        return service.commentInsertService(dto);
+
 	    }
 	    
 	    @RequestMapping("/update") //댓글 수정  
@@ -60,6 +59,9 @@ public class CommentController {
 	        return service.commentDeleteService(cno);
 	    }
 
-
+	    
+	    
+	    
+	    
 	
 }
