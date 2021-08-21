@@ -12,7 +12,7 @@
 
           <li><a href="${pageContext.request.contextPath}/mypage.mp">MyPage</a></li>
          <li><a href="${pageContext.request.contextPath}/member/logout"><i class="fas fa-sign-out-alt"></i></a></li>
-					<li><a href="/noti/detail?userId=${loginID}" class="button" style="position: relative"><i
+					<li><a href="/noti/detail?userId=${loginID}&page=1" class="button" style="position: relative"><i
 							class="fas fa-bell fa-2x"></i><span class="nav-counter"></span></a></li>
 					<li><i class="fas fa-user-alt userIcon" id="popBtn"
 						data-placement="bottom" class="btn btn-lg btn-danger"

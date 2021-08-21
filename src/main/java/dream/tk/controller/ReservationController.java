@@ -52,11 +52,10 @@ public class ReservationController {
 	//?bizs_seq= 붙이자 일단
 	@GetMapping("/calendar")
 	public String calendar(int biz_seq,String userId,Model model) {
-		System.out.println(biz_seq);
-		ResInfoDTO resdto = new ResInfoDTO(userId,biz_seq);
-		List<ReservationDTO> resInfo = resService.getResInfo(resdto);
+		
+	ResInfoDTO resdto = new ResInfoDTO(userId,biz_seq);
+	List<ReservationDTO> resInfo = resService.getResInfo(resdto);
 	String od = resService.getOffday(biz_seq);
-	System.out.println("od"+od);
 	List<String> offdays = resService.dayoff(od);
 	String onday = resService.getOnday(biz_seq);
 	model.addAttribute("resInfo",resInfo); //예약정보
@@ -95,16 +94,9 @@ public class ReservationController {
 		System.out.println("유효성 검사 실패 메시지: "+errorMap.get("businessContact"));
 			return "/reservation/res_bizSetting";
 		}
-		String result = "";
-		
-		for(String time : dto.getOnday()) {
-			result = result + time + "," ;
-		}
 		
 		
-		dto.setTimeAvailable(result);
 		
-		System.out.println(result);
 		
 		System.out.println(dto.toString());
 		resService.registerBiz(dto);
@@ -140,6 +132,7 @@ public class ReservationController {
 	@GetMapping(value= "/resInfoList",produces= {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
 	public List<ReservationDTO> resInfoList(String userId){
+		System.out.println(userId);
 		List<ReservationDTO> list = resService.resInfoList(userId);
 		
 		
