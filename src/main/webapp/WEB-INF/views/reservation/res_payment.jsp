@@ -7,38 +7,69 @@
 <title>결제 하기</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </head>
-<body>
+<style>
+.payTitle{
+margin-bottom:100px;
+}
+.inp_rd{
 
-<h2>결제 페이지 (정액권)</h2>
-	<div class="rd_group">
+margin-right:130px;
+}
+#selectPrice{
+
+border-bottom:2px solid black;
+}
+strong{
+font-size:20px;
+}
+#totalPrice{
+font-size:30px;
+font-weight:600;
+}
+#priceTitle{
+font-size:30px;
+font-weight:600;
+}
+</style>
+<body>
+<%@include file="../layout/header.jsp" %>
+<div class="container">
+<section class="">
+<div class="payTitle"><h2>결제 페이지 (정액권)</h2></div>
+	
 										<div class="inp_rd">
 											<input type="radio" id="m1" name="price" value=100>
 											
-											<label for="m1">1개월</label>
+											<label for="m1">1개월 <strong>5,000원</strong></label>
 										</div>
 										<div class="inp_rd">
 											<input type="radio" id="m2" name="price" value=200>
-											<label for="m2">6개월</label>
+											<label for="m2">6개월 <strong>30,000원</strong></label>
 										</div>
 										<div class="inp_rd">
 											<input type="radio" id="m3" name="price" value=300>
-											<label for="m3">12개월</label>
+											<label for="m3">12개월 <strong>70,000원</strong></label>
 										</div>
-									</div>
-									
-${loginID}
-<p>
-    <p>아임 서포트 결제 모듈 테스트 해보기</p>
+							
+								<hr>
+<div id="priceTitle">총 가격: <span id="totalPrice"></span></div>
+ 
     <button id="check_module" type="button">결제</button>
     <input type="button" id="check2" value="환불">
-</p>
+
+</section>
+ </div>
 <script>
 let price = '';
 $("input[type=radio][name='price']").on('change',function(){
 	price = $("input[type=radio][name='price']:checked").val() ;
 	console.log(price)
-
+	$("#totalPrice").text(price+" 원")
 })
 
 
@@ -168,5 +199,4 @@ $("input[type=radio][name='price']").on('change',function(){
 
     
 </script>
-</body>
-</html>
+<%@include file="../layout/alarm.jsp" %>

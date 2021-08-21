@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,14 +38,10 @@ public class CommentController {
 	    
 	    @RequestMapping("/insert") //댓글 작성 
 	    @ResponseBody
-	    private int mCommentServiceInsert(@RequestParam int bno, @RequestParam String content, @RequestParam String writer, @RequestParam int star_age) throws Exception{
-	    	StoreCommentDTO comment = new StoreCommentDTO();
-	    	comment.setBno(bno);
-	        comment.setContent(content);
-	        comment.setWriter(writer);  
-	        comment.setStar_age(star_age);
+	    private int mCommentServiceInsert(@RequestBody StoreCommentDTO dto) throws Exception{
+	    	
 	       
-	        return service.commentInsertService(comment);
+	        return service.commentInsertService(dto);
 	    }
 	    
 	    @RequestMapping("/update") //댓글 수정  
