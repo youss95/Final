@@ -43,6 +43,7 @@ public class ChatController {
 	
 	@RequestMapping("makeChat")
 	public String makeChat(String store) throws Exception{
+		System.out.println("store 값 넘어옴" + store);
 		session.setAttribute("storeName", store);
 		return "redirect:toChat";
 	}
