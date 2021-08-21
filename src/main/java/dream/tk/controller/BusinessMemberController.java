@@ -73,7 +73,7 @@ public class BusinessMemberController {
 			session.setAttribute("bizInfo", bizdto);
 			return "/memberB/loginView";
 		}else {
-			return "error";
+			return "memberB/loginFail";
 		}
 	}
 	
