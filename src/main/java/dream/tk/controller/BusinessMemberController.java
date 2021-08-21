@@ -329,10 +329,8 @@ public class BusinessMemberController {
 	public String chatting() {
 		return "/memberB/chatting";
 	}
+
 	
-	@RequestMapping("store")
-	public String store() {
-		return "/Store/StoreDetail";
-	}
+	
 
 }
