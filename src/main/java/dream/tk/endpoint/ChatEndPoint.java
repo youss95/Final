@@ -29,8 +29,9 @@ import dream.tk.service.ChatService;
 public class ChatEndPoint {
    
    private ChatService dao = ApplicationContextProvider.getApplicationContext().getBean(ChatService.class);
-   private List<Session> list = new ArrayList<Session>();
-   private static Map<String,List<Session>> clients = Collections.synchronizedMap(new HashMap<>()); // Map<채팅방 이름, 채팅방 마다 등록된 리스트>
+   //private List<Session> list = new ArrayList<Session>();
+   //private static Map<String,List<Session>> clients = Collections.synchronizedMap(new HashMap<>()); // Map<채팅방 이름, 채팅방 마다 등록된 리스트>
+   private static Set<Session> clients = Collections.synchronizedSet(new HashSet<>());
    private HttpSession hsession;
    private ChatService service;
     
@@ -48,18 +49,20 @@ public class ChatEndPoint {
       String roomid = (String) hsession.getAttribute("roomid");
       
       System.out.println(hsession.getAttribute("loginID"));
-      if(clients.get(hsession.getAttribute("roomid")).size() !=0) {
-    	 clients.get(hsession.getAttribute("roomid")).add(session); // <- 채팅방 Join
-      }else {
-    	  
-      }
-      //clients.add(session);
+		/*
+		 * if(clients.get(hsession.getAttribute("roomid")).size() !=0) {
+		 * clients.get(hsession.getAttribute("roomid")).add(session); // <- 채팅방 Join
+		 * }else {
+		 * 
+		 * }
+		 */
+      clients.add(session);
    }
 
    @OnMessage
    public void onMessage(Session self, String contents) {
       synchronized (clients) {
-         for (Session client : clients.get(hsession.getAttribute("roomid"))) { // 채팅방끼리 통신 가능함.
+         for (Session client : clients) { // 채팅방끼리 통신 가능함.
             	
             	JsonObject json = new JsonObject();
             	json.addProperty("store", (String)hsession.getAttribute("storeName"));// 가게이름
