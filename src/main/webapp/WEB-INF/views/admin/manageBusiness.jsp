@@ -122,71 +122,18 @@ a {
 				</h5>
 			</div>
 			<div class="row columns">
-				<div class="col-4">업체 회원 ID</div>
+				<div class="col-4">업체 No</div>
 				<div class="col-4">상호명</div>
 				<div class="col-2">리뷰수</div>
-				<div class="col-2">기간</div>
-			</div>
-
-			<c:forEach var="item" items="${pageList}" varStatus="s">
-				<div class="row list" style="overflow: hidden">			
-						<div class="col-4">item.id</div>
-						<div class="col-4">item.business_name</div>
-						<div class="col-2">item.review</div>
-						<div class="col-2">item.term</div>
-				</div>
-			</c:forEach>
-
-			<div class="row footer">
-				<div class="col-3"></div>
-
-				<div class="col-6" style="text-align: center;">
-					<nav>
-						<c:forEach var="i" items="${pageNavi }" varStatus="s">
-							<c:choose>
-								<c:when test="${i == '<'}">
-									<a
-										href="${pageContext.request.contextPath}/trans/transList?currentPage=${pageNavi[s.index+1]-1}}">${i}</a>
-								</c:when>
-								<c:when test="${i == '>'}">
-									<a
-										href="${pageContext.request.contextPath}/trans/transList?currentPage=${pageNavi[s.index-1]+1}">${i}</a>
-								</c:when>
-								<c:otherwise>
-									<a
-										href="${pageContext.request.contextPath}/trans/transList?currentPage=${i}">${i
-                                                }</a>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
-					</nav>
-				</div>
-
-				<div class="col-3" style="text-align: right"></div>
-			</div>
-		</div>
-
-		<div class="wrapper l">
-			<div class="row title">
-				<h5 style="width: 100%;">
-					<b>리뷰 신고 관리</b>
-				</h5>
-			</div>
-			<div class="row columns">
-				<div class="col-3">작성자</div>
-				<div class="col-4">제목</div>
-				<div class="col-3">등록일</div>
 				<div class="col-2"></div>
 			</div>
 
-			<c:forEach var="item" items="${pageList}" varStatus="s">
-				<div class="row list" style="overflow: hidden">
-					<div class="col-3">작성자</div>
-					<div class="col-4">제목</div>
-					<div class="col-3">등록일</div>
-					<div class="col-2">
-						<button id="delReview">삭제</button>
-					</div>
+			<c:forEach var="list" items="${blackList}" varStatus="s">
+				<div class="row list" style="overflow: hidden">			
+						<div class="col-4">${list.STORE_SEQ}</div>
+						<div class="col-4">${list.BUSINESSNAME}</div>
+						<div class="col-2">${list.counts}</div>
+						<div class="col-2"><button type="button" class="btnOut" seq="${list.STORE_SEQ}">탈퇴</button></div>
 				</div>
 			</c:forEach>
 
@@ -218,12 +165,25 @@ a {
 				<div class="col-3" style="text-align: right"></div>
 			</div>
 		</div>
-
 
 
 	</div>
 
-
+<script>
+	$(".btnOut").on("click",function(){
+		let seq =this.seq;
+		let here = this;
+		$.ajax({
+			data:{"seq":seq},
+			url:"${pageContext.request.contextPath}/admin/businessOut",
+		}).done(function(resp){
+			if(resp>0){
+			$(here).closest(".list").remove();
+			}
+		})
+		
+	})
+</script>
 </body>
 
 </html>

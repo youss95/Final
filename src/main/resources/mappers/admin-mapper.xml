@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin">
+
+	<select id="getBlackList" resultType="HashMap">
+		select store_seq,businessname,count(*) "counts" from(select cno,content,businessname,reg_date,store_seq from comments c join store s on c.bno = s.store_seq <![CDATA[ where sysdate - reg_date < 7) group by businessname, store_seq having count(*) >1]]>
+	</select>
+	
+	<delete id="businessOut">
+		delete from store where store_seq=#{value}
+	</delete>
+	
+</mapper>
