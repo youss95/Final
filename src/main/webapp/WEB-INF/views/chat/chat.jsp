@@ -254,6 +254,7 @@ button:hover {
 	text-decoration:none;
 	color:white;
 }
+
 </style>
 <script>
 	$(document).ready(function() {
@@ -279,8 +280,11 @@ button:hover {
 
 			let text = JSON.parse(event.data);
 			let li = $("<li class='clearfix'>");
-			let line = $("<div class='message-data align-right'>");
-			let time = $("<span class='message-data-time'>now</span> &nbsp; &nbsp; <span class='message-data-name'>me</span><i class='fa fa-circle me'></i>");
+			let line = $("<div class='message-data-ajax align-right'>");
+			let time = $("<span class='message-data-time'></span>");
+			let timeID = $("#loginID").val();
+			time.append(timeID);
+			let who = $("<span class='message-data-name'>me</span>");
 
 			let msgLine = $("<div class='message other-message float-right pleft'>");
 			msgLine.append(text.contents);
@@ -348,6 +352,7 @@ button:hover {
 			<!-- end chat-header -->
 
 			<div class="chat-history">
+			<input type="hidden" id="loginID" value="${loginID }">
 				<ul id="history-under">
 					<li class="clearfix">
 						<div class="message-data align-right">
