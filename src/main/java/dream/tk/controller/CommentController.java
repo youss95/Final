@@ -44,6 +44,7 @@ public class CommentController {
 	        comment.setWriter(writer);  
 	        comment.setStar_age(star_age);
 	       
+	        
 	        return service.commentInsertService(comment);
 	    }
 	    
@@ -63,6 +64,9 @@ public class CommentController {
 	        return service.commentDeleteService(cno);
 	    }
 
-
+	    
+	    
+	    
+	    
 	
 }
