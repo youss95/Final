@@ -1,8 +1,5 @@
 package dream.tk.dao;
 
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +15,10 @@ import dream.tk.dto.ReservationDTO;
 public class BusinessMemberDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
+	
+	public int insert(BusinessMemberDTO dto) {
+		return mybatis.insert("bMem.insert", dto);
+	}
 	
 	public int dupleCheck(String id) {
 		return mybatis.selectOne("bMem.dupleCheck", id);

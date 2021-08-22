@@ -21,7 +21,7 @@
 		})
 		$("#insertB").on("click", function(){
 			alert("insertB 누름");
-			//location.href="${pageContext.request.contextPath}/admin/insertB";
+			location.href="${pageContext.request.contextPath}/admin/insertB";
 		})
 	</script>
 </body>
