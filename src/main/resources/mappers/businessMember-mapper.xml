@@ -7,7 +7,7 @@
 
 	<insert id="insert">
 		insert into business_member values(business_member_seq.nextval, #{id},
-		#{pw},#{name},#{email},#{phone},'N',#{reg_date},null)
+		#{pw},#{name},#{email},#{phone},'N',#{reg_date},null, 'B')
 	</insert>
 
 	<select id="dupleCheck" resultType="int">
