@@ -39,9 +39,10 @@ public class StoreDTO {
 		this.keep_count = keep_count;
 	}
 	
-	public StoreDTO(String businessName, String road_name) {
-		this.businessName = businessName;
+	public StoreDTO(String businessNameEng, String road_name, int store_seq) {
+		this.businessNameEng = businessNameEng;
 		this.road_name = road_name;
+		this.store_seq = store_seq;
 	};
 	
 	

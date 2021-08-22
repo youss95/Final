@@ -14,16 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dream.tk.config.PagingVO;
-import dream.tk.dto.StoreDTO;
-import dream.tk.service.CommentService;
-import dream.tk.service.StoreService;
+import dream.tk.dto.BusinessDTO;
+import dream.tk.service.StoreBusinessService;
 import net.sf.json.JSONArray;
 
 
-
 @Controller
-@RequestMapping("/store")
-public class StoreController {
+@RequestMapping("/Business")
+public class BusinessStoreController {
 	@Autowired
 	private HttpSession session;
 	
@@ -31,16 +29,15 @@ public class StoreController {
 	private HttpSession session1;
 	
 	@Autowired
-	private StoreService service;
+	private StoreBusinessService service;
 	
-	@Autowired
-	private CommentService serviceC;
+
 	
 	
 	@GetMapping("signup")
 	public String boardList(PagingVO vo, Model model
 			, @RequestParam(value="nowPage", required=false)String nowPage
-			, @ModelAttribute("searchVO") StoreDTO searchVO,  ModelMap modelMap
+			, @ModelAttribute("searchVO") BusinessDTO searchVO,  ModelMap modelMap
 			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) throws Exception {
 		int total = service.countBoard();
 		System.out.println(searchVO);
@@ -57,31 +54,28 @@ public class StoreController {
 				
 		try {
 			model.addAttribute("viewAll", service.selectBoard(vo));
-			List<StoreDTO> test = service.getList(searchVO);
+			
+			List<BusinessDTO> test = service.getList(searchVO);
 			modelMap.addAttribute("rdnmadrListJson", JSONArray.fromObject(test));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "/Store/Store";
+		return "/Store/BusinessStore";
 	}
 	
 	//디테일 페이지로
 	@RequestMapping("view")
-	public String view(int store_seq, Model m, String store) throws Exception{
-		StoreDTO dto = service.select(store_seq);
-		m.addAttribute("countCmt", serviceC.count(store_seq));
+	public String view(int biz_seq, Model m, String store) throws Exception{
+		BusinessDTO dto = service.select(biz_seq);
+		//m.addAttribute("countCmt", serviceC.count(store_seq));
 		m.addAttribute("list", dto);
-		System.out.println(dto.toString());
 		session.setAttribute("store", store);
-		return "/Store/StoreDetail";
+		return "/Store/BusinessStoreDetail";
 	}
 	
 	// 혹시 모르는 페이지
 	@RequestMapping("store_detail")
 	public String detail() {
-		return "Store/StoreDetail";
+		return "/Store/BusinessStoreDetail";
 	}
-	
-	
-	
 }
