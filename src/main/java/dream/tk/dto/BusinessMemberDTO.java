@@ -16,13 +16,15 @@ public class BusinessMemberDTO {
 	private String premium;
 	private Date reg_date;
 	private Date prm_exp_date;
-	
+	private String member_role;
+
+
 	public BusinessMemberDTO() {
 		super();
 	}
 	
 	public BusinessMemberDTO(int seq, String id, String pw, String name, String email, String phone, String premium,
-			Date reg_date, Date prm_exp_date) {
+			Date reg_date, Date prm_exp_date, String member_role) {
 		super();
 		this.seq = seq;
 		this.id = id;
@@ -33,6 +35,7 @@ public class BusinessMemberDTO {
 		this.premium = premium;
 		this.reg_date = reg_date;
 		this.prm_exp_date = prm_exp_date;
+		this.member_role = member_role;
 	}
 	
 	public int getSeq() {
@@ -89,16 +92,13 @@ public class BusinessMemberDTO {
 	public void setPrm_exp_date(Date prm_exp_date) {
 		this.prm_exp_date = prm_exp_date;
 	}
-	
-	
+	public String getMember_role() {
+		return member_role;
+	}
+	public void setMember_role(String member_role) {
+		this.member_role = member_role;
+	}
 
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
