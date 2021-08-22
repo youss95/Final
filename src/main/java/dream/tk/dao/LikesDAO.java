@@ -4,7 +4,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import dream.tk.dto.likeDTO;
+import dream.tk.dto.LikesDTO;
+
+
 
 @Repository
 public class LikesDAO {
@@ -15,7 +17,7 @@ public class LikesDAO {
 	
 
 	//찜하기
-	public int doLike(likeDTO dto) {
-		return mybatis.insert("like.doLike",dto);
-	}
+	
+	  public int doLike(LikesDTO dto) { return mybatis.insert("like.doLike",dto); }
+	 
 }
