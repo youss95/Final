@@ -207,6 +207,7 @@ section {
 						<div id="bottom" style="top: 300px; left: 0">
 							<a href="/res/calendar?userId=${loginID}&biz_seq=${list.biz_seq}&res_name=${list.businessName}"   class="btn_s btn_light" style="left: 0;">예약하기</a>
 						</div>
+						
 						<div id="bottom_bottom"
 							style="padding: 20px; margin: 5px; float: right; height: 100px; position: relative; bottom: -170px;">
 
