@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.SqlInOutParameter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -127,7 +128,7 @@ public class BusinessMemberController {
 		String phone = phone1 + phone2+ phone3;
 		
 	
-		BusinessMemberDTO dto = new BusinessMemberDTO(0,id,pw,name,email,phone,null,null,null);
+		BusinessMemberDTO dto = new BusinessMemberDTO(0,id,pw,name,email,phone,null,null,null,null);
 		
 		int result = ser.signup(dto);
 		m.addAttribute("result", result);
