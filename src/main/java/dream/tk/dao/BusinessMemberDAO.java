@@ -1,8 +1,5 @@
 package dream.tk.dao;
 
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -12,11 +9,16 @@ import org.springframework.stereotype.Repository;
 
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.BusinessMemberDTO;
+import dream.tk.dto.ReservationDTO;
 
 @Repository
 public class BusinessMemberDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
+	
+	public int insert(BusinessMemberDTO dto) {
+		return mybatis.insert("bMem.insert", dto);
+	}
 	
 	public int dupleCheck(String id) {
 		return mybatis.selectOne("bMem.dupleCheck", id);
@@ -94,5 +96,9 @@ public class BusinessMemberDAO {
 		return mybatis. selectOne("bMem.getVsMine",businessName);
 	}
 	
+	
+	  public List<ReservationDTO> resManage(String res_name){ return
+	  mybatis.selectList("bMem.resManage",res_name); }
+	 
 	
 }

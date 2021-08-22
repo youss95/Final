@@ -23,6 +23,7 @@ import dream.tk.api.VerifyRecaptcha;
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.BusinessFileDTO;
 import dream.tk.dto.BusinessMemberDTO;
+import dream.tk.dto.ReservationDTO;
 import dream.tk.service.BusinessFileService;
 import dream.tk.service.BusinessMemberService;
 import dream.tk.service.EmailService;
@@ -65,8 +66,6 @@ public class BusinessMemberController {
 		if(result>0) {
 			session.setAttribute("loginID", id);
 			BusinessMemberDTO dto = ser.getInfo(id);
-			System.out.println("디티오는  "+dto);
-			System.out.println("디티오 id는  "+dto.getId());
 			session.setAttribute("binfo", dto);
 			
 			//int bizSeq = ser.getSeq(id);
@@ -334,8 +333,13 @@ public class BusinessMemberController {
 	}
 	
 	@RequestMapping("reservation")
-	public String reservation() {
+	public String reservation(Model model,String res_name) {
+		List<ReservationDTO> list = ser.resManage(res_name);
+		model.addAttribute("resList",list);
+		
 		return "/memberB/myReservation";
 	}
+	
+	
 
 }

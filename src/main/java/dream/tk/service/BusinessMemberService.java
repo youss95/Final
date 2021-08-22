@@ -1,5 +1,6 @@
 package dream.tk.service;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,10 +8,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import dream.tk.api.SHA256;
 import dream.tk.dao.BusinessMemberDAO;
 import dream.tk.dao.ClientMemberDAO;
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.BusinessMemberDTO;
+import dream.tk.dto.ReservationDTO;
 
 
 @Service
@@ -21,6 +24,8 @@ public class BusinessMemberService {
 	
 	@Autowired
 	private ClientMemberDAO cdao;
+	
+
 	
 	public int dupleCheck(String id) {
 		int result1 = dao.dupleCheck(id);
@@ -109,4 +114,9 @@ public class BusinessMemberService {
 		return dao.getVsMine(businessName);
 	}
 	
+	//예약 정보
+	
+	  public List<ReservationDTO> resManage(String res_name){ return
+	  dao.resManage(res_name); }
+	 
 }

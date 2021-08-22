@@ -2,149 +2,184 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="bMem">
 
+	<insert id="insert">
+		insert into business_member values(business_member_seq.nextval, #{id},
+		#{pw},#{name},#{email},#{phone},'N',#{reg_date},null)
+	</insert>
+
 	<select id="dupleCheck" resultType="int">
-		select count(*) from business_member where id=#{value}
+		select count(*) from
+		business_member where id=#{value}
 	</select>
+
 
     <insert id="signup">
 		insert into business_member values(business_member_seq.nextval, #{id}, #{pw}, 
 		#{name},#{email},#{phone},'N',sysdate,null,'B')
 	</insert>
-<!-- 	<insert id="signup"> -->
-<!-- 		insert into business_member(seq, id,pw,name,email,phone,type,regNum,businessName,businessNameEng, businessContact, address1, address2, postcode,address1kor,reg_date,premium)  -->
-<!-- 		values(business_member_seq.nextval, #{id}, #{pw},  -->
-<!-- 		#{name},#{email},#{phone},#{type},#{regNum},#{businessName},#{businessNameEng},#{businessContact}, -->
-<!-- 		#{address1},#{address2},#{postcode},#{address1Kor},sysdate,'N') -->
-<!-- 	</insert> -->
-	
-	
+	<!-- <insert id="signup"> -->
+	<!-- insert into business_member(seq, id,pw,name,email,phone,type,regNum,businessName,businessNameEng, 
+		businessContact, address1, address2, postcode,address1kor,reg_date,premium) -->
+	<!-- values(business_member_seq.nextval, #{id}, #{pw}, -->
+	<!-- #{name},#{email},#{phone},#{type},#{regNum},#{businessName},#{businessNameEng},#{businessContact}, -->
+	<!-- #{address1},#{address2},#{postcode},#{address1Kor},sysdate,'N') -->
+	<!-- </insert> -->
+
+
 	<select id="loginProc" resultType="int">
-		select count(*) from business_member where id=#{id} and pw=#{pw}
+		select count(*) from
+		business_member where id=#{id} and pw=#{pw}
 	</select>
-	
+
 	<delete id="signOut">
 		delete from business_member where id=#{value}
 	</delete>
-	
+
 	<select id="getInfo" resultType="dream.tk.dto.BusinessMemberDTO">
-		select * from business_member where id=#{value}
+		select * from business_member
+		where id=#{value}
 	</select>
-	
+
 	<select id="getSeq" resultType="int">
-		select seq from business_member where id=#{value}
+		select seq from business_member
+		where id=#{value}
 	</select>
-	
+
 	<update id="editPersonalInfo">
-	  update business_member set pw=#{pw},name=#{name},email=#{email},phone=#{phone} where id=#{id}
+		update business_member set
+		pw=#{pw},name=#{name},email=#{email},phone=#{phone} where id=#{id}
 	</update>
 
-	
+
 	<select id="getBizInfo" resultType="dream.tk.dto.BusinessDTO">
-		select * from business where seq=#{value}
+		select * from business where
+		seq=#{value}
 	</select>
-	
+
 	<select id="findID" resultType="String">
-		select id from business_member where name=#{name} and email=#{email}
+		select id from business_member
+		where name=#{name} and email=#{email}
 	</select>
-	
+
 	<select id="findPW" resultType="String">
-		select id from business_member where id=#{id} and name=#{name} and email=#{email}
+		select id from business_member
+		where id=#{id} and name=#{name} and email=#{email}
 	</select>
-	
+
 	<update id="changePW">
 		update business_member set pw=#{pw} where id=#{id}
 	</update>
-	
+
 	<update id="editBizInfo">
-	  update business set biz_type=#{biz_type},bizNum=#{bizNum},businessName=#{businessName},
-	  businessNameEng=#{businessName}, businessContact=#{businessContact}, address1=#{address1}, address2=#{address2}, postcode=#{postcode},address1Kor=#{address1Kor}, offday=#{offday} 
-	  where seq=#{seq}
+		update business set
+		biz_type=#{biz_type},bizNum=#{bizNum},businessName=#{businessName},
+		businessNameEng=#{businessName}, businessContact=#{businessContact},
+		address1=#{address1}, address2=#{address2},
+		postcode=#{postcode},address1Kor=#{address1Kor}, offday=#{offday}
+		where seq=#{seq}
 	</update>
-	
-	
-	
-	
-	
+
+
+
+
+
 	<select id="getTotalRes" resultType="int">
-		select count(*) from reservation where res_name=#{value}
+		select count(*) from
+		reservation where res_name=#{value}
 	</select>
-	
+
 	<select id="getReserveAge" resultType="HashMap">
-	
+
 		select 연령대,count(연령대) from
- 		(select name,
+		(select name,
       	<![CDATA[ case when to_char(sysdate,'yyyy')-to_char(yearofbirth) <= 19  then '10대'
             when to_char(sysdate,'yyyy')-to_char(yearofbirth) <= 29  then '20대'
             when to_char(sysdate,'yyyy')-to_char(yearofbirth) <= 39 then '30대'
             when to_char(sysdate,'yyyy')-to_char(yearofbirth) <= 49  then '40대'
             when to_char(sysdate,'yyyy')-to_char(yearofbirth) <= 59 then '50대']]>
-            else '60대 이상'
-      	 end as 연령대
-		from  reservation r, client_member c where r.userid = c.id and r.res_name=#{value}) group by 연령대 order by 연령대
-	
+		else '60대 이상'
+		end as 연령대
+		from reservation r, client_member c where r.userid = c.id and
+		r.res_name=#{value}) group by 연령대 order by 연령대
+
 	</select>
-	
-	
+
+
 	<select id="getReserveNation" resultType="HashMap">
-	select * from (
-select 국적,count(*),row_number() over(order by count(*) desc) rnum from (
-select name, 
-     case when nation='AR'  then '아르헨티나'
-	when nation='AU'  then '호주'
-	when nation='BR'  then '브라질'
-	when nation='CA'  then '캐나다'
-	when nation='CN'  then '중국'
-	when nation='FR'  then '프랑스'
-	when nation='DE'  then '독일'
-	when nation='IN'  then '인도'
-	when nation='ID'  then '인도네시아'
-	when nation='IT'  then '이탈리아'
-	when nation='JP'  then '일본'
-	when nation='KR'  then '한국'
-	when nation='MX'  then '멕시코'
-	when nation='RU'  then '러시아'
-	when nation='SA'  then '사우디아라비아'
-	when nation='ZA'  then '남아프리카'
-	when nation='TR'  then '터키'
-	when nation='GB'  then '영국'
-	when nation='US'  then '미국'
-	else 'Others'
-    end as 국적
-from (select nation,yearofbirth, id, name from reservation r, client_member c where r.userid = c.id and r.res_name=#{value})) group by 국적) where rnum between 1 and 5
+		select * from (
+		select 국적,count(*),row_number() over(order by count(*) desc) rnum from (
+		select name,
+		case when nation='AR' then '아르헨티나'
+		when nation='AU' then '호주'
+		when nation='BR' then '브라질'
+		when nation='CA' then '캐나다'
+		when nation='CN' then '중국'
+		when nation='FR' then '프랑스'
+		when nation='DE' then '독일'
+		when nation='IN' then '인도'
+		when nation='ID' then '인도네시아'
+		when nation='IT' then '이탈리아'
+		when nation='JP' then '일본'
+		when nation='KR' then '한국'
+		when nation='MX' then '멕시코'
+		when nation='RU' then '러시아'
+		when nation='SA' then '사우디아라비아'
+		when nation='ZA' then '남아프리카'
+		when nation='TR' then '터키'
+		when nation='GB' then '영국'
+		when nation='US' then '미국'
+		else 'Others'
+		end as 국적
+		from (select nation,yearofbirth, id, name from reservation r,
+		client_member c where r.userid = c.id and r.res_name=#{value})) group
+		by 국적) where rnum between 1 and 5
 	</select>
-	
-	
+
+
 	<select id="getReserveMonth" resultType="HashMap">
-	select 
-   		 case 
-			when 숫자 ='01' then '1월'
-			when 숫자 ='02' then '2월'
-			when 숫자 ='03' then '3월'
-			when 숫자 ='04' then '4월'
-			when 숫자 ='05' then '5월'
-			when 숫자 ='06' then '6월'
-			when 숫자 ='07' then '7월'
-			when 숫자 ='08' then '8월'
-			when 숫자 ='09' then '9월'
-			when 숫자 ='10' then '10월'
-			when 숫자 ='11' then '11월'
-			when 숫자 ='12' then '12월'
-			else '기타 월'
-    end as 월,
-    count(*)
-	from (select res_name,substr(res_date,6,2) 숫자 from reservation where res_name=#{value}) group by 숫자 order by 월
+		select
+		case
+		when 숫자 ='01' then '1월'
+		when 숫자 ='02' then '2월'
+		when 숫자 ='03' then '3월'
+		when 숫자 ='04' then '4월'
+		when 숫자 ='05' then '5월'
+		when 숫자 ='06' then '6월'
+		when 숫자 ='07' then '7월'
+		when 숫자 ='08' then '8월'
+		when 숫자 ='09' then '9월'
+		when 숫자 ='10' then '10월'
+		when 숫자 ='11' then '11월'
+		when 숫자 ='12' then '12월'
+		else '기타 월'
+		end as 월,
+		count(*)
+		from (select res_name,substr(res_date,6,2) 숫자 from reservation where
+		res_name=#{value}) group by 숫자 order by 월
 	</select>
-	
-	
+
+
 	<select id="getVs" resultType="HashMap">
-	select round(avg(별점),1) star_avg ,round(avg(찜수),1) keep_count,round(avg(조회수),1) view_count from (select d.star_avg 별점,d.keep_count 찜수, d.view_count 조회수 from business b join store d on b.businessname=d.businessname where b.biz_type=#{value})
+		select round(avg(별점),1) star_avg ,round(avg(찜수),1)
+		keep_count,round(avg(조회수),1) view_count from (select d.star_avg
+		별점,d.keep_count 찜수, d.view_count 조회수 from business b join store d on
+		b.businessname=d.businessname where b.biz_type=#{value})
 	</select>
-	
+
 	<select id="getVsMine" resultType="HashMap">
-	select round(avg(별점),1) star_avg ,round(avg(찜수),1) keep_count,round(avg(조회수),1) view_count from (select d.star_avg 별점,d.keep_count 찜수, d.view_count 조회수 from business b join store d on b.businessname=d.businessname where b.businessname=#{value})
+		select round(avg(별점),1) star_avg ,round(avg(찜수),1)
+		keep_count,round(avg(조회수),1) view_count from (select d.star_avg
+		별점,d.keep_count 찜수, d.view_count 조회수 from business b join store d on
+		b.businessname=d.businessname where b.businessname=#{value})
 	</select>
+
 	
+	 <select id="resManage" resultType="dream.tk.dto.ReservationDTO">
+	select * from reservation where res_name = #{res_name} order by res_createDate desc
+	</select> 
+	
+
 </mapper>
