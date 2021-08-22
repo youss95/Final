@@ -112,6 +112,7 @@ section {
 	width: 800px;
 	height: 100%;
 }
+
 </style>
 </head>
 <body>
@@ -198,7 +199,7 @@ section {
 				<c:choose>
 					<c:when test="${loginID != null}">
 						<div id="bottom" style="top: 300px; left: 0">
-							<button style="left: 0;">예약하기</button>
+						
 						</div>
 						<div id="bottom_bottom"
 							style="padding: 20px; margin: 5px; float: right; height: 100px; position: relative; bottom: -170px;">
@@ -406,7 +407,7 @@ section {
 					</c:choose>
 				</div>
 			</div>
-			
+
 			<div class="containers">
 				<div class="commentList"></div>
 			</div>

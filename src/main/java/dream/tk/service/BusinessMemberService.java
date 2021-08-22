@@ -11,6 +11,7 @@ import dream.tk.dao.BusinessMemberDAO;
 import dream.tk.dao.ClientMemberDAO;
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.BusinessMemberDTO;
+import dream.tk.dto.ReservationDTO;
 
 
 @Service
@@ -109,4 +110,9 @@ public class BusinessMemberService {
 		return dao.getVsMine(businessName);
 	}
 	
+	//예약 정보
+	
+	  public List<ReservationDTO> resManage(String res_name){ return
+	  dao.resManage(res_name); }
+	 
 }

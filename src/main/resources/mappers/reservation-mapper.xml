@@ -136,7 +136,7 @@ select res_checked from reservation where res_time=#{res_time} and res_date=#{re
   
   <!--비즈니스 세팅  -->
   <insert id="bizSetting" >
-  insert into business values(biz_seq.nextval,#{biz_type},#{bizNum},#{businessName},#{businessNameEng},#{businessContact},#{address1},#{address2},#{postcode},#{address1Kor},#{offday},#{timeAvailable},sysdate,#{seq})
+  insert into business values(biz_seq.nextval,#{biz_type},#{bizNum},#{businessName},#{businessNameEng},#{businessContact},#{address1},#{address2},#{postcode},#{address1Kor},#{offday},#{timeAvailable},sysdate,#{seq},0)
   </insert>
   
   <!-- 실시간 알람 -->
