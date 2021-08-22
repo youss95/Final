@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.BusinessMemberDTO;
+import dream.tk.dto.ReservationDTO;
 
 @Repository
 public class BusinessMemberDAO {
@@ -95,5 +96,9 @@ public class BusinessMemberDAO {
 		return mybatis. selectOne("bMem.getVsMine",businessName);
 	}
 	
+	
+	  public List<ReservationDTO> resManage(String res_name){ return
+	  mybatis.selectList("bMem.resManage",res_name); }
+	 
 	
 }

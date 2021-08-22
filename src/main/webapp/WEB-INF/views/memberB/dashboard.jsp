@@ -71,12 +71,12 @@ $(function(){
 <body>
 
   <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" style="height:100%;">
+     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" style="height:100%;">
    
       <div class="logo" style="height:15%; padding:0px">
           <a href="${pageContext.request.contextPath}/" class="simple-text logo-normal">
 <!--            <img src="/resources/images/logoPic.png" style="width:50px" > -->
-          <img src="/resources/images/logoTxt.png" style="width:130px">
+          <img src="/resources/images/logoTxt&Pic.png" style="width:160px">
           </a>
       </div>
 
@@ -117,12 +117,14 @@ $(function(){
               <p>Chatting</p>
             </a>
           </li>
+          
+          <li class="nav-item" style="height:20%;">
+            <a class="nav-link" href="${pageContext.request.contextPath}/bMember/reservation">
+               <i class="material-icons">content_paste</i>
+              <p>Reservation 관리</p>
+            </a>
+          </li>
 
-
-<!--           <div style="height:50%"></div> -->
-           <li class="nav-item " style="height:20%;">
-              
-            </li>
             
             <li class="nav-item " style="height:20%;">
               <a class="nav-link" href="${pageContext.request.contextPath}/" id="exit" style="margin-top:0px">
@@ -130,14 +132,8 @@ $(function(){
                 <p>Exit this Page</p>
               </a>
             </li>
-          
-
         </ul>
         </div>
-
-        <!-- <div id="outBox" style="height:20%">
-        
-        </div> -->
       </div>
     </div>
 

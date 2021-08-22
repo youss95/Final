@@ -39,9 +39,10 @@ public class StoreDTO {
 		this.keep_count = keep_count;
 	}
 	
-	public StoreDTO(String businessName, String road_name) {
-		this.businessName = businessName;
+	public StoreDTO(String businessNameEng, String road_name, int store_seq) {
+		this.businessNameEng = businessNameEng;
 		this.road_name = road_name;
+		this.store_seq = store_seq;
 	};
 	
 	
@@ -166,6 +167,15 @@ public class StoreDTO {
 
 	public void setSearchWrd(String searchWrd) {
 		this.searchWrd = searchWrd;
+	}
+
+	@Override
+	public String toString() {
+		return "StoreDTO [store_seq=" + store_seq + ", city=" + city + ", businessName=" + businessName
+				+ ", businessNameEng=" + businessNameEng + ", phone=" + phone + ", post=" + post + ", road_name="
+				+ road_name + ", store_x=" + store_x + ", store_y=" + store_y + ", view_count=" + view_count
+				+ ", report_count=" + report_count + ", star_age=" + star_age + ", star_age_count=" + star_age_count
+				+ ", keep_count=" + keep_count + ", searchWrd=" + searchWrd + "]";
 	}
 	
 	

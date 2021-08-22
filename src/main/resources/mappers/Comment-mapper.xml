@@ -49,6 +49,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select ROUND(AVG(star_age),1) from comments where bno = ${bno}
 	</select>
 	-->
+	
+	
+	
+	
+	
+	
 </mapper>
  
 

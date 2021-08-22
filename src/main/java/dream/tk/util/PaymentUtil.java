@@ -23,12 +23,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class PaymentUtil {
 	public static final String IMPORT_TOKEN_URL ="https://api.iamport.kr/users/getToken";
-	//	public static final String IMPORT_PAYMENTINFO_URL ="https://api.iamport.kr/payments/find/";
+	
 	public static final	String IMPORT_CANCLE_URL = "https://api.iamport.kr/payments/cancel";
-	//  public static final String IMPORT_PREPARE_URL = "https://api.iamport.kr/payments/prepare";
-	//  public static final String KEY ="4743165764154638";
+	
 	public static final String KEY ="5451677984056232";
-	//  public static final String SECRET = "Ypj2qqpTdQhkwP38ieJHV3BF9L3XXcZWCjY2JoWXfehL3kUlzD3uHE9QqdOoqNk27j5RH2OWg5IjqCFZ";
+	
 	// 아임포트 인증(토큰)을 받아주는 함수
 	public static final String SECRET = "B0mvf5NMxlXb3K9RaerLsQ2RljK0JDdkEAQTFDFcYDo2nyUyMmjedm6yGQzpuMK8mA22eIfdlDgJbbhY";
 	

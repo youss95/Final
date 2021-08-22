@@ -37,7 +37,7 @@
 <body>
 
   <div class="wrapper ">
-     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" style="height:100%;">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" style="height:100%;">
    
       <div class="logo" style="height:15%; padding:0px">
           <a href="${pageContext.request.contextPath}/" class="simple-text logo-normal">
@@ -77,14 +77,14 @@
           </li>
           
 
-          <li class="nav-item active" style="height:20%;">
+          <li class="nav-item" style="height:20%;">
             <a class="nav-link" href="${pageContext.request.contextPath}/bMember/chatting">
               <i class="material-icons">chat</i>
               <p>Chatting</p>
             </a>
           </li>
           
-          <li class="nav-item" style="height:20%;">
+          <li class="nav-item active" style="height:20%;">
             <a class="nav-link" href="${pageContext.request.contextPath}/bMember/reservation">
                <i class="material-icons">content_paste</i>
               <p>Reservation 관리</p>
@@ -111,7 +111,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="">Chatting</a>
+            <a class="navbar-brand" href=""></a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -130,12 +130,36 @@
 
             <div class="row">  
                 <div class="col-lg-12">
-<!--                       채팅 자리 1   -->
+<!--                       예약 관련 1   -->
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">예약자 명</th>
+      <th scope="col">예약 시간</th>
+      <th scope="col">예약 일</th>
+     
+    </tr>
+  </thead>
+      
+  <tbody>
+   <c:forEach var="resList" items="${resList}">
+    <tr>
+      <th scope="row">${resList.userId}</th>
+      <td>  ${resList.res_time}</td>
+      <td>${resList.res_date}</td>
+    </tr>
+      </c:forEach>
+  </tbody>
+ 
+</table>
+
                 </div>
                
 
                  <div class="col-lg-12">
-<!--                       채팅 자리 2	    -->
+<!--                       예약 관련 2	    -->
+
+dd
                 </div>
               
             </div>

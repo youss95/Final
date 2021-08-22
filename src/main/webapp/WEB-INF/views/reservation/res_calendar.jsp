@@ -51,7 +51,9 @@
        color: white;
       }
 	 
-
+.disableClick{
+pointer-events:none;
+}
 </style>
 </head>
 <body>
@@ -144,7 +146,7 @@
       		console.log(selected)
       		console.log(strDate)
       		let data = {
-      			res_name:'행복식당',
+      			res_name:'${bizName}',
       			userId:'${loginID}',
       			res_date:strDate,
       			res_time:selected,
@@ -169,11 +171,13 @@
 
       		          })
       		       
-      		       reset();
+      		      // reset();
+      		        location.reload()
       			$("#cancelBtn").click();
       		}) 
       	})
     var calendar = new FullCalendar.Calendar(calendarEl, {
+    	
       headerToolbar: {
         left: 'prev,next',
         center: 'title',
@@ -181,6 +185,11 @@
       },
      
       initialDate: '2021-08-01',
+      initialView: 'dayGridMonth',
+      validRange: {
+    	  start: '2021-08-01',
+    	    end: '2021-11-28',
+      },
       locale : 'ko',
       navLinks: true, // can click day/week names to navigate views
       selectable: true,
@@ -215,7 +224,7 @@
      
       select: function(arg) {
     	   strDate = moment(arg.start).format("YYYY-MM-DD")
-    	   console.log(strDate)
+    	  
     	 
      /*모달창  띄우기*/
      $("#exampleModal").modal('show');
@@ -236,6 +245,8 @@
     				 console.log(resp)
     				 if(resp == 'Y'){
     					 select[i].style.backgroundColor = 'blue'
+    						console.log(select[i])
+    						select[i].className="disableClick"
     				 }
     			 })
     		 }
@@ -279,6 +290,7 @@
         	  type:"delete"
           }).done(function(resp){
         	  console.log(resp)
+        	 
           })
         }
     	 }

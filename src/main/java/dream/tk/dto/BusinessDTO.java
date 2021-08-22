@@ -15,7 +15,6 @@ public class BusinessDTO {
 	private String bizNum;
 	private String businessName;
 	private String businessNameEng;
-	@Size(min=4,max=10)
 	@Pattern(regexp ="^010\\d{3,4}\\d{4}$",message = "핸드폰 번호를 확인하세요. ex)01012341234")
 	private String businessContact;
 	private String address1;
@@ -27,6 +26,10 @@ public class BusinessDTO {
 	private String timeAvailable;
 	private Date createDate;
 	private int seq;
+	private int view_Count;
+	private String searchWrd;
+	
+	
 	public int getBiz_seq() {
 		return biz_seq;
 	}
@@ -117,9 +120,23 @@ public class BusinessDTO {
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}
+	public int getview_Count() {
+		return view_Count;
+	}
+	public void setview_Count(int view_Count) {
+		this.view_Count = view_Count;
+	}
+	public String getSearchWrd() {
+		return searchWrd;
+	}
+
+	public void setSearchWrd(String searchWrd) {
+		this.searchWrd = searchWrd;
+	}
+	
 	public BusinessDTO(int biz_seq, String biz_type, String bizNum, String businessName, String businessNameEng,
 			String businessContact, String address1, String address2, String postcode, String address1Kor,
-			String offday, String[] onday, String timeAvailable, Date createDate, int seq) {
+			String offday, String[] onday, String timeAvailable, Date createDate, int seq, int view_Count) {
 		super();
 		this.biz_seq = biz_seq;
 		this.biz_type = biz_type;
@@ -136,6 +153,8 @@ public class BusinessDTO {
 		this.timeAvailable = timeAvailable;
 		this.createDate = createDate;
 		this.seq = seq;
+		this.view_Count = view_Count;
+		
 	}
 	public BusinessDTO() {
 		super();

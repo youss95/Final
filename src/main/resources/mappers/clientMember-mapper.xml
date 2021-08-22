@@ -13,14 +13,14 @@
 		insert into client_member
 		values(client_member_seq.nextval,
 		#{id}, #{pw}, #{email}, #{name},
-		#{yob}, #{nation}, #{agree}, 0, sysdate)
+		#{yob}, #{nation}, #{agree}, 0, sysdate,'C')
 	</insert>
 
 	<insert id="insert">
 		insert into client_member
 		values(client_member_seq.nextval,
 		#{id}, #{pw}, #{email}, #{name},
-		#{yob}, #{nation}, #{agree}, 0, #{reg_date})
+		#{yob}, #{nation}, #{agree}, 0, #{reg_date},'C')
 	</insert>
 
 	<update id="update">
