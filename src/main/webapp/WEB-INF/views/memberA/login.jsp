@@ -50,7 +50,7 @@ button {
 </head>
 <body>
     <div class="container p-5 shadow bg-white rounded">
-        <form action="" id="loginForm" method="POST">
+        <form action="${pageContext.request.contextPath}/aMember/loginProc" id="loginForm" method="POST">
             <div class="wrapper">
                 <div class="row header">
                     <div class="col-12 logo">LOGO</div>                    

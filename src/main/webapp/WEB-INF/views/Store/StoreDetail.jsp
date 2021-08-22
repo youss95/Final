@@ -112,6 +112,7 @@ section {
 	width: 800px;
 	height: 100%;
 }
+
 </style>
 </head>
 <body>
@@ -202,6 +203,12 @@ section {
 
 				<c:choose>
 					<c:when test="${loginID != null}">
+<<<<<<< HEAD
+=======
+						<div id="bottom" style="top: 300px; left: 0">
+						
+						</div>
+>>>>>>> 6ad8eba7e15e529b2fb16987b500454697bf7695
 						<div id="bottom_bottom"
 							style="padding: 20px; margin: 5px; float: right; height: 100px; position: relative; bottom: -170px;">
 

@@ -75,15 +75,15 @@
                     <table>
                         <tr>
                             <td>총 가입자수</td>
-                            <td>${total.total}</td>
+                            <td>${total}</td>
                         </tr>
                         <tr>
                             <td>일반 가입자수</td>
-                            <td>${total.client}</td>
+                            <td>${totalC}</td>
                         </tr>
                         <tr>
                             <td>업체 가입자수</td>
-                            <td>${total.client}</td>
+                            <td>${totalB}</td>
                         </tr>
                     </table>
                 </div>
@@ -120,12 +120,16 @@
 
         var tc = document.getElementById('totalChange').getContext('2d');
         var totalChange = new Chart(tc, {
-            type: 'line',
+            type: 'pie',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: [<c:forEach var="item" items="${clietPerNationLabel}"> 
+                "${item}",
+                </c:forEach>],
                 datasets: [{
                     label: '# of Votes', // 데이터 시트 제목
-                    data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3], //데이터 값
+                    data: [<c:forEach var="item" items="${clietPerNationCounts}"> 
+                    "${item}",
+                    </c:forEach>], //데이터 값
                     backgroundColor: [ //막대 색상
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -161,9 +165,16 @@
             options: {
                 responsive: false,
                 plugins: {
+
+
+                       animation: {
+                           animateScale: true,   // true일 경우 차트 생성시 중앙에서부터 커지는 애니메이션. 
+                           animateRotate: true   // true일 경우 차트 생성시 회전 애니메이션.
+                              },
+                            
                     title: { // [차트 타이틀 지정 실시]
                         display: true,
-                        text: '월별 총 회원 가입자 수',
+                        text: '국가별 가입자',
                         color: 'rgb(13, 28, 83)', // [타이틀 폰트 색상]
                         font: { // [타이틀 폰트 스타일 변경]
                             family: 'Comic Sans MS',
@@ -173,13 +184,9 @@
                         },
                         padding: { top: 20, left: 0, right: 0, bottom: 0 }
                     }
+            
                 },
-
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
+                maintainAspectRatio:false,
             }
         });
 
@@ -187,10 +194,14 @@
         var connectBiner = new Chart(cb, {
             type: 'line',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: [<c:forEach var="item" items="${totalPerMonthLabel}"> 
+                "${item}",
+                </c:forEach>],
                 datasets: [{
                     label: '# of Votes', // 데이터 시트 제목
-                    data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3], //데이터 값
+                    data: [<c:forEach var="item" items="${totalPerMonthCounts}"> 
+                    "${item}",
+                    </c:forEach>], //데이터 값
                     backgroundColor: [ //막대 색상
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -228,7 +239,7 @@
                 plugins: {
                     title: { // [차트 타이틀 지정 실시]
                         display: true,
-                        text: '월별 일일 접속자 수 평균',
+                        text: '월별 총 가입자수',
                         color: 'rgb(13, 28, 83)', // [타이틀 폰트 색상]
                         font: { // [타이틀 폰트 스타일 변경]
                             family: 'Comic Sans MS',
@@ -252,38 +263,19 @@
         var clientPerMonth = new Chart(cpm, {
             type: 'bar',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: [<c:forEach var="item" items="${clientPerMonthLabel}"> 
+                "${item}",
+                </c:forEach>],
                 datasets: [{
                     label: '# of Votes', // 데이터 시트 제목
-                    data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3], //데이터 값
+                    data: [<c:forEach var="item" items="${clientPerMonthCounts}"> 
+                    "${item}",
+                    </c:forEach>], //데이터 값
                     backgroundColor: [ //막대 색상
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-
+                    	'rgba(255, 159, 64, 0.2)'
                     ],
                     borderColor: [ //막대 테두리 색상
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
+                    	'rgba(255, 159, 64, 1)'
                     ],
                     borderWidth: 1 //막대 테두리 굵기
                 }]
@@ -316,10 +308,14 @@
         var clientAges = new Chart(ca, {
             type: 'bar',
             data: {
-                labels: ['60대 이상', '50대', '40대', '30대', '20대', '10대 이하'],
+                labels: [<c:forEach var="item" items="${clientAgesLabel}"> 
+                "${item}",
+                </c:forEach>],
                 datasets: [{
                     label: '# of Votes', // 데이터 시트 제목
-                    data: [12, 19, 3, 5, 2, 3], //데이터 값
+                    data: [<c:forEach var="item" items="${clientAgesCounts}"> 
+                    "${item}",
+                    </c:forEach>], //데이터 값
                     backgroundColor: [ //막대 색상
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -368,38 +364,19 @@
         var businessPerMonth = new Chart(bpm, {
             type: 'bar',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: [<c:forEach var="item" items="${businessPerMonthLabel}"> 
+                "${item}",
+                </c:forEach>],
                 datasets: [{
                     label: '# of Votes', // 데이터 시트 제목
-                    data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3], //데이터 값
+                    data: [<c:forEach var="item" items="${businessPerMonthCounts}"> 
+                    "${item}",
+                    </c:forEach>], //데이터 값
                     backgroundColor: [ //막대 색상
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-
+                        'rgba(54, 162, 235, 0.2)'
                     ],
                     borderColor: [ //막대 테두리 색상
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
+                        'rgba(54, 162, 235, 1)'
                     ],
                     borderWidth: 1 //막대 테두리 굵기
                 }]
@@ -432,10 +409,14 @@
         var reservation = new Chart(rsv, {
             type: 'line',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: [<c:forEach var="item" items="${reservationLabel}"> 
+                "${item}",
+                </c:forEach>],
                 datasets: [{
                     label: '# of Votes', // 데이터 시트 제목
-                    data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3], //데이터 값
+                    data: [<c:forEach var="item" items="${reservationCounts}"> 
+                    "${item}",
+                    </c:forEach>], //데이터 값
                     backgroundColor: [ //막대 색상
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',

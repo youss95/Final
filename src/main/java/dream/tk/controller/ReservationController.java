@@ -51,7 +51,7 @@ public class ReservationController {
 	
 	//?bizs_seq= 붙이자 일단
 	@GetMapping("/calendar")
-	public String calendar(int biz_seq,String userId,Model model) {
+	public String calendar(int biz_seq,String userId,Model model,String res_name) {
 		
 	ResInfoDTO resdto = new ResInfoDTO(userId,biz_seq);
 	List<ReservationDTO> resInfo = resService.getResInfo(resdto);
@@ -63,6 +63,7 @@ public class ReservationController {
 	model.addAttribute("od",od);
 	model.addAttribute("offdays",offdays);
 	model.addAttribute("biz_seq", biz_seq);
+	model.addAttribute("bizName",res_name);
 		return "/reservation/res_calendar";
 	}
 	

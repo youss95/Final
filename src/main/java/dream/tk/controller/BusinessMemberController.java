@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.SqlInOutParameter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,6 +23,7 @@ import dream.tk.api.VerifyRecaptcha;
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.BusinessFileDTO;
 import dream.tk.dto.BusinessMemberDTO;
+import dream.tk.dto.ReservationDTO;
 import dream.tk.service.BusinessFileService;
 import dream.tk.service.BusinessMemberService;
 import dream.tk.service.EmailService;
@@ -73,7 +75,7 @@ public class BusinessMemberController {
 			session.setAttribute("bizInfo", bizdto);
 			return "/memberB/loginView";
 		}else {
-			return "error";
+			return "memberB/loginFail";
 		}
 	}
 	
@@ -126,7 +128,7 @@ public class BusinessMemberController {
 		String phone = phone1 + phone2+ phone3;
 		
 	
-		BusinessMemberDTO dto = new BusinessMemberDTO(0,id,pw,name,email,phone,null,null,null);
+		BusinessMemberDTO dto = new BusinessMemberDTO(0,id,pw,name,email,phone,null,null,null,null);
 		
 		int result = ser.signup(dto);
 		m.addAttribute("result", result);
@@ -331,8 +333,13 @@ public class BusinessMemberController {
 	}
 	
 	@RequestMapping("reservation")
-	public String reservation() {
+	public String reservation(Model model,String res_name) {
+		List<ReservationDTO> list = ser.resManage(res_name);
+		model.addAttribute("resList",list);
+		
 		return "/memberB/myReservation";
 	}
+	
+	
 
 }
