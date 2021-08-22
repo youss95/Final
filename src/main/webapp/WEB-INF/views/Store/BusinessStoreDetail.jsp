@@ -171,9 +171,9 @@ section {
 		<aside>
 			<div id='store'>
 				<input type="hidden" id="store" value="${list.businessNameEng }">
-				<a><img
+				<span id="likeStar" ><img
 					src="${pageContext.request.contextPath}/resources/images/start.png">
-					찜하기</a>
+					찜하기</span>
 				<h1 style="float: center;">${list.businessNameEng }</h1>
 				<div>
 					<img
@@ -614,6 +614,21 @@ section {
 				</div>
 			</a>
 			<script>
+			
+			$("#likeStar").click(function(){
+		        let data = {
+		        		userId:'${loginID}',
+						businessName:'${list.businessName}'
+									}
+		        $.ajax({
+		          url:"/like/insertLike",
+		          data:JSON.stringify(data),
+		          type:"POST",
+		          contentType:"application/json;charset=utf-8"
+		        }).done(function(resp){
+		          console.log(resp)
+		        })
+		      })
 			
 				$(window).scroll(function() {
 					//스크롤의 위치가 상단에서 450보다 크면  

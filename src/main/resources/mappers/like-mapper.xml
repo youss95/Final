@@ -6,18 +6,18 @@
   <mapper namespace="like">
   	
   	<!-- 찜하기 리스트 뽑기 -->
-  	<select id="selectAll" parameterType="dream.tk.dto.likeDTO">
-		select * from likeVo where id = #{id}
+  	<select id="selectAll" parameterType="dream.tk.dto.LikeDTO">
+		select * from likes where id = #{id}
   	</select>
 
   	<!-- 찜하기 등록 기능 -->
-  	<insert id="insert" parameterType="dream.tk.dto.likeDTO">
-		insert into likeVO values ( ${id} , #{bno} , 'Y')
+  	<insert id="doLike" >
+		insert into likes values (likes_seq.nextval , #{userId} ,#{businessName},'Y' )
 	</insert>
  	
  	<!-- 찜하기 취소 기능 -->
  	<delete id="Cancel"> 
- 		DELETE FROM likeVo WHERE  id = #{id}
+ 		DELETE FROM likes WHERE  id = #{id}
 	</delete>
 	
 	
