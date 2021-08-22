@@ -11,7 +11,7 @@
 
     <insert id="signup">
 		insert into business_member values(business_member_seq.nextval, #{id}, #{pw}, 
-		#{name},#{email},#{phone},'N',default)
+		#{name},#{email},#{phone},'N',sysdate,null,'B')
 	</insert>
 <!-- 	<insert id="signup"> -->
 <!-- 		insert into business_member(seq, id,pw,name,email,phone,type,regNum,businessName,businessNameEng, businessContact, address1, address2, postcode,address1kor,reg_date,premium)  -->
