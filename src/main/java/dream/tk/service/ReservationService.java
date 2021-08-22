@@ -56,6 +56,7 @@ public class ReservationService {
 	
 	public String resCheck(ReserveCheckDTO dto) {
 		System.out.println("res"+dto.toString());
+		System.out.println(resDao.resCheck(dto));
 		return resDao.resCheck(dto);
 	}
 	//정액권 환불
