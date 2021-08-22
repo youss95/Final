@@ -186,7 +186,7 @@ public class AdminService {
 			String phone = "01012341234";
 			String premium = "N";
 			Date reg_date = dates[indexD];
-			daoB.insert(new BusinessMemberDTO(0, id, shaPW, name, email, phone, premium, reg_date, null));
+			daoB.insert(new BusinessMemberDTO(0, id, shaPW, name, email, phone, premium, reg_date, null, null));
 		}
 	}
 
