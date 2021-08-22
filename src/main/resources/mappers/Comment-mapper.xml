@@ -23,8 +23,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!--  댓글 삽입 -->
 	<insert id="commentInsert">
 		INSERT INTO
-		comments
-		VALUES(cno_seq.nextval,${bno},#{content},#{writer}, ${star_age}, 0, sysdate)
+		comments (CNO, BNO, CONTENT, WRITER, STAR_AVG, REPORT_COUNT ,REG_DATE)
+		VALUES(cno_seq.nextval,${bno},${content},#{writer}, #{star_age}, 0, sysdate)
 	</insert>
 	<!--  댓글 수정 -->
 	<update id="commentUpdate" parameterType="dream.tk.dto.StoreCommentDTO">

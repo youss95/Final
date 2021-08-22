@@ -53,7 +53,8 @@
 	<select id="getList"  parameterType="dream.tk.dto.StoreDTO" resultType="dream.tk.dto.StoreDTO">
 		SELECT
 			road_name,
-			businessNameEng
+			businessNameEng,
+			store_seq
 		FROM
 			store
 		WHERE

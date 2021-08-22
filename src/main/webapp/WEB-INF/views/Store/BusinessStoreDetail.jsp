@@ -372,7 +372,7 @@ section {
 								</div>
 								<button type="button" value="" class="btn btn-primary"
 									name="commentInsertBtn" style="left: 0;">
-									<i class="fa fa-reply"></i>등록
+									<i class="fa fa-reply"></i>Submit
 								</button>
 							</form>
 						</c:when>

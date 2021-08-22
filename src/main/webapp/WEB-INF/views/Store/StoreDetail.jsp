@@ -167,7 +167,7 @@ section {
 				<a><img
 					src="${pageContext.request.contextPath}/resources/images/start.png">
 					찜하기</a>
-				<h1 style="float: center;">${list.businessName }</h1>
+				<h1 style="float: center;">${list.businessNameEng }</h1>
 				<div>
 					<img
 						src="${pageContext.request.contextPath}/resources/images/view.png">
@@ -181,25 +181,27 @@ section {
 				<br>
 				<table class='table'>
 					<tr>
-						<th>시군명</th>
+						<th>City</th>
 						<td>${list.city}</td>
 					</tr>
 					<tr>
-						<th>맛집 전화번호</th>
+						<th>Phone</th>
 						<td>${list.phone}</td>
 					</tr>
 					<tr>
-						<th>가게 주소</th>
-						<td>${list.road_name }</td>
+						<th>Post</th>
+						<td>${list.post }</td>
 					</tr>
+					<tr>
+						<th>StoreAddress</th>
+						<td>${list.road_nameEng }</td>
+					</tr>
+
 				</table>
 
 
 				<c:choose>
 					<c:when test="${loginID != null}">
-						<div id="bottom" style="top: 300px; left: 0">
-							<button style="left: 0;">예약하기</button>
-						</div>
 						<div id="bottom_bottom"
 							style="padding: 20px; margin: 5px; float: right; height: 100px; position: relative; bottom: -170px;">
 
@@ -239,7 +241,7 @@ section {
 
 
 						<div id="bottom_bottom"
-							style="padding: 20px; margin: 5px; float: right; height: 100px; position: relative; bottom: -234px;">
+							style="padding: 20px; margin: 5px; float: right; height: 100px; position: relative; bottom: -192px;">
 
 							<script type="text/javascript"
 								src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
@@ -381,7 +383,7 @@ section {
 								</div>
 								<button type="button" value="" class="btn btn-primary"
 									name="commentInsertBtn" style="left: 0;">
-									<i class="fa fa-reply"></i>등록
+									<i class="fa fa-reply"></i>Submit
 								</button>
 							</form>
 						</c:when>
@@ -400,13 +402,13 @@ section {
 								<button type="button"
 									onclick="location.href='${pageContext.request.contextPath}/member/whichMember'"
 									class="btn btn-primary" name="commentInsertBtn"
-									style="left: 0;">로그인하기</button>
+									style="left: 0;">login</button>
 							</form>
 						</c:otherwise>
 					</c:choose>
 				</div>
 			</div>
-			
+
 			<div class="containers">
 				<div class="commentList"></div>
 			</div>
@@ -422,10 +424,9 @@ section {
 			 /* 등록후 리스트 */
 			
 		        /* 별점 등록할떄 */
-		        let targetNum=1;
+	 let targetNum=1;
 		 $(".make_star i").click(function () {
 			 targetNum = $(this).index() + 1; //별점 값
-	        
 	          $(".make_star i").css({ color: "#000" });
 	          $(".make_star")
 	            .find(".rating")
@@ -435,15 +436,15 @@ section {
 	        });
 	     console.log(targetNum)
 		   var bno = $("#bno").val(); //게시글 번호
+		   var content = $("#content").val(); // 게시글
 			$('[name=commentInsertBtn]').click(function() { //댓글 등록 버튼 클릭시 
 				//var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
-				let data = {bno:${list.store_seq },writer:'${loginID}' ,content:'#content',star_age:targetNum}
+				let data = {bno:${list.store_seq },writer:'${loginID}' ,content:content,star_age:targetNum}
 				commentInsert(data); //Insert 함수호출(아래)
 			});
 			
 			//댓글 목록
 			function commentList() {
-				
 				$
 						.ajax({
 							url : '/comment/list',
@@ -463,7 +464,6 @@ section {
 															+ value.writer
 															+ '<small> 날짜 : '
 															+ value.reg_date
-															
 															+ '<div class="review">'
 															+ ' <div class="rating" data-rate='+value.star_age+'>'
 															+ ' <i class="fas fa-star"></i>'
@@ -481,10 +481,10 @@ section {
 																+ value.cno
 																+ ',\''
 																+ value.content
-																+ '\');"> 수정하기 </a>';
+																+ '\');"> Update </a>';
 														a += '<a onclick="commentDelete('
 																+ value.cno
-																+ ');"> 삭제하기 </a></div>';
+																+ ');"> Drop </a></div>';
 													}
 													a += '</small></h3></div>';
 													a += '<div class="panel-body"><div class="panel-body'+ value.cno + '"><p>'
