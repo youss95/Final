@@ -13,8 +13,6 @@ import dream.tk.config.PagingVO;
 import dream.tk.dto.StoreDTO;
 
 
-
-
 @Repository
 public class StoreDAO {
 	@Autowired
@@ -49,7 +47,6 @@ public class StoreDAO {
 	}
 	
 	// 마커 지도 검색 관련
-	
 	public List<StoreDTO> getList(StoreDTO searchVO) {
 	    return mybatis.selectList("Store.getList", searchVO);
 	}

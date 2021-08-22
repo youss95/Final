@@ -45,7 +45,7 @@ line {
 }
 
 section {
-	float: left;
+	float: right;
 	width: 35%;
 	height: 700px;
 }
@@ -307,19 +307,22 @@ section {
 		<aside>
 			<!-- 왼쪽 -->
 			<main role="main">
+			<br>
+				<h3>예약 가능한 사이트</h3>
+				<br>
 				<ul class="flexgrid columns-news">
 					<c:forEach var="list" items="${viewAll}">
 						<li><span class="grid-number">임의</span> <span class="ribbon"><a
-								href="/Store/view?seq=">2.5</a></span> <a
-							href="/store/view?store_seq=${list.store_seq }">
-							<input type="hidden" id="click" value="${list.store_seq }">
+								href="/Business/view?seq=">2.5</a></span> <a
+							href="/Business/view?biz_seq=${list.biz_seq }">
+							<input type="hidden" id="click" value="${list.biz_seq }">
 								<figure>
 									<img src="https://source.unsplash.com/mZS7cne5iY0/800x600"
 										alt="Photo of Brooklyn Park">
 									<figcaption>
-										<p>${list.city }</p>
-										<h2>${list.businessNameEng }</h2>
-										<h3>view : ${list.view_count }</h3>
+										<p>${list.address1 }</p>
+										<h2>${list.businessContact }</h2>
+										<h3>조회수 : ${list.view_Count }</h3>
 									</figcaption>
 								</figure>
 						</a></li>
@@ -331,7 +334,7 @@ section {
 				<ul class="pagination modal">
 					<c:if test="${paging.startPage != 1 }">
 						<li><a class="active num"
-							href="/store/signup?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+							href="/Business/signup?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
 					</c:if>
 					<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
 						var="p">
@@ -341,13 +344,13 @@ section {
 							</c:when>
 							<c:when test="${p != paging.nowPage }">
 								<li><a class="num"
-									href="/store/signup?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+									href="/Business/signup?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
 							</c:when>
 						</c:choose>
 					</c:forEach>
 					<c:if test="${paging.endPage != paging.lastPage}">
 						<li><a class="num"
-							href="/store/signup?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+							href="/Business/signup?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
 					</c:if>
 				</ul>
 			</div>
@@ -356,12 +359,13 @@ section {
 
 
 		<!--경계선-->
-		<line>b</line>
+		
+		<line></line>
 
 		<section>
 
 			<form:form commandName="searchVO" method="get" name="listForm"
-				id="listForm" action="/store/signup">
+				id="listForm" action="/Business/signup">
 
 
 				<div>
@@ -407,6 +411,7 @@ section {
 
 
 			</form:form>
+
 			<script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2fa91fa0473f76d7311f40d80a8f1521&libraries=services"></script>
 			<script>
@@ -444,29 +449,26 @@ section {
 				function zoomOut() {
 					map.setLevel(map.getLevel() + 1);
 				}
-			
-				
+
 				//주소-좌표 변환 객체를 생성합니다
 				var geocoder = new kakao.maps.services.Geocoder();
-				
-			
 				var rdnmadrList = new Array();
 				var cmpnmList = new Array();
 				var num = new Array();
 
-				var rdnList =JSON.parse('${rdnmadrListJson}');
+				var rdnList = JSON.parse('${rdnmadrListJson}');
 				
-				for(var k in rdnList) {
+				// 값 받는곳!! 
+				for ( var k in rdnList) {
 					var $obj = rdnList[k];
 					var aa = $obj.road_name;
-					var bb = $obj.businessNameEng;
+					var bb = $obj.businessName;
 					var cc = $obj.store_seq;
 					rdnmadrList.push(aa);
 					cmpnmList.push(bb);
 					num.push(cc);
 				}
-				
-			
+
 				//주소 리스트 
 				rdnmadrList.forEach(function(addr, index) {
 					// 주소로 좌표를 검색합니다
@@ -475,19 +477,22 @@ section {
 						if (status === kakao.maps.services.Status.OK) {
 							
 							// 받은 리스트! 객체 배열
-							 var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-	        
-					        // 결과값으로 받은 위치를 마커로 표시합니다
-					        var marker = new kakao.maps.Marker({
-					            map: map,
-					            position: coords
-					        });
+							var coords = new kakao.maps.LatLng(result[0].y,
+									result[0].x);
+						
+							// 결과값으로 받은 위치를 마커로 표시합니다
+							var marker = new kakao.maps.Marker({
+								map : map,
+								position : coords,
+								clickable: true
+							});
+
 							var content = '<div class="overlay_info">';
 							content += "    <a><strong>" + cmpnmList[index]
 									+ '</strong></a>';
 							content += '    <div class="desc">';
 							content += '        <span class="address">'
-									+ cmpnmList[index] + '</span>';
+									+ rdnmadrList[index] + '</span>';
 							content += '    </div>';
 							content += '</div>';
 
@@ -495,7 +500,6 @@ section {
 							var infowindow = new kakao.maps.InfoWindow({
 								//  content: cmpnmList[index], 
 								content : content,
-								disableAutoPan: true
 							});
 							
 														
@@ -518,7 +522,7 @@ section {
 							
 							kakao.maps.event.addListener(marker, 'click', function() {
 							      // 마커 위에 인포윈도우를 표시합니다
-								location.href = '/store/view?store_seq='+num[index];  
+								location.href = '/Business/view?biz_seq='+num[index];  
 							});
 							
 							
@@ -535,35 +539,9 @@ section {
 			<!-- 하단 추천바!! -->
 			
 			<br><br></br>
-			<!-- 예약하기  -->
-		    <h3 style="font-size: 20px; text-align: left;">an immediate reservation ></h3>   
-		    <br><br>
-			<script>
-                function random_imglink() {
-                    var myimages = new Array()
-
-                    /* 각각의 이미지 경로 지정 */
-                    myimages[1] = "${pageContext.request.contextPath}/resources/images/1.png"
-                    myimages[2] = "${pageContext.request.contextPath}/resources/images/2.png"
-
-                    /* 각각의 이미지 링크 지정 */
-                    var imagelinks = new Array()
-                    imagelinks[1] = "/Business/signup?cpage=1"
-                    imagelinks[2] = "/Business/signup?cpage=1"
-
-                    var ry = Math.floor(Math.random() * myimages.length)
-                    if (ry == 0)
-                        ry = 1
-                    document.write('<a href=' + '"' + imagelinks[ry] + '"' + ' target=_blank><img src="' + myimages[ry] + '" border=0></a>')
-                }
-                random_imglink();
-            </script>
-			
-			<br><br><br>
-			
 			<!-- 1번쨰 -->
-			 <h3 style="font-size: 20px; text-align: left;">Recommended bar ></h3>
-			 <br><br>
+			
+			<!-- 예약하기  -->
 			<script>
                 function random_imglink() {
                     var myimages = new Array()
