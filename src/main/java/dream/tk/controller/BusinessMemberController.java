@@ -22,6 +22,7 @@ import dream.tk.api.VerifyRecaptcha;
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.BusinessFileDTO;
 import dream.tk.dto.BusinessMemberDTO;
+import dream.tk.dto.ReservationDTO;
 import dream.tk.service.BusinessFileService;
 import dream.tk.service.BusinessMemberService;
 import dream.tk.service.EmailService;
@@ -331,8 +332,13 @@ public class BusinessMemberController {
 	}
 	
 	@RequestMapping("reservation")
-	public String reservation() {
+	public String reservation(Model model,String res_name) {
+		List<ReservationDTO> list = ser.resManage(res_name);
+		model.addAttribute("resList",list);
+		
 		return "/memberB/myReservation";
 	}
+	
+	
 
 }

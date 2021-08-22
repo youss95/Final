@@ -131,11 +131,35 @@
             <div class="row">  
                 <div class="col-lg-12">
 <!--                       예약 관련 1   -->
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">예약자 명</th>
+      <th scope="col">예약 시간</th>
+      <th scope="col">예약 일</th>
+     
+    </tr>
+  </thead>
+      
+  <tbody>
+   <c:forEach var="resList" items="${resList}">
+    <tr>
+      <th scope="row">${resList.userId}</th>
+      <td>  ${resList.res_time}</td>
+      <td>${resList.res_date}</td>
+    </tr>
+      </c:forEach>
+  </tbody>
+ 
+</table>
+
                 </div>
                
 
                  <div class="col-lg-12">
 <!--                       예약 관련 2	    -->
+
+dd
                 </div>
               
             </div>

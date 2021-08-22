@@ -146,7 +146,7 @@ pointer-events:none;
       		console.log(selected)
       		console.log(strDate)
       		let data = {
-      			res_name:'행복식당',
+      			res_name:'${bizName}',
       			userId:'${loginID}',
       			res_date:strDate,
       			res_time:selected,

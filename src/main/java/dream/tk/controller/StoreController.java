@@ -72,6 +72,7 @@ public class StoreController {
 		StoreDTO dto = service.select(store_seq);
 		m.addAttribute("countCmt", serviceC.count(store_seq));
 		m.addAttribute("list", dto);
+		System.out.println(dto.toString());
 		session.setAttribute("store", store);
 		return "/Store/StoreDetail";
 	}

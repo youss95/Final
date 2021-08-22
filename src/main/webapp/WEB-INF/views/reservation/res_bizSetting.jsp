@@ -152,13 +152,9 @@
 				</div>
 				<input type="hidden" name="seq" value="${binfo.seq}">
 
-				<button type="button" id="submit" class="btn_m btn_primary">등록</button>
 
-<<<<<<< HEAD
-=======
 				<button type="submit" id="submit"
 					class="btn_m btn_primary">등록</button>
->>>>>>> 9b798cc163c5cb9eb5d4941d1a32ea4ae7a38973
 
 			</form>
 

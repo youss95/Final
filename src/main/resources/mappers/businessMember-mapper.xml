@@ -147,4 +147,8 @@ from (select nation,yearofbirth, id, name from reservation r, client_member c wh
 	select round(avg(별점),1) star_avg ,round(avg(찜수),1) keep_count,round(avg(조회수),1) view_count from (select d.star_avg 별점,d.keep_count 찜수, d.view_count 조회수 from business b join store d on b.businessname=d.businessname where b.businessname=#{value})
 	</select>
 	
+	 <select id="resManage" resultType="dream.tk.dto.ReservationDTO">
+	select * from reservation where res_name = #{res_name} order by res_createDate desc
+	</select> 
+	
 </mapper>
