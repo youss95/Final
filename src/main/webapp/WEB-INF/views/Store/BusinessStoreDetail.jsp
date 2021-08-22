@@ -36,42 +36,35 @@
 	margin: 0;
 	padding: 0;
 }
-
 .contain {
 	width: 100%;
 	height: 106px;
 	float: center -webkit-font-smoothing: antialiased;
 	box-sizing: border-box;
 }
-
 .headers {
 	width: 100%;
 	height: 250px;
 }
-
 aside {
 	float: left;
 	width: 65%;
 	height: 700px;
 }
-
 section {
 	float: left;
 	width: 35%;
 	height: 700px;
 }
-
 .foot {
 	float: left;
 	width: 65%;
 	height: 300px;
 }
-
 .footer {
 	width: 35%;
 	height: 300px;
 }
-
 @media ( max-width : 1540px) {
 	#wrap {
 		width: 100%;
@@ -102,12 +95,10 @@ section {
 		height: 300px;
 	}
 }
-
 .form-group {
 	width: 600px;
 	height: 100px;
 }
-
 .form-group>input {
 	width: 800px;
 	height: 100%;
@@ -161,36 +152,34 @@ section {
 		<!--  -->
 		<aside>
 			<div id='store'>
-				<input type="hidden" id="x" name="x" value="${list.store_x }">
-				<input type="hidden" id="y" name="y" value="${list.store_y }">
-				<input type="hidden" id="store" value="${list.businessName }">
+				<input type="hidden" id="store" value="${list.businessNameEng }">
 				<a><img
 					src="${pageContext.request.contextPath}/resources/images/start.png">
 					찜하기</a>
-				<h1 style="float: center;">${list.businessName }</h1>
+				<h1 style="float: center;">${list.businessNameEng }</h1>
 				<div>
 					<img
 						src="${pageContext.request.contextPath}/resources/images/view.png">
-					${list.view_count} <img
+					${list.view_Count} <img
 						src="${pageContext.request.contextPath}/resources/images/start.png">
-					${list.report_count} <img
+					 <img
 						src="${pageContext.request.contextPath}/resources/images/write.png">
-					${countCmt}
+					
 
 				</div>
 				<br>
 				<table class='table'>
 					<tr>
 						<th>시군명</th>
-						<td>${list.city}</td>
+						<td>${list.businessNameEng}</td>
 					</tr>
 					<tr>
 						<th>맛집 전화번호</th>
-						<td>${list.phone}</td>
+						<td>${list.businessContact}</td>
 					</tr>
 					<tr>
 						<th>가게 주소</th>
-						<td>${list.road_name }</td>
+						<td>${list.address1 }</td>
 					</tr>
 				</table>
 
@@ -365,16 +354,18 @@ section {
 								<h4>
 									<i class="fa fa-paper-plane-o"></i> Leave a Comment:
 									<div class="make_star">
-										<div class="rating" data-rate="3">
-											<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-												class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-												class="fas fa-star"></i>
-										</div>
-									</div>
+      <div class="rating" data-rate="3">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+      </div>
+    </div>
 								</h4>
 								<input type="hidden" id="writer" name="writer"
 									value="${loginID}"> <input type="hidden" id="bno"
-									name="bno" value="${list.store_seq }" />
+									name="bno" value="${list.biz_seq }" />
 								<div class="form-group">
 									<input type="text" class="form-control" id="content"
 										name="content" placeholder="내용을 입력하세요.">
@@ -392,7 +383,7 @@ section {
 							</h4>
 							<form role="form" name="commentInsertForm">
 								<input type="hidden" id="bno" name="bno"
-									value="${list.store_seq }" />
+									value="${list.biz_seq }" />
 								<div class="form-group">
 									<input type="text" class="form-control" id="content"
 										name="content" placeholder="리뷰를 작성하고 싶으시면, 로그인을 하세요" disabled>
@@ -406,7 +397,15 @@ section {
 					</c:choose>
 				</div>
 			</div>
-			
+<div class="review">
+      <div class="rating" data-rate="4">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+      </div>
+    </div>
 			<div class="containers">
 				<div class="commentList"></div>
 			</div>
@@ -422,7 +421,7 @@ section {
 			 /* 등록후 리스트 */
 			
 		        /* 별점 등록할떄 */
-		        let targetNum=1;
+		        let targetNum=0;
 		 $(".make_star i").click(function () {
 			 targetNum = $(this).index() + 1; //별점 값
 	        
@@ -437,7 +436,7 @@ section {
 		   var bno = $("#bno").val(); //게시글 번호
 			$('[name=commentInsertBtn]').click(function() { //댓글 등록 버튼 클릭시 
 				//var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
-				let data = {bno:${list.store_seq },writer:'${loginID}' ,content:'#content',star_age:targetNum}
+				let data = {bno:${list.biz_seq },writer:'${loginID}' ,content:'코멘트테스트',star_age:targetNum}
 				commentInsert(data); //Insert 함수호출(아래)
 			});
 			
@@ -525,13 +524,12 @@ section {
 				var a = '';
 				a += '<div class="col-sm-12"><div class="panel panel-default"><div class="panel-heading" style="height:145px">';
 				a += '<div class="form-group">';
-				a += '<input type="text" class="form-control" name="content_'+ cno +'" value="'+content+'"/>';
+				a += '<input type="text" class="form-control" name="content_'+cno+'" value="'+content+'"/>';
 				a += '<button class="btn btn-primary" style="left:0" type="button" onclick="commentUpdateProc('
 						+ cno + ');">수정하기</button>';
 				a += '</div></div></div>';
 				$('.panel-body' + cno).html(a);
 			}
-			
 			//댓글 수정
 			function commentUpdateProc(cno) {
 				var updateContent = $('[name=content_' + cno + ']').val();

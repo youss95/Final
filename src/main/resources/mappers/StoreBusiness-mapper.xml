@@ -3,38 +3,38 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-	<mapper namespace="Store">
+	<mapper namespace="StoreBu">
 	
 	<!-- 게시글 불러오기 -->
-	<select id="selectAll" resultType="dream.tk.dto.StoreDTO">
-		select * from store order by
+	<select id="selectAll" resultType="dream.tk.dto.BusinessDTO">
+		select * from business order by
 		grade desc
 	</select>
 
 	<select id="getSeq" resultType="int">
-		select store_seq.nextval from
+		select biz_seq.nextval from
 		dual
 	</select>
 
-	<select id="select" resultType="dream.tk.dto.StoreDTO">
-		select * from store where
-		Store_seq = ${value}
+	<select id="select" resultType="dream.tk.dto.BusinessDTO">
+		select * from business where
+		biz_seq = ${value}
 	</select>
 
 	<!-- 총 게시글 갯수 출력 -->
 	<select id="countBoard" resultType="int">
-		select count(*) from store
+		select count(*) from business
 	</select>
 	<!-- 페이징 처리 후 게시글 조회 -->
-	<select id="selectBoard" resultType="dream.tk.dto.StoreDTO">
+	<select id="selectBoard" resultType="dream.tk.dto.BusinessDTO">
 		SELECT *
 		FROM (
 		SELECT ROWNUM
 		RN, A.*
 		FROM (
 		SELECT *
-		FROM STORE
-		ORDER BY STORE_SEQ DESC
+		FROM business
+		ORDER BY biz_seq DESC
 		) A
 		)
 		WHERE RN
@@ -44,22 +44,23 @@
 
 	<!-- 조회수 -->
 	<update id="count">
-		update store set view_count = view_count+1 where store_seq =
-		#{store_seq}
+		update business set view_count = view_count+1 where biz_seq =
+		#{biz_seq}
 	</update>
 
 
 	<!-- 검색 다중 마커 및 마커 조회 -->
-	<select id="getList"  parameterType="dream.tk.dto.StoreDTO" resultType="dream.tk.dto.StoreDTO">
+	<select id="getList"  parameterType="dream.tk.dto.BusinessDTO" resultType="dream.tk.dto.BusinessDTO">
 		SELECT
-			road_name,
-			businessNameEng
+			BusinessName,
+			address1,
+			biz_seq
 		FROM
-			store
+			business
 		WHERE
 		 <!--  <if test="searchWrd != null and searchWrd !=''">--> 
-			(road_name LIKE '%${searchWrd}%'  or
-			businessNameEng LIKE '%${searchWrd}%')
+			(BusinessName LIKE '%${searchWrd}%'   or
+			address1 LIKE '%${searchWrd}%')
 		 <!--  </if> -->
 	</select>
 	
