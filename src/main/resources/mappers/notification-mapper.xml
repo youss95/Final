@@ -26,6 +26,13 @@ where rnum between #{firstNum} and #{secondNum}
   update notification set noti_readDate = 'Y' 
   </update>
   
+  <select id="recipient" resultType="String">
+  select name from business_member where seq = #{seq}
+  </select>
   
+  <!--실시간 알람  -->
+   <insert id="postAlarm">
+  insert into notification  (noti_no,userId,content,noti_createDate)  values (noti_seq.nextval,#{userId},#{content},sysdate)
+  </insert>
   
   </mapper>

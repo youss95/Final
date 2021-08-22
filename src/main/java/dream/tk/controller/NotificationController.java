@@ -37,6 +37,16 @@ public class NotificationController {
 		return "fail";
 	}
 	
+	@PostMapping("/likeAlarm")
+	@ResponseBody
+	public String likeAlarm( String content, int seq) {
+		System.out.println("seq"+seq);
+		System.out.println("con"+content);
+		String userId = notiService.getRecipient(seq);
+		notiService.alarmInsert(userId, content);
+		return userId;
+	}
+	
 	@GetMapping("/alarmCounts")
 	@ResponseBody
 	public int counts(String userId) {
