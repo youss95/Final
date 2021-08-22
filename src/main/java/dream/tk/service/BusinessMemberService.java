@@ -1,5 +1,6 @@
 package dream.tk.service;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import dream.tk.api.SHA256;
 import dream.tk.dao.BusinessMemberDAO;
 import dream.tk.dao.ClientMemberDAO;
 import dream.tk.dto.BusinessDTO;
@@ -21,6 +23,8 @@ public class BusinessMemberService {
 	
 	@Autowired
 	private ClientMemberDAO cdao;
+	
+
 	
 	public int dupleCheck(String id) {
 		int result1 = dao.dupleCheck(id);
