@@ -103,6 +103,24 @@ section {
 	width: 800px;
 	height: 100%;
 }
+.btn_light {
+  background-color: #3DB2FF;
+  color: #203e60;
+  border: 1px solid #d6e6f2;
+}
+.btn_s {
+  display: inline-block;
+  min-width: 70px;
+  min-height: 32px;
+  padding: 8px 13px;
+  font-size: 13px;
+  text-align: center;
+  outline: none;
+  vertical-align: middle;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.1s ease-out;
+}
 </style>
 </head>
 <body>
@@ -187,7 +205,7 @@ section {
 				<c:choose>
 					<c:when test="${loginID != null}">
 						<div id="bottom" style="top: 300px; left: 0">
-							<button style="left: 0;">예약하기</button>
+							<a href="/res/calendar?userId=${loginID}&biz_seq=${list.biz_seq}&res_name=${list.businessName}"   class="btn_s btn_light" style="left: 0;">예약하기</a>
 						</div>
 						<div id="bottom_bottom"
 							style="padding: 20px; margin: 5px; float: right; height: 100px; position: relative; bottom: -170px;">
