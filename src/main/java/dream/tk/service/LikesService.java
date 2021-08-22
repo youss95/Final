@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dream.tk.dao.LikesDAO;
-import dream.tk.dto.LikeDTO;
+import dream.tk.dto.likeDTO;
 @Service
 public class LikesService {
 
@@ -13,7 +13,7 @@ public class LikesService {
 	
 	
 	 //찜하기
-		public int doLike(LikeDTO dto) {
+		public int doLike(likeDTO dto) {
 			return dao.doLike(dto);
 		}
 	

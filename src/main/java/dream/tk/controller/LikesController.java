@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import dream.tk.dto.LikeDTO;
+import dream.tk.dto.likeDTO;
 import dream.tk.service.LikesService;
 import dream.tk.service.likeService;
 @RestController
@@ -21,7 +21,7 @@ public class LikesController {
 	
 	@PostMapping("/insertLike")
 	 @ResponseBody
-	 public String storeLike(@RequestBody LikeDTO dto) {
+	 public String storeLike(@RequestBody likeDTO dto) {
 		 System.out.println(dto.toString());
 		 int result = likesService.doLike(dto);
 		 if(result==1) {

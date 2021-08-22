@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import dream.tk.dto.LikeDTO;
+import dream.tk.dto.likeDTO;
 import dream.tk.dto.StoreCommentDTO;
 import dream.tk.service.CommentService;
 import dream.tk.service.likeService;

@@ -1,6 +1,6 @@
 package dream.tk.dto;
 
-public class LikeDTO {
+public class likeDTO {
 	private int like_no;
 	private String userId;
 	private String businessName;
@@ -29,14 +29,14 @@ public class LikeDTO {
 	public void setLike_status(String like_status) {
 		this.like_status = like_status;
 	}
-	public LikeDTO(int like_no, String userId, String businessName, String like_status) {
+	public likeDTO(int like_no, String userId, String businessName, String like_status) {
 		super();
 		this.like_no = like_no;
 		this.userId = userId;
 		this.businessName = businessName;
 		this.like_status = like_status;
 	}
-	public LikeDTO() {
+	public likeDTO() {
 		super();
 	}
 	@Override

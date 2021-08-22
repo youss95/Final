@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import dream.tk.dto.LikeDTO;
+import dream.tk.dto.likeDTO;
 
 @Component
 public class likeDAO {
@@ -15,7 +15,7 @@ public class likeDAO {
 	private SqlSessionTemplate mybatis;
 
 	// 찜하기 뽑기
-	public List<LikeDTO> selectAll(String id) throws Exception {
+	public List<likeDTO> selectAll(String id) throws Exception {
 		return mybatis.selectList("like.selectAll", id);
 	}
 
