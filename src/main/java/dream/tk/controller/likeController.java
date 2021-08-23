@@ -32,12 +32,12 @@ public class likeController {
 	
 	 @RequestMapping("/insert") //댓글 작성 
 	    @ResponseBody
-	    private int mCommentServiceInsert(@RequestParam int bno, @RequestParam String content, @RequestParam String writer, @RequestParam int star_age) throws Exception{
+	    private int mCommentServiceInsert(@RequestParam int bno, @RequestParam String content, @RequestParam String writer, @RequestParam int star_avg) throws Exception{
 	    	StoreCommentDTO comment = new StoreCommentDTO();
 	    	comment.setBno(bno);
 	        comment.setContent(content);
 	        comment.setWriter(writer);  
-	        comment.setStar_age(star_age);
+	        comment.setStar_avg(star_avg);
 	     
 	        return service.commentInsertService(comment);
 	    }

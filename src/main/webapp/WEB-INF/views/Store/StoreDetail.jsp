@@ -373,7 +373,7 @@ section {
 								<h4>
 									<i class="fa fa-paper-plane-o"></i> Leave a Comment:
 									<div class="make_star">
-										<div class="rating" data-rate="3">
+										<div class="rating" data-rate="3" style="float: right">
 											<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
 												class="fas fa-star"></i> <i class="fas fa-star"></i> <i
 												class="fas fa-star"></i>
@@ -387,9 +387,9 @@ section {
 									<input type="text" class="form-control" id="content"
 										name="content" placeholder="내용을 입력하세요.">
 								</div>
-								<button type="button" value="" class="btn btn-primary"
-									name="commentInsertBtn" style="left: 0;">
-									<i class="fa fa-reply"></i>Submit
+								<button type="buttInsertBtn" style="left: 0;">
+									<i class="faton" value="" class="btn btn-primary"
+									name="commen fa-reply"></i>Submit
 								</button>
 							</form>
 						</c:when>
@@ -512,7 +512,7 @@ section {
 						});
 			}
 			//댓글 등록
-			/*
+			
 			function commentInsert(data) {
 				$.ajax({
 					url : '/comment/insert',
@@ -527,7 +527,7 @@ section {
 					}
 				});
 			}
-			*/
+			
 			//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
 			function commentUpdate(cno, content) {
 				var a = '';
