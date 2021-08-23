@@ -24,8 +24,8 @@ public class TranslateDAO {
 		return mybatis.delete("trans.deleteAllMenu", business_id);
 	}
 	
-	public List<TranslateDTO> select(String business_id) {
-		return mybatis.selectList("trans.select", business_id);
+	public List<TranslateDTO> select(int biz_seq) {
+		return mybatis.selectList("trans.select", biz_seq);
 	}
 	
 	public int directConfirm(int seq) {
