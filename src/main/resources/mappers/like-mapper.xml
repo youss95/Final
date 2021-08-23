@@ -9,7 +9,7 @@
  
   	<!-- 찜하기 등록 기능 -->
   	<insert id="doLike" >
-		insert into likes values (likes_seq.nextval , #{userId} ,#{businessName},'Y' )
+		insert into likes values (likes_seq.nextval , #{userId} ,#{businessName},'Y',#{biz_seq} )
 	</insert>
  	
  	<!-- 찜하기 취소 기능 -->
@@ -18,4 +18,4 @@
 	</delete>
 	
 	
-  </mapper>
+   </mapper>

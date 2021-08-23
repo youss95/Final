@@ -180,8 +180,7 @@ color:blue;
 		<aside>
 			<div id='store'>
 				<input type="hidden" id="store" value="${list.businessNameEng }">
-				<span id="likeStar" ><img
-					src="${pageContext.request.contextPath}/resources/images/start.png">
+				<span id="likeStar" ><i class="fas fa-heart"></i>
 					찜하기</span>
 				<h1 style="float: center;">${list.businessNameEng }</h1>
 				<div>
@@ -627,7 +626,8 @@ color:blue;
 			$("#likeStar").click(function(){
 		        let data = {
 		        		userId:'${loginID}',
-						businessName:'${list.businessName}'
+						businessName:'${list.businessName}',
+						biz_seq:${list.biz_seq}
 									}
 		        $.ajax({
 		          url:"/like/insertLike",
@@ -672,7 +672,7 @@ color:blue;
 				let getter = ${list.seq}
 				let content = sender+" 님이 "+businessName+" 을  찜하였습니다."
 				console.log(content)
-				//let data ={seq:getter,content:sender+" 님이 좋아요를 눌렀습니다."}
+				//let data ={content:content,seq:getter,biz_seq:biz_seq}
 				$.ajax({
 					url:"/noti/likeAlarm",
 					type:"post",

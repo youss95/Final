@@ -21,8 +21,8 @@ public class LikesController {
 	
 	
 	  @PostMapping("/insertLike")
-	 
-	  @ResponseBody public String storeLike(@RequestBody LikesDTO dto) {
+	  @ResponseBody 
+	  public String storeLike(@RequestBody LikesDTO dto) {
 	  System.out.println(dto.toString()); int result = likesService.doLike(dto);
 	 if(result==1) { return "liked"; } return "fail"; }
 	 

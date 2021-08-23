@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import dream.tk.dto.AlaramInsertDTO;
 import dream.tk.dto.AlarmPaginDTO;
 import dream.tk.dto.NotificationDTO;
 import dream.tk.service.NotificationService;
