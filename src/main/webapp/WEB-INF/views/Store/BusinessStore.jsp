@@ -375,8 +375,8 @@ section {
 						<!-- 지도타입 컨트롤 div 입니다 -->
 						<div class="custom_typecontrol radius_border">
 							<span id="btnRoadmap" class="selected_btn"
-								onclick="setMapType('roadmap')">지도</span> <span id="btnSkyview"
-								class="btn" onclick="setMapType('skyview')">스카이</span>
+								onclick="setMapType('roadmap')">MAP</span> <span id="btnSkyview"
+								class="btn" onclick="setMapType('skyview')">SKY</span>
 						</div>
 						<!-- 지도 확대, 축소 컨트롤 div 입니다 -->
 						<div class="custom_zoomcontrol radius_border">
@@ -402,7 +402,7 @@ section {
 				<div class="d1">
 					<div class="search">
 						<input type="text" id="searchWrd" name="searchWrd"
-							placeholder="검색어 입력" value="${searchVO.searchWrd }"> <a
+							placeholder="Find an address" value="${searchVO.searchWrd }"> <a
 							href="" onclick="fn_search();" class="btn-login"><button
 								type="button" class="pulse"></button></a>
 					</div>
@@ -461,12 +461,14 @@ section {
 				// 값 받는곳!! 
 				for ( var k in rdnList) {
 					var $obj = rdnList[k];
-					var aa = $obj.road_name;
-					var bb = $obj.businessName;
-					var cc = $obj.store_seq;
+					var aa = $obj.address1Kor;
+					var bb = $obj.businessNameEng;
+					var cc = $obj.biz_seq;
+					var dd = $obj.address1
 					rdnmadrList.push(aa);
 					cmpnmList.push(bb);
 					num.push(cc);
+					eng.push(dd);
 				}
 
 				//주소 리스트 
@@ -492,7 +494,7 @@ section {
 									+ '</strong></a>';
 							content += '    <div class="desc">';
 							content += '        <span class="address">'
-									+ rdnmadrList[index] + '</span>';
+									+ eng[index] + '</span>';
 							content += '    </div>';
 							content += '</div>';
 
