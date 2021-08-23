@@ -39,7 +39,8 @@ public class CommentController {
 	    @RequestMapping("/insert") //댓글 작성 
 	    @ResponseBody
 	    private int mCommentServiceInsert(@RequestBody StoreCommentDTO dto) throws Exception{
-	        return service.commentInsertService(dto);
+	        System.out.println("출력됩니다.");
+	    	return service.commentInsertService(dto);
 
 	    }
 	    
