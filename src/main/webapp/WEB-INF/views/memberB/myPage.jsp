@@ -107,7 +107,11 @@
 				alert("업체 우편번호를 입력해주세요.");
 				return false;
 			}
-			if($("#offday").val()==null||$("#offday").val()==""){
+// 			if($("#offday").val()==null||$("#offday").val()==""){
+// 				alert("업체 휴무일을 입력해주세요.");
+// 				return false;
+// 			}
+			if($("input[name=offday]:checked").val()==null||$("input[name=offday]:checked").val()==""){
 				alert("업체 휴무일을 입력해주세요.");
 				return false;
 			}
@@ -516,14 +520,47 @@
                         <div style="width:60%" class="hiddenDivB">${bizInfo.postcode}</div>
                         <input class="hiddenInputB" id="postcode" name="postcode" type=text value="${bizInfo.postcode}" style="display:none">
                       </div>
-                      
-                      <div class="card-body" style="width:100%">
-                        <div style="width:30%">업체 휴무일</div>
-                        <div style="width:60%" class="hiddenDivB">${bizInfo.offday}</div>
-                        <input class="hiddenInputB" id="offday" name="offday" type=text value="${bizInfo.offday}" style="display:none">
-                      </div>
-                      
-<!--                       <div class="card-body" style="width:100%"> -->
+
+
+						<div class="card-body" style="width: 100%">
+								<div style="width: 30%">업체 휴무일</div>
+								<div style="width: 60%" class="hiddenDivB">${bizInfo.offday}</div>
+<!-- 								<input class="hiddenInputB" id="offday" name="offday" -->
+<%-- 											type=text value="${bizInfo.offday}" style="display: none"> --%>
+								<div class="rd_group hiddenInputB" style="display: none">
+											<div class="inp_rd">
+												<input type="radio" id="mon" name="offday" value="mon">
+												<label for="m1">월</label>
+											</div>
+											<div class="inp_rd">
+												<input type="radio" id="tue" name="offday" value="tue">
+												<label for="m2">화</label>
+											</div>
+											<div class="inp_rd">
+												<input type="radio" id="wed" name="offday" value="wed">
+												<label for="m3">수</label>
+											</div>
+											<div class="inp_rd">
+												<input type="radio" id="thu" name="offday" value="thu">
+												<label for="m3">목</label>
+											</div>
+											<div class="inp_rd">
+												<input type="radio" id="fri" name="offday" value="fri">
+												<label for="m3">금</label>
+											</div>
+											<div class="inp_rd">
+												<input type="radio" id="sat" name="offday" value="sat">
+												<label for="m3">토</label>
+											</div>
+											<div class="inp_rd">
+												<input type="radio" id="sun" name="offday" value="sun">
+												<label for="m3">일</label>
+											</div>
+										</div>
+
+									</div>
+
+									<!--                       <div class="card-body" style="width:100%"> -->
 <!--                         <div style="width:30%">업체 영엽시간</div> -->
 <%--                         <div style="width:60%">${bizInfo.timeAvailable}</div> --%>
 <!--                       </div> -->
