@@ -55,15 +55,26 @@ public class ChatController {
 		return "redirect:businessChat";
 	}
 	
+	@RequestMapping("clickChat")
+	public String clickChat(String roomid) throws Exception{
+		System.out.println("roomid 1차 넘김 : " + roomid);
+		session.setAttribute("roomid", roomid);
+		return "redirect:businessChat";
+	}
+	
 	@RequestMapping("businessChat")
 	public String businessChat(Model model) throws Exception{
 		System.out.println("업체 아이디");
 		//String nickname = (String)session.getAttribute("loginID");
 		String storeName = (String) session.getAttribute("storeName");
-		//String roomid = nickname + storeName;
+		String roomid = (String) session.getAttribute("roomid");
+		if(roomid == null) {
+			roomid = "chatnum";
+		}
+		System.out.println("roomid" + roomid);
 		//session.setAttribute("roomid", roomid);
 		
-		List<ChatDTO> list = service.selectBusinessAll(storeName); 
+		List<ChatDTO> list = service.selectBusinessAll(roomid); 
 		List<ChatDTO> list2 = service.selectBusinessList(storeName);
 		
 		model.addAttribute("businesschatlist", list); // 해당 채팅 방
