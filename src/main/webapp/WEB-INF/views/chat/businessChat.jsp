@@ -255,6 +255,11 @@ button:hover {
 	color:white;
 }
 
+.deleteMsg{
+	text-decoration:none;
+	color:white;
+}
+
 #backBtn{
 	float:right;
 	font-size:50px;
@@ -334,7 +339,7 @@ button:hover {
 							<div class="about">
 								<div class="name"> <a href="/chat/clickChat?roomid=${item.chatnum}&&id=${item.id}">${item.id }</a></div>
 								<div class="status">
-									<i class="fa fa-circle offline"></i> left 30 mins ago
+									<i class="fa fa-circle offline"></i> <a class="deleteMsg" href = "/chat/deleteBusinessChatRoom?chatnum=${item.chatnum }">delete</a>
 								</div>
 							</div></li>
 					</c:if>

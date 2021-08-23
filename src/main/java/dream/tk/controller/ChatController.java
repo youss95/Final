@@ -90,6 +90,12 @@ public class ChatController {
 		return "redirect:toChat";
 	}
 	
+	@RequestMapping("deleteBusinessChatRoom")
+	public String deleteBusinessChatRoom(String chatnum) throws Exception{
+		service.deleteChatRoom(chatnum);
+		return "redirect:businessChat";
+	}
+	
 	@ExceptionHandler
 	public String exceptionHandler(Exception e) {
 		e.printStackTrace();
