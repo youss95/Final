@@ -38,7 +38,7 @@
 	
 	<select id="selectBusinessList" resultType="dream.tk.dto.ChatDTO">
 		select * from chat_client 
-		where seq in(select max(seq) from CHAT_CLIENT where chatnum like '%${value}%' group by store) 
+		where seq in(select max(seq) from CHAT_CLIENT where chatnum like '%${value}%' group by id) 
 		order by seq desc
 	</select>
 
