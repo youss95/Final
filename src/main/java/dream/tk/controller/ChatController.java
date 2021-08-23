@@ -64,10 +64,10 @@ public class ChatController {
 		//session.setAttribute("roomid", roomid);
 		
 		//List<ChatDTO> list = service.selectAll(roomid); 
-		List<ChatDTO> list2 = service.selectList(storeName);
+		List<ChatDTO> list2 = service.selectBusinessList(storeName);
 		
 		//model.addAttribute("chatlist", list); // 해당 채팅 방
-		model.addAttribute("chatStore",list2); // 채팅 리스트
+		model.addAttribute("businesschatStore",list2); // 채팅 리스트
 		return "chat/chat";
 	}
 	

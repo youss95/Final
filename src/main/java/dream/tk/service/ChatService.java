@@ -31,5 +31,7 @@ public class ChatService {
 		  return dao.selectList(nickname);
 	  }
 	  
-	 
+	  public List<ChatDTO> selectBusinessList(String store) throws Exception{
+		  return dao.selectList(store);
+	  }
 }
