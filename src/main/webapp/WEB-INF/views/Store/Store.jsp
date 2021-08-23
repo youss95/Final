@@ -371,8 +371,8 @@ section {
 						<!-- 지도타입 컨트롤 div 입니다 -->
 						<div class="custom_typecontrol radius_border">
 							<span id="btnRoadmap" class="selected_btn"
-								onclick="setMapType('roadmap')">지도</span> <span id="btnSkyview"
-								class="btn" onclick="setMapType('skyview')">스카이</span>
+								onclick="setMapType('roadmap')">MAP</span> <span id="btnSkyview"
+								class="btn" onclick="setMapType('skyview')">SKY</span>
 						</div>
 						<!-- 지도 확대, 축소 컨트롤 div 입니다 -->
 						<div class="custom_zoomcontrol radius_border">
@@ -398,7 +398,7 @@ section {
 				<div class="d1">
 					<div class="search">
 						<input type="text" id="searchWrd" name="searchWrd"
-							placeholder="검색어 입력" value="${searchVO.searchWrd }"> <a
+							placeholder="Find an address" value="${searchVO.searchWrd }"> <a
 							href="" onclick="fn_search();" class="btn-login"><button
 								type="button" class="pulse"></button></a>
 					</div>
@@ -448,27 +448,32 @@ section {
 				
 				//주소-좌표 변환 객체를 생성합니다
 				var geocoder = new kakao.maps.services.Geocoder();
-				
-			
+				var rdnList =JSON.parse('${rdnmadrListJson}');
 				var rdnmadrList = new Array();
 				var cmpnmList = new Array();
 				var num = new Array();
+				var eng = new Array();
+			
 
-				var rdnList =JSON.parse('${rdnmadrListJson}');
+				
 				
 				for(var k in rdnList) {
 					var $obj = rdnList[k];
 					var aa = $obj.road_name;
 					var bb = $obj.businessNameEng;
 					var cc = $obj.store_seq;
+					var dd = $obj.businessNameEng;
 					rdnmadrList.push(aa);
 					cmpnmList.push(bb);
 					num.push(cc);
+					eng.push(dd);
 				}
+				console.log(aa);
 				
 			
 				//주소 리스트 
 				rdnmadrList.forEach(function(addr, index) {
+				
 					// 주소로 좌표를 검색합니다
 					geocoder.addressSearch(addr, function(result, status) {
 						// 정상적으로 검색이 완료됐으면 
@@ -482,12 +487,13 @@ section {
 					            map: map,
 					            position: coords
 					        });
+					        
 							var content = '<div class="overlay_info">';
 							content += "    <a><strong>" + cmpnmList[index]
 									+ '</strong></a>';
 							content += '    <div class="desc">';
 							content += '        <span class="address">'
-									+ cmpnmList[index] + '</span>';
+									+ eng[index] + '</span>';
 							content += '    </div>';
 							content += '</div>';
 
@@ -534,10 +540,10 @@ section {
 
 			<!-- 하단 추천바!! -->
 			
-			<br><br></br>
+			<br><br>	
 			<!-- 예약하기  -->
-		    <h3 style="font-size: 20px; text-align: left;">an immediate reservation ></h3>   
-		    <br><br>
+		     <h3 style="font-size: 20px; text-align: left; margin:10px; ">an immediate reservation <a href="/Business/signup?cpage=1" style="float: right;">></a></h3>
+		    <hr style="margin: 24px 0">  
 			<script>
                 function random_imglink() {
                     var myimages = new Array()
@@ -562,8 +568,8 @@ section {
 			<br><br><br>
 			
 			<!-- 1번쨰 -->
-			 <h3 style="font-size: 20px; text-align: left;">Recommended bar ></h3>
-			 <br><br>
+			 <h3 style="font-size: 20px; text-align: left; margin:10px; ">Recommended bar <a href="https://www.tripadvisor.com/Restaurants-g294197-zfn7778640-Seoul.html" style="float: right;">></a></h3>
+			<hr style="margin: 24px 0">  
 			<script>
                 function random_imglink() {
                     var myimages = new Array()
