@@ -3,11 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-	<mapper namespace="StoreBu">
-	
+<mapper namespace="StoreBu">
+
 	<!-- 게시글 불러오기 -->
 	<select id="selectAll" resultType="dream.tk.dto.BusinessDTO">
-		select * from business order by
+		select * from business order
+		by
 		grade desc
 	</select>
 
@@ -19,6 +20,11 @@
 	<select id="select" resultType="dream.tk.dto.BusinessDTO">
 		select * from business where
 		biz_seq = ${value}
+	</select>
+
+	<!-- 상호명 불러오기 -->
+	<select id="getBusinessname" resultType="String">
+		select businessname from business where seq=#{value}
 	</select>
 
 	<!-- 총 게시글 갯수 출력 -->
@@ -44,25 +50,27 @@
 
 	<!-- 조회수 -->
 	<update id="count">
-		update business set view_count = view_count+1 where biz_seq =
+		update business set view_count = view_count+1 where
+		biz_seq =
 		#{biz_seq}
 	</update>
 
 
 	<!-- 검색 다중 마커 및 마커 조회 -->
-	<select id="getList"  parameterType="dream.tk.dto.BusinessDTO" resultType="dream.tk.dto.BusinessDTO">
+	<select id="getList" parameterType="dream.tk.dto.BusinessDTO"
+		resultType="dream.tk.dto.BusinessDTO">
 		SELECT
-			BusinessName,
-			address1,
-			biz_seq
+		BusinessName,
+		address1,
+		biz_seq
 		FROM
-			business
+		business
 		WHERE
-		 <!--  <if test="searchWrd != null and searchWrd !=''">--> 
-			(BusinessName LIKE '%${searchWrd}%'   or
-			address1 LIKE '%${searchWrd}%')
-		 <!--  </if> -->
+		<!-- <if test="searchWrd != null and searchWrd !=''"> -->
+		(BusinessName LIKE '%${searchWrd}%' or
+		address1 LIKE '%${searchWrd}%')
+		<!-- </if> -->
 	</select>
-	
-	
+
+
 </mapper>
