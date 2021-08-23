@@ -14,7 +14,7 @@
 			value="jdbc:oracle:thin:@final.chszh9axhysm.ap-northeast-2.rds.amazonaws.com:1521:final" />
 		<property name="driverClassName"
 			value="oracle.jdbc.OracleDriver" />
-		<property name="initialSize" value="30" /> 
+		<property name="initialSize" value="5" /> 
 	</bean>
 	
 
