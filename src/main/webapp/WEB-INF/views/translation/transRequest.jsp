@@ -83,16 +83,18 @@ input {
 					<div class="col-4">가격(원)</div>
 					<div class="col-2"></div>
 				</div>
-				<div class="row list">
-					<div class="col-2"></div>
-					<div class="col-4">
-						<input class="inp menu" type="text" name="menu_kor">
-					</div>
-					<div class="col-4">
-						<input class="inp price" type="text" name="price">
-					</div>
-					<div class="col-2">
-						<button type="button" class="btn btn-light btnDel">-</button>
+				<div class = menulist>
+					<div class="row list">
+						<div class="col-2"></div>
+						<div class="col-4">
+							<input class="inp menu" type="text" name="menu_kor">
+						</div>
+						<div class="col-4">
+							<input class="inp price" type="text" name="price">
+						</div>
+						<div class="col-2">
+							<button type="button" class="btn btn-light btnDel">-</button>
+						</div>
 					</div>
 				</div>
 				<div class="row more">
@@ -150,13 +152,12 @@ input {
 				row.append(col2);
 				row.append(col3);
 				row.append(col4);
-				$(row).hide();
-				$(".wrapper .list").after(row);
+ 				$(row).hide();
+				$(".menulist").append(row);
 				$(row).fadeIn(800);
 
 			} else if (count == 10) {
 				count++;
-
 				alert("메뉴는 최대 10개까지 등록할 수 있습니다.");
 
 			}
