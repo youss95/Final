@@ -20,6 +20,15 @@
 		where chatnum = #{chatnum}
 		order by seq
 	</select>
+	
+	<select id="selectBusinessAll" resultType="dream.tk.dto.ChatDTO">
+		select seq, chatnum, id,
+		store, contents, nickname, to_char(write_date, 'HH : MM am')
+		"write_date"
+		from CHAT_CLIENT
+		where chatnum like '%${value}%'
+		order by seq
+	</select>
 
 	<select id="selectList" resultType="dream.tk.dto.ChatDTO">
 		select * from chat_client 

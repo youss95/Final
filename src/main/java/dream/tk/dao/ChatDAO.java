@@ -23,6 +23,10 @@ public class ChatDAO {
 		  return mybatis.selectList("Chat.selectAll", chatnum);
 	  }
 	  
+	  public List<ChatDTO> selectBusinessAll(String storeName){
+		  return mybatis.selectList("Chat.selectAll", storeName);
+	  }
+	  
 	 public List<ChatDTO> selectList(String nickname){
 		 return mybatis.selectList("Chat.selectList", nickname);
 	 }
