@@ -165,8 +165,8 @@ $(function(){
                       <i class="material-icons">star_border</i>
                     </div>
                     <p class="card-category">별점</p>
-                    <h3 class="card-title"><c:if test="${vsMine.STAR_AVG eq null}">0</c:if>
-                    ${vsMine.STAR_AVG}
+                    <h3 class="card-title"><c:if test="${star_avg eq null}">0</c:if>
+                    ${star_avg}
                       <small>/5.0</small>
                     </h3>
                   </div>
@@ -211,9 +211,9 @@ $(function(){
                     <div class="card-icon">
                       <i class="material-icons">favorite</i>
                     </div>
-                    <p class="card-category">찜 수</p>
-                    <h3 class="card-title"><c:if test="${vsMine.KEEP_COUNT eq null}">0</c:if>
-                    ${vsMine.KEEP_COUNT}
+                    <p class="card-category">좋아요 수</p>
+                    <h3 class="card-title"><c:if test="${likes eq null}">0</c:if>
+                    ${likes}
                       <small>개</small>
                     </h3>
                   </div>
@@ -536,7 +536,7 @@ console.log("${nationLabel[1]}");
                type: 'bar',
                label: '업종 평균',
                data: [
-                  "${vsResult.STAR_AVG}","${vsResult.KEEP_COUNT}","${vsResult.VIEW_COUNT}"
+                  "${bizStar_avg}","${bizLikes}","${bizView_count}"
                ],
 //                borderColor: 'rgb(153, 102, 255)',
 //                backgroundColor: 'rgba(153, 102, 255,0.2)'
@@ -544,13 +544,13 @@ console.log("${nationLabel[1]}");
                type: 'line',
                label: '우리 업체',
                data: [
-                  "${vsMine.STAR_AVG}","${vsMine.KEEP_COUNT}","${vsMine.VIEW_COUNT}"
+                  "${star_avg}","${likes}","${bizInfo.view_Count}"
                ],
                fill: false,
                borderColor: 'rgb(153, 102, 255)',
                pointBackgroundColor:'rgb(153, 102, 255)'
            }],
-           labels: ['별점', '찜수', '조회수']
+           labels: ['별점', '좋아요 수', '조회수']
        },
        
        options: {

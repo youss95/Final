@@ -9,7 +9,7 @@
  
   	<!-- 찜하기 등록 기능 -->
   	<insert id="doLike" >
-		insert into likes values (likes_seq.nextval , #{userId} ,#{businessName},'Y' )
+		insert into likes values (likes_seq.nextval , #{userId} ,#{businessName},'Y',#{biz_seq} )
 	</insert>
  	
  	<!-- 찜하기 취소 기능 -->
@@ -17,5 +17,13 @@
  		DELETE FROM likes WHERE  id = #{id}
 	</delete>
 	
+	<!--찜 상태 변경  -->
+	<update id="updateStatus">
+	update likes set like_status = 'N' where userId = #{userId} and biz_seq = #{biz_seq}
+	</update>
 	
-  </mapper>
+	<select id="likeStatus" resultType="String">
+	select like_status from likes where userId = #{userId} and biz_seq = #{biz_seq}
+	</select>
+	
+   </mapper>

@@ -47,4 +47,10 @@ public class AdminDAO {
 	public int businessOut(int seq){
 		return mybatis.delete("admin.businessOut",seq);
 	}
+	public int getSeq(int seq){
+		return mybatis.selectOne("admin.getSeq",seq);
+	}
+	public int businessMemberOut(int businessMemberSeq){
+		return mybatis.delete("admin.businessMemberOut",businessMemberSeq);
+	}
 }

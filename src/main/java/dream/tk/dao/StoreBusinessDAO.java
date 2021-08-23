@@ -25,6 +25,10 @@ public class StoreBusinessDAO {
 		return mybatis.selectOne("StoreBu.select", store_seq);
 	}
 	
+	//상호명 불러오기
+	public String getBusinessname(int seq){
+		return mybatis.selectOne("StoreBu.getBusinessname", seq);
+	}
 	
 	// 게시글 총 갯수
 	public int countBoard() throws Exception{

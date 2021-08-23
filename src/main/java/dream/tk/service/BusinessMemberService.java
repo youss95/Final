@@ -95,9 +95,8 @@ public class BusinessMemberService {
 	}
 	
 	
-	public int getTotalRes(String businessName) {
-		return dao.getTotalRes(businessName);
-	}
+	
+	
 	public List<Map<String, String>> getReserveAge(String businessName){
 		return dao.getReserveAge(businessName);
 	}
@@ -107,16 +106,48 @@ public class BusinessMemberService {
 	public List<Map<String, String>> getReserveMonth(String businessName){
 		return dao.getReserveMonth(businessName);
 	}
-	public Map<String, String> getVs(String biz_type){
-		return dao.getVs(biz_type);
-	} 
-	public Map<String, String> getVsMine(String businessName){
-		return dao.getVsMine(businessName);
-	}
+//	public Map<String, String> getVs(String biz_type){
+//		return dao.getVs(biz_type);
+//	} 
+//	public Map<String, String> getVsMine(String businessName){
+//		return dao.getVsMine(businessName);
+//	}
 	
 	//예약 정보
-	
 	  public List<ReservationDTO> resManage(String res_name){ return
 	  dao.resManage(res_name); }
 	 
+	  
+	  
+	  
+	  
+	 //테이블 컬럼 변경 → 대시보드 변경
+	  public String getStar_avg(int biz_seq){
+		  String result = dao.getStar_avg(biz_seq);
+		  if(result=="") {
+			  return "0";
+		  }
+		  return result;
+	  }
+	  public int getTotalRes(int biz_seq) {
+			return dao.getTotalRes(biz_seq);
+	  }
+	  public int getLikes(int biz_seq){
+		  return dao.getLikes(biz_seq);
+	  }
+	  
+	  
+	  public String getBizStar_avg(String biz_type) {
+		  String result = dao.getBizStar_avg(biz_type);
+		  if(result=="") {
+			  return "0";
+		  }
+		  return result;
+	  }
+	  public int getBizLikes(String biz_type) {
+		  return dao.getBizLikes(biz_type);
+	  }
+	  public int getBizView_count(String biz_type) {
+		  return dao.getBizView_count(biz_type);
+	  }
 }

@@ -124,16 +124,16 @@ a {
 			<div class="row columns">
 				<div class="col-4">업체 No</div>
 				<div class="col-4">상호명</div>
-				<div class="col-2">리뷰수</div>
+				<div class="col-2">주간 리뷰수</div>
 				<div class="col-2"></div>
 			</div>
 
 			<c:forEach var="list" items="${blackList}" varStatus="s">
 				<div class="row list" style="overflow: hidden">			
-						<div class="col-4">${list.STORE_SEQ}</div>
+						<div class="col-4">${list.BNO}</div>
 						<div class="col-4">${list.BUSINESSNAME}</div>
-						<div class="col-2">${list.counts}</div>
-						<div class="col-2"><button type="button" class="btnOut" seq="${list.STORE_SEQ}">탈퇴</button></div>
+						<div class="col-2">${list.COUNTS}</div>
+						<div class="col-2"><button type="button" class="btnOut btn btn-outline-danger" seq="${list.BNO}">탈퇴</button></div>
 				</div>
 			</c:forEach>
 
@@ -171,7 +171,7 @@ a {
 
 <script>
 	$(".btnOut").on("click",function(){
-		let seq =this.seq;
+		let seq =$(this).attr("seq");
 		let here = this;
 		$.ajax({
 			data:{"seq":seq},
