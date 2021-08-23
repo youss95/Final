@@ -65,6 +65,11 @@
   delete from reservation where res_no = #{res_no}
   </delete>
   
+  <!--관리자의 예약 거절  -->
+  <update id="resRefusal">
+  update reservation set res_checked = 'N' where res_no =#{res_no}
+  </update>
+  
   <!-- 예약 시간 선택 후 예약 하기 -->
   <insert id="registerTime">
   insert into reservation values(res_seq.nextval,#{res_name},#{userId},#{res_date},#{res_time},'Y',#{biz_seq},sysdate)

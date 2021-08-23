@@ -492,8 +492,7 @@ cursor:pointer
 													a += '<h3><i class="fa fa-comment"></i> '
 															+ value.writer
 															+ '<small> 날짜 : '
-															+ value.reg_date
-															
+															+ value.reg_date		
 															+ '<div class="review">'
 															+ ' <div class="rating" data-rate='+value.star_age+'>'
 															+ ' <i class="fas fa-star"></i>'
