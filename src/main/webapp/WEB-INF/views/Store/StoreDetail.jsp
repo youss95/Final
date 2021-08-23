@@ -387,9 +387,9 @@ section {
 									<input type="text" class="form-control" id="content"
 										name="content" placeholder="내용을 입력하세요.">
 								</div>
-								<button type="button" value="" class="btn btn-primary"
-									name="commentInsertBtn" style="left: 0;">
-									<i class="fa fa-reply"></i>Submit
+								<button type="buttInsertBtn" style="left: 0;">
+									<i class="faton" value="" class="btn btn-primary"
+									name="commen fa-reply"></i>Submit
 								</button>
 							</form>
 						</c:when>

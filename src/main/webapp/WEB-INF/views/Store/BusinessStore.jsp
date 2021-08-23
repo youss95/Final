@@ -321,7 +321,7 @@ section {
 										alt="Photo of Brooklyn Park">
 									<figcaption>
 										<p>${list.address1 }</p>
-										<h2>${list.businessContact }</h2>
+										<h2>${list.businessNameEng }</h2>
 										<h3>조회수 : ${list.view_Count }</h3>
 									</figcaption>
 								</figure>
