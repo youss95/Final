@@ -324,7 +324,7 @@ button:hover {
 							src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_06.jpg"
 							alt="avatar" />
 							<div class="about">
-								<div class="name"> <a href="/chat/makeChat?store=${item.store }">${item.store }</a></div>
+								<div class="name"> <a href="/chat/clickChat?roomid=${item.chatnum}">${item.id }</a></div>
 								<div class="status">
 									<i class="fa fa-circle offline"></i> left 30 mins ago
 								</div>

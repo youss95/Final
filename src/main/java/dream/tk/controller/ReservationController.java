@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,9 @@ public class ReservationController {
 
 	@Autowired
 	private ReservationService resService;
+	
+	@Autowired
+	private HttpSession session;
 	
 	//test
 	@GetMapping("/testtest")
@@ -100,6 +104,7 @@ public class ReservationController {
 		
 		
 		System.out.println(dto.toString());
+		session.setAttribute("bizName", dto.getBusinessName());
 		resService.registerBiz(dto);
 		return "redirect: /";
 	}
@@ -147,6 +152,12 @@ public class ReservationController {
 		String resCheck = resService.resCheck(dto);
 		System.out.println("체크:" +resCheck);
 	return resCheck;	
+	}
+	
+	@GetMapping("/cancel")
+	public String resRefuse(int res_no,String res_name) {
+		resService.resRefuse(res_no);
+		return "redirect:/bMember/reservation?res_name="+res_name;
 	}
 	
 	

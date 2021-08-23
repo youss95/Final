@@ -21,7 +21,7 @@
 				  showConfirmButton: false,
 				  timer: 1100			 	 
 				}).then(function() {
-				  location.href="${pageContext.request.contextPath}/bMember/myPage";
+				  location.href="${pageContext.request.contextPath}/bMember/dashboard";
 				});
 
 			</script>

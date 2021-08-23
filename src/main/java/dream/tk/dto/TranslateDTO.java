@@ -13,6 +13,7 @@ public class TranslateDTO {
 	private Date reg_date;
 	private Date confirm_date;
 	private String confirm_YN;
+	private int biz_seq;
 
 	public TranslateDTO() {
 		super();
@@ -37,13 +38,14 @@ public class TranslateDTO {
 		this.confirm_YN = confirm_YN;
 	}
 
-	public TranslateDTO(String menu_kor, String menu_eng, int price, String business_id, String business_name) {
+	public TranslateDTO(String menu_kor, String menu_eng, int price, String business_id, String business_name, int biz_seq) {
 		super();
 		this.menu_kor = menu_kor;
 		this.menu_eng = menu_eng;
 		this.price = price;
 		this.business_id = business_id;
 		this.business_name = business_name;
+		this.biz_seq = biz_seq;
 	}
 
 	public TranslateDTO(int seq, String menu_eng) {
@@ -52,8 +54,10 @@ public class TranslateDTO {
 		this.menu_eng = menu_eng;
 	}
 
+
+
 	public TranslateDTO(int seq, String menu_kor, String menu_eng, int price, String business_id, String business_name,
-			Date reg_date, Date confirm_date, String confirm_YN) {
+			Date reg_date, Date confirm_date, String confirm_YN, int biz_seq) {
 		super();
 		this.seq = seq;
 		this.menu_kor = menu_kor;
@@ -64,8 +68,10 @@ public class TranslateDTO {
 		this.reg_date = reg_date;
 		this.confirm_date = confirm_date;
 		this.confirm_YN = confirm_YN;
+		this.biz_seq = biz_seq;
 	}
-	
+
+
 
 	public int getSeq() {
 		return seq;
@@ -137,6 +143,14 @@ public class TranslateDTO {
 
 	public void setConfirm_YN(String confirm_YN) {
 		this.confirm_YN = confirm_YN;
+	}
+
+	public int getBiz_seq() {
+		return biz_seq;
+	}
+
+	public void setBiz_seq(int biz_seq) {
+		this.biz_seq = biz_seq;
 	}
 
 	

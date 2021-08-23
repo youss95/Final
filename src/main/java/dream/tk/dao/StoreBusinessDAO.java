@@ -26,8 +26,8 @@ public class StoreBusinessDAO {
 	}
 	
 	//상호명 불러오기
-	public String getBusinessname(int seq){
-		return mybatis.selectOne("StoreBu.getBusinessname", seq);
+	public BusinessDTO getInfo(int seq){
+		return mybatis.selectOne("StoreBu.getInfo", seq);
 	}
 	
 	// 게시글 총 갯수

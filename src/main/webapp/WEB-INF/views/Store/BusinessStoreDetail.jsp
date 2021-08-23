@@ -392,6 +392,7 @@ section {
             }
             random_imglink();
          </script>
+<<<<<<< HEAD
 			<br> <br>
 		</section>
 		<div class="foot">
@@ -460,6 +461,74 @@ section {
 		
 		
 	
+=======
+         <br> <br>
+      </section>
+      <div class="foot">
+         <!-- 지워지면 망 -->
+         <!--  댓글  -->
+
+         <div class="containers">
+            <div class="well">
+               <c:choose>
+                  <c:when test="${loginID != null}">
+                     <form role="form" name="commentInsertForm">
+                        <h4>
+                           <i class="fa fa-paper-plane-o"></i> Leave a Comment:
+                           <div class="make_star">
+      <div class="rating" data-rate="3">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+      </div>
+    </div>
+                        </h4>
+                        <input type="hidden" id="writer" name="writer"
+                           value="${loginID}"> <input type="hidden" id="bno"
+                           name="bno" value="${list.biz_seq }" />
+                        <div class="form-group">
+                           <input type="text" class="form-control" id="content"
+                              name="content" placeholder="내용을 입력하세요.">
+                        </div>
+                        <button type="button" value="" class="btn btn-primary"
+                           name="commentInsertBtn" style="left: 0;">
+                           <i class="fa fa-reply"></i>Submit
+                        </button>
+                     </form>
+                  </c:when>
+
+                  <c:otherwise>
+                     <h4>
+                        <i class="fa fa-paper-plane-o"></i> Leave a Comment:
+                     </h4>
+                     <form role="form" name="commentInsertForm">
+                        <input type="hidden" id="bno" name="bno"
+                           value="${list.biz_seq }" />
+                        <div class="form-group">
+                           <input type="text" class="form-control" id="content"
+                              name="content" placeholder="리뷰를 작성하고 싶으시면, 로그인을 하세요" disabled>
+                        </div>
+                        <button type="button"
+                           onclick="location.href='${pageContext.request.contextPath}/member/whichMember'"
+                           class="btn btn-primary" name="commentInsertBtn"
+                           style="left: 0;">로그인하기</button>
+                     </form>
+                  </c:otherwise>
+               </c:choose>
+            </div>
+         </div>
+
+         <div class="containers">
+            <div class="commentList"></div>
+         </div>
+      </div>
+
+      <!-- 이거 지워지면 안된다 -->
+      <script>
+      
+>>>>>>> c7508096df956534eb4f39e2ef25f687afa6e481
        $(function () {
           /* 등록후 리스트 */
          
@@ -608,6 +677,7 @@ section {
          
        });
       </script>
+>>>>>>> 4cd6e40c5ebdf956d26f5a3f106e3e02c638d67e
 
 
 

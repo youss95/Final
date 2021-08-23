@@ -1,5 +1,7 @@
 package dream.tk.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +27,12 @@ public class LikesService {
 		  
 		  //likeStatus
 		  public String likeStatus(LikeStatusDTO dto) {
-			 
 			  return dao.likeStatus(dto);
+		  }
+		  
+		  //getList
+		  public List<LikesDTO> likeList(String userId){
+			  return dao.getList(userId);
 		  }
 	
 }

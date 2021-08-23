@@ -137,6 +137,7 @@
       <th scope="col">예약자 명</th>
       <th scope="col">예약 시간</th>
       <th scope="col">예약 일</th>
+      <th scope="col">취소</th>
      
     </tr>
   </thead>
@@ -147,6 +148,16 @@
       <th scope="row">${resList.userId}</th>
       <td>  ${resList.res_time}</td>
       <td>${resList.res_date}</td>
+      <c:choose>
+      <c:when test="${resList.resCheck == 'Y'}">
+      <td><a href="/res/cancel?res_no=${resList.res_no }&res_name=${resList.res_name}">취소하기</a></td>
+      </c:when>
+      <c:otherwise>
+      <td>취소완료</td>
+      </c:otherwise>
+      </c:choose>
+     
+  
     </tr>
       </c:forEach>
   </tbody>

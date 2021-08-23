@@ -8,7 +8,7 @@
 		insert into menu_translate
 		values(menu_translate_seq.nextval,
 		#{menu_kor}, #{menu_eng}, #{price},
-		#{business_id}, #{business_name}, sysdate, null, 'N')
+		#{business_id}, #{business_name}, sysdate, null, 'N', #{biz_seq})
 	</insert>
 
 	<update id="directConfirm">
@@ -28,8 +28,8 @@
 	</delete>
 
 	<select id="select" resultType="dream.tk.dto.TranslateDTO">
-		select seq, menu_kor, menu_eng, price from menu_translate
-		where business_id=#{value}
+		select seq, menu_kor, menu_eng, price, business_id, business_name from menu_translate
+		where biz_seq=#{value}
 	</select>
 
 	<select id="getRecordCount" resultType="int">
@@ -41,9 +41,9 @@
 	</select>
 
 	<select id="getPageList" resultType="dream.tk.dto.TranslateDTO">
-		select business_id,
+		select biz_seq,
 		business_name, reg_date, confirm_yn from (select * from (select
-		row_number() over(order by seq desc) rnum, seq, business_id,
+		row_number() over(order by seq desc) rnum, seq, biz_seq,
 		business_name,
 		reg_date, confirm_YN from menu_translate where seq
 		in(select max(seq)
