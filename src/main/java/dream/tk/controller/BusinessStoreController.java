@@ -18,6 +18,7 @@ import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.LikeStatusDTO;
 import dream.tk.service.LikesService;
 import dream.tk.service.StoreBusinessService;
+import dream.tk.service.TranslateService;
 import net.sf.json.JSONArray;
 
 
@@ -35,6 +36,11 @@ public class BusinessStoreController {
 	
 	@Autowired
 	private LikesService likeService;
+	
+	@Autowired
+	private TranslateService serviceT;
+
+	
 	
 	
 	@GetMapping("signup")
