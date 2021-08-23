@@ -188,8 +188,8 @@ pointer-events:none;
       initialDate: '2021-08-01',
       initialView: 'dayGridMonth',
       validRange: {
-    	  start: '2021-08-01',
-    	    end: '2021-11-28',
+    	  start: '2021-08-27',
+    	    end: '2021-10-31',
       },
       locale : 'ko',
       navLinks: true, // can click day/week names to navigate views
@@ -256,23 +256,6 @@ pointer-events:none;
     				 
     			 })
     		 }
-    		 
-    	 /*   <c:forTokens var="onday" items="${onday}" delims=",">
-           <span class="select_time">${onday}</span>
-           $.ajax({
-        	   url:"",
-        	   data:{'res_name':'행복식당'}
-           }).done(function(){
-        	   
-           })
-          </c:forTokens>
-      */
-     
-        //title 값이 있으면 json형식으로 일정을 추가 -> ajax통신 성공하면 추가로 변경하자
-     /*   if(strDate == '2021-08-08'){
-    	   console.log('asddsa')
-        calendar.unselect()
-       } */
       },
      
       //이벤트 클릭 취소하기
