@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import dream.tk.config.PagingVO;
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.LikeStatusDTO;
+import dream.tk.dto.TranslateDTO;
 import dream.tk.service.LikesService;
 import dream.tk.service.StoreBusinessService;
 import dream.tk.service.TranslateService;
@@ -79,7 +80,7 @@ public class BusinessStoreController {
 	      LikeStatusDTO statusDto = new LikeStatusDTO(biz_seq,userId);
 	      String likeStatus = likeService.likeStatus(statusDto);
 
-	      List<TranslateDTO> menuList = serviceT.select(biz_seq);
+	      List<TranslateDTO> menuList = serviceT.select(likeStatus);
 	      m.addAttribute("menuList", menuList);
 
 	      //m.addAttribute("countCmt", serviceC.count(store_seq));
