@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,12 +25,15 @@
 	href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/like.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+<link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+	crossorigin="anonymous" />
 
 
 
@@ -121,6 +127,9 @@ section {
   cursor: pointer;
   transition: all 0.1s ease-out;
 }
+.afterLikes{
+color:blue;
+}
 </style>
 </head>
 <body>
@@ -171,9 +180,9 @@ section {
 		<aside>
 			<div id='store'>
 				<input type="hidden" id="store" value="${list.businessNameEng }">
-				<a><img
+				<span id="likeStar" ><img
 					src="${pageContext.request.contextPath}/resources/images/start.png">
-					찜하기</a>
+					찜하기</span>
 				<h1 style="float: center;">${list.businessNameEng }</h1>
 				<div>
 					<img
@@ -615,6 +624,23 @@ section {
 			</a>
 			<script>
 			
+			$("#likeStar").click(function(){
+		        let data = {
+		        		userId:'${loginID}',
+						businessName:'${list.businessName}'
+									}
+		        $.ajax({
+		          url:"/like/insertLike",
+		          data:JSON.stringify(data),
+		          type:"POST",
+		          contentType:"application/json;charset=utf-8"
+		        }).done(function(resp){
+		          console.log(resp)
+		          $("#likeStar").addClass("afterLikes")
+		        })
+		        
+		      })
+			
 				$(window).scroll(function() {
 					//스크롤의 위치가 상단에서 450보다 크면  
 					if ($(window).scrollTop() > 450) {
@@ -627,7 +653,41 @@ section {
 					}
 				});
 			</script>
+			<script>
+			//socket alarm
+			$(function(){
+				$.ajax({
+					
+				url:"/noti/alarmCounts",
+				 data:{userId:'${loginID}'}
+
+				}).done(function(resp){
+					console.log("rresp",resp)
+					$("#ala").append(resp)
+				})
+			})
+			$("#likeStar").on('click',function(){
+				let businessName = '${list.businessName}'
+				let sender = '${loginID}'
+				let getter = ${list.seq}
+				let content = sender+" 님이 "+businessName+" 을  찜하였습니다."
+				console.log(content)
+				//let data ={seq:getter,content:sender+" 님이 좋아요를 눌렀습니다."}
+				$.ajax({
+					url:"/noti/likeAlarm",
+					type:"post",
+					data:{'content':content,'seq':getter},
+					
+				}).done(function(resp){
+					console.log(resp)
+					if(socket){
+						let scktMsg = "like,"+sender+","+resp+","+businessName+","+"1";
+						console.log(scktMsg);
+						socket.send(scktMsg);
+					}
+				})
+			})
+			</script>
 		</div>
 	</div>
-</body>
-</html>
+<%@include file="../layout/alarm.jsp" %>

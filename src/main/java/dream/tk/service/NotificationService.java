@@ -1,7 +1,9 @@
 package dream.tk.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,5 +47,16 @@ public class NotificationService {
 		notiDao.alarmRead();
 	}
 	
+	
+	public String getRecipient(int seq) {
+		return notiDao.findRecipient(seq);
+	}
+	
+	public int alarmInsert(String userId,String content) {
+		Map<String,String> param = new HashMap<>();
+		param.put("content", content);
+		param.put("userId", userId);
+		return notiDao.alarmInsert(param);
+	}
 	
 }

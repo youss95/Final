@@ -1,6 +1,7 @@
 package dream.tk.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,14 @@ public class NotificationDAO {
 	
 	public int countForPaging(String userId) {
 		return mybatis.selectOne("notiMapper.countForPaging",userId);
+	}
+	
+	public String findRecipient(int seq) {
+		return mybatis.selectOne("notiMapper.recipient",seq);
+	}
+	
+	public int alarmInsert(Map<String,String> param) {
+		return mybatis.insert("notiMapper.postAlarm",param);
 	}
 	
 }

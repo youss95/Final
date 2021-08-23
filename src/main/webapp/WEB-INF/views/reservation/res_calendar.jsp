@@ -52,6 +52,10 @@
       }
 	 
 .disableClick{
+
+}
+.dontClick{
+background-color:blue;
 pointer-events:none;
 }
 </style>
@@ -99,8 +103,6 @@ pointer-events:none;
 
  
  function handleClick(e){
-	
-	 
 	 if (event.target.classList[1] === "clicked") {
          event.target.classList.remove("clicked");
        }else{
@@ -108,13 +110,9 @@ pointer-events:none;
                select[i].classList.remove("clicked");
              }
        }
-	
-         
-
          event.target.classList.add("clicked");
          console.log("target: ",e.target.classList[1]);
-         console.log("target: ",e.target.classList[0]);
-    	 
+         console.log("target: ",e.target.classList[0]); 
  }
  
  function init() {
@@ -142,7 +140,10 @@ pointer-events:none;
     var calendarEl = document.getElementById('calendar');
     let strDate = ''
     	 $("#subBtn").on('click',function(){
+    		 
+    		
       		let selected = $('.clicked').html();
+      		
       		console.log(selected)
       		console.log(strDate)
       		let data = {
@@ -171,7 +172,7 @@ pointer-events:none;
 
       		          })
       		       
-      		      // reset();
+      		       reset();
       		        location.reload()
       			$("#cancelBtn").click();
       		}) 
@@ -224,11 +225,10 @@ pointer-events:none;
      
       select: function(arg) {
     	   strDate = moment(arg.start).format("YYYY-MM-DD")
-    	  
-    	 
      /*모달창  띄우기*/
      $("#exampleModal").modal('show');
     	  /* 예약됬는지 체크 */
+    	  console.log(strDate)
     	   for(let i=0; i<select.length; i++){
     		   let data = {
         			   res_time:select[i].innerText,
@@ -242,12 +242,18 @@ pointer-events:none;
     				 type:"POST",
     				 contentType:"application/json;charset=utf-8"
     			 }).done(function(resp){
-    				 console.log(resp)
+    				 console.log("resp",resp)
     				 if(resp == 'Y'){
-    					 select[i].style.backgroundColor = 'blue'
-    						console.log(select[i])
-    						select[i].className="disableClick"
+    						//select[i].className="dontClick"
+    					// select[i].style.backgroundColor = 'blue'
+    						console.log("selI",select[i])
+    			select[i].classList.add("dontClick")
+    						
+    				 }else{
+    					 //select[i].style.backgroundColor = 'rgba(1,1,1,0)'
+    					 select[i].classList.remove('dontClick')
     				 }
+    				 
     			 })
     		 }
     		 
@@ -263,10 +269,10 @@ pointer-events:none;
       */
      
         //title 값이 있으면 json형식으로 일정을 추가 -> ajax통신 성공하면 추가로 변경하자
-       if(strDate == '2021-08-08'){
+     /*   if(strDate == '2021-08-08'){
     	   console.log('asddsa')
         calendar.unselect()
-       }
+       } */
       },
      
       //이벤트 클릭 취소하기
@@ -336,7 +342,8 @@ pointer-events:none;
     calendar.render();
 
    
-       
+    
+
     
 </script>
 </body>
