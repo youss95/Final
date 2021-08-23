@@ -260,6 +260,14 @@ button:hover {
 	color:white;
 }
 
+#backBtn{
+	float:right;
+	font-size:50px;
+	text-decoration:none;
+	color:white;
+	margin-right:5%;
+}
+
 </style>
 <script>
 	$(document).ready(function() {
@@ -314,7 +322,9 @@ button:hover {
 </script>
 </head>
 <body>
+<a id="backBtn" href="/store/signup?cpage=1">toBoard</a>
 	<div class="container clearfix">
+	
 		<div class="people-list" id="people-list">
 			<div class="search">
 				<input type="text" placeholder="search" /> <i class="fa fa-search"></i>
