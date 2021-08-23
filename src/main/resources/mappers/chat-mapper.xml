@@ -47,5 +47,9 @@
 		where seq in(select max(seq) from CHAT_CLIENT where chatnum like '%${value}%' group by id) 
 		order by seq desc
 	</select>
+	
+	<delete id="deleteChatRoom">
+		delete from chat_client where chatnum = #{chatnum}
+	</delete>
 
 </mapper>

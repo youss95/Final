@@ -69,6 +69,7 @@ public class ChatEndPoint {
 				try {
 					if(bizName == null) {
 					dao.insert(new ChatDTO(chatnum,store,contents,nickname));
+					//dao.deleteChatRoom(chatnum);
 					}else {
 						dao.insertBusiness(new ChatDTO(chatnum,store,contents,nickname));
 					}

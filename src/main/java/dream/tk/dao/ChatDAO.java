@@ -38,4 +38,8 @@ public class ChatDAO {
 	 public List<ChatDTO> selectBusinessList(String store){
 		 return mybatis.selectList("Chat.selectBusinessList", store);
 	 }
+	 
+	 public int deleteChatRoom(String chatnum) {
+		 return mybatis.delete("Chat.deleteChatRoom", chatnum);
+	 }
 }

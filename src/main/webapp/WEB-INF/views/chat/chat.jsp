@@ -255,6 +255,11 @@ button:hover {
 	color:white;
 }
 
+.deleteMsg{
+	text-decoration:none;
+	color:white;
+}
+
 </style>
 <script>
 	$(document).ready(function() {
@@ -326,7 +331,7 @@ button:hover {
 							<div class="about">
 								<div class="name"> <a href="/chat/makeChat?store=${item.store }">${item.store }</a></div>
 								<div class="status">
-									<i class="fa fa-circle offline"></i> left 30 mins ago
+									<i class="fa fa-circle offline"></i> <a class="deleteMsg" href = "/chat/deleteChatRoom?chatnum=${item.chatnum }">delete</a>
 								</div>
 							</div></li>
 					</c:if>
