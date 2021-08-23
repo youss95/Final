@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import dream.tk.config.PagingVO;
 import dream.tk.dto.BusinessDTO;
+import dream.tk.dto.LikeStatusDTO;
+import dream.tk.service.LikesService;
 import dream.tk.service.StoreBusinessService;
 import net.sf.json.JSONArray;
 
@@ -31,7 +33,8 @@ public class BusinessStoreController {
 	@Autowired
 	private StoreBusinessService service;
 	
-
+	@Autowired
+	private LikesService likeService;
 	
 	
 	@GetMapping("signup")
@@ -65,10 +68,13 @@ public class BusinessStoreController {
 	
 	//디테일 페이지로
 	@RequestMapping("view")
-	public String view(int biz_seq, Model m, String store) throws Exception{
+	public String view(int biz_seq,String userId, Model m, String store) throws Exception{
 		BusinessDTO dto = service.select(biz_seq);
+		LikeStatusDTO statusDto = new LikeStatusDTO(biz_seq,userId);
+		String likeStatus = likeService.likeStatus(statusDto);
 		//m.addAttribute("countCmt", serviceC.count(store_seq));
 		m.addAttribute("list", dto);
+		m.addAttribute("likeStatus",likeStatus);
 		session.setAttribute("store", store);
 		return "/Store/BusinessStoreDetail";
 	}
