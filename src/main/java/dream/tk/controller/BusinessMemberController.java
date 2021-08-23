@@ -211,11 +211,11 @@ public class BusinessMemberController {
 	
 	@RequestMapping("editBizInfo")
 	public String editBizInfo(BusinessDTO dto) {
-		dto.setBiz_seq(0);
-		String[] list = new String[3];
-		dto.setOnday(list);
-		dto.setTimeAvailable("tue");
-		dto.setCreateDate(new Date(0));
+//		dto.setBiz_seq(0);
+//		String[] list = new String[3];
+//		dto.setOnday(list);
+//		dto.setTimeAvailable("tue");
+//		dto.setCreateDate(new Date(0));
 		int memSeq = ((BusinessMemberDTO) session.getAttribute("binfo")).getSeq();
 		dto.setSeq(memSeq);
 		
@@ -230,8 +230,11 @@ public class BusinessMemberController {
 	public String dashboard(Model m) {
 		if(session.getAttribute("bizInfo")!=null) {
 		String businessName =((BusinessDTO) session.getAttribute("bizInfo")).getBusinessName();
+		int biz_seq =((BusinessDTO) session.getAttribute("bizInfo")).getBiz_seq();
 		
-		int totalRes = ser.getTotalRes(businessName);
+		String star_avg = ser.getStar_avg(biz_seq);
+		int totalRes = ser.getTotalRes(biz_seq);
+		int likes = ser.getLikes(biz_seq);
 		
 		List<Map<String, String>> ageResult = ser.getReserveAge(businessName);
 		
@@ -312,17 +315,25 @@ public class BusinessMemberController {
 		}
 		
 		String biz_type = ((BusinessDTO) session.getAttribute("bizInfo")).getBiz_type();
-		Map<String, String> vsResult = ser.getVs(biz_type);
-		Map<String, String> vsMine = ser.getVsMine(businessName);
+		//Map<String, String> vsResult = ser.getVs(biz_type);
+		//Map<String, String> vsMine = ser.getVsMine(businessName);
+		String bizStar_avg = ser.getBizStar_avg(biz_type);
+		int bizLikes = ser.getBizLikes(biz_type);
+		int bizView_count = ser.getBizView_count(biz_type);
 		
+		m.addAttribute("star_avg", star_avg);
 		m.addAttribute("totalRes", totalRes);
+		m.addAttribute("likes", likes);
+		
 		m.addAttribute("ageData", ageData);
 		m.addAttribute("nationLabel", nationLabel);
 		m.addAttribute("nationData",nationData);
 		m.addAttribute("monthData",monthData);
-		m.addAttribute("vsResult",vsResult);
-		m.addAttribute("vsMine",vsMine);
-		
+		//m.addAttribute("vsResult",vsResult);
+		//m.addAttribute("vsMine",vsMine);
+		m.addAttribute("bizStar_avg",bizStar_avg);
+		m.addAttribute("bizLikes",bizLikes);
+		m.addAttribute("bizView_count",bizView_count);
 		}
 		return "/memberB/dashboard";
 	}

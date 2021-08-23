@@ -10,7 +10,7 @@
 <c:when test="${loginID!=null || binfo.id !=null }">
 <ul>
 
-          <li><a href="${pageContext.request.contextPath}/mypage.mp">MyPage</a></li>
+          <li><c:if test="${binfo.member_role eq 'B'}"><a href="${pageContext.request.contextPath}/bMember/myPage">MyPage</a></c:if></li>
          <li><a href="${pageContext.request.contextPath}/member/logout"><i class="fas fa-sign-out-alt"></i></a></li>
 					<li><a href="/noti/detail?userId=${loginID}&page=1" class="button" style="position: relative"><i
 							class="fas fa-bell fa-2x"></i><span class="nav-counter"></span></a></li>
