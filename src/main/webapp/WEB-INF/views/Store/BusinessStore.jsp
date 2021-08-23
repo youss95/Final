@@ -314,7 +314,7 @@ section {
 					<c:forEach var="list" items="${viewAll}">
 						<li><span class="grid-number">임의</span> <span class="ribbon"><a
 								href="/Business/view?seq=">2.5</a></span> <a
-							href="/Business/view?biz_seq=${list.biz_seq }">
+							href="/Business/view?biz_seq=${list.biz_seq }&userId=${loginID}">
 							<input type="hidden" id="click" value="${list.biz_seq }">
 								<figure>
 									<img src="https://source.unsplash.com/mZS7cne5iY0/800x600"

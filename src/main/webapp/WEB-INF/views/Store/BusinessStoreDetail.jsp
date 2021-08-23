@@ -128,8 +128,12 @@ section {
   transition: all 0.1s ease-out;
 }
 .afterLikes{
-color:blue;
+color:red;
 }
+#heartIcon:hover{
+cursor:pointer
+}
+
 </style>
 </head>
 <body>
@@ -180,8 +184,7 @@ color:blue;
 		<aside>
 			<div id='store'>
 				<input type="hidden" id="store" value="${list.businessNameEng }">
-				<span id="likeStar" ><img
-					src="${pageContext.request.contextPath}/resources/images/start.png">
+				<span id="likeStar" ><i id="heartIcon" class="fas fa-heart fa-2x"></i>
 					찜하기</span>
 				<h1 style="float: center;">${list.businessNameEng }</h1>
 				<div>
@@ -625,10 +628,38 @@ color:blue;
 			</a>
 			<script>
 			
-			$("#likeStar").click(function(){
+			
+			
+		      <c:choose>
+				<c:when test="${likeStatus == 'Y' }">
+				$("#heartIcon").css("color","red")
+				//취소
+					$("#likeStar").click(function(){
 		        let data = {
 		        		userId:'${loginID}',
-						businessName:'${list.businessName}'
+						businessName:'${list.businessName}',
+						biz_seq:${list.biz_seq}
+									}
+		        $.ajax({
+		          url:"/like/updateLike",
+		          data:JSON.stringify(data),
+		          type:"POST",
+		          contentType:"application/json;charset=utf-8"
+		        }).done(function(resp){
+		          console.log(resp)
+		        $("#heartIcon").css("color","black")
+		        })
+		        
+		      })
+				
+					</c:when>
+					<c:otherwise>
+					$("#heartIcon").css("color","black")
+					$("#likeStar").click(function(){
+		        let data = {
+		        		userId:'${loginID}',
+						businessName:'${list.businessName}',
+						biz_seq:${list.biz_seq}
 									}
 		        $.ajax({
 		          url:"/like/insertLike",
@@ -637,11 +668,15 @@ color:blue;
 		          contentType:"application/json;charset=utf-8"
 		        }).done(function(resp){
 		          console.log(resp)
-		          $("#likeStar").addClass("afterLikes")
+		        $("#heartIcon").css("color","red")
 		        })
 		        
 		      })
-			
+			</c:otherwise>
+				</c:choose>
+		      
+		    
+		      
 				$(window).scroll(function() {
 					//스크롤의 위치가 상단에서 450보다 크면  
 					if ($(window).scrollTop() > 450) {
@@ -673,7 +708,7 @@ color:blue;
 				let getter = ${list.seq}
 				let content = sender+" 님이 "+businessName+" 을  찜하였습니다."
 				console.log(content)
-				//let data ={seq:getter,content:sender+" 님이 좋아요를 눌렀습니다."}
+				//let data ={content:content,seq:getter,biz_seq:biz_seq}
 				$.ajax({
 					url:"/noti/likeAlarm",
 					type:"post",
