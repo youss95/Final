@@ -25,8 +25,8 @@ public class TranslateService {
 	public int deleteAllMenu(String business_id) {
 		return dao.deleteAllMenu(business_id);
 	}
-	public List<TranslateDTO> select(String business_id){
-		return dao.select(business_id);
+	public List<TranslateDTO> select(int biz_seq){
+		return dao.select(biz_seq);
 	}
 	
 	public int directConfirm(int seq) {
