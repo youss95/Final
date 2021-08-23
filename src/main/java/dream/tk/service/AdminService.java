@@ -189,5 +189,13 @@ public class AdminService {
 			daoB.insert(new BusinessMemberDTO(0, id, shaPW, name, email, phone, premium, reg_date, null, null));
 		}
 	}
-
+	
+	
+	public int getSeq(int seq) {
+		return daoA.getSeq(seq);
+	}
+	public int businessMemberOut(int businessMemberSeq){
+		return daoA.businessOut(businessMemberSeq);
+	}
+	
 }
