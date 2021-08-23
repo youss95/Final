@@ -267,7 +267,12 @@
 		
 	})
 			
-	
+	$(function(){
+		$("#transRequest").on("click", function(){
+			location.href="${pageContext.request.contextPath}/trans/transRequest";			
+		})
+		
+	})
 	
 	
 
@@ -598,7 +603,7 @@
                     
                     <div class="card-body" style="width:100%;">
                       <div style="width:30%">메뉴판 번역 서비스</div>
-                      <div style="width:60%"><button class="btn" type="button">번역 서비스</button></div>
+                      <div style="width:60%"><button class="btn" type="button" id="transRequest">번역 서비스</button></div>
                     </div>
 					<hr>	
 		
