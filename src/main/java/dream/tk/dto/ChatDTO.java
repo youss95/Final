@@ -32,6 +32,8 @@ public class ChatDTO {
 		this.nickname = nickname;
 	}
 	
+	
+	
 	public ChatDTO(String chatnum, String store, String contents, String nickname) {
 		this.chatnum = chatnum;
 		this.store = store;

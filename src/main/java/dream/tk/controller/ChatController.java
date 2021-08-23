@@ -50,15 +50,14 @@ public class ChatController {
 	
 	@RequestMapping("businessMakeChat")
 	public String businessMakeChat(String store) throws Exception{
-		System.out.println("business store 값 넘어옴" + store);
 		session.setAttribute("storeName", store);
 		return "redirect:businessChat";
 	}
 	
 	@RequestMapping("clickChat")
-	public String clickChat(String roomid) throws Exception{
-		System.out.println("roomid 1차 넘김 : " + roomid);
+	public String clickChat(String roomid, String id) throws Exception{
 		session.setAttribute("roomid", roomid);
+		session.setAttribute("nickname", id);
 		return "redirect:businessChat";
 	}
 	
@@ -68,6 +67,9 @@ public class ChatController {
 		//String nickname = (String)session.getAttribute("loginID");
 		String storeName = (String) session.getAttribute("storeName");
 		String roomid = (String) session.getAttribute("roomid");
+		session.setAttribute("buisnessNameChat", storeName);
+		System.out.println("controller에서 store : " + storeName);
+		
 		if(roomid == null) {
 			roomid = "chatnum";
 		}
@@ -80,6 +82,18 @@ public class ChatController {
 		model.addAttribute("businesschatlist", list); // 해당 채팅 방
 		model.addAttribute("businesschatStore",list2); // 채팅 리스트
 		return "chat/businessChat";
+	}
+	
+	@RequestMapping("deleteChatRoom")
+	public String deleteChatRoom(String chatnum) throws Exception{
+		service.deleteChatRoom(chatnum);
+		return "redirect:toChat";
+	}
+	
+	@RequestMapping("deleteBusinessChatRoom")
+	public String deleteBusinessChatRoom(String chatnum) throws Exception{
+		service.deleteChatRoom(chatnum);
+		return "redirect:businessChat";
 	}
 	
 	@ExceptionHandler

@@ -25,16 +25,42 @@
 * {
 	box-sizing: border-box;
 	text-align: center;
+
 }
 
 body {
-	background-color: #D8E3E7;
+	background-color: #7389b3;
+}
+
+.navbar-nav {
+	width: 100%;
+	height: 60px;
+}
+
+.nav-link {
+	width: 20%;
+	text-align: center;
+	font-size: larger;
+	line-height: 45px;
+	background-color: rgb(56, 61, 78);
+}
+
+.nav-link:hover {
+	background-color: rgb(84, 86, 92);
+}
+
+i {
+	margin-right: 10px;
 }
 
 .container {
-	margin-top: 80px;
-	padding: 5%;
-	max-width: 600px;
+	margin-top: 90px;
+	max-width: 1000px;
+	margin-bottom: 90px;
+}
+#wrapper{
+	margin-left: 100px;
+	margin-right: 100px;
 }
 
 .row {
@@ -62,30 +88,21 @@ body {
 	padding-bottom: 1%;
 }
 
+div[class*=col]{
+	font-size: larger;
+}
+div[class*=col]>a{
+	font-size: larger;
+}
+
+
 .footer {
 	margin: 2%;
 }
 
-a {
+.link {
 	text-decoration: none;
 	color: black;
-}
-
-.navbar>.container-fluid {
-	padding: 0px;
-}
-
-.navbar-nav {
-	flex-grow: 1;
-	justify-content: space-around;
-}
-
-.slide {
-	position: absolute;
-	width: 100%;
-	height: 50px;
-	top: 100%;
-	background-color: #55555550;
 }
 
 .fa-bell {
@@ -97,80 +114,98 @@ a {
 
 <body>
 
+	<nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="navbar-nav">
+			<a class="nav-link" href="#" style="color: white;">home</a> <a
+				class="nav-link"
+				href="${pageContext.request.contextPath}/admin/dashForm"
+				style="color: white;"><i class="fas fa-chart-line"></i>관리자 대시보드</a>
+			<a class="nav-link"
+				href="${pageContext.request.contextPath}/trans/transList?currentPage=1"
+				style="color: white;"><i class="fas fa-tasks"></i>메뉴 번역 요청함</a> <a
+				class="nav-link" href="#" style="color: white;"><i
+				class="fas fa-user"></i>일반 회원 관리</a> <a class="nav-link"
+				href="${pageContext.request.contextPath}/admin/manageBusinessPage"
+				style="color: white;"><i class="fas fa-user-tie"></i>업체 회원 관리</a>
+		</div>
+	</nav>
 
 	<div class="container p-4 shadow bg-white rounded">
-		<div class="row header">
-			<h2 style="width: 100%;">
-				<b>번역 요청함</b>
-			</h2>
-		</div>
-
-
-
-		<div class="row columns">
-			<div class="col-2"></div>
-			<div class="col-7">상호명</div>
-			<div class="col-3">요청일</div>
-		</div>
-
-		<c:forEach var="item" items="${pageList}" varStatus="s">
-			<div class="row list" style="overflow: hidden">
-				<c:choose>
-					<c:when test="${item.confirm_YN=='N'}">
-						<div class="col-2">
-							<i class="fas fa-bell"></i>
-						</div>
-						<div class="col-7">
-							<a
-								href="${pageContext.request.contextPath}/trans/transDetail?biz_seq=${item.biz_seq }">
-								${item.business_name} </a>
-						</div>
-						<div class="col-3">${item.reg_date}</div>
-					</c:when>
-					<c:otherwise>
-						<div class="col-2">
-							<i class="fas fa-check"></i>
-						</div>
-						<div class="col-7">${item.business_name}</div>
-						<div class="col-3">${item.reg_date}</div>
-
-					</c:otherwise>
-				</c:choose>
-
-
-
+		<div id="wrapper">
+			<div class="row header">
+				<h2 style="width: 100%;">
+					<b>번역 요청함</b>
+				</h2>
 			</div>
-		</c:forEach>
 
-		<div class="row footer">
-			<div class="col-3"></div>
 
-			<div class="col-6" style="text-align: center;">
-				<nav>
-					<c:forEach var="i" items="${pageNavi }" varStatus="s">
-						<c:choose>
-							<c:when test="${i == '<'}">
-								<a
-									href="${pageContext.request.contextPath}/trans/transList?currentPage=${pageNavi[s.index+1]-1}}">${i}</a>
-							</c:when>
-							<c:when test="${i == '>'}">
-								<a
-									href="${pageContext.request.contextPath}/trans/transList?currentPage=${pageNavi[s.index-1]+1}">${i}</a>
-							</c:when>
-							<c:otherwise>
-								<a
-									href="${pageContext.request.contextPath}/trans/transList?currentPage=${i}">${i
+
+			<div class="row columns">
+				<div class="col-2"></div>
+				<div class="col-7">상호명</div>
+				<div class="col-3">요청일</div>
+			</div>
+
+			<c:forEach var="item" items="${pageList}" varStatus="s">
+				<div class="row list" style="overflow: hidden">
+					<c:choose>
+						<c:when test="${item.confirm_YN=='N'}">
+							<div class="col-2">
+								<i class="fas fa-bell"></i>
+							</div>
+							<div class="col-7">
+								<a class="link"
+									href="${pageContext.request.contextPath}/trans/transDetail?biz_seq=${item.biz_seq }">
+									${item.business_name} </a>
+							</div>
+							<div class="col-3">${item.reg_date}</div>
+						</c:when>
+						<c:otherwise>
+							<div class="col-2">
+								<i class="fas fa-check"></i>
+							</div>
+							<div class="col-7"><a class="link"
+									href="${pageContext.request.contextPath}/trans/transDetail?biz_seq=${item.biz_seq }">
+									${item.business_name} </a></div>
+							<div class="col-3">${item.reg_date}</div>
+
+						</c:otherwise>
+					</c:choose>
+
+
+
+				</div>
+			</c:forEach>
+
+			<div class="row footer">
+				<div class="col-3"></div>
+
+				<div class="col-6" style="text-align: center;">
+					<nav>
+						<c:forEach var="i" items="${pageNavi }" varStatus="s">
+							<c:choose>
+								<c:when test="${i == '<'}">
+									<a
+										href="${pageContext.request.contextPath}/trans/transList?currentPage=${pageNavi[s.index+1]-1}}">${i}</a>
+								</c:when>
+								<c:when test="${i == '>'}">
+									<a
+										href="${pageContext.request.contextPath}/trans/transList?currentPage=${pageNavi[s.index-1]+1}">${i}</a>
+								</c:when>
+								<c:otherwise>
+									<a
+										href="${pageContext.request.contextPath}/trans/transList?currentPage=${i}">${i
                                     }</a>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-				</nav>
-			</div>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+					</nav>
+				</div>
 
-			<div class="col-3" style="text-align: right"></div>
+				<div class="col-3" style="text-align: right"></div>
+			</div>
 		</div>
 	</div>
-
 
 </body>
 

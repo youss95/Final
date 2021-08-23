@@ -16,6 +16,8 @@
 	text-align: center;
 }
 
+
+
 .container {
 	margin-top: 100px;
 }
@@ -66,7 +68,9 @@ input {
 </head>
 
 <body>
+
 	<div class="container p-5 shadow bg-white rounded">
+
 		<div class="row header">
 			<div class="col-12">
 				<h2>메뉴 번역 신청</h2>
@@ -83,7 +87,7 @@ input {
 					<div class="col-4">가격(원)</div>
 					<div class="col-2"></div>
 				</div>
-				<div class = menulist>
+				<div class=menulist>
 					<div class="row list">
 						<div class="col-2"></div>
 						<div class="col-4">

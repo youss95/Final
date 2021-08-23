@@ -19,6 +19,10 @@ public class ChatDAO {
 		  return mybatis.insert("Chat.insert", dto); 
 	}
 	  
+	  public int insertBusiness(ChatDTO dto) { 
+		  return mybatis.insert("Chat.insertBusiness", dto); 
+	}
+	  
 	  public List<ChatDTO> selectAll(String chatnum){
 		  return mybatis.selectList("Chat.selectAll", chatnum);
 	  }
@@ -33,5 +37,9 @@ public class ChatDAO {
 	 
 	 public List<ChatDTO> selectBusinessList(String store){
 		 return mybatis.selectList("Chat.selectBusinessList", store);
+	 }
+	 
+	 public int deleteChatRoom(String chatnum) {
+		 return mybatis.delete("Chat.deleteChatRoom", chatnum);
 	 }
 }
