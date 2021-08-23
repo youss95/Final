@@ -71,9 +71,7 @@ public class BusinessMemberDAO {
 	
 	
 	
-	public int getTotalRes(String businessName) {
-		return mybatis.selectOne("bMem.getTotalRes", businessName);
-	}
+	
 	
 	public List<Map<String, String>> getReserveAge(String businessName) {
 		//return (List<Map<Object, Object>>) mybatis.selectMap("bMem.getReserveAge",businessName);
@@ -100,5 +98,27 @@ public class BusinessMemberDAO {
 	  public List<ReservationDTO> resManage(String res_name){ return
 	  mybatis.selectList("bMem.resManage",res_name); }
 	 
+	  
+	  //새로운 대시보드
+	  public String getStar_avg(int biz_seq) {
+			return mybatis.selectOne("bMem.getStar_avg",biz_seq);
+	  }
+	  public int getTotalRes(int biz_seq) {
+			return mybatis.selectOne("bMem.getTotalRes", biz_seq);
+		}
+	  public int getLikes(int biz_seq) {
+			return mybatis.selectOne("bMem.getLikes",biz_seq);
+		}
+	  
+	  
+	  public String getBizStar_avg(String biz_type) {
+			return mybatis.selectOne("bMem.getBizStar_avg",biz_type);
+		}
+	  public int getBizLikes(String biz_type) {
+			return mybatis.selectOne("bMem.getBizLikes",biz_type);
+		}
+	  public int getBizView_count(String biz_type) {
+			return mybatis.selectOne("bMem.getBizView_count",biz_type);
+		}
 	
 }
