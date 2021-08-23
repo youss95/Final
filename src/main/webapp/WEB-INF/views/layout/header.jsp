@@ -80,7 +80,7 @@
 
 	   $("#popBtn").attr(
 	     "data-content",
-	     '<li id="menu1">예약정보</li><li id="menu2">메뉴2</li><div id="myp"><a href=""><i class="fas fa-cog fa-2x"></i></a></div><br><div class="section"></div>'
+	     '<li id="menu1">예약정보</li><li id="menu2">찜</li><div id="myp"><a href=""><i class="fas fa-cog fa-2x"></i></a></div><br><div class="section"></div>'
 	   );
 	 
 	   //동적 생성된거는 이거 쓴다.
@@ -95,7 +95,7 @@
 			   
 			     let first ='';
 			      resp.map((list)=>{	
-			    first += "<div id='aaa' data-res='"+list.res_no+"'>"+list.res_name+"</div><br><div>"+list.res_date+"</div><br><div>"+list.res_time+"</div>";	
+			    first += "<div id='aaa' data-res='"+list.res_no+"'>"+list.res_name+"</div><br><div>"+list.res_date+"</div><br><div>"+list.res_time+"</div><br>";	
 			     }) 
 			     contentSection.html(first);
 		   })
@@ -105,8 +105,19 @@
 	   $(document).on("click", "#menu2", function () {
 	     $(".section *").remove();
 	     let contentSection = $(".section");
-	     let second = `<div id="aaa">menu2 내용</div><br>`;
-	     contentSection.append(second);
+	     $.ajax({
+	    	 url:"/like/getLikes",
+	    	 data:{'userId':'${loginID}'}
+	     }).done(function(resp){
+	    	 console.log(resp)
+	    	 let second=''
+	    	 resp.map((list)=>{
+	    		 second +="<div id='aaa' data-lkno='"+list.like_no+"'><span>식당 이름: </span>"+list.businessName+"</div><br><br>"
+	    	 })
+	    	    contentSection.append(second);
+	     })
+	  
+	 
 	   });
 	   
 	   
