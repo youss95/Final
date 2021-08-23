@@ -2,6 +2,7 @@ package dream.tk.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import dream.tk.dao.BusinessMemberDAO;
+import dream.tk.dao.StoreBusinessDAO;
 import dream.tk.dto.TranslateDTO;
 import dream.tk.service.NaverTransService;
 import dream.tk.service.TranslateService;
@@ -23,16 +26,22 @@ import dream.tk.service.TranslateService;
 @RequestMapping("/trans")
 public class TranslateController {
 
-	//	@Autowired
-	//	private HttpSession session;
+	@Autowired
+	private HttpSession session;
 
 	@Autowired
 	private TranslateService service;
 
 	@Autowired
 	private NaverTransService serviceT;
+	
+	@Autowired
+	private BusinessMemberDAO daoBM;
+	
+	@Autowired
+	private StoreBusinessDAO daoB;
 
-	@RequestMapping(value="insertMenuForm")
+	@RequestMapping(value="transRequest")
 	public String insertMenuForm() {
 		return "/translation/transRequest";
 	}
@@ -42,10 +51,11 @@ public class TranslateController {
 
 		JSONParser jsonParse = new JSONParser();
 
-		//String business_id = (String) session.getAttribute("loginID");
-		String business_id = "test02";
-		//String business_name = daoB.getInfo(business_id).getName();
-		String business_name ="test02Name";
+		String business_id = (String) session.getAttribute("loginID");
+
+		int business_seq = daoBM.getSeq(business_id);
+		String business_name = daoB.getBusinessname(business_seq);
+
 		for(int i=0; i<menu_kor.length; i++) {
 			String responseBody = serviceT.getTransSentence(menu_kor[i]);
 			JSONObject responseObj;
@@ -89,7 +99,7 @@ public class TranslateController {
 	public int directConfirm(int seq) {
 		return service.directConfirm(seq);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value="modiConfirm")
 	public int modiConfirm(String menu_eng, int seq) {
