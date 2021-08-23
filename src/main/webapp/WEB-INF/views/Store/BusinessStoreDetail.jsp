@@ -35,6 +35,7 @@
    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
    crossorigin="anonymous" />
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 
 <style>
@@ -133,6 +134,11 @@ color:red;
 #heartIcon:hover{
 cursor:pointer
 }
+<!-- 테이블 -->
+
+
+
+
 
 </style>
 </head>
@@ -213,7 +219,9 @@ cursor:pointer
                </tr>
             </table>
 
-
+			
+			
+			
             <c:choose>
                <c:when test="${loginID != null}">
                   <div id="bottom" style="top: 300px; left: 0">
@@ -501,9 +509,9 @@ cursor:pointer
                                                 + ',\''
                                                 + value.content
                                                 + '\');"> 수정하기 </a>';
-                                          a += '<a onclick="commentDelete('
+                                          a += '<a href="/comment/deleteComment?cno='
                                                 + value.cno
-                                                + ');"> 삭제하기 </a></div>';
+                                                + '"> 삭제하기 </a></div>';
                                        }
                                        a += '</small></h3></div>';
                                        a += '<div class="panel-body"><div class="panel-body'+ value.cno + '"><p>'
@@ -568,6 +576,7 @@ cursor:pointer
          }
          //댓글 삭제 
          function commentDelete(cno) {
+        	 console.log("삭제 경로 수정")
             $.ajax({
                url : '/comment/delete/' + cno,
                type : 'post',
@@ -584,6 +593,7 @@ cursor:pointer
          
        });
       </script>
+
 
 
 
