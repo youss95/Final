@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -7,116 +7,162 @@
 <meta charset="UTF-8">
 <title>Admin Dash-board</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap');
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+	crossorigin="anonymous" />
+<style>
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap')
+	;
 
+body {
+	background-color: #7389b3;
+}
 
+.navbar-nav {
+	width: 100%;
+	height: 60px;
+}
 
-        body {
-            background-color: #7389b3;
-        }
+.nav-link {
+	width: 20%;
+	text-align: center;
+	font-size: larger;
+	line-height: 45px;
+	background-color: rgb(56, 61, 78);
+}
 
+.nav-link:hover {
+	background-color: rgb(84, 86, 92);
+}
 
-        .container {
-            margin-top: 100px;
-            max-width: 1000px;
-        }
+i {
+	margin-right: 10px;
+}
 
-        .wrapper {
-            max-width: 900px;
-            margin: auto;
+.container {
+	margin-top: 90px;
+	max-width: 1000px;
+	margin-bottom: 90px;
+}
 
-        }
+.wrapper {
+	max-width: 900px;
+	margin: auto;
+}
 
-        .row {
-            padding: 30px;
-            text-align: center;
-            border-bottom: 1.5px dotted rgb(101, 112, 150);
-        }
+.row {
+	padding: 30px;
+	text-align: center;
+	border-bottom: 1.5px dotted rgb(101, 112, 150);
+}
 
-        .title {
-            background-color: rgb(213, 218, 235);
-            color: black;
-            height: 95px;
-        }
+.title {
+	background-color: rgb(213, 218, 235);
+	color: black;
+	height: 95px;
+}
 
-        .table {
-            padding-top: 12%;
-        }
+.table {
+	padding-top: 12%;
+}
 
-        table {
-            width: 98%;
-            height: 60%;
-            margin: auto;
-        }
+table {
+	width: 98%;
+	height: 60%;
+	margin: auto;
+}
 
-        div[class*=col] {
-            text-align: center;
-        }
+div[class*=col] {
+	text-align: center;
+}
 
-        canvas {
-            width: 98%;
-        }
-    </style>
+canvas {
+	width: 98%;
+}
+</style>
 </head>
 
 <body>
-    <div class="container p-5 shadow bg-white rounded">
-        <div class="wrapper">
-            <div class="row header">
-                <div class="col-12 title">
-                    <h1 style="line-height: 100px;font-family: 'Noto Sans KR', sans-serif;">관리자 대시보드</h1>
-                </div>
-            </div>
-            <div class="row total">
-                <div class="col-6 table" style="text-align: center;">
-                    <table>
-                        <tr>
-                            <td>총 가입자수</td>
-                            <td>${total}</td>
-                        </tr>
-                        <tr>
-                            <td>일반 가입자수</td>
-                            <td>${totalC}</td>
-                        </tr>
-                        <tr>
-                            <td>업체 가입자수</td>
-                            <td>${totalB}</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-6 line">
-                    <canvas id="totalChange" height="350" style="display:inline-block;"></canvas>
-                </div>
-            </div>
-            <div class="row connect">
-                <div class="col-12 line">
-                    <canvas id="connectBiner" height="350" style="display:inline-block;"></canvas>
-                </div>
-            </div>
-            <div class="row client">
-                <div class="col-6 graph">
-                    <canvas id="clientPerMonth" height="350" style="display:inline-block;"></canvas>
-                </div>
-                <div class="col-6 graph">
-                    <canvas id="clientAges" height="350" style="display:inline-block;"></canvas>
-                </div>
-            </div>
-            <div class="row business">
-                <div class="col-6 graph">
-                    <canvas id="businessPerMonth" height="350" style="display:inline-block;"></canvas>
-                </div>
-                <div class="col-6 line">
-                    <canvas id="reservation" height="350" style="display:inline-block;"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
+
+	<nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="navbar-nav">
+			<a class="nav-link" href="#" style="color: white;">home</a>
+			<a class="nav-link" href="${pageContext.request.contextPath}/admin/dashForm" style="color: white;"><i class="fas fa-chart-line"></i>관리자 대시보드</a>
+			<a class="nav-link" href="${pageContext.request.contextPath}/trans/transList?currentPage=1" style="color: white;"><i class="fas fa-tasks"></i>메뉴 번역 요청함</a>
+			<a class="nav-link" href="#" style="color: white;"><i class="fas fa-user"></i>일반 회원 관리</a>
+			<a class="nav-link" href="${pageContext.request.contextPath}/admin/manageBusinessPage" style="color: white;"><i class="fas fa-user-tie"></i>업체 회원 관리</a>
+		</div>
+	</nav>
+
+	<div class="container p-5 shadow bg-white rounded">
+		<div class="wrapper">
+			<div class="row header">
+				<div class="col-12 title">
+					<h1
+						style="line-height: 100px; font-family: 'Noto Sans KR', sans-serif;">관리자
+						대시보드</h1>
+				</div>
+			</div>
+			<div class="row total">
+				<div class="col-6 table" style="text-align: center;">
+					<table>
+						<tr>
+							<td>총 가입자수</td>
+							<td>${total}</td>
+						</tr>
+						<tr>
+							<td>일반 가입자수</td>
+							<td>${totalC}</td>
+						</tr>
+						<tr>
+							<td>업체 가입자수</td>
+							<td>${totalB}</td>
+						</tr>
+					</table>
+				</div>
+				<div class="col-6 line">
+					<canvas id="totalChange" height="350"
+						style="display: inline-block;"></canvas>
+				</div>
+			</div>
+			<div class="row connect">
+				<div class="col-12 line">
+					<canvas id="connectBiner" height="350"
+						style="display: inline-block;"></canvas>
+				</div>
+			</div>
+			<div class="row client">
+				<div class="col-6 graph">
+					<canvas id="clientPerMonth" height="350"
+						style="display: inline-block;"></canvas>
+				</div>
+				<div class="col-6 graph">
+					<canvas id="clientAges" height="350" style="display: inline-block;"></canvas>
+				</div>
+			</div>
+			<div class="row business">
+				<div class="col-6 graph">
+					<canvas id="businessPerMonth" height="350"
+						style="display: inline-block;"></canvas>
+				</div>
+				<div class="col-6 line">
+					<canvas id="reservation" height="350"
+						style="display: inline-block;"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
-    <script>
+
+
+
+	<script>
 
         var tc = document.getElementById('totalChange').getContext('2d');
         var totalChange = new Chart(tc, {

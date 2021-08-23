@@ -56,7 +56,7 @@ button {
                     <div class="col-12 logo">LOGO</div>                    
                 </div>
                 <div class="row">
-                    <div class="col-12"><input id="iid" name="id" type="text" placeholder="ID를 입력하세요."></div></div>
+                    <div class="col-12"><input id="iid" name="emp_id" type="text" placeholder="ID를 입력하세요."></div></div>
                 <div class="row">
                     <div class="col-12"><input id="ipw" name="pw" type="password" placeholder="비밀번호를 입력하세요."></div></div>
                 <div class="row">

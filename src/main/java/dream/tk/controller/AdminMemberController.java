@@ -72,11 +72,12 @@ public class AdminMemberController {
 
 	@RequestMapping(value="loginProc")
 	public String loginForm(String emp_id, String pw, Model m) {
+		System.out.println(emp_id);
 		String shaPW = SHA256.getSHA512(pw);
 		int result = service.login(emp_id, shaPW);
 		if(result>0) {
 			session.setAttribute("loginID", emp_id);
-			return "redirect:/";
+			return "redirect:/admin/dashForm";
 		}else {
 			return "memberA/loginFailed";
 		}

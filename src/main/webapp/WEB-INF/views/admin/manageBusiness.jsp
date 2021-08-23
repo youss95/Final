@@ -28,18 +28,47 @@
 }
 
 body {
-	background-color: #D8E3E7;
+	background-color: #7389b3;
+}
+.navbar-nav {
+	width: 100%;
+	height: 60px;
+}
+
+.nav-link {
+	width: 20%;
+	text-align: center;
+	font-size: larger;
+	line-height: 45px;
+	background-color: rgb(56, 61, 78);
+}
+
+a:hover {
+	background-color: rgb(84, 86, 92);
+}
+
+i {
+	margin-right: 10px;
 }
 
 .container {
-	margin-top: 80px;
 	padding: 5%;
-	max-width: 800px;
+	margin-top: 90px;
+	max-width: 1000px;
+	margin-bottom: 90px;
 }
 
 .wrapper {
-	border: 2.5px solid rgb(216, 216, 216);
-	margin-bottom: 40px;
+	max-width: 890px;
+	margin: auto;
+	border: 2px solid rgb(196, 196, 196);
+}
+
+.title {
+
+	background-color: rgb(213, 218, 235);
+	color: black;
+	height: 95px;
 }
 
 .header {
@@ -50,7 +79,7 @@ body {
 	text-align: center;
 }
 
-.title {
+.subtitle {
 	margin-top: 20px;
 	margin-bottom: 10px;
 }
@@ -81,42 +110,34 @@ a {
 	color: black;
 }
 
-.navbar>.container-fluid {
-	padding: 0px;
-}
 
-.navbar-nav {
-	flex-grow: 1;
-	justify-content: space-around;
-}
-
-.slide {
-	position: absolute;
-	width: 100%;
-	height: 50px;
-	top: 100%;
-	background-color: #55555550;
-}
-
-.fa-bell {
-	color: rgb(236, 95, 95);
-}
 </style>
 
 </head>
 
 <body>
 
+	<nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="navbar-nav">
+			<a class="nav-link" href="#" style="color: white;">home</a>
+			<a class="nav-link" href="${pageContext.request.contextPath}/admin/dashForm" style="color: white;"><i class="fas fa-chart-line"></i>관리자 대시보드</a>
+			<a class="nav-link" href="${pageContext.request.contextPath}/trans/transList?currentPage=1" style="color: white;"><i class="fas fa-tasks"></i>메뉴 번역 요청함</a>
+			<a class="nav-link" href="#" style="color: white;"><i class="fas fa-user"></i>일반 회원 관리</a>
+			<a class="nav-link" href="${pageContext.request.contextPath}/admin/manageBusinessPage" style="color: white;"><i class="fas fa-user-tie"></i>업체 회원 관리</a>
+		</div>
+	</nav>
+
 
 	<div class="container p-4 shadow bg-white rounded">
 
 		<div class="row header">
-			<h2 style="width: 100%;">
-				<b>업체 회원 관리</b>
-			</h2>
+			<div class="col-12 title">
+					<h1
+						style="line-height: 100px; font-family: 'Noto Sans KR', sans-serif;">업체 회원 관리</h1>
+				</div>
 		</div>
 		<div class="wrapper l">
-			<div class="row title">
+			<div class="row subtitle">
 				<h5 style="width: 100%;">
 					<b>의심 업체 관리</b>
 				</h5>
