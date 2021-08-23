@@ -78,7 +78,6 @@ public class AdminController {
 
 	@RequestMapping("manageBusinessPage")
 	public String manageBusiness(Model m) {
-		System.out.println(serviceA.getBlacklist());
 		m.addAttribute("blackList",serviceA.getBlacklist());
 		return "admin/manageBusiness";
 	}
@@ -86,6 +85,8 @@ public class AdminController {
 	@ResponseBody
 	@RequestMapping("businessOut")
 	public int businessOut(int seq) {
+		int businessMemberSeq = serviceA.getSeq(seq);
+		serviceA.businessMemberOut(businessMemberSeq);
 		return serviceA.businessOut(seq);
 	}
 
