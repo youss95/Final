@@ -6,16 +6,14 @@
   <mapper namespace="like">
   	
   	<!-- 찜하기 리스트 뽑기 -->
+ <select id="likeList" resultType="dream.tk.dto.LikesDTO">
+ select * from likes where userId=#{userId}
+ </select>
  
   	<!-- 찜하기 등록 기능 -->
   	<insert id="doLike" >
 		insert into likes values (likes_seq.nextval , #{userId} ,#{businessName},'Y',#{biz_seq} )
 	</insert>
- 	
- 	<!-- 찜하기 취소 기능 -->
- 	<delete id="Cancel"> 
- 		DELETE FROM likes WHERE  id = #{id}
-	</delete>
 	
 	<!--찜 상태 변경  -->
 	<update id="updateStatus">
@@ -25,5 +23,7 @@
 	<select id="likeStatus" resultType="String">
 	select like_status from likes where userId = #{userId} and biz_seq = #{biz_seq}
 	</select>
+	
+	
 	
    </mapper>

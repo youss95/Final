@@ -101,7 +101,7 @@ width:100%;
 	<div class="container p-4 shadow bg-white rounded">
 		<div class="row header">
 			<h2 style="width: 100%;">
-				<b>${business_id}</b>
+				<b>${business_name}</b>
 			</h2>
 		</div>
 
