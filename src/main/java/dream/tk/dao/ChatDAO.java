@@ -24,7 +24,7 @@ public class ChatDAO {
 	  }
 	  
 	  public List<ChatDTO> selectBusinessAll(String storeName){
-		  return mybatis.selectList("Chat.selectAll", storeName);
+		  return mybatis.selectList("Chat.selectBusinessAll", storeName);
 	  }
 	  
 	 public List<ChatDTO> selectList(String nickname){
