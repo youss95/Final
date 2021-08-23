@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="commentInsert">
 		INSERT INTO
 		comments
-		VALUES(cno_seq.nextval,${bno},#{content},#{writer}, ${star_age}, 0, sysdate)
+		VALUES(cno_seq.nextval,${bno},#{content},#{writer}, ${star_avg}, 0, sysdate)
 	</insert>
 	
 	<!--  댓글 수정 -->

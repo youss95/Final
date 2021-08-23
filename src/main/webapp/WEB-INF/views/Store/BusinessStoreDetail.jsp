@@ -428,15 +428,7 @@ cursor:pointer
                </c:choose>
             </div>
          </div>
-<div class="review">
-      <div class="rating" data-rate="4">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-      </div>
-    </div>
+
          <div class="containers">
             <div class="commentList"></div>
          </div>
@@ -467,7 +459,7 @@ cursor:pointer
          var bno = $("#bno").val(); //게시글 번호
          $('[name=commentInsertBtn]').click(function() { //댓글 등록 버튼 클릭시 
             //var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
-            let data = {bno:${list.biz_seq },writer:'${loginID}' ,content:'코멘트테스트',star_age:targetNum}
+            let data = {bno:${list.biz_seq },writer:'${loginID}' ,content:'코멘트테스트',star_avg:targetNum}
             commentInsert(data); //Insert 함수호출(아래)
          });
          
@@ -495,7 +487,7 @@ cursor:pointer
                                              + value.reg_date
                                              
                                              + '<div class="review">'
-                                             + ' <div class="rating" data-rate='+value.star_age+'>'
+                                             + ' <div class="rating" data-rate='+value.star_avg+'>'
                                              + ' <i class="fas fa-star"></i>'
                                              + ' <i class="fas fa-star"></i>'
                                              + ' <i class="fas fa-star"></i>'
