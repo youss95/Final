@@ -23,8 +23,8 @@
 	</select>
 
 	<!-- 상호명 불러오기 -->
-	<select id="getBusinessname" resultType="String">
-		select businessname from business where seq=#{value}
+	<select id="getInfo" resultType="dream.tk.dto.BusinessDTO">
+		select * from business where seq=#{value}
 	</select>
 
 	<!-- 총 게시글 갯수 출력 -->

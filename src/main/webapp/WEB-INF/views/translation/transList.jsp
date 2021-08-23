@@ -122,7 +122,7 @@ a {
 						</div>
 						<div class="col-7">
 							<a
-								href="${pageContext.request.contextPath}/trans/transDetail?business_id=${item.business_id }">
+								href="${pageContext.request.contextPath}/trans/transDetail?biz_seq=${item.biz_seq }">
 								${item.business_name} </a>
 						</div>
 						<div class="col-3">${item.reg_date}</div>
