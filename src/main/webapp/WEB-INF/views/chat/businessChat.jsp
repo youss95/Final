@@ -367,27 +367,6 @@ button:hover {
 			<div class="chat-history">
 			<input type="hidden" id="loginID" value="${loginID }">
 				<ul id="history-under">
-					<li class="clearfix">
-						<div class="message-data align-right">
-							<span class="message-data-time">10:10 AM, Today</span> &nbsp;
-							&nbsp; <span class="message-data-name">Olia</span> <i
-								class="fa fa-circle me"></i>
-
-						</div>
-						<div class="message other-message float-right">Hi Vincent,
-							how are you? How is the project coming along?</div>
-					</li>
-
-					<li>
-						<div class="message-data">
-							<span class="message-data-name"><i
-								class="fa fa-circle online"></i> Vincent</span> <span
-								class="message-data-time">10:12 AM, Today</span>
-						</div>
-						<div class="message my-message">Are we meeting today?
-							Project has been already finished and I have results to show you.
-						</div>
-					</li>
 					<c:forEach var="i" items="${businesschatlist}">
 						<c:if test="${i.nickname == storeName}">
 							<li class="clearfix">
