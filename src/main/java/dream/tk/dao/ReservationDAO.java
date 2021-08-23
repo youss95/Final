@@ -40,6 +40,11 @@ public class ReservationDAO {
 		return result;
 	}
 	
+	public int resRefuse(int res_no) {
+		int result = mybatis.update("ResMapper.resRefusal",res_no);
+		return result;
+	}
+	
 	public int registerTime(ReservationDTO dto) {
 		return mybatis.insert("ResMapper.registerTime", dto);
 	}
@@ -62,6 +67,8 @@ public class ReservationDAO {
 		System.out.println(result);
 		return mybatis.selectOne("ResMapper.reservedTime",dto);
 	}
+	
+	
 	
 	//-----------------------결제 관련--------------------------
 	

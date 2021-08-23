@@ -9,7 +9,7 @@ public class ReservationDTO {
 	private String userId;
 	private String res_date;
 	private String res_time;
-	private char resCheck;
+	private String res_checked;
 	private int biz_seq;
 	private Date res_createDate;
 	public int getRes_no() {
@@ -42,11 +42,11 @@ public class ReservationDTO {
 	public void setRes_time(String res_time) {
 		this.res_time = res_time;
 	}
-	public char getResCheck() {
-		return resCheck;
+	public String getResCheck() {
+		return res_checked;
 	}
-	public void setResCheck(char resCheck) {
-		this.resCheck = resCheck;
+	public void setResCheck(String resCheck) {
+		this.res_checked = resCheck;
 	}
 	public int getBiz_seq() {
 		return biz_seq;
@@ -60,7 +60,7 @@ public class ReservationDTO {
 	public void setRes_createDate(Date res_createDate) {
 		this.res_createDate = res_createDate;
 	}
-	public ReservationDTO(int res_no, String res_name, String userId, String res_date, String res_time, char resCheck,
+	public ReservationDTO(int res_no, String res_name, String userId, String res_date, String res_time, String resCheck,
 			int biz_seq, Date res_createDate) {
 		super();
 		this.res_no = res_no;
@@ -68,7 +68,7 @@ public class ReservationDTO {
 		this.userId = userId;
 		this.res_date = res_date;
 		this.res_time = res_time;
-		this.resCheck = resCheck;
+		this.res_checked = resCheck;
 		this.biz_seq = biz_seq;
 		this.res_createDate = res_createDate;
 	}
@@ -78,7 +78,7 @@ public class ReservationDTO {
 	@Override
 	public String toString() {
 		return "ReservationDTO [res_no=" + res_no + ", res_name=" + res_name + ", userId=" + userId + ", res_date="
-				+ res_date + ", res_time=" + res_time + ", resCheck=" + resCheck + ", biz_seq=" + biz_seq
+				+ res_date + ", res_time=" + res_time + ", resCheck=" + res_checked + ", biz_seq=" + biz_seq
 				+ ", res_createDate=" + res_createDate + "]";
 	}
 	

@@ -432,9 +432,6 @@ cursor:pointer
          <div class="containers">
             <div class="commentList"></div>
          </div>
-
-
-
       </div>
 
       <!-- 이거 지워지면 안된다 -->
@@ -587,6 +584,7 @@ cursor:pointer
          
        });
       </script>
+>>>>>>> 4cd6e40c5ebdf956d26f5a3f106e3e02c638d67e
 
 
 

@@ -41,6 +41,10 @@ public class ReservationService {
 		return resDao.resDelete(resId);
 	}
 	
+	public int resRefuse(int res_no) {
+		return resDao.resRefuse(res_no);
+	}
+	
 	public int resPay(PaymentDTO dto) {
 		return resDao.resPay(dto);
 	}
