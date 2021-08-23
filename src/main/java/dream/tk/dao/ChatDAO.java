@@ -19,6 +19,10 @@ public class ChatDAO {
 		  return mybatis.insert("Chat.insert", dto); 
 	}
 	  
+	  public int insertBusiness(ChatDTO dto) { 
+		  return mybatis.insert("Chat.insertBusiness", dto); 
+	}
+	  
 	  public List<ChatDTO> selectAll(String chatnum){
 		  return mybatis.selectList("Chat.selectAll", chatnum);
 	  }

@@ -3,10 +3,8 @@ package dream.tk.endpoint;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
@@ -21,6 +19,7 @@ import com.google.gson.JsonObject;
 
 import dream.tk.configurator.ApplicationContextProvider;
 import dream.tk.configurator.HttpSessionConfigurator;
+import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.ChatDTO;
 import dream.tk.service.ChatService;
 
@@ -46,9 +45,9 @@ public class ChatEndPoint {
 		System.out.println("웹 소켓 클라이언트 연결됨.");
 		hsession = (HttpSession)config.getUserProperties().get("hsession");
 		String roomid = (String) hsession.getAttribute("roomid");
-
 		System.out.println(hsession.getAttribute("loginID"));
-
+		//System.out.println("bizname : " + hsession.getAttribute("bizName"));
+		System.out.println("Openbizname : " + hsession.getAttribute("buisnessNameChat"));
 		clients.add(session);
 	}
 
@@ -59,15 +58,20 @@ public class ChatEndPoint {
 
 				JsonObject json = new JsonObject();
 				json.addProperty("store", (String)hsession.getAttribute("storeName"));// 가게이름
-				json.addProperty("nickname", (String)hsession.getAttribute("loginID")); // 유저 닉네임
+				json.addProperty("nickname", (String)hsession.getAttribute("nickname")); // 유저 닉네임
+				json.addProperty("bizName", (String) hsession.getAttribute("buisnessNameChat")); //업체명
 				json.addProperty("contents", contents); // 메세지
-				String nickname = (String)hsession.getAttribute("loginID");
+				String nickname = (String)hsession.getAttribute("nickname");
 				String store = (String)hsession.getAttribute("storeName");
 				String chatnum = nickname+store;
-				//String businessName = (String)session.getAttribute("businessName");
-				System.out.println("businessName : " + (String)hsession.getAttribute("businessName"));
+				String bizName =  (String) hsession.getAttribute("buisnessNameChat");
+				
 				try {
+					if(bizName == null) {
 					dao.insert(new ChatDTO(chatnum,store,contents,nickname));
+					}else {
+						dao.insertBusiness(new ChatDTO(chatnum,store,contents,nickname));
+					}
 					dao.selectAll(chatnum);
 					dao.selectList(nickname);
 				} catch (Exception e1) {
