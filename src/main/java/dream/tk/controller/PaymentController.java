@@ -63,6 +63,7 @@ public class PaymentController {
 		  if(res == 1) { 
 			  resService.refundCheck(memberId); //환불이 되었다는 체크
 			  resService.downGradePrem(memberId);
+			 // resService.updateExpDateWhenRefund(pay_no);
 			  return "success"; 
 			  }
 		 

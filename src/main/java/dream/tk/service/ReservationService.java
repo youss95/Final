@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import dream.tk.dao.ReservationDAO;
 import dream.tk.dto.BusinessDTO;
+import dream.tk.dto.ExpDateUpdateDTO;
 import dream.tk.dto.NotificationDTO;
 import dream.tk.dto.PaymentDTO;
 import dream.tk.dto.ResInfoDTO;
@@ -66,13 +67,18 @@ public class ReservationService {
 	//정액권 환불
 	public String passRefund(String memberId) {
 		int pay_no = resDao.refundOrderNum(memberId);
-		System.out.println("pn"+pay_no);
+		System.out.println("페이넘"+pay_no);
+		int price = resDao.refundPrice(memberId);
+		System.out.println("price: "+price);
+		ExpDateUpdateDTO dto = new ExpDateUpdateDTO(price,memberId);
 		
+		resDao.updateExpDateWhenRefund(dto); //기간 업뎃
 		return resDao.passRefund(pay_no); //환불
 	}
 	
 	public void refundCheck(String memberId) {
 		int pay_no = resDao.refundOrderNum(memberId);
+		
 		System.out.println("pn"+pay_no);
 		resDao.refundCheck(pay_no); //refund 1 업데이트
 	}
@@ -86,6 +92,7 @@ public class ReservationService {
 		int result = resDao.updatePrem(param);
 		return result;
 	}
+	
 	
 	public int downGradePrem(String id) {
 		return resDao.downGradePrem(id);

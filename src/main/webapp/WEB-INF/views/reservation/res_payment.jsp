@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <style>
 .payTitle{
@@ -102,13 +104,7 @@ $("input[type=radio][name='price']").on('change',function(){
                 'phone':휴대폰소액결제 
             */
             merchant_uid: 'merchant_' + new Date().getTime(),
-            /* 
-                merchant_uid에 경우 
-                https://docs.iamport.kr/implementation/payment
-                위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
-                참고하세요. 
-                나중에 포스팅 해볼게요.
-             */
+          
             name: '주문명:결제테스트',
             //결제창에서 보여질 이름
             amount: price, 
@@ -118,12 +114,7 @@ $("input[type=radio][name='price']").on('change',function(){
             buyer_tel: '010-1234-5678',
             buyer_addr: '서울특별시 강남구 삼성동',
             buyer_postcode: '123-456',
-           // m_redirect_url: 'https://www.yourdomain.com/payments/complete'
-            /*  
-                모바일 결제시,
-                결제가 끝나고 랜딩되는 URL을 지정 
-                (카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐) 
-                */
+
         }, function (rsp) {
             console.log(rsp);
             let msg='';

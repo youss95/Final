@@ -103,6 +103,9 @@ select res_checked from reservation where res_time=#{res_time} and res_date=#{re
   <select id="refundOrder" resultType="int">
   select pay_no from res_payment where memberId=#{memberId} and refund = 0 and rownum = 1 order by pay_no desc
   </select>
+   <select id="refundPrice" resultType="int">
+  select price from res_payment where memberId=#{memberId} and refund = 0 and rownum = 1 order by pay_no desc
+  </select>
   
   <!--환불 할 때 refund 컬럼 1로 바꿔서 환불된 건지 아닌지 확인  -->
   <update id="refundCheck">
@@ -122,16 +125,32 @@ select res_checked from reservation where res_time=#{res_time} and res_date=#{re
 <otherwise>
  add_months(sysdate,+12)
 </otherwise>
-
   </choose>
    where id = #{id}
   </update>
   
   <!-- 환불 하였을때 등급 업데이트 -->
-  
   <update id="downGradePrem">
   update business_member set premium = 'N' where id = #{id}
   </update>
+  
+  <!--환불 만료기간 업데이트  -->
+  <update id="updateExpDate">
+  update business_member set prm_exp_date = 
+  <choose>
+  <when test="price == '100'">
+to_char(add_months(prm_exp_date,-1),'yyyy-mm-dd')
+  </when>
+  <when test="price == '200'">
+ to_char(add_months(prm_exp_date,-6),'yyyy-mm-dd')
+  </when>
+<otherwise>
+to_char(add_months(prm_exp_date,-12),'yyyy-mm-dd')
+</otherwise>
+  </choose>
+ where id = #{memberId}
+  </update>
+ 
   
   <!-- 정액권 남은 요일 계산 -->
   <select id="daysLeft" resultType="int">
