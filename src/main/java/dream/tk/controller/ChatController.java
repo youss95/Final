@@ -48,6 +48,29 @@ public class ChatController {
 		return "redirect:toChat";
 	}
 	
+	@RequestMapping("businessMakeChat")
+	public String businessMakeChat(String store) throws Exception{
+		System.out.println("business store 값 넘어옴" + store);
+		session.setAttribute("storeName", store);
+		return "redirect:businessChat";
+	}
+	
+	@RequestMapping("businessChat")
+	public String businessChat(Model model) throws Exception{
+		System.out.println("업체 아이디");
+		//String nickname = (String)session.getAttribute("loginID");
+		String storeName = (String) session.getAttribute("storeName");
+		//String roomid = nickname + storeName;
+		//session.setAttribute("roomid", roomid);
+		
+		List<ChatDTO> list = service.selectBusinessAll(storeName); 
+		List<ChatDTO> list2 = service.selectBusinessList(storeName);
+		
+		model.addAttribute("businesschatlist", list); // 해당 채팅 방
+		model.addAttribute("businesschatStore",list2); // 채팅 리스트
+		return "chat/businessChat";
+	}
+	
 	@ExceptionHandler
 	public String exceptionHandler(Exception e) {
 		e.printStackTrace();
