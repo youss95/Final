@@ -62,9 +62,13 @@ public class ChatEndPoint {
 				json.addProperty("bizName", (String) hsession.getAttribute("buisnessNameChat")); //업체명
 				json.addProperty("contents", contents); // 메세지
 				String nickname = (String)hsession.getAttribute("nickname");
+				if(nickname == null) {
+					nickname = (String)hsession.getAttribute("loginID");
+				}
 				String store = (String)hsession.getAttribute("storeName");
 				String chatnum = nickname+store;
 				String bizName =  (String) hsession.getAttribute("buisnessNameChat");
+				System.out.println("chatnum : " + chatnum + "store : " + store + "ninckname : " + nickname);
 				
 				try {
 					if(bizName == null) {
