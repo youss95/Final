@@ -309,7 +309,7 @@ section {
 			<main role="main">
 				<ul class="flexgrid columns-news">
 					<c:forEach var="list" items="${viewAll}">
-						<li><span class="grid-number">임의</span> <span class="ribbon"><a
+						<li> <span class="ribbon"><a
 								href="/Store/view?seq=">2.5</a></span> <a
 							href="/store/view?store_seq=${list.store_seq }">
 							<input type="hidden" id="click" value="${list.store_seq }">
@@ -398,7 +398,11 @@ section {
 				<div class="d1">
 					<div class="search">
 						<input type="text" id="searchWrd" name="searchWrd"
-							placeholder="Find an address" value="${searchVO.searchWrd }"> <a
+							placeholder="Find an address" value="${searchVO.searchWrd }">
+							<a
+							href="" onclick="fn_search();" class="btn-login" style="float: left"><button
+								type="button" class="pulse"></button></a>
+							<a
 							href="" onclick="fn_search();" class="btn-login"><button
 								type="button" class="pulse"></button></a>
 					</div>

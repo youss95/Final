@@ -7,7 +7,7 @@ public class StoreCommentDTO {
 	    private int bno;
 	    private String content;
 	    private String writer;
-	    private int star_age;
+	    private int star_avg;
 	    private int report_count;
 	    private Date reg_date;
 	    private int parent;
@@ -17,14 +17,14 @@ public class StoreCommentDTO {
 	    
 	    public StoreCommentDTO() {}
 
-		public StoreCommentDTO(int cno, int bno, String content, String writer, int star_age, 
+		public StoreCommentDTO(int cno, int bno, String content, String writer, int star_avg, 
 				int report_count, Date reg_date, int parent) {
 			super();
 			this.cno = cno;
 			this.bno = bno;
 			this.content = content;
 			this.writer = writer;
-			this.star_age = star_age;
+			this.star_avg = star_avg;
 			this.report_count = report_count;
 			this.reg_date = reg_date;
 			this.parent = parent;
@@ -71,12 +71,12 @@ public class StoreCommentDTO {
 			this.writer = writer;
 		}
 
-		public int getStar_age() {
-			return star_age;
+		public int getStar_avg() {
+			return star_avg;
 		}
 
-		public void setStar_age(int star_age) {
-			this.star_age = star_age;
+		public void setStar_avg(int star_avg) {
+			this.star_avg = star_avg;
 		}
 
 		public int getReport_count() {
