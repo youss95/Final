@@ -17,5 +17,13 @@
  		DELETE FROM likes WHERE  id = #{id}
 	</delete>
 	
+	<!--찜 상태 변경  -->
+	<update id="updateStatus">
+	update likes set like_status = 'N' where userId = #{userId} and biz_seq = #{biz_seq}
+	</update>
+	
+	<select id="likeStatus" resultType="String">
+	select like_status from likes where userId = #{userId} and biz_seq = #{biz_seq}
+	</select>
 	
    </mapper>

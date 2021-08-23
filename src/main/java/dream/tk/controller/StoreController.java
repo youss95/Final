@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dream.tk.config.PagingVO;
+import dream.tk.dto.LikeStatusDTO;
 import dream.tk.dto.StoreDTO;
 import dream.tk.service.CommentService;
+import dream.tk.service.LikesService;
 import dream.tk.service.StoreService;
 import net.sf.json.JSONArray;
 
@@ -36,7 +38,7 @@ public class StoreController {
 	@Autowired
 	private CommentService serviceC;
 	
-	
+
 	@GetMapping("signup")
 	public String boardList(PagingVO vo, Model model
 			, @RequestParam(value="nowPage", required=false)String nowPage
@@ -67,10 +69,13 @@ public class StoreController {
 	
 	//디테일 페이지로
 	@RequestMapping("view")
-	public String view(int store_seq, Model m, String store) throws Exception{
+	public String view(int store_seq,Model m, String store) throws Exception{
 		StoreDTO dto = service.select(store_seq);
+		
+		
 		m.addAttribute("countCmt", serviceC.count(store_seq));
 		m.addAttribute("list", dto);
+		
 		System.out.println(dto.toString());
 		session.setAttribute("store", store);
 		return "/Store/StoreDetail";
