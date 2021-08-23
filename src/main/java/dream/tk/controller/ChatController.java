@@ -68,6 +68,7 @@ public class ChatController {
 		//String nickname = (String)session.getAttribute("loginID");
 		String storeName = (String) session.getAttribute("storeName");
 		String roomid = (String) session.getAttribute("roomid");
+		
 		if(roomid == null) {
 			roomid = "chatnum";
 		}
