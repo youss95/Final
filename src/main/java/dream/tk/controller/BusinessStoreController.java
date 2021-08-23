@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import dream.tk.config.PagingVO;
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.LikeStatusDTO;
+import dream.tk.dto.TranslateDTO;
 import dream.tk.service.LikesService;
 import dream.tk.service.StoreBusinessService;
+import dream.tk.service.TranslateService;
 import net.sf.json.JSONArray;
 
 
@@ -35,6 +37,11 @@ public class BusinessStoreController {
 	
 	@Autowired
 	private LikesService likeService;
+	
+	@Autowired
+	private TranslateService serviceT;
+
+	
 	
 	
 	@GetMapping("signup")
@@ -67,17 +74,22 @@ public class BusinessStoreController {
 	}
 	
 	//디테일 페이지로
-	@RequestMapping("view")
-	public String view(int biz_seq,String userId, Model m, String store) throws Exception{
-		BusinessDTO dto = service.select(biz_seq);
-		LikeStatusDTO statusDto = new LikeStatusDTO(biz_seq,userId);
-		String likeStatus = likeService.likeStatus(statusDto);
-		//m.addAttribute("countCmt", serviceC.count(store_seq));
-		m.addAttribute("list", dto);
-		m.addAttribute("likeStatus",likeStatus);
-		session.setAttribute("store", store);
-		return "/Store/BusinessStoreDetail";
-	}
+	   @RequestMapping("view")
+	   public String view(int biz_seq,String userId, Model m, String store) throws Exception{
+	      BusinessDTO dto = service.select(biz_seq);
+	      LikeStatusDTO statusDto = new LikeStatusDTO(biz_seq,userId);
+	      String likeStatus = likeService.likeStatus(statusDto);
+
+	      List<TranslateDTO> menuList = serviceT.select(biz_seq);
+	      m.addAttribute("menuList", menuList);
+
+	      //m.addAttribute("countCmt", serviceC.count(store_seq));
+	      m.addAttribute("list", dto);
+	      m.addAttribute("likeStatus",likeStatus);
+	      session.setAttribute("store", store);
+	      return "/Store/BusinessStoreDetail";
+	   }
+	
 	
 	// 혹시 모르는 페이지
 	@RequestMapping("store_detail")

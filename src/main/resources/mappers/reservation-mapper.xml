@@ -65,6 +65,11 @@
   delete from reservation where res_no = #{res_no}
   </delete>
   
+  <!--관리자의 예약 거절  -->
+  <update id="resRefusal">
+  update reservation set res_checked = 'N' where res_no =#{res_no}
+  </update>
+  
   <!-- 예약 시간 선택 후 예약 하기 -->
   <insert id="registerTime">
   insert into reservation values(res_seq.nextval,#{res_name},#{userId},#{res_date},#{res_time},'Y',#{biz_seq},sysdate)
@@ -77,7 +82,7 @@ select res_checked from reservation where res_time=#{res_time} and res_date=#{re
   
   <!-- 예약 정보 가져오기 수정 필요 select * from reservation where res_name = #{res_name} -->  
   <select id="getResInfo" resultType="dream.tk.dto.ReservationDTO">
-  select * from reservation where userId= #{userId} and biz_seq = #{biz_seq}
+  select * from reservation where biz_seq = #{biz_seq}
   </select>
   
   <!-- 팝오버에 뿌릴 예약 정보 가져오기 -->

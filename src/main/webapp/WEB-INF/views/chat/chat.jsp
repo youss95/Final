@@ -255,6 +255,11 @@ button:hover {
 	color:white;
 }
 
+.deleteMsg{
+	text-decoration:none;
+	color:white;
+}
+
 </style>
 <script>
 	$(document).ready(function() {
@@ -321,12 +326,12 @@ button:hover {
 					<c:if test="${item.store != null }">
 						<li class="clearfix">
 						<img
-							src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_06.jpg"
+							src="${pageContext.request.contextPath}/resources/images/shop.png"
 							alt="avatar" />
 							<div class="about">
 								<div class="name"> <a href="/chat/makeChat?store=${item.store }">${item.store }</a></div>
 								<div class="status">
-									<i class="fa fa-circle offline"></i> left 30 mins ago
+									<i class="fa fa-circle offline"></i> <a class="deleteMsg" href = "/chat/deleteChatRoom?chatnum=${item.chatnum }">delete</a>
 								</div>
 							</div></li>
 					</c:if>
@@ -340,7 +345,7 @@ button:hover {
 		<div class="chat">
 			<div class="chat-header clearfix">
 				<img
-					src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg"
+					src="${pageContext.request.contextPath}/resources/images/shop.png"
 					alt="avatar" />
 
 				<div class="chat-about">
