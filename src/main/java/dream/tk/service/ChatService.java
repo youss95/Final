@@ -27,9 +27,15 @@ public class ChatService {
 		  return dao.selectAll(chatnum);
 	  }
 	  
+	  public List<ChatDTO> selectBusinessAll(String storeName) throws Exception{
+		  return dao.selectAll(storeName);
+	  }
+	  
 	  public List<ChatDTO> selectList(String nickname) throws Exception{
 		  return dao.selectList(nickname);
 	  }
 	  
-	 
+	  public List<ChatDTO> selectBusinessList(String store) throws Exception{
+		  return dao.selectList(store);
+	  }
 }

@@ -58,17 +58,17 @@ public class ChatController {
 	@RequestMapping("businessChat")
 	public String businessChat(Model model) throws Exception{
 		System.out.println("업체 아이디");
-		String nickname = (String)session.getAttribute("loginID");
+		//String nickname = (String)session.getAttribute("loginID");
 		String storeName = (String) session.getAttribute("storeName");
-		String roomid = nickname + storeName;
-		session.setAttribute("roomid", roomid);
+		//String roomid = nickname + storeName;
+		//session.setAttribute("roomid", roomid);
 		
-		List<ChatDTO> list = service.selectAll(roomid); 
-		List<ChatDTO> list2 = service.selectList(storeName);
+		List<ChatDTO> list = service.selectBusinessAll(storeName); 
+		List<ChatDTO> list2 = service.selectBusinessList(storeName);
 		
-		model.addAttribute("chatlist", list); // 해당 채팅 방
-		model.addAttribute("chatStore",list2); // 채팅 리스트
-		return "chat/chat";
+		model.addAttribute("businesschatlist", list); // 해당 채팅 방
+		model.addAttribute("businesschatStore",list2); // 채팅 리스트
+		return "chat/businessChat";
 	}
 	
 	@ExceptionHandler
