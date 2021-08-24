@@ -28,6 +28,9 @@ public class ClientMemberDAO {
 	public int update(ClientMemberDTO dto) {
 		return mybatis.update("cMember.update", dto);
 	}
+	public String currentPW(String id) {
+		return mybatis.selectOne("cMember.currentPW", id);
+	}
 	public int delete(String id) {
 		return mybatis.delete("cMember.delete", id);
 	}

@@ -24,24 +24,27 @@
 	</insert>
 
 	<update id="update">
-		update client_member set
+		update client_member
+		<trim prefix="set" prefixOverrides=",">
 		<if test="pw!=''">
-			pw=#{pw},
+			pw=#{pw}
 		</if>
 		<if test="email!=''">
-			email=#{email},
+			,email=#{email}
 		</if>
-		<if test="name!=''">
-			and name=#{name},
-		</if>
-		<if test="yearOfBirth!=''">
-			and yearOfBirth=#{yob},
+		<if test="yob!=''">
+			,yob=#{yob}
 		</if>
 		<if test="nation!=''">
-			and nation=#{nation},
+			,nation=#{nation}
 		</if>
-		reg_date=sysdate where id=#{id}
+		</trim>
+		where id=#{id}
 	</update>
+	
+	<select id="currentPW" resultType="String">
+		select pw from client_member where id=#{value}
+	</select>
 
 	<delete id="delete">
 		delete from client_member where id=#{value}
@@ -72,10 +75,10 @@
 		update client_member set pw=#{pw} where id=#{id}
 	</update>
 
-	<select id="getInfo" resultType="dream.tk.dto.AdminMemberDTO">
+	<select id="getInfo" resultType="dream.tk.dto.ClientMemberDTO">
 		select * from client_member
 		where
-		id=#{value};
+		id=#{value}
 	</select>
 
 </mapper>

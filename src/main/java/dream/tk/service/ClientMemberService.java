@@ -32,6 +32,9 @@ public class ClientMemberService {
 		return dao.login(param);
 	}
 	
+	public String currentPW(String id) {
+		return dao.currentPW(id);
+	}
 	public int update(ClientMemberDTO dto) {
 		return dao.update(dto);
 	}
