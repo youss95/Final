@@ -27,15 +27,16 @@
 * {
 	box-sizing: border-box;
 	font-family: 'Ubuntu', sans-serif;
+
 	font-weight: 500;
 }
 
 div {
-	font-size: 25px;
+	font-size: 16px;
 }
 
 .container {
-	max-width: 1000px;
+	max-width: 800px;
 	margin: auto;
 	margin-top: 100px;
 }
@@ -75,6 +76,8 @@ div[class*=hidden] {
 	border-radius: 10%;
 	background-color: rgb(255, 248, 244);
 	border: 1.7px solid rgb(201, 196, 191);
+	font-size: 14px;
+	margin-left: 7px;
 }
 
 .btn:hover {
@@ -97,11 +100,21 @@ div[class*=hidden] {
 #submit:hover {
 	background-color: rgb(204, 199, 189);
 }
+#chat{
+
+	color: rgb(253, 169, 11);
+	position: fixed;
+	top: 30%;
+	right: 3%;
+
+}
 </style>
 </head>
 
 <body>
 <%@include file="../layout/header_main.jsp"%>
+
+	<i id="chat" class="fas fa-comment-dots fa-4x"></i>
 	<div class="container p-5 shadow bg-white rounded">
 		<div class="row header">
 			<div class="col-12 title">
