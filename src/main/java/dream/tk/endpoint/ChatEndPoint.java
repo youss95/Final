@@ -74,32 +74,29 @@ public class ChatEndPoint {
 				if(manager == null) {
 					chatnum = nickname+store;
 				}else {
-					if(bizName == null) {
-						chatnum = "manager" + nickname;
-					}else {
-						chatnum = "manager" + store;
-					}
+					chatnum = "manager" + store;
 				}
 				try {
-					if(manager == null) {
-						if(bizName == null) {
-							dao.insert(new ChatDTO(chatnum,store,contents,nickname));
-							//dao.deleteChatRoom(chatnum);
-						}else {
-							dao.insertBusiness(new ChatDTO(chatnum,store,contents,nickname));
-						}
-
+					if(nickname.contentEquals("manager")) {
+						dao.insertManager(new ChatAdminDTO(chatnum,store,contents,nickname));
 					}else {
-						if(bizName == null) {
-							dao.insertManager(new ChatAdminDTO(chatnum,store,contents,nickname));
-							//dao.deleteChatRoom(chatnum);
+						if(manager == null) {
+							if(bizName == null) {
+								dao.insert(new ChatDTO(chatnum,store,contents,nickname));
+								//dao.deleteChatRoom(chatnum);
+							}else {
+								dao.insertBusiness(new ChatDTO(chatnum,store,contents,nickname));
+							}
+
 						}else {
-							dao.insertBizManager(new ChatAdminDTO(chatnum,store,contents,nickname));
+							if(bizName != null) {
+								dao.insertBizManager(new ChatAdminDTO(chatnum,store,contents,nickname));
+							}
 						}
-						dao.selectAllManager(chatnum);
 					}
 					dao.selectList(nickname);
 					dao.selectAll(chatnum);
+					dao.selectAllManager(chatnum);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

@@ -96,7 +96,7 @@ canvas {
 </head>
 
 <body>
-<a href="/chat/adminMakeChat?store=${bizInfo.businessName}">
+<a href="/chat/adminChat">
 	<i id="chat" class="fas fa-comment-dots fa-5x"></i></a>
 	<nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="navbar-nav">

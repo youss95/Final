@@ -320,7 +320,7 @@ button:hover {
 </script>
 </head>
 <body>
-<a id="backBtn" href="/store/signup?cpage=1">toBoard</a>
+<a id="backBtn" href="/bMember/myPage">X</a>
 	<div class="container clearfix">
 		<div class="people-list" id="people-list">
 			<div class="toManager">
