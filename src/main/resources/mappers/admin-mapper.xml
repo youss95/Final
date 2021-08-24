@@ -79,7 +79,7 @@
 
 	<select id="getBlackList" resultType="HashMap">
 	<![CDATA[ select bno,businessname,count(*) counts from(select bno,businessname,content,reg_date from comments c 
-	join business b on c.bno = b.biz_seq where sysdate - reg_date < 7) group by bno,businessname having count(*)>10
+	join business b on c.bno = b.biz_seq where sysdate - reg_date < 7) group by bno,businessname having count(*)>30
 	]]>
 	</select>
 
