@@ -113,8 +113,8 @@ div[class*=hidden] {
 
 <body>
 <%@include file="../layout/header_main.jsp"%>
-
-	<i id="chat" class="fas fa-comment-dots fa-4x"></i>
+<a href="/chat/makeChat?store=${bizInfo.businessName}">
+	<i id="chat" class="fas fa-comment-dots fa-4x"></i></a>
 	<div class="container p-5 shadow bg-white rounded">
 		<div class="row header">
 			<div class="col-12 title">
