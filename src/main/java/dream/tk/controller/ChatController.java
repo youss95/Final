@@ -24,19 +24,18 @@ public class ChatController {
 	@Autowired
 	private ChatService service;
 	
+	//클라이언트 채팅 리스트
 	@RequestMapping("toChat")
 	public String chat(Model model) throws Exception {
+		session.setAttribute("writer", "client");
 		String nickname = (String)session.getAttribute("loginID");
 		String storeName = (String) session.getAttribute("storeName");
 		String roomid = nickname + storeName;
 		session.setAttribute("roomid", roomid);
+		System.out.println("roomid 왜안돼.." + roomid);
 		
 		List<ChatDTO> list = service.selectAll(roomid); 
 		List<ChatDTO> list2 = service.selectList(nickname);
-		List<ChatAdminDTO> list3 = service.selectAllCManager(roomid);
-		
-		System.out.println("ChatController 안에서 출력한 채팅방 리스트"+list);
-		System.out.println("ChatController 안에서 출력한 식당 리스트"+list2);
 		
 		model.addAttribute("chatlist", list); // 해당 채팅 방
 		model.addAttribute("chatStore",list2); // 채팅 리스트
@@ -60,12 +59,19 @@ public class ChatController {
 	public String clickChat(String roomid, String id) throws Exception{
 		session.setAttribute("roomid", roomid);
 		session.setAttribute("nickname", id);
+		
+		if(roomid.contains("manager")) {
+			session.setAttribute("manager", "manager");
+		}else {
+			session.setAttribute("manager", null);
+		}
 		return "redirect:businessChat";
 	}
 	
+	//비즈니스 채팅 리스트
 	@RequestMapping("businessChat")
 	public String businessChat(Model model) throws Exception{
-		System.out.println("업체 아이디");
+		session.setAttribute("writer", "store");
 		//String nickname = (String)session.getAttribute("loginID");
 		String storeName = (String) session.getAttribute("storeName");
 		String roomid = (String) session.getAttribute("roomid");
@@ -75,8 +81,6 @@ public class ChatController {
 		if(roomid == null) {
 			roomid = "chatnum";
 		}
-		System.out.println("roomid" + roomid);
-		//session.setAttribute("roomid", roomid);
 		
 		List<ChatDTO> list = service.selectBusinessAll(roomid); 
 		List<ChatDTO> list2 = service.selectBusinessList(storeName);
@@ -88,6 +92,7 @@ public class ChatController {
 		return "chat/businessChat";
 	}
 	
+	//채팅방 삭제
 	@RequestMapping("deleteChatRoom")
 	public String deleteChatRoom(String chatnum) throws Exception{
 		service.deleteChatRoom(chatnum);
@@ -100,20 +105,36 @@ public class ChatController {
 		return "redirect:businessChat";
 	}
 	
-	@RequestMapping("sendManager")
-	public String sendManager(String roomid) throws Exception{
-		session.setAttribute("roomid", roomid);
-		session.setAttribute("manager", "manager");
-		session.setAttribute("nickname", "manager");
-		return "redirect:toChat";
-	}
-	
+	//매니저와 채팅
 	@RequestMapping("bizSendManager")
 	public String bizSendManager(String roomid) throws Exception{
 		session.setAttribute("roomid", roomid);
 		session.setAttribute("manager", "manager");
-		session.setAttribute("nickname", "manager");
 		return "redirect:businessChat";
+	}
+	
+	//관리자 관점 채팅방
+	@RequestMapping("adminChat")
+	public String adminChat(Model model) throws Exception{
+		session.setAttribute("writer", "admin");
+		String storeName = (String) session.getAttribute("store");
+
+		String chatnum = "manager"+storeName;
+		session.setAttribute("chatnum", chatnum);
+		session.setAttribute("nickname", "manager");
+		List<ChatAdminDTO> list1 = service.selectAdminList("manager");
+		List<ChatAdminDTO> list2 = service.selectAllManager(chatnum);
+		//System.out.println("chatnum 넘어옴? " + chatnum);
+		model.addAttribute("adminList",list1);
+		model.addAttribute("adminChat",list2);
+		return "chat/adminChat";
+	}
+	
+	@RequestMapping("makeAdminChat")
+	public String makeAdminChat(String store) throws Exception{
+		session.setAttribute("store", store);
+		
+		return "redirect:adminChat";
 	}
 	
 	@ExceptionHandler

@@ -14,20 +14,29 @@
 					<li>
 						<c:if test="${binfo.member_role eq 'B'}">
 							<a href="${pageContext.request.contextPath}/bMember/myPage">MyPage</a>
-						</c:if>
-						<c:if test="${info.member_role eq 'C'}">
-							<a href="${pageContext.request.contextPath}/cMember/mypage">MyPage</a>
-						</c:if>
-					</li>
-					<li><a href="${pageContext.request.contextPath}/member/logout"><i
+							<li><a href="${pageContext.request.contextPath}/member/logout"><i
 							class="fas fa-sign-out-alt"></i></a></li>
-					<li><a href="/noti/detail?userId=${loginID}&page=1"
+							<li><a href="/noti/detail?userId=${loginID}&page=1"
 						class="button" style="position: relative"><i
 							class="fas fa-bell fa-2x"></i><span class="nav-counter"></span></a></li>
-					<li><i class="fas fa-user-alt userIcon" id="popBtn"
+							<li><i class="fas fa-user-alt userIcon" id="popBtn"
 						data-placement="bottom" class="btn btn-lg btn-danger"
 						data-toggle="popover lightbox" title="Popover title"
 						data-content="And here's some amazing content. It's very engaging. Right?"></i></li>
+						</c:if>
+						<c:if test="${info.member_role eq 'C'}">
+							<a href="${pageContext.request.contextPath}/cMember/mypage">MyPage</a>
+							<li><a href="${pageContext.request.contextPath}/member/logout"><i
+							class="fas fa-sign-out-alt"></i></a></li>
+							<li><i class="fas fa-user-alt userIcon" id="popBtn"
+						data-placement="bottom" class="btn btn-lg btn-danger"
+						data-toggle="popover lightbox" title="Popover title"
+						data-content="And here's some amazing content. It's very engaging. Right?"></i></li>
+						</c:if>
+					</li>
+					
+					
+					
 				</ul>
 			</c:when>
 			<c:otherwise>

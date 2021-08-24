@@ -44,9 +44,6 @@ public class ChatService {
 		  return dao.selectAllManager(chatnum);
 	  }
 	  
-	  public List<ChatAdminDTO> selectAllCManager(String chatnum) throws Exception{
-		  return dao.selectAllCManager(chatnum);
-	  }
 	  
 	  public List<ChatDTO> selectBusinessAll(String chatnum) throws Exception{
 		  return dao.selectBusinessAll(chatnum);
@@ -58,6 +55,10 @@ public class ChatService {
 	  
 	  public List<ChatDTO> selectBusinessList(String store) throws Exception{
 		  return dao.selectBusinessList(store);
+	  }
+	  
+	  public List<ChatAdminDTO> selectAdminList(String nickname) throws Exception{
+		  return dao.selectAdminList(nickname);
 	  }
 	  
 	  public int deleteChatRoom(String chatnum) throws Exception{

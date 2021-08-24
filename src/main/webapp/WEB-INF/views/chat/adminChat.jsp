@@ -15,7 +15,7 @@
 }
 
 body {
-	background: rgb(253, 169, 11);
+	background: #7389b3;
 	font: 14px/20px "Lato", Arial, sans-serif;
 	padding: 40px 0;
 	color: white;
@@ -45,9 +45,8 @@ body {
 	background: #6A6C75;
 	width: 90%;
 	font-size: 14px;
-	margin-bottom:20px;
+	margin-bottom: 20px;
 }
-
 
 ul {
 	padding: 20px;
@@ -248,23 +247,22 @@ button:hover {
 }
 
 .name>a {
-	text-decoration:none;
-	color:white;
+	text-decoration: none;
+	color: white;
 }
 
-.deleteMsg{
-	text-decoration:none;
-	color:white;
+.deleteMsg {
+	text-decoration: none;
+	color: white;
 }
 
-#backBtn{
-	float:right;
-	font-size:50px;
-	text-decoration:none;
-	color:white;
-	margin-right:5%;
+#backBtn {
+	float: right;
+	font-size: 50px;
+	text-decoration: none;
+	color: white;
+	margin-right: 5%;
 }
-
 </style>
 <script>
 	$(document).ready(function() {
@@ -289,7 +287,7 @@ button:hover {
 			updateScroll(); */
 
 			let text = JSON.parse(event.data);
-			if(text.writer == 'client'){
+			if(text.writer == 'admin'){
 				let li = $("<li class='clearfix'>");
 				let line = $("<div class='message-data-ajax align-right'>");
 				let time = $("<span class='message-data-time'></span>");
@@ -331,35 +329,37 @@ button:hover {
 			$("#message-to-send").val(" ");
 
 		})
+
 	})
 </script>
 </head>
 <body>
-<a id="backBtn" href="/cMember/mypage">X</a>
+	<a id="backBtn" href="/admin/dashForm">X</a>
 	<div class="container clearfix">
-	
 		<div class="people-list" id="people-list">
 			<div class="toManager">
-			<button type="button" id="sendManager">Chat List</button>
+				<button type="button" id="sendManager">Chat List</button>
 			</div>
 			<!-- 채팅 리스트 -->
 			<ul class="list">
-			
-				<c:forEach var="item" items="${chatStore}">
+
+				<c:forEach var="item" items="${adminList}">
 					<c:if test="${item.store != null }">
-						<li class="clearfix">
-						<img
+						<li class="clearfix"><img
 							src="${pageContext.request.contextPath}/resources/images/shop.png"
 							alt="avatar" />
 							<div class="about">
-								<div class="name"> <a href="/chat/makeChat?store=${item.store }">${item.store }</a></div>
+								<div class="name">
+									<a href="/chat/makeAdminChat?store=${item.store }">${item.store }</a>
+								</div>
 								<div class="status">
-									<i class="fa fa-circle offline"></i> <a class="deleteMsg" href = "/chat/deleteChatRoom?chatnum=${item.chatnum }">delete</a>
+									<i class="fa fa-circle offline"></i> <a class="deleteMsg"
+										href="/chat/deleteChatRoom?chatnum=${item.chatnum }">delete</a>
 								</div>
 							</div></li>
 					</c:if>
 					<c:if test="${item.store == null }">
-						<div>null입니다</div>
+						<div>문의가 도착하지 않았습니다.</div>
 					</c:if>
 				</c:forEach>
 			</ul>
@@ -372,7 +372,7 @@ button:hover {
 					alt="avatar" />
 
 				<div class="chat-about">
-					<div class="chat-with">Chat with ${storeName }</div>
+					<div class="chat-with">Chat with ${store }</div>
 					<div class="chat-num-messages">already 1 902 messages</div>
 				</div>
 				<i class="fa fa-star"></i>
@@ -380,11 +380,10 @@ button:hover {
 			<!-- end chat-header -->
 
 			<div class="chat-history">
-			<input type="hidden" id="loginID" value="${loginID }">
+				<input type="hidden" id="loginID" value="${loginID }">
 				<ul id="history-under">
-					
-					<c:forEach var="i" items="${chatlist}">
-						<c:if test="${i.nickname == loginID}">
+					<c:forEach var="i" items="${adminChat}">
+						<c:if test="${i.nickname == 'manager'}">
 							<li class="clearfix">
 								<div class="message-data align-right">
 									<span class="message-data-time">${i.write_date }</span> &nbsp;
@@ -394,7 +393,28 @@ button:hover {
 								<div class="message other-message float-right">${i.contents }</div>
 							</li>
 						</c:if>
-						<c:if test="${i.nickname != loginID}">
+						<c:if test="${i.nickname != 'manager'}">
+							<li>
+								<div class="message-data">
+									<span class="message-data-name">${i.nickname }</span> <span
+										class="message-data-time">${i.write_date }</span>
+								</div>
+								<div class="message my-message">${i.contents }</div>
+							</li>
+						</c:if>
+					</c:forEach>
+					<c:forEach var="i" items="${managerBiz}">
+						<c:if test="${i.nickname == 'manager'}">
+							<li class="clearfix">
+								<div class="message-data align-right">
+									<span class="message-data-time">${i.write_date }</span> &nbsp;
+									&nbsp; <span class="message-data-name">${i.nickname }</span> <i
+										class="fa fa-circle me"></i>
+								</div>
+								<div class="message other-message float-right">${i.contents }</div>
+							</li>
+						</c:if>
+						<c:if test="${i.nickname != 'manager'}">
 							<li>
 								<div class="message-data">
 									<span class="message-data-name">${i.nickname }</span> <span

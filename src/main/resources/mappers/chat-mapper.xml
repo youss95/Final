@@ -20,7 +20,7 @@
 	
 	<insert id="insertManager">
 		insert into CHAT_MANAGER
-		values(CHAT_MANAGER_SEQ.nextval,#{chatnum},#{nickname},null,#{contents},#{nickname},
+		values(CHAT_MANAGER_SEQ.nextval,#{chatnum},'manager',#{store},#{contents},'manager',
 		sysdate)
 	</insert>
 	
@@ -48,15 +48,6 @@
 		order by seq
 	</select>
 	
-	<select id="selectAllCManager" resultType="dream.tk.dto.ChatAdminDTO">
-		select seq, chatnum, id,
-		store, contents, nickname, to_char(write_date, 'HH : MM am')
-		"write_date"
-		from CHAT_MANAGER
-		where chatnum = #{chatnum}
-		order by seq
-	</select>
-	
 	<select id="selectAllManager" resultType="dream.tk.dto.ChatAdminDTO">
 		select seq, chatnum, id,
 		store, contents, nickname, to_char(write_date, 'HH : MM am')
@@ -75,6 +66,12 @@
 	<select id="selectBusinessList" resultType="dream.tk.dto.ChatDTO">
 		select * from chat_client 
 		where seq in(select max(seq) from CHAT_CLIENT where chatnum like '%${value}%' group by id) 
+		order by seq desc
+	</select>
+	
+	<select id="selectAdminList" resultType="dream.tk.dto.ChatAdminDTO">
+		select * from chat_manager 
+		where seq in(select max(seq) from CHAT_MANAGER where chatnum like '%manager%' group by store) 
 		order by seq desc
 	</select>
 	

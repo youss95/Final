@@ -86,18 +86,18 @@ canvas {
 }
 #chat{
 
-	color: rgb(253, 169, 11);
+	color: rgb(56, 61, 78);
 	position: fixed;
 	top: 30%;
-	left: 3%;
+	left: 2%;
 
 }
 </style>
 </head>
 
 <body>
-<a href="/chat/adminMakeChat?store=${bizInfo.businessName}">
-	<i id="chat" class="fas fa-comment-dots fa-4x"></i></a>
+<a href="/chat/adminChat">
+	<i id="chat" class="fas fa-comment-dots fa-5x"></i></a>
 	<nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="navbar-nav">
 			<a class="nav-link" href="#" style="color: white;">home</a>

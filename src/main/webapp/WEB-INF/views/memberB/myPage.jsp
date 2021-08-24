@@ -333,14 +333,14 @@
           
 
           <li class="nav-item" style="height:20%;">
-            <a class="nav-link" href="/chat/businessMakeChat?store=${bizInfo.businessName} ">
+            <a class="nav-link" href="${pageContext.request.contextPath}/chat/businessMakeChat?store=${bizInfo.businessName}">
               <i class="material-icons">chat</i>
               <p>Chatting</p>
             </a>
           </li>
           
           <li class="nav-item" style="height:20%;">
-            <a class="nav-link" href="/bMember/reservation?res_name=${bizInfo.businessName}">
+            <a class="nav-link" href="${pageContext.request.contextPath}/bMember/reservation?res_name=${bizInfo.businessName}">
                <i class="material-icons">content_paste</i>
               <p>Reservation 관리</p>
             </a>
@@ -676,6 +676,20 @@
                     </div>
 				
 				
+					<hr>
+					<div class="card-body" style="width:100%;">
+                      <div style="width:30%">Premium 업그레이드 결제</div>
+                      <div style="width:60%">
+                      	<c:if test="${binfo.premium eq 'Y'}">
+                      		<button class="btn" type="button" id="refund">환불</button>
+                      	</c:if>
+                      	<c:if test="${binfo.premium eq 'N'}">
+                      	    <button class="btn" type="button" id="upgrade">결제</button>
+                      	</c:if>          
+                      </div>
+                    </div>
+					
+				
 				
 				
                   </div>
@@ -704,7 +718,44 @@
                   document.getElementById("address2").focus();
  				}
  			}).open(); 		};
+ 			
+ 			
+ 			
+ 		//프리미엄 결제 버튼	
+ 		$("#upgrade").on("click",function(){
+ 			location.href="${pageContext.request.contextPath}/pay/res_payment";
+ 		})	
+ 		
+ 		//프리미엄 환불 버튼	
+ 		$("#refund").on("click",function(){
+ 			 if(confirm("가장 최근에 구매한 이용권이 환불됩니다. 그래도 취소 하시겠습니까?")){
+ 				$.ajax({
+ 						url: "/pay/cancel",
+ 						type:"post",
+ 						//datatype:"json",
+ 						contentType : 'application/x-www-form-urlencoded; charset = utf-8',
+ 						data : {
+ 							memberId :'${loginID}'// 주문번호
+ 							
+ 							//price:80, //환불금액
+ 							//"reason": "테스트 결제 환불", //환불사유
+ 							//"refund_holder": "홍길동", //[가상계좌 환불시 필수입력] 환불 가상계좌 예금주
+ 							//"refund_bank":"88", //[가상계좌 환불시 필수입력] 환불 가상계좌 은행코드(ex Kg이니시스의 경우 신한은행 88)
+ 							//"refund_account": "56211105948400" // [가상계좌 환불시 필수입력] 환불 가상계좌 번호
+ 						}
+ 					}).done(function(result){ //환불 성공
+ 						console.log('환불 성공');
+ 						console.log(result);
+ 						location.href="${pageContext.request.contextPath}/bMember/myPage";
+ 					}).fail(function(error){
+ 						console.log("환불 실패 : "+ error);
+ 					});
+ 			    }
+ 		})	
 
+ 		
+ 		
+ 		
  </script>   
 
   

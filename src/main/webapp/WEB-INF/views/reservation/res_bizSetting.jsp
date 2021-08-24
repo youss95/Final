@@ -13,32 +13,65 @@
  <link rel="stylesheet" href="/resources/css/formstyle.css" />
  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+ <link rel="stylesheet" href="/resources/css/formstyle.css" />
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<script src="/resources/js/header.js"></script>
+<link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+	crossorigin="anonymous" />
+
+
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+	crossorigin="anonymous" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+ <link rel="stylesheet" href="/resources/css/formstyle.css" />
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="/resources/js/header.js"></script> -->
+
+
 
 </head>
 
 <style>
+h4{
+padding-top:5px;
+}
 </style>
 
 <body>
-
+<%@include file="../layout/header.jsp" %>
 	<div class="container">
 		<section class="prototype">
 
-			<form action="/res/setTime" method="post">
+			<form id="setting" name="setting" action="/res/setTime" method="post" onsubmit="return onSubmit()">
 				<div>
-					<h3>사업장 이름</h3>
+					<h4>사업장 이름</h4>
 					<input type="text" class="inpform" name="businessName"
-						placeholder="이름">
+						placeholder="이름" required>
 				</div>
 				<div>
-					<h3>사업장 영어이름</h3>
+					<h4>사업장 영어이름</h4>
 					<input type="text" class="inpform" name="businessNameEng"
-						placeholder="영어이름">
+						placeholder="영어이름" required>
 				</div>
 				<div>
-					<h3>사업장 전화번호</h3>
+					<h4>사업장 전화번호</h4>
 					<input type="text" class="inpform" id="businessContact"
-						name="businessContact" placeholder="01012341234">
+						name="businessContact" placeholder="'-'를 제외하고 입력해주세요 ex)01012341234" required>
 					<spring:hasBindErrors name="businessDTO">
 						<c:if test="${errors.hasFieldErrors('businessContact') }">
 
@@ -49,14 +82,14 @@
 					</spring:hasBindErrors>
 				</div>
 				<div>
-					<h3>사업장 번호</h3>
+					<h4>사업장 번호</h4>
 					<input type="text" class="inpform" name="bizNum"
-						placeholder="01012341234">
+						placeholder="" required>
 				</div>
-				<h3>분류</h3>
+				<h4>분류</h4>
 
 				<div class="inp_slct" id="classify">
-					<select name="biz_type" id="biz_type">
+					<select name="biz_type" id="biz_type" required>
 						<option value="">선택</option>
 						<option value="KoreanFood">KoreanFood</option>
 						<option value="ChineseFood">ChineseFood</option>
@@ -73,35 +106,35 @@
 
 
 				<div>
-					<h3 class="ad_h3 su_address">우편번호</h3>
+					<h4 class="ad_h3 su_address">우편번호</h4>
 					<input type="text" name="postcode" id="postcode" class="inpform"
 						maxlength=5 required>
 					<button type="button" id="searchAddr"
 						class="btn_m btn_default su_btn_detail">우편번호검색</button>
 				</div>
 				<div>
-					<h3>도로명 주소</h3>
+					<h4>도로명 주소</h4>
 					<input type="text" name="address1" id="address1" class="inpform"
-						placeholder="도로명/지번" maxlength=100>
+						placeholder="도로명/지번" maxlength=100 required>
 				</div>
 				<div>
-					<h3>상세 주소</h3>
+					<h4>상세 주소</h4>
 					<input type="text" class="inpform" name="address2" id="address2"
-						placeholder="Placeholder">
+						placeholder="상세 주소를 입력" required>
 				</div>
 				<div>
-					<h3>한글주소</h3>
+					<h4>한글주소</h4>
 					<input type="text" class="inpform" name="address1Kor"
-						id="address1Kor" placeholder="한글주소">
+						id="address1Kor" placeholder="한글주소" required>
 				</div>
 
 
 
-				<h3>휴일</h3>
+				<h4>휴일</h4>
 				<div class="rd_group">
 					<div class="inp_rd">
-						<input type="radio" id="mon" name="offday" value="mon"> <label
-							for="m1">월</label>
+						<input type="radio" id="mon" name="offday" value="mon" required> <label
+							for="m1" >월</label>
 					</div>
 					<div class="inp_rd">
 						<input type="radio" id="tue" name="offday" value="tue"> <label
@@ -131,22 +164,42 @@
 
 
 				<br>
-				<h3>영업시간</h3>
+				<h4>영업시간</h4>
 				<div class="chk_group">
 					<label class="inp_chk"> <input type="checkbox" name="onday"
-						id="times1" value="12:00"> <span class="chkmark"></span>
+						id="times1" value="12:00"  > <span class="chkmark"></span>
 						12:00
-					</label> <label class="inp_chk"> <input type="checkbox"
-						name="onday" id="times2" value="13:00"> <span
+					</label> 
+					<label class="inp_chk"> <input type="checkbox"
+						name="onday" id="times2" value="13:00" > <span
 						class="chkmark"></span> 13:00
-					</label> <label class="inp_chk"> <input type="checkbox"
-						name="onday" id="times3" value="18:00"> <span
+					</label>
+					 <label class="inp_chk"> <input type="checkbox"
+						name="onday" id="times5" value="14:00" > <span
+						class="chkmark"></span> 14:00
+					</label>
+					 <label class="inp_chk"> <input type="checkbox"
+						name="onday" id="times5" value="15:00" > <span
+						class="chkmark"></span> 15:00
+					</label>
+					 <label class="inp_chk"> <input type="checkbox"
+						name="onday" id="times5" value="16:00" > <span
+						class="chkmark"></span> 16:00
+					</label>
+					 <label class="inp_chk"> <input type="checkbox"
+						name="onday" id="times5" value="17:00" > <span
+						class="chkmark"></span> 17:00
+					</label> 
+					<label class="inp_chk"> <input type="checkbox"
+						name="onday" id="times3" value="18:00" > <span
 						class="chkmark"></span> 18:00
-					</label> <label class="inp_chk"> <input type="checkbox"
-						name="onday" id="times4" value="19:00"> <span
+					</label> 
+					<label class="inp_chk"> <input type="checkbox"
+						name="onday" id="times4" value="19:00" > <span
 						class="chkmark"></span> 19:00
-					</label> <label class="inp_chk"> <input type="checkbox"
-						name="onday" id="times5" value="20:00"> <span
+					</label>
+					 <label class="inp_chk"> <input type="checkbox"
+						name="onday" id="times5" value="20:00" > <span
 						class="chkmark"></span> 20:00
 					</label>
 				</div>
@@ -182,14 +235,19 @@ $(function() {
 	let phoneRegex = /^010\d{3,4}\d{4}$/;
 	 $("#businessContact").on("blur", function() {
 		if(!phoneRegex.test($("#businessContact").val())){
-			alert("번호 확인")
+			alert(" '-' 를 제외환 11 ~ 12 자리")
 			return;
 		}
-	
 	}) 
 })
 
+function onSubmit(){
+		if($("input:checkbox[name=onday]").is(":checked") !== true){
+			alert("영업시간을 최소 1개이상 선택해주세요!")
+			return false;
+		}
 
+}
 
 	$("#testBtn").on('click', function() {
 		location.href = "/board/testBtn"
@@ -206,7 +264,7 @@ $(function() {
 		data = result
 
 	})
-	$("#resBtn").on('click', function() {
+	/* $("#resBtn").on('click', function() {
 		console.log("result", result)
 		console.log("data", data)
 		$.ajax({
@@ -218,7 +276,7 @@ $(function() {
 			console.log(res)
 			location.href = "/res/calendar?time=" + data
 		})
-	})
+	}) */
 	
 </script>
 <%@include file="../layout/alarm.jsp" %>

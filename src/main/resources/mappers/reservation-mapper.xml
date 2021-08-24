@@ -82,12 +82,12 @@ select res_checked from reservation where res_time=#{res_time} and res_date=#{re
   
   <!-- 예약 정보 가져오기 수정 필요 select * from reservation where res_name = #{res_name} -->  
   <select id="getResInfo" resultType="dream.tk.dto.ReservationDTO">
-  select * from reservation where biz_seq = #{biz_seq}
+  select * from reservation where biz_seq = #{biz_seq} and res_checked = 'Y'
   </select>
   
   <!-- 팝오버에 뿌릴 예약 정보 가져오기 -->
   <select id="resInfoList" resultType="dream.tk.dto.ReservationDTO">
-  select * from reservation where userId=#{userId}
+  select * from reservation where userId=#{userId} and res_checked = 'Y'
   </select>
   
   <!-- 정액권 결제 -->
@@ -101,7 +101,7 @@ select res_checked from reservation where res_time=#{res_time} and res_date=#{re
   
   <!-- 사용자가 구매한 순서대로 환불 진행하기  -->
   <select id="refundOrder" resultType="int">
-  select pay_no from res_payment where memberId=#{memberId} and (refund = 1 or refund =0 ) and rownum = 1 order by pay_no desc
+  select pay_no from res_payment where memberId=#{memberId} and (refund =0 ) and rownum = 1 order by pay_no desc
   </select>
    <select id="refundPrice" resultType="int">
   select price from res_payment where memberId=#{memberId} and refund = 0 and rownum = 1 order by pay_no desc

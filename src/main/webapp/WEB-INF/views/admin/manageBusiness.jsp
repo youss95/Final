@@ -21,6 +21,8 @@
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
 	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
 	crossorigin="anonymous" />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <style>
 * {
 	box-sizing: border-box;
@@ -191,19 +193,48 @@ a {
 	</div>
 
 <script>
-	$(".btnOut").on("click",function(){
-		let seq =$(this).attr("seq");
-		let here = this;
-		$.ajax({
-			data:{"seq":seq},
-			url:"${pageContext.request.contextPath}/admin/businessOut",
-		}).done(function(resp){
-			if(resp>0){
-			$(here).closest(".list").remove();
+
+$(".btnOut").on("click",function(){
+	Swal.fire({
+		  icon: "question",
+		  title: "회원을 탈퇴시키겠습니까?",
+		  text: "확인 버튼을 클릭 시, 탈퇴가 진행됩니다.",
+		  showConfirmButton:true,
+		  showCancelButton:true,
+		  confirmButtonText:"확인",
+		  cancelButtonText:"취소",
+		}).then((result) =>{
+			if(result.isConfirmed){
+				let seq =$(this).attr("seq");
+				let here = this;
+				$.ajax({
+					data:{"seq":seq},
+					url:"${pageContext.request.contextPath}/admin/businessOut",
+				}).done(function(resp){
+					if(resp>0){
+					$(here).closest(".list").remove();
+					}
+				})
+				
+			}else{
+				return false;
 			}
+			
 		})
-		
-	})
+})
+
+// 	$(".btnOut").on("click",function(){
+// 		let seq =$(this).attr("seq");
+// 		let here = this;
+// 		$.ajax({
+// 			data:{"seq":seq},
+// 			url:"${pageContext.request.contextPath}/admin/businessOut",
+// 		}).done(function(resp){
+// 			if(resp>0){
+// 			$(here).closest(".list").remove();
+// 			}
+// 		})	
+// 	})
 </script>
 </body>
 

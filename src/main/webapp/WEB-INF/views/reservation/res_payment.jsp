@@ -62,23 +62,23 @@ font-weight:600;
 <div id="priceTitle">총 가격: <span id="totalPrice"></span></div>
  
     <button id="check_module" type="button">결제</button>
-    <input type="button" id="check2" value="환불">
+  <!--   <input type="button" id="check2" value="환불"> -->
 
 </section>
  </div>
 <script>
-$(function(){
+/* $(function(){
 	$.ajax({
 		url:"/pay/refundCheck",
 			data:{memberId :'${loginID}'}
 	}).done(function(resp){
 		console.log(resp)
-		if(resp === 1){
+		/* if(resp === 1){
 			$("#check2").hide();
-		}
-	})
+		} */
+/* 	})
 })
-
+ */ 
 
 let price = '';
 $("input[type=radio][name='price']").on('change',function(){
@@ -151,6 +151,7 @@ $("input[type=radio][name='price']").on('change',function(){
             		contentType:'application/json;charset=utf-8',
             		dataType:'json',
             		success:function(resp){
+            		    location.href="/bMember/myPage"
             			 msg += '결제가 완료되었습니다.';
              			msg += '이멜' +resp.biz_email;
             			console.log("resp",resp)
@@ -162,6 +163,7 @@ $("input[type=radio][name='price']").on('change',function(){
                           msg += '결제 금액 : ' + rsp.paid_amount;
                           msg += '카드 승인번호 : ' + rsp.apply_num; */
                           alert(msg)
+                     
             		}
 
             	})
@@ -172,11 +174,11 @@ $("input[type=radio][name='price']").on('change',function(){
                 alert(msg)
             }
          
-         
+         location.href="/bMember/myPage";
         });
     });
     
-     $("#check2").click(function(e){
+   /*   $("#check2").click(function(e){
 	    if(confirm("가장 최근에 구매한 이용권이 환불됩니다. 그래도 취소 하시겠습니까?")){
 		$.ajax({
 				url: "/pay/cancel",
@@ -194,12 +196,13 @@ $("input[type=radio][name='price']").on('change',function(){
 				}
 			}).done(function(result){ //환불 성공
 				console.log('환불 성공')
+				location.href="/bMember/myPage"
 				console.log(result);
 			}).fail(function(error){
 				console.log("환불 실패 : "+ error);
 			});
 	    }
-		}) 
+		})  */
 
     
 </script>

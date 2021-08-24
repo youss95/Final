@@ -96,6 +96,12 @@ public class AdminMemberController {
 	        return -1; //에러
 	    }
 	}
+	
+	@RequestMapping(value="logout")
+	public String logout() {
+		session.invalidate();
+		return "redirect:/";
+	}
 
 }
 
