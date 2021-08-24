@@ -62,7 +62,7 @@ font-weight:600;
 <div id="priceTitle">총 가격: <span id="totalPrice"></span></div>
  
     <button id="check_module" type="button">결제</button>
-    <input type="button" id="check2" value="환불">
+  <!--   <input type="button" id="check2" value="환불"> -->
 
 </section>
  </div>
@@ -178,7 +178,7 @@ $("input[type=radio][name='price']").on('change',function(){
         });
     });
     
-     $("#check2").click(function(e){
+   /*   $("#check2").click(function(e){
 	    if(confirm("가장 최근에 구매한 이용권이 환불됩니다. 그래도 취소 하시겠습니까?")){
 		$.ajax({
 				url: "/pay/cancel",
@@ -202,7 +202,7 @@ $("input[type=radio][name='price']").on('change',function(){
 				console.log("환불 실패 : "+ error);
 			});
 	    }
-		}) 
+		})  */
 
     
 </script>
