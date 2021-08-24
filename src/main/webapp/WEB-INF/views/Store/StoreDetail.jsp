@@ -129,7 +129,7 @@ section {
 	width: 100%;
 	height: 100%;
 }
-<<<<<<< HEAD
+
 
 /*이거 댓글 */
 .well {
@@ -150,11 +150,11 @@ section {
     border-top-right-radius: 3px;
 }
 
-=======
+
 #commentInsertForm{
  width: 100%;
 }
->>>>>>> 4b2d9388eed3ad8450030ad27292d4e438369a86
+
 </style>
 </head>
 <body>
