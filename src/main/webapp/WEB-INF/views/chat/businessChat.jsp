@@ -271,7 +271,7 @@ button:hover {
 	})
 	$(function() {
 
-		let ws = new WebSocket("ws://localhost/chat");
+		let ws = new WebSocket("ws://122.45.84.154:8080/chat");
 		ws.onmessage = function(event) {
 			/* let text = JSON.parse(event.data);
 			let line = $("<div>");
@@ -288,19 +288,35 @@ button:hover {
 			updateScroll(); */
 
 			let text = JSON.parse(event.data);
-			let li = $("<li class='clearfix'>");
-			let line = $("<div class='message-data-ajax align-right'>");
-			let time = $("<span class='message-data-time'></span>");
-			let timeID = $("#loginID").val();
-			time.append(timeID);
-			let who = $("<span class='message-data-name'>me</span>");
+			if(text.writer == 'store'){
+				let li = $("<li class='clearfix'>");
+				let line = $("<div class='message-data-ajax align-right'>");
+				let time = $("<span class='message-data-time'></span>");
+				let timeID = $("#loginID").val();
+				time.append(timeID);
+				let who = $("<span class='message-data-name'>me</span>");
 
-			let msgLine = $("<div class='message other-message float-right pleft'>");
-			msgLine.append(text.contents);
-			line.append(time);
-			line.append(msgLine);
-			li.append(line);
-			$("#history-under").append(li);
+				let msgLine = $("<div class='message other-message float-right pleft'>");
+				msgLine.append(text.contents);
+				line.append(time);
+				line.append(msgLine);
+				li.append(line);
+				$("#history-under").append(li);
+			}else{
+				let li = $("<li class='clearfix'>");
+				let line = $("<div class='message-data-left'>");
+				let time = $("<span class='message-data-time'></span>");
+				let timeID = $("#loginID").val();
+				time.append(timeID);
+				let who = $("<span class='message-data-name'>me</span>");
+
+				let msgLine = $("<div class='message my-message'>");
+				msgLine.append(text.contents);
+				line.append(time);
+				line.append(msgLine);
+				li.append(line);
+				$("#history-under").append(li);
+			}
 
 		}
 
