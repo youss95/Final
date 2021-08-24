@@ -24,6 +24,7 @@ public class ChatController {
 	@Autowired
 	private ChatService service;
 	
+	//클라이언트 채팅 리스트
 	@RequestMapping("toChat")
 	public String chat(Model model) throws Exception {
 		String nickname = (String)session.getAttribute("loginID");
@@ -63,6 +64,7 @@ public class ChatController {
 		return "redirect:businessChat";
 	}
 	
+	//비즈니스 채팅 리스트
 	@RequestMapping("businessChat")
 	public String businessChat(Model model) throws Exception{
 		System.out.println("업체 아이디");
@@ -88,6 +90,7 @@ public class ChatController {
 		return "chat/businessChat";
 	}
 	
+	//채팅방 삭제
 	@RequestMapping("deleteChatRoom")
 	public String deleteChatRoom(String chatnum) throws Exception{
 		service.deleteChatRoom(chatnum);
@@ -100,11 +103,11 @@ public class ChatController {
 		return "redirect:businessChat";
 	}
 	
+	//매니저와 채팅 
 	@RequestMapping("sendManager")
 	public String sendManager(String roomid) throws Exception{
 		session.setAttribute("roomid", roomid);
 		session.setAttribute("manager", "manager");
-		session.setAttribute("nickname", "manager");
 		return "redirect:toChat";
 	}
 	
@@ -112,7 +115,6 @@ public class ChatController {
 	public String bizSendManager(String roomid) throws Exception{
 		session.setAttribute("roomid", roomid);
 		session.setAttribute("manager", "manager");
-		session.setAttribute("nickname", "manager");
 		return "redirect:businessChat";
 	}
 	

@@ -67,28 +67,31 @@ public class ChatEndPoint {
 					nickname = (String)hsession.getAttribute("loginID");
 				}
 				String store = (String)hsession.getAttribute("storeName");
-				
+
 				String bizName =  (String) hsession.getAttribute("buisnessNameChat");
 				String manager = (String) hsession.getAttribute("manager");
 				String chatnum = null;
 				if(manager == null) {
-				chatnum = nickname+store;
+					chatnum = nickname+store;
 				}else {
-					chatnum = "manager" + store;
+					if(bizName == null) {
+						chatnum = "manager" + nickname;
+					}else {
+						chatnum = "manager" + store;
+					}
 				}
 				try {
 					if(manager == null) {
 						if(bizName == null) {
-							dao.insertManager(new ChatAdminDTO(chatnum,store,contents,nickname));
+							dao.insert(new ChatDTO(chatnum,store,contents,nickname));
 							//dao.deleteChatRoom(chatnum);
 						}else {
 							dao.insertBusiness(new ChatDTO(chatnum,store,contents,nickname));
 						}
-						dao.selectAll(chatnum);
-						
+
 					}else {
 						if(bizName == null) {
-							dao.insert(new ChatDTO(chatnum,store,contents,nickname));
+							dao.insertManager(new ChatAdminDTO(chatnum,store,contents,nickname));
 							//dao.deleteChatRoom(chatnum);
 						}else {
 							dao.insertBizManager(new ChatAdminDTO(chatnum,store,contents,nickname));
