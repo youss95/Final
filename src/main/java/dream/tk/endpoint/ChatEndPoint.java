@@ -19,7 +19,7 @@ import com.google.gson.JsonObject;
 
 import dream.tk.configurator.ApplicationContextProvider;
 import dream.tk.configurator.HttpSessionConfigurator;
-import dream.tk.dto.BusinessDTO;
+import dream.tk.dto.ChatAdminDTO;
 import dream.tk.dto.ChatDTO;
 import dream.tk.service.ChatService;
 
@@ -79,21 +79,24 @@ public class ChatEndPoint {
 				try {
 					if(manager == null) {
 						if(bizName == null) {
-							dao.insert(new ChatDTO(chatnum,store,contents,nickname));
+							dao.insertManager(new ChatAdminDTO(chatnum,store,contents,nickname));
 							//dao.deleteChatRoom(chatnum);
 						}else {
 							dao.insertBusiness(new ChatDTO(chatnum,store,contents,nickname));
 						}
+						dao.selectAll(chatnum);
+						
 					}else {
 						if(bizName == null) {
 							dao.insert(new ChatDTO(chatnum,store,contents,nickname));
 							//dao.deleteChatRoom(chatnum);
 						}else {
-							dao.insertBizManager(new ChatDTO(chatnum,store,contents,nickname));
+							dao.insertBizManager(new ChatAdminDTO(chatnum,store,contents,nickname));
 						}
+						dao.selectAllManager(chatnum);
 					}
-					dao.selectAll(chatnum);
 					dao.selectList(nickname);
+					dao.selectAll(chatnum);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

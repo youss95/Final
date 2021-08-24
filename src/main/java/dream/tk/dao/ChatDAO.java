@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import dream.tk.dto.ChatAdminDTO;
 import dream.tk.dto.ChatDTO;
 
 
@@ -23,12 +24,24 @@ public class ChatDAO {
 		  return mybatis.insert("Chat.insertBusiness", dto); 
 	}
 	  
-	  public int insertBizManager(ChatDTO dto) { 
+	  public int insertBizManager(ChatAdminDTO dto) { 
 		  return mybatis.insert("Chat.insertBizManager", dto); 
+	}
+	  
+	  public int insertManager(ChatAdminDTO dto) { 
+		  return mybatis.insert("Chat.insertManager", dto); 
 	}
 	  
 	  public List<ChatDTO> selectAll(String chatnum){
 		  return mybatis.selectList("Chat.selectAll", chatnum);
+	  }
+	  
+	  public List<ChatAdminDTO> selectAllCManager(String chatnum){
+		  return mybatis.selectList("Chat.selectAllCManager", chatnum);
+	  }
+	  
+	  public List<ChatAdminDTO> selectAllManager(String chatnum){
+		  return mybatis.selectList("Chat.selectAllManager", chatnum);
 	  }
 	  
 	  public List<ChatDTO> selectBusinessAll(String chatnum){
