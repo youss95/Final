@@ -57,7 +57,7 @@ padding-top:5px;
 	<div class="container">
 		<section class="prototype">
 
-			<form action="/res/setTime" method="post">
+			<form id="setting" name="setting" action="/res/setTime" method="post" onsubmit="return onSubmit()">
 				<div>
 					<h4>사업장 이름</h4>
 					<input type="text" class="inpform" name="businessName"
@@ -167,39 +167,39 @@ padding-top:5px;
 				<h4>영업시간</h4>
 				<div class="chk_group">
 					<label class="inp_chk"> <input type="checkbox" name="onday"
-						id="times1" value="12:00"  required> <span class="chkmark"></span>
+						id="times1" value="12:00"  > <span class="chkmark"></span>
 						12:00
 					</label> 
 					<label class="inp_chk"> <input type="checkbox"
-						name="onday" id="times2" value="13:00" required> <span
+						name="onday" id="times2" value="13:00" > <span
 						class="chkmark"></span> 13:00
 					</label>
 					 <label class="inp_chk"> <input type="checkbox"
-						name="onday" id="times5" value="20:00" required> <span
+						name="onday" id="times5" value="14:00" > <span
 						class="chkmark"></span> 14:00
 					</label>
 					 <label class="inp_chk"> <input type="checkbox"
-						name="onday" id="times5" value="20:00" required> <span
+						name="onday" id="times5" value="15:00" > <span
 						class="chkmark"></span> 15:00
 					</label>
 					 <label class="inp_chk"> <input type="checkbox"
-						name="onday" id="times5" value="20:00" required> <span
+						name="onday" id="times5" value="16:00" > <span
 						class="chkmark"></span> 16:00
 					</label>
 					 <label class="inp_chk"> <input type="checkbox"
-						name="onday" id="times5" value="20:00" required> <span
+						name="onday" id="times5" value="17:00" > <span
 						class="chkmark"></span> 17:00
 					</label> 
 					<label class="inp_chk"> <input type="checkbox"
-						name="onday" id="times3" value="18:00" required> <span
+						name="onday" id="times3" value="18:00" > <span
 						class="chkmark"></span> 18:00
 					</label> 
 					<label class="inp_chk"> <input type="checkbox"
-						name="onday" id="times4" value="19:00" required> <span
+						name="onday" id="times4" value="19:00" > <span
 						class="chkmark"></span> 19:00
 					</label>
 					 <label class="inp_chk"> <input type="checkbox"
-						name="onday" id="times5" value="20:00" required> <span
+						name="onday" id="times5" value="20:00" > <span
 						class="chkmark"></span> 20:00
 					</label>
 				</div>
@@ -238,11 +238,16 @@ $(function() {
 			alert(" '-' 를 제외환 11 ~ 12 자리")
 			return;
 		}
-	
 	}) 
 })
 
+function onSubmit(){
+		if($("input:checkbox[name=onday]").is(":checked") !== true){
+			alert("영업시간을 최소 1개이상 선택해주세요!")
+			return false;
+		}
 
+}
 
 	$("#testBtn").on('click', function() {
 		location.href = "/board/testBtn"
@@ -259,7 +264,7 @@ $(function() {
 		data = result
 
 	})
-	$("#resBtn").on('click', function() {
+	/* $("#resBtn").on('click', function() {
 		console.log("result", result)
 		console.log("data", data)
 		$.ajax({
@@ -271,7 +276,7 @@ $(function() {
 			console.log(res)
 			location.href = "/res/calendar?time=" + data
 		})
-	})
+	}) */
 	
 </script>
 <%@include file="../layout/alarm.jsp" %>
