@@ -19,12 +19,10 @@
 <!--별점-->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/Store_detail.css?after">
-<link rel='stylesheet'
-	href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-<link
-	href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
 	integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
@@ -33,6 +31,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
 	integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
+	
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/like.js"></script>
 <link rel="stylesheet"
@@ -484,7 +483,7 @@ section {
 								<h4>
 									<i class="fa fa-paper-plane-o"></i> Leave a Comment:
 									<div class="make_star">
-										<div class="rating" data-rate="3" style="float: right">
+										<div class="rating" data-rate="3" style="float: left">
 											<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
 												class="fas fa-star"></i> <i class="fas fa-star"></i> <i
 												class="fas fa-star"></i>
@@ -496,7 +495,7 @@ section {
 									name="bno" value="${list.biz_seq }" />
 								<div class="form-group">
 									<input type="text" class="form-control" id="contents"
-										name="contents" placeholder="내용을 입력하세요.">
+										name="contents" placeholder="Please enter your content.">
 								</div>
 								<button type="button" value="" class="btn btn-primary"
 									name="commentInsertBtn" style="left: 0;">
@@ -513,8 +512,8 @@ section {
 								<input type="hidden" id="bno" name="bno"
 									value="${list.biz_seq }" />
 								<div class="form-group">
-									<input type="text" class="form-control" id="content"
-										name="content" placeholder="리뷰를 작성하고 싶으시면, 로그인을 하세요" disabled>
+									<input type="text" class="co" id="content"
+										name="content" placeholder="If you want to write a review, log in." disabled>
 								</div>
 								<button type="button"
 									onclick="location.href='${pageContext.request.contextPath}/member/whichMember'"
@@ -590,10 +589,11 @@ section {
                                              + ' <i class="fas fa-star"></i>'
                                              + '</div>'
                                              + '</div>'
-                                       if (value.writer === $(
+                                      /* if (value.writer === $(
                                              "#writer").val()) {
                                           a += ' <div class="commentInfo'+ value.cno+'">'
                                           a += '<br>'
+                                          
                                           a += '<a onclick="commentUpdate('
                                                 + value.cno
                                                 + ',\''
@@ -602,7 +602,7 @@ section {
                                           a += '<a href="/comment/deleteComment?cno='
                                                 + value.cno
                                                 + '"> 삭제하기 </a></div>';
-                                       }
+                                       }*/
                                        a += '</small></h3></div>';
                                        a += '<div class="panel-body"><div class="panel-body'+ value.cno + '"><p>'
                                              + value.content
@@ -637,7 +637,7 @@ section {
                }
             });
          }
-         //댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
+         //댓글 수정 - 댓글 ㄹ 출력을 input 폼으로 변경 
          function commentUpdate(cno, content) {
             var a = '';
             a += '<div class="col-sm-12"><div class="panel panel-default"><div class="panel-heading" style="height:145px">';

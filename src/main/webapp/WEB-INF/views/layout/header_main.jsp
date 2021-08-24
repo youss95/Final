@@ -6,10 +6,10 @@
 		<a href="/"> <img
 			src="${pageContext.request.contextPath}/resources/images/logoTxt.png"
 			alt="Logo" id="logo" style="width: 140px; height: 80px" /></a>
-		<link rel="stylesheet"
-			href="${pageContext.request.contextPath}/resources/css/header_main.css?after" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header_main.css?after" />
 		<script src='https://kit.fontawesome.com/a076d05399.js'
 			crossorigin='anonymous'></script>
+		
 		<c:choose>
 			<c:when test="${loginID!=null }">
 				<ul>
@@ -21,12 +21,10 @@
 						<c:if test="${info.member_role eq 'C'}">
 							<a href="${pageContext.request.contextPath}/cMember/mypage">MyPage</a>
 						</c:if>
-						
 					</li>
 					<li><a href="${pageContext.request.contextPath}/member/logout"><i
 							class="fas fa-sign-out-alt"></i></a></li>
-					<li><a
-						href="${pageContext.request.contextPath}/noti/detail?userId=${loginID}"
+					<li><a href="/noti/detail?userId=${loginID}&page=1"
 						class="button" style="position: relative"><i
 							class="fas fa-bell fa-2x"></i><span class="nav-counter"></span></a></li>
 					<li><i class="fas fa-user-alt userIcon" id="popBtn"
@@ -51,7 +49,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/header.js"></script>
+<script src="/resources/js/header.js?var=123"></script>
 <script>
 
   $(function(){
@@ -74,7 +72,7 @@
 	     html: true,
 	     // 팝오버 template 제목은 popover-title, 내용은 popover-content에 들어간다.
 	     template:
-	       '<div class="popover" role="tooltip" style="width:500px;"><div class="arrow"></div><div class="popover-body"></div></div>',
+	       '<div class="popover" role="tooltip" style="width:500px"><div class="arrow"></div><div class="popover-body"></div></div>',
 	     // 팝오버 제목
 	     title: "팝 오버",
 	     // 팝오버 내용
@@ -98,7 +96,7 @@
 
 	   $("#popBtn").attr(
 	     "data-content",
-	     '<li id="menu1">예약정보</li><li id="menu2">메뉴2</li><div id="myp"><a href=""><i class="fas fa-cog fa-2x"></i></a></div><br><div class="section"></div>'
+	     '<li id="menu1">예약정보</li><li id="menu2">찜</li><div id="myp"><a href=""><i class="fas fa-cog fa-2x"></i></a></div><br><div class="section"></div>'
 	   );
 	 
 	   //동적 생성된거는 이거 쓴다.
@@ -113,7 +111,7 @@
 			   
 			     let first ='';
 			      resp.map((list)=>{	
-			    first += "<div id='aaa' data-res='"+list.res_no+"'>"+list.res_name+"</div><br><div>"+list.res_date+"</div><br><div>"+list.res_time+"</div>";	
+			    first += "<div id='aaa' data-res='"+list.res_no+"'>"+list.res_name+"</div><br><div>"+list.res_date+"</div><br><div>"+list.res_time+"</div><br>";	
 			     }) 
 			     contentSection.html(first);
 		   })
@@ -123,8 +121,19 @@
 	   $(document).on("click", "#menu2", function () {
 	     $(".section *").remove();
 	     let contentSection = $(".section");
-	     let second = `<div id="aaa">menu2 내용</div><br>`;
-	     contentSection.append(second);
+	     $.ajax({
+	    	 url:"/like/getLikes",
+	    	 data:{'userId':'${loginID}'}
+	     }).done(function(resp){
+	    	 console.log(resp)
+	    	 let second=''
+	    	 resp.map((list)=>{
+	    		 second +="<div id='aaa' data-lkno='"+list.like_no+"'><span>식당 이름: </span>"+list.businessName+"</div><br><br>"
+	    	 })
+	    	    contentSection.append(second);
+	     })
+	  
+	 
 	   });
 	   
 	   
