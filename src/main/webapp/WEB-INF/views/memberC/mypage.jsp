@@ -37,7 +37,7 @@ div {
 .container {
 	max-width: 1000px;
 	margin: auto;
-	margin-top: 50px;
+	margin-top: 100px;
 }
 
 .wrapper {
@@ -101,6 +101,7 @@ div[class*=hidden] {
 </head>
 
 <body>
+<%@include file="../layout/header_main.jsp"%>
 	<div class="container p-5 shadow bg-white rounded">
 		<div class="row header">
 			<div class="col-12 title">
@@ -301,7 +302,7 @@ div[class*=hidden] {
         					"pw" : $("#icurrentPW").val()
         				}
         			}).done(function(res) {
-        				alert(res);
+
         				if(res>0){
         					$(this).remove();
                             $(".hiddenPW").css("display", "block");

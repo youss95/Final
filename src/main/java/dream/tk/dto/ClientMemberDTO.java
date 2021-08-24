@@ -11,8 +11,12 @@ public class ClientMemberDTO {
 	private int yob;
 	private String nation;
 	private String agree;
+	private int police_count;
 	private Date reg_date;
-	
+	private String member_role;
+
+
+
 	public ClientMemberDTO() {
 		super();
 	}
@@ -30,8 +34,8 @@ public class ClientMemberDTO {
 		this.agree = agree;
 		this.reg_date = reg_date;
 	}
-	
-	
+
+
 
 	public ClientMemberDTO(String id, String pw, String email, int yob, String nation) {
 		super();
@@ -40,6 +44,22 @@ public class ClientMemberDTO {
 		this.email = email;
 		this.yob = yob;
 		this.nation = nation;
+	}
+
+	public ClientMemberDTO(int seq, String id, String pw, String email, String name, int yob, String nation,
+			String agree, int police_count, Date reg_date, String member_role) {
+		super();
+		this.seq = seq;
+		this.id = id;
+		this.pw = pw;
+		this.email = email;
+		this.name = name;
+		this.yob = yob;
+		this.nation = nation;
+		this.agree = agree;
+		this.police_count = police_count;
+		this.reg_date = reg_date;
+		this.member_role = member_role;
 	}
 
 	public int getSeq() {
@@ -106,6 +126,14 @@ public class ClientMemberDTO {
 		this.agree = agree;
 	}
 
+	public int getPolice_count() {
+		return police_count;
+	}
+
+	public void setPolice_count(int police_count) {
+		this.police_count = police_count;
+	}
+
 	public Date getReg_date() {
 		return reg_date;
 	}
@@ -114,5 +142,13 @@ public class ClientMemberDTO {
 		this.reg_date = reg_date;
 	}
 
-	
+
+
+	public String getMember_role() {
+		return member_role;
+	}
+
+	public void setMember_role(String member_role) {
+		this.member_role = member_role;
+	}
 }

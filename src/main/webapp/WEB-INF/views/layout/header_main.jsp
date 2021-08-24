@@ -1,40 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <header id="main-header">
-      <nav><a href="/">
-        <img src="${pageContext.request.contextPath}/resources/images/logoTxt.png" alt="Logo" id="logo" style="width: 140px; height: 80px"/></a>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header_main.css?after" />
-       <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-<c:choose>
-<c:when test="${loginID!=null || binfo.id !=null }">
-<ul>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<header id="main-header">
+	<nav>
+		<a href="/"> <img
+			src="${pageContext.request.contextPath}/resources/images/logoTxt.png"
+			alt="Logo" id="logo" style="width: 140px; height: 80px" /></a>
+		<link rel="stylesheet"
+			href="${pageContext.request.contextPath}/resources/css/header_main.css?after" />
+		<script src='https://kit.fontawesome.com/a076d05399.js'
+			crossorigin='anonymous'></script>
+		<c:choose>
+			<c:when test="${loginID!=null }">
+				<ul>
 
-          <li><c:if test="${binfo.member_role eq 'B'}"><a href="${pageContext.request.contextPath}/bMember/myPage">MyPage</a></c:if></li>
-         <li><a href="${pageContext.request.contextPath}/member/logout"><i class="fas fa-sign-out-alt"></i></a></li>
-					<li><a href="${pageContext.request.contextPath}/noti/detail?userId=${loginID}" class="button" style="position: relative"><i
+					<li>
+						<c:if test="${binfo.member_role eq 'B'}">
+							<a href="${pageContext.request.contextPath}/bMember/myPage">MyPage</a>
+						</c:if>
+						<c:if test="${info.member_role eq 'C'}">
+							<a href="${pageContext.request.contextPath}/cMember/mypage">MyPage</a>
+						</c:if>
+						
+					</li>
+					<li><a href="${pageContext.request.contextPath}/member/logout"><i
+							class="fas fa-sign-out-alt"></i></a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/noti/detail?userId=${loginID}"
+						class="button" style="position: relative"><i
 							class="fas fa-bell fa-2x"></i><span class="nav-counter"></span></a></li>
 					<li><i class="fas fa-user-alt userIcon" id="popBtn"
 						data-placement="bottom" class="btn btn-lg btn-danger"
 						data-toggle="popover lightbox" title="Popover title"
 						data-content="And here's some amazing content. It's very engaging. Right?"></i></li>
 				</ul>
-</c:when>
-<c:otherwise>
-<ul>
- <li><a href="${pageContext.request.contextPath}/member/whichMember">Login</a></li>
- </ul>
-</c:otherwise>
-</c:choose>
-      </nav>
-      
-    </header>
+			</c:when>
+			<c:otherwise>
+				<ul>
+					<li><a
+						href="${pageContext.request.contextPath}/member/whichMember">Login</a></li>
+				</ul>
+			</c:otherwise>
+		</c:choose>
+	</nav>
 
-  </body>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</header>
+
+</body>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/header.js"></script>
-  <script>
+<script>
 
   $(function(){
 	  $.ajax({
@@ -111,7 +129,7 @@
 	   
 	   
   </script>
- 
+
 </html>
 </body>
 </html>
