@@ -222,3 +222,5 @@ $(function() {
 	
 </script>
 <%@include file="../layout/alarm.jsp" %>
+</body>
+</html>
