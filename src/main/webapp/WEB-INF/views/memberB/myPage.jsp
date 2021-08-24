@@ -95,6 +95,13 @@
 				alert("업체 연락처를 입력해주세요.");
 				return false;
 			}
+			let contactReg = /^[0-9]{7,}$/;
+			let contact = $("#businessContact").val();
+
+			if (!contactReg.test(contact)) {
+				alert("유효하지 않은 전화번호입니다. 7자리 이상의 숫자만 입력해주세요. \n ex) 025450790");
+				return false;
+			}
 			if($("#address1").val()==null||$("#address1").val()==""){
 				alert("업체 주소를 입력해주세요.");
 				return false;
@@ -229,6 +236,7 @@
 	//
 	
 	$(document).on("click","#save",function(){
+		let pwReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 		let pw = $("#pw").val();
 		let repw = $("#repw").val();
 		
@@ -237,10 +245,10 @@
 			return false;
 		}
 		
-// 		if (!pwReg.test(pw)) {
-// 			alert('비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.');
-// 			return false;
-// 		}
+		if (!pwReg.test(pw)) {
+			alert('비밀번호는 8자 이상이어야 하며, 숫자/대,소문자/특수문자를 모두 포함해야 합니다.');
+			return false;
+		}
 		
 
 		let nameReg = /^.{2,30}$/;
