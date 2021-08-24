@@ -15,65 +15,102 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
 	crossorigin="anonymous"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
 <style>
 * {
 	box-sizing: border-box;
 }
 
-div {
-	border: 1px solid black;
-}
-
 .container {
 	max-width: 600px;
-	margin: auto;
+	padding-top:5px !important;
+	padding-bottom: 30px !important;
 }
 
-.wrapper {
-	max-width: 300px;
-	margin: auto;
+
+
+
+.divider-text {
+    position: relative;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.divider-text span {
+    padding: 7px;
+    font-size: 12px;
+    position: relative;   
+    z-index: 2;
+}
+.divider-text:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    top: 55%;
+    left: 0;
+    z-index: 1;
 }
 
-.logo {
-	text-align: center;
-}
-
-input {
-	width: 100%;
-}
-
-button {
-	width: 49.2%;
+img{
+width: 300px;
+height:85px;
+margin-left:100px
 }
 </style>
 </head>
 <body>
-    <div class="container p-5 shadow bg-white rounded">
-        <form action="${pageContext.request.contextPath}/aMember/loginProc" id="loginForm" method="POST">
-            <div class="wrapper">
-                <div class="row header">
-                    <div class="col-12 logo">LOGO</div>                    
-                </div>
-                <div class="row">
-                    <div class="col-12"><input id="iid" name="emp_id" type="text" placeholder="ID를 입력하세요."></div></div>
-                <div class="row">
-                    <div class="col-12"><input id="ipw" name="pw" type="password" placeholder="비밀번호를 입력하세요."></div></div>
-                <div class="row">
-                    <div class="col-12">
-                        <button type="button" id="login">Log-in</button>
-                        <button type="button" id="signup">Sign-up</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6"><a href="">아이디 찾기</a></div>
-                    <div class="col-6"><a href="">비밀번호 찾기</a></div>
-                </div>
-            </div>
 
-        </form>
+<div class="container p-5 shadow bg-white rounded">
+    	<div><a href="${pageContext.request.contextPath}/"><img src="/resources/images/logoTxt&Pic.png"></a></div>
+
+        <div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center"></h4>
+            <p class="text-center"></p>
+           
+            <p class="divider-text">
+                <span class="bg-light">로그인</span>
+            </p>
+
+
+            <form id="loginForm" action="${pageContext.request.contextPath}/aMember/loginProc">
+            
+            
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                 </div>
+                <input id="iid" name="emp_id" class="form-control" placeholder="ID" type="text">    
+            </div> <!-- form-group// -->
+			
+
+
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+                <input id="ipw" name="pw" class="form-control" placeholder="Password" type="password">
+            </div> <!-- form-group// -->
+
+    <div class="form-group">
+        <button type="button" id="login" class="btn btn-primary btn-block"> LOGIN </button>
+        
+    </div> <!-- form-group// -->    
+     <p style="margin-top:50px" class="text-center">아직 회원이 아니신가요? <a href="${pageContext.request.contextPath}/aMember/signupForm">Sign Up</a> </p>                                                                 
+</form>
+</article>
+</div> <!-- card.// -->
 
     </div>
+
+
+
+
 
     <script>
         $("#login").on("click", function(){
@@ -87,9 +124,7 @@ button {
                 $("#loginForm").submit();
             }
         })
-        $("#signup").on("click", function(){
-            location.href="${pageContext.request.contextPath}/aMember/signupForm";
-        })
+      
     </script>
 	
 </body>

@@ -36,10 +36,6 @@ public class ChatDAO {
 		  return mybatis.selectList("Chat.selectAll", chatnum);
 	  }
 	  
-	  public List<ChatAdminDTO> selectAllCManager(String chatnum){
-		  return mybatis.selectList("Chat.selectAllCManager", chatnum);
-	  }
-	  
 	  public List<ChatAdminDTO> selectAllManager(String chatnum){
 		  return mybatis.selectList("Chat.selectAllManager", chatnum);
 	  }
@@ -54,6 +50,10 @@ public class ChatDAO {
 	 
 	 public List<ChatDTO> selectBusinessList(String store){
 		 return mybatis.selectList("Chat.selectBusinessList", store);
+	 }
+	 
+	 public List<ChatAdminDTO> selectAdminList(String store){
+		 return mybatis.selectList("Chat.selectAdminList", store);
 	 }
 	 
 	 public int deleteChatRoom(String chatnum) {

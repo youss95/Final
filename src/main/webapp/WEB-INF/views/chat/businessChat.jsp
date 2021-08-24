@@ -271,7 +271,7 @@ button:hover {
 	})
 	$(function() {
 
-		let ws = new WebSocket("ws://122.45.84.154:8080/chat");
+		let ws = new WebSocket("ws://localhost/chat");
 		ws.onmessage = function(event) {
 			/* let text = JSON.parse(event.data);
 			let line = $("<div>");
@@ -320,7 +320,7 @@ button:hover {
 </script>
 </head>
 <body>
-<a id="backBtn" href="/store/signup?cpage=1">toBoard</a>
+<a id="backBtn" href="/bMember/myPage">X</a>
 	<div class="container clearfix">
 		<div class="people-list" id="people-list">
 			<div class="toManager">

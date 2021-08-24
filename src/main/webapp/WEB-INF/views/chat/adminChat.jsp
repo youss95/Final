@@ -15,7 +15,7 @@
 }
 
 body {
-	background: #C5DDEB;
+	background: #7389b3;
 	font: 14px/20px "Lato", Arial, sans-serif;
 	padding: 40px 0;
 	color: white;
@@ -37,7 +37,7 @@ body {
 	padding: 20px;
 }
 
-.toManager>a>button {
+.toManager>button {
 	border-radius: 3px;
 	border: none;
 	padding: 13px;
@@ -45,9 +45,8 @@ body {
 	background: #6A6C75;
 	width: 90%;
 	font-size: 14px;
-	margin-bottom:20px;
+	margin-bottom: 20px;
 }
-
 
 ul {
 	padding: 20px;
@@ -248,21 +247,21 @@ button:hover {
 }
 
 .name>a {
-	text-decoration:none;
-	color:white;
+	text-decoration: none;
+	color: white;
 }
 
-.deleteMsg{
-	text-decoration:none;
-	color:white;
+.deleteMsg {
+	text-decoration: none;
+	color: white;
 }
 
-#backBtn{
-	float:right;
-	font-size:50px;
-	text-decoration:none;
-	color:white;
-	margin-right:5%;
+#backBtn {
+	float: right;
+	font-size: 50px;
+	text-decoration: none;
+	color: white;
+	margin-right: 5%;
 }
 </style>
 <script>
@@ -271,7 +270,7 @@ button:hover {
 	})
 	$(function() {
 
-		let ws = new WebSocket("ws://122.45.84.154:8080/chat");
+		let ws = new WebSocket("ws://localhost/chat");
 		ws.onmessage = function(event) {
 			/* let text = JSON.parse(event.data);
 			let line = $("<div>");
@@ -314,36 +313,37 @@ button:hover {
 			$("#message-to-send").val(" ");
 
 		})
-		
-		
+
 	})
 </script>
 </head>
 <body>
-<a id="backBtn" href="/store/signup?cpage=1">toBoard</a>
+	<a id="backBtn" href="/admin/dashForm">X</a>
 	<div class="container clearfix">
 		<div class="people-list" id="people-list">
 			<div class="toManager">
-			<a href = "/chat/bizSendManager?roomid=manager${storeName }"><button type="button" id="sendManager">to Manager</button></a>
+				<button type="button" id="sendManager">Chat List</button>
 			</div>
 			<!-- 채팅 리스트 -->
 			<ul class="list">
-			
-				<c:forEach var="item" items="${businesschatStore}">
+
+				<c:forEach var="item" items="${adminList}">
 					<c:if test="${item.store != null }">
-						<li class="clearfix">
-						<img
-							src="${pageContext.request.contextPath}/resources/images/person.png"
+						<li class="clearfix"><img
+							src="${pageContext.request.contextPath}/resources/images/shop.png"
 							alt="avatar" />
 							<div class="about">
-								<div class="name"> <a href="/chat/clickChat?roomid=${item.chatnum}&&id=${item.id}">${item.id }</a></div>
+								<div class="name">
+									<a href="/chat/makeAdminChat?store=${item.store }">${item.store }</a>
+								</div>
 								<div class="status">
-									<i class="fa fa-circle offline"></i> <a class="deleteMsg" href = "/chat/deleteBusinessChatRoom?chatnum=${item.chatnum }">delete</a>
+									<i class="fa fa-circle offline"></i> <a class="deleteMsg"
+										href="/chat/deleteChatRoom?chatnum=${item.chatnum }">delete</a>
 								</div>
 							</div></li>
 					</c:if>
 					<c:if test="${item.store == null }">
-						<div>아무에게도 문의가 들어오지 않았습니다.</div>
+						<div>문의가 도착하지 않았습니다.</div>
 					</c:if>
 				</c:forEach>
 			</ul>
@@ -352,11 +352,11 @@ button:hover {
 		<div class="chat">
 			<div class="chat-header clearfix">
 				<img
-					src="${pageContext.request.contextPath}/resources/images/person.png"
+					src="${pageContext.request.contextPath}/resources/images/shop.png"
 					alt="avatar" />
 
 				<div class="chat-about">
-					<div class="chat-with">Chat with ${nickname }</div>
+					<div class="chat-with">Chat with ${store }</div>
 					<div class="chat-num-messages">already 1 902 messages</div>
 				</div>
 				<i class="fa fa-star"></i>
@@ -364,9 +364,9 @@ button:hover {
 			<!-- end chat-header -->
 
 			<div class="chat-history">
-			<input type="hidden" id="loginID" value="${loginID }">
+				<input type="hidden" id="loginID" value="${loginID }">
 				<ul id="history-under">
-					<c:forEach var="i" items="${businesschatlist}">
+					<c:forEach var="i" items="${adminChat}">
 						<c:if test="${i.nickname == 'manager'}">
 							<li class="clearfix">
 								<div class="message-data align-right">

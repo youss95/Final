@@ -15,7 +15,7 @@
 }
 
 body {
-	background: #C5DDEB;
+	background: rgb(253, 169, 11);
 	font: 14px/20px "Lato", Arial, sans-serif;
 	padding: 40px 0;
 	color: white;
@@ -37,7 +37,7 @@ body {
 	padding: 20px;
 }
 
-.toManager>a>button {
+.toManager>button {
 	border-radius: 3px;
 	border: none;
 	padding: 13px;
@@ -272,7 +272,7 @@ button:hover {
 	})
 	$(function() {
 
-		let ws = new WebSocket("ws://122.45.84.154:8080/chat");
+		let ws = new WebSocket("ws://localhost/chat");
 		ws.onmessage = function(event) {
 			/* let text = JSON.parse(event.data);
 			let line = $("<div>");
@@ -319,12 +319,12 @@ button:hover {
 </script>
 </head>
 <body>
-<a id="backBtn" href="/store/signup?cpage=1">toBoard</a>
+<a id="backBtn" href="/cMember/mypage">X</a>
 	<div class="container clearfix">
 	
 		<div class="people-list" id="people-list">
 			<div class="toManager">
-			<a href = "/chat/sendManager?roomid=manager${loginID }"><button type="button" id="sendManager">to Manager</button></a>
+			<button type="button" id="sendManager">Chat List</button>
 			</div>
 			<!-- 채팅 리스트 -->
 			<ul class="list">
@@ -379,27 +379,6 @@ button:hover {
 							</li>
 						</c:if>
 						<c:if test="${i.nickname != loginID}">
-							<li>
-								<div class="message-data">
-									<span class="message-data-name">${i.nickname }</span> <span
-										class="message-data-time">${i.write_date }</span>
-								</div>
-								<div class="message my-message">${i.contents }</div>
-							</li>
-						</c:if>
-					</c:forEach>
-					<c:forEach var="i" items="${managerClient}">
-						<c:if test="${i.nickname != 'manager'}">
-							<li class="clearfix">
-								<div class="message-data align-right">
-									<span class="message-data-time">${i.write_date }</span> &nbsp;
-									&nbsp; <span class="message-data-name">${i.nickname }</span> <i
-										class="fa fa-circle me"></i>
-								</div>
-								<div class="message other-message float-right">${i.contents }</div>
-							</li>
-						</c:if>
-						<c:if test="${i.nickname == 'manager'}">
 							<li>
 								<div class="message-data">
 									<span class="message-data-name">${i.nickname }</span> <span
