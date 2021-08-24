@@ -68,7 +68,7 @@ $(function(){
 
 </head>
 
-<body>
+<body style="overflow-x: hidden">
 
   <div class="wrapper ">
      <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" style="height:100%;">
@@ -83,7 +83,7 @@ $(function(){
 
 
       <div class="sidebar-wrapper" style="height:85%; padding-bottom:0px">
-        <div id="profileBox"  style="height:35%;">
+        <div id="profileBox"  style="height:32.5%;">
            <div style="height:10px"></div>
            <div style="text-align: center;">
             <i class="material-icons" style="font-size: 90px;">person_outline</i>
@@ -119,7 +119,7 @@ $(function(){
           </li>
           
           <li class="nav-item" style="height:20%;">
-            <a class="nav-link" href="${pageContext.request.contextPath}/bMember/reservation">
+            <a class="nav-link" href="${pageContext.request.contextPath}/bMember/reservation?res_name=${bizInfo.businessName}">
                <i class="material-icons">content_paste</i>
               <p>Reservation 관리</p>
             </a>
@@ -227,24 +227,6 @@ $(function(){
   
   
   
-              <!-- <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                  <div class="card-header card-header-info card-header-icon">
-                    <div class="card-icon">
-                      <i class="fa fa-twitter"></i>
-                    </div>
-                    <p class="card-category">Followers</p>
-                    <h3 class="card-title">+245</h3>
-                  </div>
-                  <div class="card-footer">
-                    <div class="stats">
-                      <i class="material-icons">update</i> Just Updated 
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-  
   
   
   
@@ -351,7 +333,7 @@ $(function(){
         </div>
         </div>
 
-
+</div>
         
 
 

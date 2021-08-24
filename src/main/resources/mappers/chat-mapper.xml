@@ -17,6 +17,18 @@
 		values(CHAT_CLIENT_SEQ.nextval,#{chatnum},#{nickname},#{store},#{contents},#{store},
 		sysdate)
 	</insert>
+	
+	<insert id="insertManager">
+		insert into CHAT_MANAGER
+		values(CHAT_MANAGER_SEQ.nextval,#{chatnum},#{nickname},null,#{contents},#{nickname},
+		sysdate)
+	</insert>
+	
+	<insert id="insertBizManager">
+		insert into CHAT_MANAGER
+		values(CHAT_MANAGER_SEQ.nextval,#{chatnum},null,#{store},#{contents},#{store},
+		sysdate)
+	</insert>
 
 	<select id="selectAll" resultType="dream.tk.dto.ChatDTO">
 		select seq, chatnum, id,
@@ -32,6 +44,24 @@
 		store, contents, nickname, to_char(write_date, 'HH : MM am')
 		"write_date"
 		from CHAT_CLIENT
+		where chatnum = #{chatnum}
+		order by seq
+	</select>
+	
+	<select id="selectAllCManager" resultType="dream.tk.dto.ChatAdminDTO">
+		select seq, chatnum, id,
+		store, contents, nickname, to_char(write_date, 'HH : MM am')
+		"write_date"
+		from CHAT_MANAGER
+		where chatnum = #{chatnum}
+		order by seq
+	</select>
+	
+	<select id="selectAllManager" resultType="dream.tk.dto.ChatAdminDTO">
+		select seq, chatnum, id,
+		store, contents, nickname, to_char(write_date, 'HH : MM am')
+		"write_date"
+		from CHAT_MANAGER
 		where chatnum = #{chatnum}
 		order by seq
 	</select>

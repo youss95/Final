@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dream.tk.dao.ChatDAO;
+import dream.tk.dto.ChatAdminDTO;
 import dream.tk.dto.ChatDTO;
 
 
@@ -27,8 +28,24 @@ public class ChatService {
 		  return dao.insertBusiness(dto); 
 	}
 	  
+	  public int insertBizManager(ChatAdminDTO dto) throws Exception{ 
+		  return dao.insertBizManager(dto); 
+	}
+	  
+	  public int insertManager(ChatAdminDTO dto) throws Exception{ 
+		  return dao.insertManager(dto); 
+	}
+	  
 	  public List<ChatDTO> selectAll(String chatnum) throws Exception{
 		  return dao.selectAll(chatnum);
+	  }
+	  
+	  public List<ChatAdminDTO> selectAllManager(String chatnum) throws Exception{
+		  return dao.selectAllManager(chatnum);
+	  }
+	  
+	  public List<ChatAdminDTO> selectAllCManager(String chatnum) throws Exception{
+		  return dao.selectAllCManager(chatnum);
 	  }
 	  
 	  public List<ChatDTO> selectBusinessAll(String chatnum) throws Exception{

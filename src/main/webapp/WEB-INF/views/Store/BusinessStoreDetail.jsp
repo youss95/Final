@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -11,160 +11,225 @@
 <title>Insert title here</title>
 <!--틀 리스트-->
 <link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/css/Store_main.css?after">
+	href="${pageContext.request.contextPath}/resources/css/Store_main.css?after">
 <!--슬라이드-->
 <link rel="stylesheet"
-   href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <!--별점-->
 <link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/css/Store_detail.css?after">
+	href="${pageContext.request.contextPath}/resources/css/Store_detail.css?after">
 <link rel='stylesheet'
-   href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
 <link
-   href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
-   rel="stylesheet" id="bootstrap-css">
+	href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/like.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+	integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="stylesheet"
-   href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+	integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/like.js"></script>
 <link rel="stylesheet"
-   href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-   integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-   crossorigin="anonymous" />
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+	crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 
 <style>
 * {
-   margin: 0;
-   padding: 0;
+	margin: 0;
+	padding: 0;
 }
+
 .contain {
-   width: 100%;
-   height: 106px;
-   float: center -webkit-font-smoothing: antialiased;
-   box-sizing: border-box;
+	width: 100%;
+	height: 106px;
+	float: center -webkit-font-smoothing: antialiased;
+	box-sizing: border-box;
 }
+
 .headers {
-   width: 100%;
-   height: 250px;
+	width: 100%;
+	height: 250px;
 }
+
 aside {
-   float: left;
-   width: 65%;
-   height: 700px;
+	float: left;
+	width: 65%;
+	height: 700px;
 }
+
 section {
-   float: left;
-   width: 35%;
-   height: 700px;
+	float: left;
+	width: 35%;
+	height: 700px;
 }
+
 .foot {
-   float: left;
-   width: 65%;
-   height: 300px;
+	float: left;
+	width: 65%;
+	height: 300px;
 }
+
 .footer {
-   width: 35%;
-   height: 300px;
+	width: 35%;
+	height: 300px;
 }
+
 @media ( max-width : 1540px) {
-   #wrap {
-      width: 100%;
-   }
+	#wrap {
+		width: 100%;
+	}
 }
 /* 화면 너비 0 ~ 768px */
 @media ( max-width : 768px) {
-   #wrap {
-      width: 100%;
-   }
+	#wrap {
+		width: 100%;
+	}
 }
 /* 화면 너비 0 ~ 480px */
 @media ( max-width : 480px) {
-   #wrap {
-      width: 100%;
-   }
-   header {
-      height: 300px;
-   }
-   aside {
-      float: none;
-      width: 100%;
-      height: 300px;
-   }
-   section {
-      float: none;
-      width: 100%;
-      height: 300px;
-   }
+	#wrap {
+		width: 100%;
+	}
+	header {
+		height: 300px;
+	}
+	aside {
+		float: none;
+		width: 100%;
+		height: 300px;
+	}
+	section {
+		float: none;
+		width: 100%;
+		height: 300px;
+	}
 }
+
 .form-group {
-   width: 600px;
-   height: 100px;
+	width: 600px;
+	height: 100px;
 }
+
 .form-group>input {
-   width: 800px;
-   height: 100%;
+	width: 800px;
+	height: 100%;
 }
+
 .btn_light {
-  background-color: #3DB2FF;
-  color: #203e60;
-  border: 1px solid #d6e6f2;
+	background-color: #3DB2FF;
+	color: #203e60;
+	border: 1px solid #d6e6f2;
 }
+
 .btn_s {
-  display: inline-block;
-  min-width: 70px;
-  min-height: 32px;
-  padding: 8px 13px;
-  font-size: 13px;
-  text-align: center;
-  outline: none;
-  vertical-align: middle;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.1s ease-out;
+	display: inline-block;
+	min-width: 70px;
+	min-height: 32px;
+	padding: 8px 13px;
+	font-size: 13px;
+	text-align: center;
+	outline: none;
+	vertical-align: middle;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all 0.1s ease-out;
 }
-.afterLikes{
-color:red;
+
+.afterLikes {
+	color: red;
 }
-#heartIcon:hover{
-cursor:pointer
+
+#heartIcon:hover {
+	cursor: pointer
 }
-<!-- 테이블 -->
 
+<!--
+테이블-->#menu {
+	width: 100%;
+}
 
+.scrolltable {
+	table-layout: fixed;
+	border-collapse: collapse;
+	border: 1px solid #888;
+	width: 100%;
+}
 
+.scrolltable thead {
+	display: block;
+	background: #a88;
+	color: #fff;
+}
 
+.scrolltable tbody {
+	display: block;
+	overflow: auto;
+	height: 190px;
+	width: 100%;
+}
 
+/* 행 장식 */
+.scrolltable th, .scrolltable td {
+	padding: 10px;
+	text-align: left;
+	width: 406px;
+	text-align: center;
+	font-size: 1.375em;
+}
+/*
+.scrolltable tbody tr:nth-child(2n+1) {
+    background-color: #f0f0f0;
+}
+*/
+<!--
+와 .. -->.bottom_bottom {
+	position: relative;
+	height: 200px;
+	padding: 10px;
+	border: 1px solid red;
+}
 </style>
 </head>
 <body>
-   <div id="wrap">
-      <br>
-      <div class="contain">
-         <%@include file="../layout/header_main.jsp"%>
-      </div>
-      <div class="headers">
-         <div class="swiper-container mySwiper">
-            <div class="swiper-wrapper">
-               <div class="swiper-slide">Slide 1</div>
-               <div class="swiper-slide">Slide 2</div>
-               <div class="swiper-slide">Slide 3</div>
-               <div class="swiper-slide">Slide 4</div>
-               <div class="swiper-slide">Slide 5</div>
-               <div class="swiper-slide">Slide 6</div>
-            </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
-         </div>
-      </div>
-      <!--슬라이드 Script-->
-      <script>
+	<div id="wrap">
+		<br>
+		<div class="contain">
+			<%@include file="../layout/header_main.jsp"%>
+		</div>
+
+		<div class="headers">
+			<div class="swiper-container mySwiper">
+				<c:choose>
+					<c:when test="${getFlist!=null}">
+						<c:forEach var="item" items="${getFlist}" varStatus="s">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide"><img src="${item.sysName}"></div>
+						</div>
+						</c:forEach>
+							<div class="swiper-button-next"></div>
+							<div class="swiper-button-prev"></div>
+							<div class="swiper-pagination"></div>
+					</c:when>
+					<c:otherwise>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</div>
+		<!--슬라이드 Script-->
+		<script>
       
       
       
@@ -186,124 +251,150 @@ cursor:pointer
       </script>
 
 
-      <!--  -->
-      <aside>
-         <div id='store'>
-            <input type="hidden" id="store" value="${list.businessNameEng }">
-            <span id="likeStar" ><i id="heartIcon" class="fas fa-heart fa-2x"></i>
-               찜하기</span>
-            <h1 style="float: center;">${list.businessNameEng }</h1>
-            <div>
-               <img
-                  src="${pageContext.request.contextPath}/resources/images/view.png">
-               ${list.view_Count} <img
-                  src="${pageContext.request.contextPath}/resources/images/start.png">
-                <img
-                  src="${pageContext.request.contextPath}/resources/images/write.png">
-               
+		<!--  -->
+		<aside>
+			<div id='store'>
+				<input type="hidden" id="store" value="${list.businessNameEng }">
+				<span id="likeStar"><i id="heartIcon"
+					class="fas fa-heart fa-2x"></i> 찜하기</span>
+				<h1 style="float: center;">${list.businessNameEng }</h1>
+				<div>
+					<img
+						src="${pageContext.request.contextPath}/resources/images/view.png">
+					${list.view_Count} <img
+						src="${pageContext.request.contextPath}/resources/images/start.png">
+					<img
+						src="${pageContext.request.contextPath}/resources/images/write.png">
+					${countCmt}
+				</div>
+				<br>
+				<table class='table'>
+					<tr>
+						<th>City</th>
+						<td>${list.businessNameEng}</td>
+					</tr>
+					<tr>
+						<th>Phone</th>
+						<td>${list.businessContact}</td>
+					</tr>
+					<tr>
+						<th>Store</th>
+						<td>${list.address1 }</td>
+					</tr>
+				</table>
+			</div>
+			<div id="menu">
+				<table class="scrolltable">
+					<c:choose>
+						<c:when test="${menuList!=null}">
+							<thead>
+								<tr>
+									<th>menu</th>
+									<th>price</th>
+								</tr>
+							</thead>
+							</tbody>
+							<c:forEach var="item" items="${menuList}" varStatus="s">
+								<tr>
+									<td>${item.menu_eng}</td>
+									<td>${item.price}</td>
+								</tr>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
 
-            </div>
-            <br>
-            <table class='table'>
-               <tr>
-                  <th>시군명</th>
-                  <td>${list.businessNameEng}</td>
-               </tr>
-               <tr>
-                  <th>맛집 전화번호</th>
-                  <td>${list.businessContact}</td>
-               </tr>
-               <tr>
-                  <th>가게 주소</th>
-                  <td>${list.address1 }</td>
-               </tr>
-            </table>
+						</c:otherwise>
+					</c:choose>
+					</tbody>
+				</table>
+			</div>
 
-			
-			
-			
-            <c:choose>
-               <c:when test="${loginID != null}">
-                  <div id="bottom" style="top: 300px; left: 0">
-                     <a href="/res/calendar?userId=${loginID}&biz_seq=${list.biz_seq}&res_name=${list.businessName}"   class="btn_s btn_light" style="left: 0;">예약하기</a>
-                  </div>
-                  
-                  <div id="bottom_bottom"
-                     style="padding: 20px; margin: 5px; float: right; height: 100px; position: relative; bottom: -170px;">
 
-                     <script type="text/javascript"
-                        src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
-                     <script type="text/javascript">
+			<c:choose>
+				<c:when test="${loginID != null}">
+					<div id="bottom"
+						style="padding: 20px; margin: 5px; float: left; height: 100px; position: relative;">
+						<a
+							href="/res/calendar?userId=${loginID}&biz_seq=${list.biz_seq}&res_name=${list.businessName}"
+							class="btn_s btn_light" style="left: 0;">예약하기</a>
+					</div>
+
+					<div id="bottom_bottom"
+						style="padding: 20px; margin: 5px; float: right; height: 100px; position: relative;">
+
+						<script type="text/javascript"
+							src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
+						<script type="text/javascript">
                         new ShareNaver.makeButton({
                            "type" : "f"
                         });
                      </script>
-                     <!-- 될까? -->
-                     <!--트위터 공유 하기 버튼-->
-                     <a href="#"
-                        onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20' +encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;"
-                        target="_blank" alt="Share on Twitter"><img
-                        src="${pageContext.request.contextPath}/resources/images/twiter.png"></a>
-                     <!----------페이스북 공유 하기 -->
-                     <a href="#"
-                        onclick="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u=' +encodeURIComponent(document.URL)+'&t='+encodeURIComponent(document.title), 'facebooksharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;"
-                        target="_blank" alt="Share on Facebook"><img
-                        src="${pageContext.request.contextPath}/resources/images/fackebook.png"></a>
-                     <!-----------카카오 페이지------------------->
-                     <a href="#"
-                        onclick="javascript:window.open('https://story.kakao.com/s/share?url=' +encodeURIComponent(document.URL), 'kakaostorysharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes, height=400,width=600');return false;"
-                        target="_blank" alt="Share on kakaostory"><img
-                        src="${pageContext.request.contextPath}/resources/images/kakao.png"></a>
-                     <!---------구글 플러스----->
-                     <a href="#"
-                        onclick="javascript:window.open('https://plus.google.com/share?url=' +encodeURIComponent(document.URL), 'googleplussharedialog','menubar=no,toolbar=no,resizable=yes, scrollbars=yes,height=350,width=600');return false;"
-                        target="_blank" alt="Share on Google+"><img
-                        src="${pageContext.request.contextPath}/resources/images/google.jpg"></a>
-                  </div>
+						<!-- 될까? -->
+						<!--트위터 공유 하기 버튼-->
+						<a href="#"
+							onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20' +encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;"
+							target="_blank" alt="Share on Twitter"><img
+							src="${pageContext.request.contextPath}/resources/images/twiter.png"></a>
+						<!----------페이스북 공유 하기 -->
+						<a href="#"
+							onclick="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u=' +encodeURIComponent(document.URL)+'&t='+encodeURIComponent(document.title), 'facebooksharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;"
+							target="_blank" alt="Share on Facebook"><img
+							src="${pageContext.request.contextPath}/resources/images/fackebook.png"></a>
+						<!-----------카카오 페이지------------------->
+						<a href="#"
+							onclick="javascript:window.open('https://story.kakao.com/s/share?url=' +encodeURIComponent(document.URL), 'kakaostorysharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes, height=400,width=600');return false;"
+							target="_blank" alt="Share on kakaostory"><img
+							src="${pageContext.request.contextPath}/resources/images/kakao.png"></a>
+						<!---------구글 플러스----->
+						<a href="#"
+							onclick="javascript:window.open('https://plus.google.com/share?url=' +encodeURIComponent(document.URL), 'googleplussharedialog','menubar=no,toolbar=no,resizable=yes, scrollbars=yes,height=350,width=600');return false;"
+							target="_blank" alt="Share on Google+"><img
+							src="${pageContext.request.contextPath}/resources/images/google.jpg"></a>
+					</div>
 
-               </c:when>
-               <c:otherwise>
-                  <div id="bottom" style="top: 300px; left: 0"></div>
+				</c:when>
+				<c:otherwise>
+					<div id="bottom" style="top: 300px; left: 0"></div>
 
 
-                  <div id="bottom_bottom"
-                     style="padding: 20px; margin: 5px; float: right; height: 100px; position: relative; bottom: -234px;">
+					<div id="bottom_bottom"
+						style="padding: 20px; margin: 5px; float: right; height: 100px; position: relative;">
 
-                     <script type="text/javascript"
-                        src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
-                     <script type="text/javascript">
+						<script type="text/javascript"
+							src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
+						<script type="text/javascript">
                         new ShareNaver.makeButton({
                            "type" : "f"
                         });
                      </script>
-                     <!--트위터 공유 하기 버튼-->
-                     <a href="#"
-                        onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20' +encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;"
-                        target="_blank" alt="Share on Twitter"><img
-                        src="${pageContext.request.contextPath}/resources/images/twiter.png"></a>
-                     <!----------페이스북 공유 하기 -->
-                     <a href="#"
-                        onclick="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u=' +encodeURIComponent(document.URL)+'&t='+encodeURIComponent(document.title), 'facebooksharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;"
-                        target="_blank" alt="Share on Facebook"><img
-                        src="${pageContext.request.contextPath}/resources/images/fackebook.png"></a>
-                     <!-----------카카오 페이지------------------->
-                     <a href="#"
-                        onclick="javascript:window.open('https://story.kakao.com/s/share?url=' +encodeURIComponent(document.URL), 'kakaostorysharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes, height=400,width=600');return false;"
-                        target="_blank" alt="Share on kakaostory"><img
-                        src="${pageContext.request.contextPath}/resources/images/kakao.png"></a>
-                     <!---------구글 플러스----->
-                     <a href="#"
-                        onclick="javascript:window.open('https://plus.google.com/share?url=' +encodeURIComponent(document.URL), 'googleplussharedialog','menubar=no,toolbar=no,resizable=yes, scrollbars=yes,height=350,width=600');return false;"
-                        target="_blank" alt="Share on Google+"><img
-                        src="${pageContext.request.contextPath}/resources/images/google.jpg"></a>
-                  </div>
-               </c:otherwise>
-            </c:choose>
-
-         </div>
+						<!--트위터 공유 하기 버튼-->
+						<a href="#"
+							onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20' +encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;"
+							target="_blank" alt="Share on Twitter"><img
+							src="${pageContext.request.contextPath}/resources/images/twiter.png"></a>
+						<!----------페이스북 공유 하기 -->
+						<a href="#"
+							onclick="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u=' +encodeURIComponent(document.URL)+'&t='+encodeURIComponent(document.title), 'facebooksharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;"
+							target="_blank" alt="Share on Facebook"><img
+							src="${pageContext.request.contextPath}/resources/images/fackebook.png"></a>
+						<!-----------카카오 페이지------------------->
+						<a href="#"
+							onclick="javascript:window.open('https://story.kakao.com/s/share?url=' +encodeURIComponent(document.URL), 'kakaostorysharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes, height=400,width=600');return false;"
+							target="_blank" alt="Share on kakaostory"><img
+							src="${pageContext.request.contextPath}/resources/images/kakao.png"></a>
+						<!---------구글 플러스----->
+						<a href="#"
+							onclick="javascript:window.open('https://plus.google.com/share?url=' +encodeURIComponent(document.URL), 'googleplussharedialog','menubar=no,toolbar=no,resizable=yes, scrollbars=yes,height=350,width=600');return false;"
+							target="_blank" alt="Share on Google+"><img
+							src="${pageContext.request.contextPath}/resources/images/google.jpg"></a>
+					</div>
+				</c:otherwise>
+			</c:choose>
 
 
-         <script type="text/javascript">
+
+
+			<script type="text/javascript">
             var xid = $('#x').val();
             var yid = $('#y').val();
             var businessName = $('#businessName').val();
@@ -311,13 +402,13 @@ cursor:pointer
             console.log(yid);
             console.log(store);
          </script>
-      </aside>
-      <section>
-         <div id="staticMap" style="width: 100%; height: 700px;"></div>
+		</aside>
+		<section>
+			<div id="staticMap" style="width: 100%; height: 700px;"></div>
 
-         <script type="text/javascript"
-            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2fa91fa0473f76d7311f40d80a8f1521&libraries=services"></script>
-         <script>
+			<script type="text/javascript"
+				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2fa91fa0473f76d7311f40d80a8f1521&libraries=services"></script>
+			<script>
             // 이미지 지도에 표시할 마커입니다
             // 이미지 지도에 표시할 마커를 아래와 같이 배열로 넣어주면 여러개의 마커를 표시할 수 있습니다 
             var markers = [ {
@@ -336,9 +427,9 @@ cursor:pointer
             var staticMap = new kakao.maps.StaticMap(staticMapContainer,
                   staticMapOption);
          </script>
-         <br>
-         <!-- 1번쨰 -->
-         <script>
+			<br>
+			<!-- 1번쨰 -->
+			<script>
             function random_imglink() {
                var myimages = new Array()
                /* 각각의 이미지 경로 지정 */
@@ -358,8 +449,8 @@ cursor:pointer
             }
             random_imglink();
          </script>
-         <br> <br> <br>
-         <script>
+			<br> <br> <br>
+			<script>
             function random_imglink() {
                var myimages = new Array()
                /* 각각의 이미지 경로 지정 */
@@ -379,71 +470,69 @@ cursor:pointer
             }
             random_imglink();
          </script>
-         <br> <br>
-      </section>
-      <div class="foot">
-         <!-- 지워지면 망 -->
-         <!--  댓글  -->
+			<br> <br>
+		</section>
+		<div class="foot">
+			<!-- 지워지면 망 -->
+			<!--  댓글  -->
 
-         <div class="containers">
-            <div class="well">
-               <c:choose>
-                  <c:when test="${loginID != null}">
-                     <form role="form" name="commentInsertForm">
-                        <h4>
-                           <i class="fa fa-paper-plane-o"></i> Leave a Comment:
-                           <div class="make_star">
-      <div class="rating" data-rate="3">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-      </div>
-    </div>
-                        </h4>
-                        <input type="hidden" id="writer" name="writer"
-                           value="${loginID}"> <input type="hidden" id="bno"
-                           name="bno" value="${list.biz_seq }" />
-                        <div class="form-group">
-                           <input type="text" class="form-control" id="content"
-                              name="content" placeholder="내용을 입력하세요.">
-                        </div>
-                        <button type="button" value="" class="btn btn-primary"
-                           name="commentInsertBtn" style="left: 0;">
-                           <i class="fa fa-reply"></i>Submit
-                        </button>
-                     </form>
-                  </c:when>
+			<div class="containers">
+				<div class="well">
+					<c:choose>
+						<c:when test="${loginID != null}">
+							<form role="form" name="commentInsertForm">
+								<h4>
+									<i class="fa fa-paper-plane-o"></i> Leave a Comment:
+									<div class="make_star">
+										<div class="rating" data-rate="3">
+											<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+												class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+												class="fas fa-star"></i>
+										</div>
+									</div>
+								</h4>
+								<input type="hidden" id="writer" name="writer"
+									value="${loginID}"> <input type="hidden" id="bno"
+									name="bno" value="${list.biz_seq }" />
+								<div class="form-group">
+									<input type="text" class="form-control" id="content"
+										name="content" placeholder="내용을 입력하세요.">
+								</div>
+								<button type="button" value="" class="btn btn-primary"
+									name="commentInsertBtn" style="left: 0;">
+									<i class="fa fa-reply"></i>Submit
+								</button>
+							</form>
+						</c:when>
 
-                  <c:otherwise>
-                     <h4>
-                        <i class="fa fa-paper-plane-o"></i> Leave a Comment:
-                     </h4>
-                     <form role="form" name="commentInsertForm">
-                        <input type="hidden" id="bno" name="bno"
-                           value="${list.biz_seq }" />
-                        <div class="form-group">
-                           <input type="text" class="form-control" id="content"
-                              name="content" placeholder="리뷰를 작성하고 싶으시면, 로그인을 하세요" disabled>
-                        </div>
-                        <button type="button"
-                           onclick="location.href='${pageContext.request.contextPath}/member/whichMember'"
-                           class="btn btn-primary" name="commentInsertBtn"
-                           style="left: 0;">로그인하기</button>
-                     </form>
-                  </c:otherwise>
-               </c:choose>
-            </div>
-         </div>
+						<c:otherwise>
+							<h4>
+								<i class="fa fa-paper-plane-o"></i> Leave a Comment:
+							</h4>
+							<form role="form" name="commentInsertForm">
+								<input type="hidden" id="bno" name="bno"
+									value="${list.biz_seq }" />
+								<div class="form-group">
+									<input type="text" class="form-control" id="content"
+										name="content" placeholder="리뷰를 작성하고 싶으시면, 로그인을 하세요" disabled>
+								</div>
+								<button type="button"
+									onclick="location.href='${pageContext.request.contextPath}/member/whichMember'"
+									class="btn btn-primary" name="commentInsertBtn"
+									style="left: 0;">로그인하기</button>
+							</form>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</div>
 
-         <div class="containers">
-            <div class="commentList"></div>
-         </div>
-      </div>
+			<div class="containers">
+				<div class="commentList"></div>
+			</div>
+		</div>
 
-      <!-- 이거 지워지면 안된다 -->
-      <script>
+		<!-- 이거 지워지면 안된다 -->
+		<script>
       
        $(function () {
           /* 등록후 리스트 */
@@ -592,49 +681,111 @@ cursor:pointer
          });
          
        });
+       
       </script>
 
 
 
 
 
-      <!-- ---------------------------------------------- -->
+		<!-- ---------------------------------------------- -->
 
-      <div class="footer">
-         <a href="/chat/makeChat?store=${list.businessName }">
-            <div class="chat" onclick="this.classList.toggle('active')">
-               <div class="background"></div>
-               <svg class="chat-bubble" width="100" height="100"
-                  viewBox="0 0 100 100">
+		<div class="footer">
+			<a href="/chat/makeChat?store=${list.businessName }">
+				<div class="chat" onclick="this.classList.toggle('active')">
+					<div class="background"></div>
+					<svg class="chat-bubble" width="100" height="100"
+						viewBox="0 0 100 100">
                         <g class="bubble">
                             <path class="line line1"
-                     d="M 30.7873,85.113394 30.7873,46.556405 C 30.7873,41.101961
+							d="M 30.7873,85.113394 30.7873,46.556405 C 30.7873,41.101961
                     36.826342,35.342 40.898074,35.342 H 59.113981 C 63.73287,35.342
                     69.29995,40.103201 69.29995,46.784744" />
                             <path class="line line2"
-                     d="M 13.461999,65.039335 H 58.028684 C
+							d="M 13.461999,65.039335 H 58.028684 C
                       63.483128,65.039335
                       69.243089,59.000293 69.243089,54.928561 V 45.605853 C
                       69.243089,40.986964 65.02087,35.419884 58.339327,35.419884" />
                         </g>
                         <circle class="circle circle1" r="1.9" cy="50.7"
-                     cx="42.5" />
+							cx="42.5" />
                         <circle class="circle circle2" cx="49.9"
-                     cy="50.7" r="1.9" />
+							cy="50.7" r="1.9" />
                         <circle class="circle circle3" r="1.9" cy="50.7"
-                     cx="57.3" />
+							cx="57.3" />
                     </svg>
-            </div>
-         </a>
-         <script>
-         
-         
+				</div>
+			</a>
+			<script>
+			$(function(){
+				
+		
+      $("#likeStar").click(function(){
+    	  
+   
+        	 let data={userId:'${loginID}',biz_seq:${list.biz_seq}}
+        	 $.ajax({
+        		 url:"/like/statusReload",
+        		 data:JSON.stringify(data),
+        		 type:"POST",
+        		 contentType:"application/json;charset=utf-8"
+        	 }).done(function(resp){
+        		 console.log("sta:" +resp)
+        		 if(resp === 'Y'){
+        			 $("#heartIcon").css("color","red")
+        	            //취소
+        	              
+        	              let data = {
+        	                    userId:'${loginID}',
+        	                  businessName:'${list.businessName}',
+        	                  biz_seq:${list.biz_seq}
+        	                           }
+        	              $.ajax({
+        	                url:"/like/updateLike",
+        	                data:JSON.stringify(data),
+        	                type:"POST",
+        	                contentType:"application/json;charset=utf-8"
+        	              }).done(function(resp){
+        	                console.log(resp)
+        	              $("#heartIcon").css("color","black")
+        	             
+        	              })
+        	              
+        	           
+        		 }else if(resp === 'N'){
+        			  $("#heartIcon").css("color","black")
+                   
+                     let data = {
+                           userId:'${loginID}',
+                         businessName:'${list.businessName}',
+                         biz_seq:${list.biz_seq}
+                                  }
+                     $.ajax({
+                       url:"/like/updateLikeN",
+                       data:JSON.stringify(data),
+                       type:"POST",
+                       contentType:"application/json;charset=utf-8"
+                     }).done(function(resp){
+                       console.log(resp)
+                     $("#heartIcon").css("color","red")
+                   
+                     })
+                     
+                  
+        		 }
+        	 })
+      })
+			})
+			
+         $(function(){
+        	 
+        	
          
             <c:choose>
             <c:when test="${likeStatus == 'Y' }">
             $("#heartIcon").css("color","red")
             //취소
-               $("#likeStar").click(function(){
+             /*   $("#likeStar").click(function(){
               let data = {
                     userId:'${loginID}',
                   businessName:'${list.businessName}',
@@ -648,33 +799,55 @@ cursor:pointer
               }).done(function(resp){
                 console.log(resp)
               $("#heartIcon").css("color","black")
+              statusReload()
               })
               
-            })
+            }) */
             
                </c:when>
-               <c:otherwise>
+            <c:when test="${likeStatus == 'N' }">
                $("#heartIcon").css("color","black")
-               $("#likeStar").click(function(){
+            /*    $("#likeStar").click(function(){
               let data = {
                     userId:'${loginID}',
                   businessName:'${list.businessName}',
                   biz_seq:${list.biz_seq}
                            }
               $.ajax({
-                url:"/like/insertLike",
+                url:"/like/updateLikeN",
                 data:JSON.stringify(data),
                 type:"POST",
                 contentType:"application/json;charset=utf-8"
               }).done(function(resp){
                 console.log(resp)
               $("#heartIcon").css("color","red")
+              statusReload()
               })
               
-            })
-         </c:otherwise>
+            }) */
+        </c:when>
+               <c:otherwise>
+               $("#likeStar").click(function(){
+                   let data = {
+                         userId:'${loginID}',
+                       businessName:'${list.businessName}',
+                       biz_seq:${list.biz_seq}
+                                }
+                   $.ajax({
+                     url:"/like/insertLike",
+                     data:JSON.stringify(data),
+                     type:"POST",
+                     contentType:"application/json;charset=utf-8"
+                   }).done(function(resp){
+                     console.log(resp)
+                   $("#heartIcon").css("color","red")
+                  
+                   })
+                   
+                 })
+               </c:otherwise>
             </c:choose>
-            
+         })
           
             
             $(window).scroll(function() {
@@ -689,7 +862,7 @@ cursor:pointer
                }
             });
          </script>
-         <script>
+			<script>
          //socket alarm
          $(function(){
             $.ajax({
@@ -724,6 +897,6 @@ cursor:pointer
             })
          })
          </script>
-      </div>
-   </div>
-<%@include file="../layout/alarm.jsp" %>
+		</div>
+	</div>
+	<%@include file="../layout/alarm.jsp"%>

@@ -94,17 +94,18 @@ $(function(){
 	
 	
 	$("#frm").on("submit",function() {
-		let idReg = /^[a-z]+[a-z0-9]{5,19}$/g;
+		let idReg = /^[a-z]+[a-z0-9]{3,19}$/g;
 		let id = $("#id").val();
 		
 		
 		
 		if (!idReg.test(id)) {
-			alert("아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.");
+			alert("아이디는 영문자로 시작하는 4~20자 영문자 또는 숫자이어야 합니다.");
 			return false;
 		}
 		
-// 		let pwReg = /^[A-Za-z0-9#?!@$%^&*-]{8,}$/;
+		//let pwReg = /^[A-Za-z0-9#?!@$%^&*-]{8,}$/;
+		let pwReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 		let pw = $("#pw").val();
 		let repw = $("#repw").val();
 		
@@ -113,10 +114,10 @@ $(function(){
 			return false;
 		}
 		
-// 		if (!pwReg.test(pw)) {
-// 			alert('비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.');
-// 			return false;
-// 		}
+		if (!pwReg.test(pw)) {
+			alert('비밀번호는 8자 이상이어야 하며, 숫자/대,소문자/특수문자를 모두 포함해야 합니다.');
+			return false;
+		}
 		
 
 		let nameReg = /^.{2,30}$/;
@@ -295,90 +296,6 @@ $(function(){
             </div> <!-- form-group// -->
 
 
-            
-
-
-
-<!-- 사업자 정보 입력 칸 -->
-<!-- <div class="card bg-light"> -->
-<!-- <article class="card-body mx-auto" style="max-width: 400px;"> -->
-<!-- 	<h4 class="card-title mt-3 text-center">Business Info</h4> -->
-<!-- 	<p> -->
-<!-- 	</p> -->
-<!-- 	<p class="divider-text"> -->
-<!--     </p> -->
-
-<!--     <div class="form-group input-group"> -->
-<!--     	<div class="input-group-prepend"> -->
-<!-- 		    <span class="input-group-text"> <i class="fa fa-building"></i> </span> -->
-<!-- 		</div> -->
-<!-- 		<select class="form-control" name="type"> -->
-<!-- 			<option selected="selected">Select Business type</option> -->
-<!-- 			<option value="KoreanFood" >KoreanFood</option> -->
-<!-- 			<option value="ChineseFood">ChineseFood</option> -->
-<!-- 			<option value="JapaneseFood">JapaneseFood</option> -->
-<!-- 			<option value="WesternFood">WesternFood</option> -->
-<!-- 			<option value="WorldFood">WorldFood</option> -->
-<!-- 			<option value="Buffet">Buffet</option> -->
-<!-- 			<option value="Cafe">Cafe</option> -->
-<!-- 			<option value="Bar">Bar</option> -->
-<!-- 		</select> -->
-<!-- 	</div> form-group end.// -->
-	
-
-<!--     <div class="form-group input-group"> -->
-<!-- 		<div class="input-group-prepend"> -->
-<!-- 		    <span class="input-group-text"> <i class="fa fa-building"></i> </span> -->
-<!-- 		 </div> -->
-<!--         <input name="regNum" id="regNum" class="form-control" placeholder="사업자등록번호" type="text"> -->
-<!--     </div> form-group// -->
-
-
-<!-- 	<div class="form-group input-group"> -->
-<!-- 		<div class="input-group-prepend"> -->
-<!-- 		    <span class="input-group-text"> <i class="fa fa-building"></i> </span> -->
-<!-- 		 </div> -->
-<!--         <input name="businessName" class="form-control" placeholder="업체명" type="text"> -->
-<!--     </div> form-group// -->
-<!--     <div class="form-group input-group"> -->
-<!-- 		<div class="input-group-prepend"> -->
-<!-- 		    <span class="input-group-text"> <i class="fa fa-building"></i> </span> -->
-<!-- 		 </div> -->
-<!--         <input name="businessNameEng" class="form-control" placeholder="영문 업체명" type="text"> -->
-<!--     </div> form-group// -->
-
-<!--     <div class="form-group input-group"> -->
-<!--                 <div class="input-group-prepend"> -->
-<!--                     <span class="input-group-text"> <i class="fa fa-phone"></i> </span> -->
-<!--                 </div> -->
-<!--                 <select class="custom-select" style="max-width: 70px;" name="bContact1"> -->
-<!--                     <option value="02" selected="selected" >02</option> -->
-<!--                     <option value="032" >032</option> -->
-<!--                     <option value="010" >010</option> -->
-<!--                     <option value="011">011</option> -->
-<!--                     <option value="019">019</option> -->
-<!--                 </select> -->
-<!--                 <input name="bContact2" class="form-control" placeholder="number" type="text"> -->
-<!--                 <input name="bContact3" class="form-control" placeholder="number" type="text"> -->
-<!--             </div> form-group//  -->
-
-<!--     <div class="form-group input-group"> -->
-<!-- 		<div class="input-group-prepend"> -->
-<!-- 		    <span class="input-group-text"> <i class="fa fa-building"></i> </span> -->
-<!-- 		 </div> -->
-<!--         <input name="address1" id="address1" class="form-control" placeholder="업체 주소" type="text"> -->
-<!--         <button id="search" type="button" class="btn btn-primary">찾기</button> -->
-<!--     </div> form-group// -->
-<!--     <div class="form-group input-group"> -->
-<!-- 		<div class="input-group-prepend"> -->
-<!-- 		    <span class="input-group-text"> <i class="fa fa-building"></i> </span> -->
-<!-- 		 </div> -->
-<!--         <input name="address2" class="form-control" placeholder="세부 주소" type="text" style="width:50%"> -->
-<!--         <input name="postcode" id="postcode" class="form-control" placeholder="우편번호" type="text" style="width:25%"> -->
-<!--     </div> form-group// -->
-<!--      <input name="address1Kor" id="address1Kor" class="form-control" placeholder="한글주소" type="hidden" > -->
-<!-- </article> -->
-<!-- </div> -->
 
 
 
@@ -407,22 +324,6 @@ $(function(){
 
 
 
-<!-- <script> -->
-<!--  document.getElementById("search").onclick = function () { -->
-<!--  			new daum.Postcode({ -->
-<!--  				oncomplete: function (data) { -->
-<!--  					let roadAddr = data.roadAddress; // 도로명 주소 변수 -->
-<!--  					let engAddr = data.roadAddressEnglish; //영문 도로명 주소 변수 -->
-
-<!--                       // 우편번호와  주소 정보를 해당 필드에 넣는다. -->
-<!--                      document.getElementById("postcode").value = data.zonecode; -->
-<!--                      document.getElementById("address1").value = engAddr;    -->
-<!--                      document.getElementById("address1Kor").value = roadAddr;    -->
-<!--  				} -->
-<!--  			}).open(); -->
-<!--  		}; -->
-
-<!-- </script> -->
 
 
 </body>

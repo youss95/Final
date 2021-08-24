@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import dream.tk.dto.ChatAdminDTO;
 import dream.tk.dto.ChatDTO;
 import dream.tk.service.ChatService;
 
@@ -32,6 +33,7 @@ public class ChatController {
 		
 		List<ChatDTO> list = service.selectAll(roomid); 
 		List<ChatDTO> list2 = service.selectList(nickname);
+		List<ChatAdminDTO> list3 = service.selectAllCManager(roomid);
 		
 		System.out.println("ChatController 안에서 출력한 채팅방 리스트"+list);
 		System.out.println("ChatController 안에서 출력한 식당 리스트"+list2);
@@ -78,9 +80,11 @@ public class ChatController {
 		
 		List<ChatDTO> list = service.selectBusinessAll(roomid); 
 		List<ChatDTO> list2 = service.selectBusinessList(storeName);
+		List<ChatAdminDTO> list3 = service.selectAllManager(roomid);
 		
 		model.addAttribute("businesschatlist", list); // 해당 채팅 방
 		model.addAttribute("businesschatStore",list2); // 채팅 리스트
+		model.addAttribute("managerBiz", list3);//매니저랑 채팅 방
 		return "chat/businessChat";
 	}
 	
@@ -88,6 +92,28 @@ public class ChatController {
 	public String deleteChatRoom(String chatnum) throws Exception{
 		service.deleteChatRoom(chatnum);
 		return "redirect:toChat";
+	}
+	
+	@RequestMapping("deleteBusinessChatRoom")
+	public String deleteBusinessChatRoom(String chatnum) throws Exception{
+		service.deleteChatRoom(chatnum);
+		return "redirect:businessChat";
+	}
+	
+	@RequestMapping("sendManager")
+	public String sendManager(String roomid) throws Exception{
+		session.setAttribute("roomid", roomid);
+		session.setAttribute("manager", "manager");
+		session.setAttribute("nickname", "manager");
+		return "redirect:toChat";
+	}
+	
+	@RequestMapping("bizSendManager")
+	public String bizSendManager(String roomid) throws Exception{
+		session.setAttribute("roomid", roomid);
+		session.setAttribute("manager", "manager");
+		session.setAttribute("nickname", "manager");
+		return "redirect:businessChat";
 	}
 	
 	@ExceptionHandler

@@ -49,7 +49,7 @@
 
 
       <div class="sidebar-wrapper" style="height:85%; padding-bottom:0px">
-        <div id="profileBox"  style="height:35%;">
+        <div id="profileBox"  style="height:33%;">
            <div style="height:10px"></div>
            <div style="text-align: center;">
             <i class="material-icons" style="font-size: 90px;">person_outline</i>
@@ -170,7 +170,7 @@
                  <div class="col-lg-12">
 <!--                       예약 관련 2	    -->
 
-dd
+
                 </div>
               
             </div>

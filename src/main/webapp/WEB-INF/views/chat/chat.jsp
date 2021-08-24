@@ -33,24 +33,21 @@ body {
 	float: left;
 }
 
-.search {
+.toManager {
 	padding: 20px;
 }
 
-input {
+.toManager>a>button {
 	border-radius: 3px;
 	border: none;
-	padding: 14px;
+	padding: 13px;
 	color: white;
 	background: #6A6C75;
 	width: 90%;
 	font-size: 14px;
+	margin-bottom:20px;
 }
 
-.fa-search {
-	position: relative;
-	left: -25px;
-}
 
 ul {
 	padding: 20px;
@@ -260,6 +257,14 @@ button:hover {
 	color:white;
 }
 
+#backBtn{
+	float:right;
+	font-size:50px;
+	text-decoration:none;
+	color:white;
+	margin-right:5%;
+}
+
 </style>
 <script>
 	$(document).ready(function() {
@@ -314,10 +319,12 @@ button:hover {
 </script>
 </head>
 <body>
+<a id="backBtn" href="/store/signup?cpage=1">toBoard</a>
 	<div class="container clearfix">
+	
 		<div class="people-list" id="people-list">
-			<div class="search">
-				<input type="text" placeholder="search" /> <i class="fa fa-search"></i>
+			<div class="toManager">
+			<a href = "/chat/sendManager?roomid=manager${loginID }"><button type="button" id="sendManager">to Manager</button></a>
 			</div>
 			<!-- 채팅 리스트 -->
 			<ul class="list">
@@ -359,27 +366,7 @@ button:hover {
 			<div class="chat-history">
 			<input type="hidden" id="loginID" value="${loginID }">
 				<ul id="history-under">
-					<li class="clearfix">
-						<div class="message-data align-right">
-							<span class="message-data-time">10:10 AM, Today</span> &nbsp;
-							&nbsp; <span class="message-data-name">Olia</span> <i
-								class="fa fa-circle me"></i>
-
-						</div>
-						<div class="message other-message float-right">Hi Vincent,
-							how are you? How is the project coming along?</div>
-					</li>
-
-					<li>
-						<div class="message-data">
-							<span class="message-data-name"><i
-								class="fa fa-circle online"></i> Vincent</span> <span
-								class="message-data-time">10:12 AM, Today</span>
-						</div>
-						<div class="message my-message">Are we meeting today?
-							Project has been already finished and I have results to show you.
-						</div>
-					</li>
+					
 					<c:forEach var="i" items="${chatlist}">
 						<c:if test="${i.nickname == loginID}">
 							<li class="clearfix">

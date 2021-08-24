@@ -24,7 +24,8 @@
 
 	<!-- 상호명 불러오기 -->
 	<select id="getInfo" resultType="dream.tk.dto.BusinessDTO">
-		select * from business where seq=#{value}
+		select * from business where
+		seq=#{value}
 	</select>
 
 	<!-- 총 게시글 갯수 출력 -->
@@ -62,7 +63,8 @@
 		SELECT
 		BusinessName,
 		address1,
-		biz_seq
+		biz_seq,
+		address1kor
 		FROM
 		business
 		WHERE
