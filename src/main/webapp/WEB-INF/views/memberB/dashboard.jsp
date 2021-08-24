@@ -68,7 +68,7 @@ $(function(){
 
 </head>
 
-<body>
+<body style="overflow-x: hidden">
 
   <div class="wrapper ">
      <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" style="height:100%;">
@@ -227,24 +227,6 @@ $(function(){
   
   
   
-              <!-- <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                  <div class="card-header card-header-info card-header-icon">
-                    <div class="card-icon">
-                      <i class="fa fa-twitter"></i>
-                    </div>
-                    <p class="card-category">Followers</p>
-                    <h3 class="card-title">+245</h3>
-                  </div>
-                  <div class="card-footer">
-                    <div class="stats">
-                      <i class="material-icons">update</i> Just Updated 
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-  
   
   
   
@@ -351,7 +333,7 @@ $(function(){
         </div>
         </div>
 
-
+</div>
         
 
 
