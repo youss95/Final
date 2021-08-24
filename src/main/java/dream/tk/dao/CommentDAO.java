@@ -38,7 +38,7 @@ public class CommentDAO {
 	 
 	    // 댓글 삭제
 	    public int commentDelete(int cno) throws Exception{
-	    	return mybatis.update("Comment.commentDelete", cno);
+	    	return mybatis.delete("Comment.commentDelete", cno);
 	    }
 	    
 	    // 댓글 개수
