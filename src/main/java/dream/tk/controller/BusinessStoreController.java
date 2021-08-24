@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import dream.tk.config.PagingVO;
 import dream.tk.dto.BusinessDTO;
+import dream.tk.dto.BusinessFileDTO;
 import dream.tk.dto.LikeStatusDTO;
 import dream.tk.dto.TranslateDTO;
+import dream.tk.service.BusinessFileService;
 import dream.tk.service.LikesService;
 import dream.tk.service.StoreBusinessService;
 import dream.tk.service.TranslateService;
@@ -40,7 +42,10 @@ public class BusinessStoreController {
 	
 	@Autowired
 	private TranslateService serviceT;
-
+	
+	@Autowired
+	private BusinessFileService serviceF;
+	
 	
 	
 	
@@ -82,7 +87,11 @@ public class BusinessStoreController {
 
 	      List<TranslateDTO> menuList = serviceT.select(biz_seq);
 	      m.addAttribute("menuList", menuList);
-
+	      
+	      List<BusinessFileDTO> getFlist =  serviceF.getFlist(userId);
+	      m.addAttribute("getFlist", getFlist);
+	      
+	      
 	      //m.addAttribute("countCmt", serviceC.count(store_seq));
 	      m.addAttribute("list", dto);
 	      m.addAttribute("likeStatus",likeStatus);
