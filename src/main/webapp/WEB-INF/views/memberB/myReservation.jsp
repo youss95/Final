@@ -85,7 +85,7 @@
           </li>
           
           <li class="nav-item active" style="height:20%;">
-            <a class="nav-link" href="${pageContext.request.contextPath}/bMember/reservation">
+            <a class="nav-link" href="${pageContext.request.contextPath}/bMember/reservation?res_name=${bizInfo.businessName}">
                <i class="material-icons">content_paste</i>
               <p>Reservation 관리</p>
             </a>

@@ -333,14 +333,14 @@
           
 
           <li class="nav-item" style="height:20%;">
-            <a class="nav-link" href="/chat/businessMakeChat?store=${bizInfo.businessName} ">
+            <a class="nav-link" href="${pageContext.request.contextPath}/bMember/chatting">
               <i class="material-icons">chat</i>
               <p>Chatting</p>
             </a>
           </li>
           
           <li class="nav-item" style="height:20%;">
-            <a class="nav-link" href="/bMember/reservation?res_name=${bizInfo.businessName}">
+            <a class="nav-link" href="${pageContext.request.contextPath}/bMember/reservation?res_name=${bizInfo.businessName}">
                <i class="material-icons">content_paste</i>
               <p>Reservation 관리</p>
             </a>
