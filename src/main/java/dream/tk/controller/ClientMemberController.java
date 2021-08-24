@@ -76,6 +76,41 @@ public class ClientMemberController {
 			return "memberC/loginFailed";
 		}
 	}
+	@RequestMapping(value="mypage")
+	public String mypage(Model m) {
+		
+		String id = (String)session.getAttribute("loginID");
+		ClientMemberDTO dto = service.getInfo(id);
+		
+		m.addAttribute("info", dto);
+		return "memberC/mypage";
+	}
+	@RequestMapping(value="updateProc")
+	public String updateProc(ClientMemberDTO dto, Model m) {
+
+		String shaPW = SHA256.getSHA512(dto.getPw());
+		dto.setPw(shaPW);
+		service.update(dto);
+		
+		return "redirect:/cMember/mypage";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="currentPW")
+	public int currentPW(String pw) throws Exception {
+		
+		String id = (String)session.getAttribute("loginID");
+		String shaPW = SHA256.getSHA512(pw);
+		System.out.println("입력한 PW: "+shaPW);
+		String currentPW = service.currentPW(id);
+		System.out.println("실제 PW: " +currentPW);
+		if(shaPW != currentPW) {
+			return 0;
+		}else {
+			return 1;
+		}
+	}
+
 	@ResponseBody
 	@RequestMapping(value = "verifyRecaptcha", method = RequestMethod.POST)
 	public int VerifyRecaptcha(HttpServletRequest request) {
