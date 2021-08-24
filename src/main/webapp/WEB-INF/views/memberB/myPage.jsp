@@ -676,6 +676,20 @@
                     </div>
 				
 				
+					<hr>
+					<div class="card-body" style="width:100%;">
+                      <div style="width:30%">Premium 업그레이드 결제</div>
+                      <div style="width:60%">
+                      	<c:if test="${binfo.premium eq 'Y'}">
+                      		<button class="btn" type="button" id="refund">환불</button>
+                      	</c:if>
+                      	<c:if test="${binfo.premium eq 'N'}">
+                      	    <button class="btn" type="button" id="upgrade">결제</button>
+                      	</c:if>          
+                      </div>
+                    </div>
+					
+				
 				
 				
                   </div>
@@ -704,6 +718,18 @@
                   document.getElementById("address2").focus();
  				}
  			}).open(); 		};
+ 			
+ 			
+ 			
+ 		//프리미엄 결제 버튼	
+ 		$("#upgrade").on("click",function(){
+ 			location.href="${pageContext.request.contextPath}/pay/res_payment";
+ 		})	
+ 		
+ 		//프리미엄 환불 버튼	
+ 		("#refund").on("click",function(){
+ 			location.href="";
+ 		})	
 
  </script>   
 

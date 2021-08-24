@@ -103,16 +103,26 @@ section {
 	}
 }
 
+/*강사님이 말한 댓글 삐져 나오는거, 각각의 요소들 사이에 margin 준 거 */
+#store{
+	margin: 3%;
+}
+
+.well{
+	margin: 3%;
+}
 .form-group {
-	width: 600px;
+	width: 100%;
 	height: 100px;
 }
 
 .form-group>input {
-	width: 800px;
+	width: 100%;
 	height: 100%;
 }
-
+#commentInsertForm{
+ width: 100%;
+}
 </style>
 </head>
 <body>
@@ -204,9 +214,7 @@ section {
 				<c:choose>
 					<c:when test="${loginID != null}">
 
-						<div id="bottom" style="top: 300px; left: 0">
-						
-						</div>
+						<div id="bottom" style="top: 300px; left: 0"></div>
 
 						<div id="bottom_bottom"
 							style="padding: 20px; margin: 5px; float: right; height: 100px; position: relative; bottom: -170px;">
@@ -369,7 +377,7 @@ section {
 				<div class="well">
 					<c:choose>
 						<c:when test="${loginID != null}">
-							<form role="form" name="commentInsertForm">
+							<form role="form" id="commentInsertForm" name="commentInsertForm">
 								<h4>
 									<i class="fa fa-paper-plane-o"></i> Leave a Comment:
 									<div class="make_star">
@@ -389,7 +397,7 @@ section {
 								</div>
 								<button type="buttInsertBtn" style="left: 0;">
 									<i class="faton" value="" class="btn btn-primary"
-									name="commen fa-reply"></i>Submit
+										name="commen fa-reply"></i>Submit
 								</button>
 							</form>
 						</c:when>

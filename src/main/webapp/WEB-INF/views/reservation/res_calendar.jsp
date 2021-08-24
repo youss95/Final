@@ -129,9 +129,6 @@ pointer-events:none;
  
    init();
    
-	
-	
-	
  </script>
 <script>
 

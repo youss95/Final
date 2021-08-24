@@ -54,9 +54,9 @@ public class CommentController {
 	        return service.commentUpdateService(comment);
 	    }
 	    
-	    @RequestMapping("/delete/{cno}") //댓글 삭제  
+	    @RequestMapping("/deleteComments") //댓글 삭제  
 	    @ResponseBody
-	    private int mCommentServiceDelete(@PathVariable int cno) throws Exception{
+	    private int mCommentServiceDelete(int cno) throws Exception{
 	    	System.out.println("cno : " + cno);
 	        return service.commentDeleteService(cno);
 	    }
