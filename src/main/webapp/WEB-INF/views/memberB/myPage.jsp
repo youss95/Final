@@ -727,10 +727,34 @@
  		})	
  		
  		//프리미엄 환불 버튼	
- 		("#refund").on("click",function(){
- 			location.href="";
+ 		$("#refund").on("click",function(){
+ 			 if(confirm("가장 최근에 구매한 이용권이 환불됩니다. 그래도 취소 하시겠습니까?")){
+ 				$.ajax({
+ 						url: "/pay/cancel",
+ 						type:"post",
+ 						//datatype:"json",
+ 						contentType : 'application/x-www-form-urlencoded; charset = utf-8',
+ 						data : {
+ 							memberId :'${loginID}'// 주문번호
+ 							
+ 							//price:80, //환불금액
+ 							//"reason": "테스트 결제 환불", //환불사유
+ 							//"refund_holder": "홍길동", //[가상계좌 환불시 필수입력] 환불 가상계좌 예금주
+ 							//"refund_bank":"88", //[가상계좌 환불시 필수입력] 환불 가상계좌 은행코드(ex Kg이니시스의 경우 신한은행 88)
+ 							//"refund_account": "56211105948400" // [가상계좌 환불시 필수입력] 환불 가상계좌 번호
+ 						}
+ 					}).done(function(result){ //환불 성공
+ 						console.log('환불 성공')
+ 						console.log(result);
+ 					}).fail(function(error){
+ 						console.log("환불 실패 : "+ error);
+ 					});
+ 			    }
  		})	
 
+ 		
+ 		
+ 		
  </script>   
 
   

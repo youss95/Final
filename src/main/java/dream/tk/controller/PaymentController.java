@@ -1,5 +1,7 @@
 package dream.tk.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dream.tk.dao.ReservationDAO;
+import dream.tk.dto.BusinessMemberDTO;
 import dream.tk.dto.PaymentDTO;
+import dream.tk.service.BusinessMemberService;
 import dream.tk.service.ReservationService;
 import dream.tk.util.PaymentUtil;
 
@@ -23,6 +27,12 @@ public class PaymentController {
 	
 	@Autowired
 	private ReservationService resService;
+	
+	@Autowired
+	HttpSession session;
+	
+	@Autowired
+	BusinessMemberService bService;
 	
 	@GetMapping("/res_payment")
 	public String paymentPage() {
@@ -39,6 +49,8 @@ public class PaymentController {
 		int result = resService.resPay(dto);
 		if(result == 1) {
 			resService.updatePrem(dto.getMemberId(),dto.getPrice());
+		BusinessMemberDTO bdto = bService.getInfo(dto.getMemberId());
+		session.setAttribute("binfo", bdto);
 			return new ResponseEntity<String>("성공",HttpStatus.OK);
 		}
 		return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -63,6 +75,8 @@ public class PaymentController {
 		  if(res == 1) { 
 			  resService.refundCheck(memberId); //환불이 되었다는 체크
 			  resService.downGradePrem(memberId);
+				BusinessMemberDTO bdto = bService.getInfo(memberId);
+				session.setAttribute("binfo", bdto);
 			 // resService.updateExpDateWhenRefund(pay_no);
 			  return "success"; 
 			  }
