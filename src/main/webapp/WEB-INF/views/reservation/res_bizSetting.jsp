@@ -238,17 +238,10 @@ $(function() {
 			alert(" '-' 를 제외환 11 ~ 12 자리")
 			return;
 		}
-	
 	}) 
-	
-	
 })
 
 function onSubmit(){
-	
-
-
-	
 		if($("input:checkbox[name=onday]").is(":checked") !== true){
 			alert("영업시간을 최소 1개이상 선택해주세요!")
 			return false;

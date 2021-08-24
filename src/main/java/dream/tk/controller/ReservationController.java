@@ -97,7 +97,7 @@ public class ReservationController {
 				errorMap.put(error.getField(), error.getDefaultMessage());
 			}
 		System.out.println("유효성 검사 실패 메시지: "+errorMap.get("businessContact"));
-			return "/reservation/res_bizSetting";
+			return "redirect: /reservation/res_bizSetting";
 		}
 		
 		
@@ -106,7 +106,7 @@ public class ReservationController {
 		System.out.println(dto.toString());
 		session.setAttribute("bizName", dto.getBusinessName());
 		resService.registerBiz(dto);
-		return "redirect: /";
+		return "redirect: /bMember/myPage";
 	}
 	
 	@DeleteMapping(value="/{resId}",produces= {MediaType.APPLICATION_JSON_VALUE})
