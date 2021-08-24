@@ -6,8 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Store_main.css?after">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/map.css?after">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/Store_main.css?after">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/map.css?after">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -28,9 +30,8 @@
 .contain {
 	width: 100%;
 	height: 127px;
-	float: center
-	-webkit-font-smoothing: antialiased;
-    box-sizing: border-box; 
+	float: center -webkit-font-smoothing: antialiased;
+	box-sizing: border-box;
 }
 
 aside {
@@ -211,10 +212,8 @@ section {
 }
 
 <!--
-페이징 -->
-
-.page {
-	text-align: center;	
+페이징 -->.page {
+	text-align: center;
 	width: 50%;
 }
 
@@ -225,9 +224,10 @@ section {
 	margin-top: 20px;
 }
 
-.pagination modal{
+.pagination modal {
 	text-align: center;
 }
+
 .pagination li {
 	display: inline;
 	text-align: center;
@@ -298,24 +298,25 @@ section {
 	<div id="wrap">
 		<br>
 		<div class="contain">
-			<%@include file="../layout/header_main.jsp" %>
+			<%@include file="../layout/header_main.jsp"%>
 		</div>
-			<%@include file="banner.jsp" %>
-		
-		
-		
+		<%@include file="banner.jsp"%>
+
+
+
 		<aside>
 			<!-- 왼쪽 -->
 			<main role="main">
-			<br>
-				<h3>예약 가능한 사이트</h3>
 				<br>
+				<h3 style="font-size: 20px; text-align: left; margin: 10px;">예약 가능한 사이트</h3>
+				<hr>
 				<ul class="flexgrid columns-news">
 					<c:forEach var="list" items="${viewAll}">
-						<li><!--  <span class="grid-number">임의</span>--> <span class="ribbon"><a
+						<li>
+							<!--  <span class="grid-number">임의</span>--> <span class="ribbon"><a
 								href="/Business/view?seq=">2.5</a></span> <a
 							href="/Business/view?biz_seq=${list.biz_seq }&userId=${loginID}">
-							<input type="hidden" id="click" value="${list.biz_seq }">
+								<input type="hidden" id="click" value="${list.biz_seq }">
 								<figure>
 									<img src="https://source.unsplash.com/mZS7cne5iY0/800x600"
 										alt="Photo of Brooklyn Park">
@@ -325,12 +326,13 @@ section {
 										<h3>조회수 : ${list.view_Count }</h3>
 									</figcaption>
 								</figure>
-						</a></li>
+						</a>
+						</li>
 					</c:forEach>
 				</ul>
 			</main>
 			<!-- 페이징바!! -->
-			<div class="page" style="text-align: center; margin-left:1px ">
+			<div class="page" style="text-align: center; margin-left: 1px">
 				<ul class="pagination modal">
 					<c:if test="${paging.startPage != 1 }">
 						<li><a class="active num"
@@ -359,7 +361,7 @@ section {
 
 
 		<!--경계선-->
-		
+
 		<line></line>
 
 		<section>
@@ -385,6 +387,8 @@ section {
 								alt="확대"></span> <span onclick="zoomOut()"><img
 								src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png"
 								alt="축소"></span>
+								<span><a href="/Business/signup"><img src="${pageContext.request.contextPath}/resources/images/reset.png" alt="리셋">
+										 </a></span>
 						</div>
 					</div>
 				</div>
@@ -402,8 +406,8 @@ section {
 				<div class="d1">
 					<div class="search">
 						<input type="text" id="searchWrd" name="searchWrd"
-							placeholder="Find an address" value="${searchVO.searchWrd }"> <a
-							href="" onclick="fn_search();" class="btn-login"><button
+							placeholder="Find an address" value="${searchVO.searchWrd }">
+						<a href="" onclick="fn_search();" class="btn-login"><button
 								type="button" class="pulse"></button></a>
 					</div>
 				</div>
@@ -416,7 +420,7 @@ section {
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2fa91fa0473f76d7311f40d80a8f1521&libraries=services"></script>
 			<script>
 				var click = document.getElementById('click').value;
-				
+
 				var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 				mapOption = {
 					center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -457,7 +461,7 @@ section {
 				var num = new Array();
 
 				var rdnList = JSON.parse('${rdnmadrListJson}');
-				
+
 				// 값 받는곳!! 
 				for ( var k in rdnList) {
 					var $obj = rdnList[k];
@@ -472,151 +476,183 @@ section {
 				}
 
 				//주소 리스트 
-				rdnmadrList.forEach(function(addr, index) {
-					// 주소로 좌표를 검색합니다
-					geocoder.addressSearch(addr, function(result, status) {
-						// 정상적으로 검색이 완료됐으면 
-						if (status === kakao.maps.services.Status.OK) {
-							
-							// 받은 리스트! 객체 배열
-							var coords = new kakao.maps.LatLng(result[0].y,
-									result[0].x);
-						
-							// 결과값으로 받은 위치를 마커로 표시합니다
-							var marker = new kakao.maps.Marker({
-								map : map,
-								position : coords,
-								clickable: true
-							});
+				rdnmadrList
+						.forEach(function(addr, index) {
+							// 주소로 좌표를 검색합니다
+							geocoder
+									.addressSearch(
+											addr,
+											function(result, status) {
+												// 정상적으로 검색이 완료됐으면 
+												if (status === kakao.maps.services.Status.OK) {
 
-							var content = '<div class="overlay_info">';
-							content += "    <a><strong>" + cmpnmList[index]
-									+ '</strong></a>';
-							content += '    <div class="desc">';
-							content += '        <span class="address">'
-									+ eng[index] + '</span>';
-							content += '    </div>';
-							content += '</div>';
+													// 받은 리스트! 객체 배열
+													var coords = new kakao.maps.LatLng(
+															result[0].y,
+															result[0].x);
 
-							// 인포윈도우로 장소에 대한 설명을 표시합니다
-							var infowindow = new kakao.maps.InfoWindow({
-								//  content: cmpnmList[index], 
-								content : content,
-							});
-							
-														
-							 kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-							 kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-							
-							
-							
-							function makeOverListener(map, marker, infowindow) {
-							    return function() {
-							        infowindow.open(map, marker);
-							    };
-							}
-							
-							function makeOutListener(infowindow) {
-							    return function() {
-							        infowindow.close();
-							    };
-							}
-							
-							kakao.maps.event.addListener(marker, 'click', function() {
-							      // 마커 위에 인포윈도우를 표시합니다
-								location.href = '/Business/view?biz_seq='+num[index];  
-							});
-							
-							
-							// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-							if (index == 0) {
-								map.setCenter(coords);
-							}
-						}
-					});
-				});
+													// 결과값으로 받은 위치를 마커로 표시합니다
+													var marker = new kakao.maps.Marker(
+															{
+																map : map,
+																position : coords,
+																clickable : true
+															});
+
+													var content = '<div class="overlay_info">';
+													content += "    <a><strong>"
+															+ cmpnmList[index]
+															+ '</strong></a>';
+													content += '    <div class="desc">';
+													content += '        <span class="address">'
+															+ eng[index]
+															+ '</span>';
+													content += '    </div>';
+													content += '</div>';
+
+													// 인포윈도우로 장소에 대한 설명을 표시합니다
+													var infowindow = new kakao.maps.InfoWindow(
+															{
+																//  content: cmpnmList[index], 
+																content : content,
+															});
+
+													kakao.maps.event
+															.addListener(
+																	marker,
+																	'mouseover',
+																	makeOverListener(
+																			map,
+																			marker,
+																			infowindow));
+													kakao.maps.event
+															.addListener(
+																	marker,
+																	'mouseout',
+																	makeOutListener(infowindow));
+
+													function makeOverListener(
+															map, marker,
+															infowindow) {
+														return function() {
+															infowindow
+																	.open(map,
+																			marker);
+														};
+													}
+
+													function makeOutListener(
+															infowindow) {
+														return function() {
+															infowindow.close();
+														};
+													}
+
+													kakao.maps.event
+															.addListener(
+																	marker,
+																	'click',
+																	function() {
+																		// 마커 위에 인포윈도우를 표시합니다
+																		location.href = '/Business/view?biz_seq='
+																				+ num[index];
+																	});
+
+													// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+													if (index == 0) {
+														map.setCenter(coords);
+													}
+												}
+											});
+						});
 			</script>
-			
+
 
 			<!-- 하단 추천바!! -->
-			
-			<br><br></br>
+
+			<br>
+			<br></br>
 			<!-- 1번쨰 -->
-			
+
 			<!-- 예약하기  -->
 			<script>
-                function random_imglink() {
-                    var myimages = new Array()
+				function random_imglink() {
+					var myimages = new Array()
 
-                    /* 각각의 이미지 경로 지정 */
-                    myimages[1] = "${pageContext.request.contextPath}/resources/images/1.png"
-                    myimages[2] = "${pageContext.request.contextPath}/resources/images/2.png"
+					/* 각각의 이미지 경로 지정 */
+					myimages[1] = "${pageContext.request.contextPath}/resources/images/1.png"
+					myimages[2] = "${pageContext.request.contextPath}/resources/images/2.png"
 
-                    /* 각각의 이미지 링크 지정 */
-                    var imagelinks = new Array()
-                    imagelinks[1] = "https://www.tripadvisor.com/Restaurants-g294197-zfn7778640-Seoul.html"
-                    imagelinks[2] = "https://theculturetrip.com/asia/south-korea/articles/korean-cuisine-crash-course-top-10-dishes-to-know/"
+					/* 각각의 이미지 링크 지정 */
+					var imagelinks = new Array()
+					imagelinks[1] = "https://www.tripadvisor.com/Restaurants-g294197-zfn7778640-Seoul.html"
+					imagelinks[2] = "https://theculturetrip.com/asia/south-korea/articles/korean-cuisine-crash-course-top-10-dishes-to-know/"
 
-                    var ry = Math.floor(Math.random() * myimages.length)
-                    if (ry == 0)
-                        ry = 1
-                    document.write('<a href=' + '"' + imagelinks[ry] + '"' + ' target=_blank><img src="' + myimages[ry] + '" border=0></a>')
-                }
-                random_imglink();
-            </script>
-            
-            
-            
-            <br><br></br>
-            <!-- 2번쨰 -->
-            <script>
-                function random_imglink() {
-                    var myimages = new Array()
+					var ry = Math.floor(Math.random() * myimages.length)
+					if (ry == 0)
+						ry = 1
+					document
+							.write('<a href=' + '"' + imagelinks[ry] + '"' + ' target=_blank><img src="' + myimages[ry] + '" border=0></a>')
+				}
+				random_imglink();
+			</script>
 
-                    /* 각각의 이미지 경로 지정 */
-                    myimages[1] = "${pageContext.request.contextPath}/resources/images/3.png"
-                    myimages[2] = "${pageContext.request.contextPath}/resources/images/4.png"
 
-                    /* 각각의 이미지 링크 지정 */
-                    var imagelinks = new Array()
-                    imagelinks[1] = "https://www.tripadvisor.com/Restaurants-g294197-zfn7778638-Seoul.html"
-                    imagelinks[2] = "https://www.willflyforfood.net/seoul-food-guide-25-must-eat-restaurants-in-seoul-south-korea/"
 
-                    var ry = Math.floor(Math.random() * myimages.length)
-                    if (ry == 0)
-                        ry = 1
-                    document.write('<a href=' + '"' + imagelinks[ry] + '"' + ' target=_blank><img src="' + myimages[ry] + '" border=0></a>')
-                }
-                random_imglink();
-            </script>
-            <br><br></br>
-            <!-- 3번쨰 -->
-            <script>
-                function random_imglink() {
-                    var myimages = new Array()
+			<br>
+			<br></br>
+			<!-- 2번쨰 -->
+			<script>
+				function random_imglink() {
+					var myimages = new Array()
 
-                    /* 각각의 이미지 경로 지정 */
-                    myimages[1] = "${pageContext.request.contextPath}/resources/images/5.png"
-                    myimages[2] = "${pageContext.request.contextPath}/resources/images/6.png"
+					/* 각각의 이미지 경로 지정 */
+					myimages[1] = "${pageContext.request.contextPath}/resources/images/3.png"
+					myimages[2] = "${pageContext.request.contextPath}/resources/images/4.png"
 
-                    /* 각각의 이미지 링크 지정 */
-                    var imagelinks = new Array()
-                    imagelinks[1] = "https://www.tripadvisor.com/Restaurants-g294197-zfn7778650-Seoul.html"
-                    imagelinks[2] = "https://www.creatrip.com/en/blog/1822/TOP-5-Busan-Pork-Rice-Soup-Restaurants"
+					/* 각각의 이미지 링크 지정 */
+					var imagelinks = new Array()
+					imagelinks[1] = "https://www.tripadvisor.com/Restaurants-g294197-zfn7778638-Seoul.html"
+					imagelinks[2] = "https://www.willflyforfood.net/seoul-food-guide-25-must-eat-restaurants-in-seoul-south-korea/"
 
-                    var ry = Math.floor(Math.random() * myimages.length)
-                    if (ry == 0)
-                        ry = 1
-                    document.write('<a href=' + '"' + imagelinks[ry] + '"' + ' target=_blank><img src="' + myimages[ry] + '" border=0></a>')
-                }
-                random_imglink();
-            </script>
-            
-            
-            
-            
-            
-            
+					var ry = Math.floor(Math.random() * myimages.length)
+					if (ry == 0)
+						ry = 1
+					document
+							.write('<a href=' + '"' + imagelinks[ry] + '"' + ' target=_blank><img src="' + myimages[ry] + '" border=0></a>')
+				}
+				random_imglink();
+			</script>
+			<br>
+			<br></br>
+			<!-- 3번쨰 -->
+			<script>
+				function random_imglink() {
+					var myimages = new Array()
+
+					/* 각각의 이미지 경로 지정 */
+					myimages[1] = "${pageContext.request.contextPath}/resources/images/5.png"
+					myimages[2] = "${pageContext.request.contextPath}/resources/images/6.png"
+
+					/* 각각의 이미지 링크 지정 */
+					var imagelinks = new Array()
+					imagelinks[1] = "https://www.tripadvisor.com/Restaurants-g294197-zfn7778650-Seoul.html"
+					imagelinks[2] = "https://www.creatrip.com/en/blog/1822/TOP-5-Busan-Pork-Rice-Soup-Restaurants"
+
+					var ry = Math.floor(Math.random() * myimages.length)
+					if (ry == 0)
+						ry = 1
+					document
+							.write('<a href=' + '"' + imagelinks[ry] + '"' + ' target=_blank><img src="' + myimages[ry] + '" border=0></a>')
+				}
+				random_imglink();
+			</script>
+
+
+
+
+
+
 		</section>
 	</div>
 </body>

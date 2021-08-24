@@ -25,6 +25,11 @@ public class LikesService {
 			  return dao.updateLike(dto);
 		  }
 		  
+		  //like
+		  public int updateLikeWhenUnliked(LikesDTO dto) {
+			  return dao.updateLikeWhenUnliked(dto);
+		  }
+		  
 		  //likeStatus
 		  public String likeStatus(LikeStatusDTO dto) {
 			  return dao.likeStatus(dto);

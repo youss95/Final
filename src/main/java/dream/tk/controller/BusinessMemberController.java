@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.SqlInOutParameter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -343,8 +344,9 @@ public class BusinessMemberController {
 		return "/memberB/chatting";
 	}
 	
-	@RequestMapping("reservation")
-	public String reservation(Model model,String res_name) {
+	@GetMapping("/reservation")
+	public String reservation(String res_name,Model model) {
+		System.out.println(res_name);
 		List<ReservationDTO> list = ser.resManage(res_name);
 		model.addAttribute("resList",list);
 		

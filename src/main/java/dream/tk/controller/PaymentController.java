@@ -63,10 +63,22 @@ public class PaymentController {
 		  if(res == 1) { 
 			  resService.refundCheck(memberId); //환불이 되었다는 체크
 			  resService.downGradePrem(memberId);
+			 // resService.updateExpDateWhenRefund(pay_no);
 			  return "success"; 
 			  }
 		 
 		return "fail";
+	}
+	
+	//환불시 이미 환불 된 상태인지 확인
+	@GetMapping("/refundCheck")
+	@ResponseBody
+	public int refundCheck(String memberId){
+		System.out.println("id:"+memberId);
+		int result = resService.findRefundCheck(memberId);
+	
+			return result;
+		
 	}
 	
 	
