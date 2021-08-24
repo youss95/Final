@@ -28,7 +28,7 @@ import net.sf.json.JSONArray;
 public class StoreController {
 	@Autowired
 	private HttpSession session;
-	
+		
 	@Autowired
 	private HttpSession session1;
 	
