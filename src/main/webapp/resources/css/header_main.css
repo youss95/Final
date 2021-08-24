@@ -42,6 +42,7 @@ header {
   height: 126px;
   transition: 0.3s ease-in-out;
   z-index:10000;
+  left:-3px;
 }
 
 header.shrink {
