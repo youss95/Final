@@ -86,8 +86,8 @@ public class AdminController {
 	@RequestMapping("businessOut")
 	public int businessOut(int seq) {
 		int businessMemberSeq = serviceA.getSeq(seq);
-		serviceA.businessMemberOut(businessMemberSeq);
-		return serviceA.businessOut(seq);
+		serviceA.businessOut(seq);
+		return serviceA.businessMemberOut(businessMemberSeq);
 	}
 
 
