@@ -689,6 +689,16 @@
                       </div>
                     </div>
 					
+					
+					<c:if test="${bizInfo.businessName!=null}">
+					<hr>
+					<div class="card-body" style="width:100%;">
+                      <div style="width:30%">업체 소개 페이지</div>
+                      <div style="width:60%">
+                      		<button class="btn" type="button" id="go">이동</button>          	                            
+                      </div>
+                    </div>
+					</c:if>
 				
 				
 				
@@ -753,7 +763,10 @@
  			    }
  		})	
 
- 		
+ 		//업체 소개페이지로 이동 버튼
+ 		$("#go").on("click",function(){
+ 			location.href="${pageContext.request.contextPath}/Business/view?biz_seq=${bizInfo.biz_seq}&userId=${binfo.id}";
+ 		})	
  		
  		
  </script>   
