@@ -70,6 +70,17 @@ public class PaymentController {
 		return "fail";
 	}
 	
+	//환불시 이미 환불 된 상태인지 확인
+	@GetMapping("/refundCheck")
+	@ResponseBody
+	public int refundCheck(String memberId){
+		System.out.println("id:"+memberId);
+		int result = resService.findRefundCheck(memberId);
+	
+			return result;
+		
+	}
+	
 	
 	
 }

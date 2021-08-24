@@ -112,6 +112,9 @@ public class ReservationDAO {
 		return mybatis.update("ResMapper.downGradePrem",id);
 	}
 	
+	public int findRefundCheck(int pay_no) {
+		return mybatis.selectOne("ResMapper.findRefundCheck",pay_no);
+	}
 	
 	public int alarmInsert(NotificationDTO dto) {
 		return mybatis.insert("ResMapper.alarmInsert",dto);

@@ -67,6 +67,19 @@ font-weight:600;
 </section>
  </div>
 <script>
+$(function(){
+	$.ajax({
+		url:"/pay/refundCheck",
+			data:{memberId :'${loginID}'}
+	}).done(function(resp){
+		console.log(resp)
+		if(resp === 1){
+			$("#check2").hide();
+		}
+	})
+})
+
+
 let price = '';
 $("input[type=radio][name='price']").on('change',function(){
 	price = $("input[type=radio][name='price']:checked").val() ;

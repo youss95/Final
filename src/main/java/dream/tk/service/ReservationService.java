@@ -98,6 +98,12 @@ public class ReservationService {
 		return resDao.downGradePrem(id);
 	}
 	
+	public int findRefundCheck(String memberId) {
+		int pay_no = resDao.refundOrderNum(memberId);
+		
+		return resDao.findRefundCheck(pay_no);
+	}
+	
 	public int registerBiz(BusinessDTO dto) {
 		String result = "";
 		
