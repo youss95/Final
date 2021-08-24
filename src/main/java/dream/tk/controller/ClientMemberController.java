@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import dream.tk.api.SHA256;
 import dream.tk.api.VerifyRecaptcha;
+import dream.tk.dto.BusinessMemberDTO;
 import dream.tk.dto.ClientMemberDTO;
 import dream.tk.service.ClientMemberService;
 import dream.tk.service.EmailService;
@@ -71,6 +72,8 @@ public class ClientMemberController {
 		int result = service.login(id, shaPW);
 		if(result>0) {
 			session.setAttribute("loginID", id);
+			ClientMemberDTO dto = service.getInfo(id);
+			session.setAttribute("info", dto);
 			return "redirect:/";
 		}else {
 			return "memberC/loginFailed";
@@ -101,13 +104,12 @@ public class ClientMemberController {
 		
 		String id = (String)session.getAttribute("loginID");
 		String shaPW = SHA256.getSHA512(pw);
-		System.out.println("입력한 PW: "+shaPW);
 		String currentPW = service.currentPW(id);
-		System.out.println("실제 PW: " +currentPW);
-		if(shaPW != currentPW) {
-			return 0;
-		}else {
+
+		if(shaPW.contentEquals(currentPW)) {
 			return 1;
+		}else {
+			return 0;
 		}
 	}
 
