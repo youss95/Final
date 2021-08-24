@@ -772,6 +772,22 @@ section {
                      })
                      
                   
+        		 }else{
+        			  let data = {
+                              userId:'${loginID}',
+                            businessName:'${list.businessName}',
+                            biz_seq:${list.biz_seq}
+                                     }
+                        $.ajax({
+                          url:"/like/insertLike",
+                          data:JSON.stringify(data),
+                          type:"POST",
+                          contentType:"application/json;charset=utf-8"
+                        }).done(function(resp){
+                          console.log(resp)
+                        $("#heartIcon").css("color","red")
+                       
+                        })
         		 }
         	 })
       })
@@ -828,21 +844,7 @@ section {
         </c:when>
                <c:otherwise>
                $("#likeStar").click(function(){
-                   let data = {
-                         userId:'${loginID}',
-                       businessName:'${list.businessName}',
-                       biz_seq:${list.biz_seq}
-                                }
-                   $.ajax({
-                     url:"/like/insertLike",
-                     data:JSON.stringify(data),
-                     type:"POST",
-                     contentType:"application/json;charset=utf-8"
-                   }).done(function(resp){
-                     console.log(resp)
-                   $("#heartIcon").css("color","red")
-                  
-                   })
+                 
                    
                  })
                </c:otherwise>
