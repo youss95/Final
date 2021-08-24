@@ -54,7 +54,7 @@ section {
 	height: 700px;
 }
 /* 화면 너비 0 ~ 1540px */
-@media ( max-width : 1540px) {
+@media ( max-width : 1660px) {
 	#wrap {
 		width: 100%;
 	}
