@@ -195,7 +195,7 @@ public class AdminService {
 		return daoA.getSeq(seq);
 	}
 	public int businessMemberOut(int businessMemberSeq){
-		return daoA.businessOut(businessMemberSeq);
+		return daoA.businessMemberOut(businessMemberSeq);
 	}
 	
 }
