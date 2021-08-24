@@ -52,6 +52,7 @@ public class ChatController {
 	@RequestMapping("businessMakeChat")
 	public String businessMakeChat(String store) throws Exception{
 		session.setAttribute("storeName", store);
+		System.out.println("경로 확인됨");
 		return "redirect:businessChat";
 	}
 	
@@ -81,6 +82,7 @@ public class ChatController {
 		if(roomid == null) {
 			roomid = "chatnum";
 		}
+		System.out.println("중복 storeName : " + storeName);
 		
 		List<ChatDTO> list = service.selectBusinessAll(roomid); 
 		List<ChatDTO> list2 = service.selectBusinessList(storeName);
