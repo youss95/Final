@@ -744,8 +744,9 @@
  							//"refund_account": "56211105948400" // [가상계좌 환불시 필수입력] 환불 가상계좌 번호
  						}
  					}).done(function(result){ //환불 성공
- 						console.log('환불 성공')
+ 						console.log('환불 성공');
  						console.log(result);
+ 						location.href="${pageContext.request.contextPath}/bMember/myPage";
  					}).fail(function(error){
  						console.log("환불 실패 : "+ error);
  					});
