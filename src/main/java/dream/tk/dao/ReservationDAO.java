@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import dream.tk.dto.BusinessDTO;
+import dream.tk.dto.ExpDateUpdateDTO;
 import dream.tk.dto.NotificationDTO;
 import dream.tk.dto.PaymentDTO;
 import dream.tk.dto.ResInfoDTO;
@@ -77,6 +78,10 @@ public class ReservationDAO {
 		return result;
 	}
 	
+	public void updateExpDateWhenRefund(ExpDateUpdateDTO dto) {
+		mybatis.update("ResMapper.updateExpDate",dto);
+	}
+	
 	public String passRefund(int pay_no) {
 		
 		String muid = mybatis.selectOne("ResMapper.refundPay",pay_no);
@@ -87,6 +92,10 @@ public class ReservationDAO {
 	public int refundOrderNum(String memberId) {
 	
 		return mybatis.selectOne("ResMapper.refundOrder",memberId);
+	}
+	
+	public int refundPrice(String memberId) {
+		return mybatis.selectOne("ResMapper.refundPrice",memberId);
 	}
 	
 	public int refundCheck(int pay_no) {
@@ -103,6 +112,9 @@ public class ReservationDAO {
 		return mybatis.update("ResMapper.downGradePrem",id);
 	}
 	
+	public int findRefundCheck(int pay_no) {
+		return mybatis.selectOne("ResMapper.findRefundCheck",pay_no);
+	}
 	
 	public int alarmInsert(NotificationDTO dto) {
 		return mybatis.insert("ResMapper.alarmInsert",dto);
