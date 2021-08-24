@@ -45,7 +45,7 @@ line {
 }
 
 section {
-	float: left;
+	float: right;
 	width: 35%;
 	height: 700px;
 }
@@ -292,6 +292,15 @@ section {
 	border-bottom: 10px solid transparent;
 	border-right: 10px solid blue;
 }
+
+.custom_zoomcontrol span {
+    display: block;
+    width: 36px;
+    text-align: center;
+    cursor: pointer;
+    border-bottom: 1px solid #bfbfbf;
+}
+
 </style>
 </head>
 <body>
@@ -307,6 +316,9 @@ section {
 		<aside>
 			<!-- 왼쪽 -->
 			<main role="main">
+				<br>
+				<h3 style="font-size: 20px; text-align: left; margin: 10px;">메인 사이트</h3>
+				<hr>
 				<ul class="flexgrid columns-news">
 					<c:forEach var="list" items="${viewAll}">
 						<li> <span class="ribbon"><a
@@ -356,7 +368,7 @@ section {
 
 
 		<!--경계선-->
-		<line>b</line>
+		<line></line>
 
 		<section>
 
@@ -381,6 +393,8 @@ section {
 								alt="확대"></span> <span onclick="zoomOut()"><img
 								src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png"
 								alt="축소"></span>
+								<span><a href="/store/signup"><img src="${pageContext.request.contextPath}/resources/images/reset.png" alt="리셋">
+										 </a></span>
 						</div>
 					</div>
 				</div>
@@ -399,9 +413,12 @@ section {
 					<div class="search">
 						<input type="text" id="searchWrd" name="searchWrd"
 							placeholder="Find an address" value="${searchVO.searchWrd }">
+							
 							<a
 							href="" onclick="fn_search();" class="btn-login" style="float: left"><button
 								type="button" class="pulse"></button></a>
+							
+							
 							<a
 							href="" onclick="fn_search();" class="btn-login"><button
 								type="button" class="pulse"></button></a>
