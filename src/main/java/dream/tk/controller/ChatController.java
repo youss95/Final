@@ -32,15 +32,14 @@ public class ChatController {
 		String roomid = nickname + storeName;
 		session.setAttribute("roomid", roomid);
 		
+		
 		List<ChatDTO> list = service.selectAll(roomid); 
 		List<ChatDTO> list2 = service.selectList(nickname);
 		List<ChatAdminDTO> list3 = service.selectAllCManager(roomid);
 		
-		System.out.println("ChatController 안에서 출력한 채팅방 리스트"+list);
-		System.out.println("ChatController 안에서 출력한 식당 리스트"+list2);
-		
 		model.addAttribute("chatlist", list); // 해당 채팅 방
 		model.addAttribute("chatStore",list2); // 채팅 리스트
+		model.addAttribute("managerClient", list3);
 		return "chat/chat";
 	}
 	
@@ -77,8 +76,6 @@ public class ChatController {
 		if(roomid == null) {
 			roomid = "chatnum";
 		}
-		System.out.println("roomid" + roomid);
-		//session.setAttribute("roomid", roomid);
 		
 		List<ChatDTO> list = service.selectBusinessAll(roomid); 
 		List<ChatDTO> list2 = service.selectBusinessList(storeName);

@@ -388,6 +388,27 @@ button:hover {
 							</li>
 						</c:if>
 					</c:forEach>
+					<c:forEach var="i" items="${managerClient}">
+						<c:if test="${i.nickname != 'manager'}">
+							<li class="clearfix">
+								<div class="message-data align-right">
+									<span class="message-data-time">${i.write_date }</span> &nbsp;
+									&nbsp; <span class="message-data-name">${i.nickname }</span> <i
+										class="fa fa-circle me"></i>
+								</div>
+								<div class="message other-message float-right">${i.contents }</div>
+							</li>
+						</c:if>
+						<c:if test="${i.nickname == 'manager'}">
+							<li>
+								<div class="message-data">
+									<span class="message-data-name">${i.nickname }</span> <span
+										class="message-data-time">${i.write_date }</span>
+								</div>
+								<div class="message my-message">${i.contents }</div>
+							</li>
+						</c:if>
+					</c:forEach>
 				</ul>
 
 			</div>
