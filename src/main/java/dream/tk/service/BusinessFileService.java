@@ -52,4 +52,8 @@ public class BusinessFileService {
 	public String getSysName(String seq) {
 		return dao.getSysName(seq);
 	}
+	
+	public List<BusinessFileDTO> getFlistSeq(int biz_seq){
+		return dao.getFlistSeq(biz_seq);
+	}
 }

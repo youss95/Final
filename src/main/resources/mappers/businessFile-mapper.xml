@@ -22,4 +22,10 @@
 		select sysname from business_file where seq=#{value}
 	</select>
 	
+	
+	<select id="getFlistSeq" resultType="dream.tk.dto.BusinessFileDTO">
+		select * from business b join business_member m on b.seq = m.seq join business_file f on f.parent_id = m.id
+        where b.biz_seq=${value}
+	</select>
+	
 </mapper>
