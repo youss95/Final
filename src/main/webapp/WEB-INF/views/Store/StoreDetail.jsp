@@ -130,6 +130,10 @@ section {
 	height: 100%;
 }
 
+#commentInsertForm{
+ width: 100%;
+}
+
 
 /*이거 댓글 */
 .well {

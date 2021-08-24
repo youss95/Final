@@ -333,7 +333,7 @@ section {
 			<!-- 왼쪽 -->
 			<main role="main">
 				<br>
-				<h3 style="font-size: 20px; text-align: left; margin: 10px;">예약 가능한 사이트</h3>
+				<h3 style="font-size: 20px; text-align: left; margin: 10px;">You can make a reservation at this store.</h3>
 				<hr>
 				<ul class="flexgrid columns-news">
 					<c:forEach var="list" items="${viewAll}">

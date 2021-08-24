@@ -163,6 +163,29 @@ section {
 	width: 100%;
 }
 
+/*강사님이 말한 댓글 삐져 나오는거, 각각의 요소들 사이에 margin 준 거 */
+#store{
+	margin: 3%;
+}
+
+.well{
+	margin: 3%;
+}
+.form-group {
+	width: 100%;
+	height: 100px;
+}
+
+.form-group>input {
+	width: 100%;
+	height: 100%;
+}
+
+#commentInsertForm{
+ width: 100%;
+}
+
+
 .scrolltable {
 	table-layout: fixed;
 	border-collapse: collapse;
@@ -196,8 +219,7 @@ section {
     background-color: #f0f0f0;
 }
 */
-<!--
-와 .. -->.bottom_bottom {
+.bottom_bottom {
 	position: relative;
 	height: 200px;
 	padding: 10px;
