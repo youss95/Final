@@ -209,19 +209,23 @@ section {
 		<div class="contain">
 			<%@include file="../layout/header_main.jsp"%>
 		</div>
+
 		<div class="headers">
 			<div class="swiper-container mySwiper">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide">Slide 1</div>
-					<div class="swiper-slide">Slide 2</div>
-					<div class="swiper-slide">Slide 3</div>
-					<div class="swiper-slide">Slide 4</div>
-					<div class="swiper-slide">Slide 5</div>
-					<div class="swiper-slide">Slide 6</div>
-				</div>
-				<div class="swiper-button-next"></div>
-				<div class="swiper-button-prev"></div>
-				<div class="swiper-pagination"></div>
+				<c:choose>
+					<c:when test="${getFlist!=null}">
+						<c:forEach var="item" items="${getFlist}" varStatus="s">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide"><img src="${item.sysName}"></div>
+						</div>
+						</c:forEach>
+							<div class="swiper-button-next"></div>
+							<div class="swiper-button-prev"></div>
+							<div class="swiper-pagination"></div>
+					</c:when>
+					<c:otherwise>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 		<!--슬라이드 Script-->
@@ -298,6 +302,7 @@ section {
 							</c:forEach>
 						</c:when>
 						<c:otherwise>
+
 						</c:otherwise>
 					</c:choose>
 					</tbody>
