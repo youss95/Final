@@ -80,7 +80,6 @@ public class ChatEndPoint {
 						chatnum = "manager" + store;
 					}
 				}
-				System.out.println("inset 왜안돼..");
 				try {
 					if(manager == null) {
 						if(bizName == null) {
