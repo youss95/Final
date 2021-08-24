@@ -30,6 +30,17 @@ public class ClientMemberDTO {
 		this.agree = agree;
 		this.reg_date = reg_date;
 	}
+	
+	
+
+	public ClientMemberDTO(String id, String pw, String email, int yob, String nation) {
+		super();
+		this.id = id;
+		this.pw = pw;
+		this.email = email;
+		this.yob = yob;
+		this.nation = nation;
+	}
 
 	public int getSeq() {
 		return seq;

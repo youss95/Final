@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import dream.tk.dto.LikeStatusDTO;
 import dream.tk.dto.LikesDTO;
 import dream.tk.service.LikesService;
 import dream.tk.service.likeService;
@@ -32,12 +33,32 @@ public class LikesController {
 	  @PostMapping("/updateLike")
 	  @ResponseBody 
 	  public String updateLike(@RequestBody LikesDTO dto) {
-	  System.out.println(dto.toString()); int result = likesService.updateLike(dto);
+	  System.out.println(dto.toString()); 
+	  int result = likesService.updateLike(dto);
 	 if(result==1) { 
 		 return "liked"; 
 		 } 
 	 return "fail"; 
 	 }
+	  
+	  @PostMapping("/updateLikeN")
+	  @ResponseBody
+	  public String cancelLike(@RequestBody LikesDTO dto) {
+		  int result = likesService.updateLikeWhenUnliked(dto);
+		  if(result == 1) {
+			  return "success";
+		  }
+			  return "fail";
+		  
+	  }
+	  
+	  @PostMapping("/statusReload")
+		@ResponseBody
+		public String getStatus(@RequestBody LikeStatusDTO dto) {
+		  String likeStatus = likesService.likeStatus(dto);
+		  return likeStatus;
+	  }
+	  
 	  
 	  @GetMapping("/getLikes")
 	  @ResponseBody

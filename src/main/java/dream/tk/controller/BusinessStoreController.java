@@ -88,9 +88,8 @@ public class BusinessStoreController {
 	      List<TranslateDTO> menuList = serviceT.select(biz_seq);
 	      m.addAttribute("menuList", menuList);
 	      
-	      List<BusinessFileDTO> getFlist =  serviceF.getFlist(userId);
+	      List<BusinessFileDTO> getFlist =  serviceF.getFlistSeq(biz_seq);
 	      m.addAttribute("getFlist", getFlist);
-	      
 	      
 	      //m.addAttribute("countCmt", serviceC.count(store_seq));
 	      m.addAttribute("list", dto);

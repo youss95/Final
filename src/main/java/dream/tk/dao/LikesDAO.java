@@ -27,6 +27,10 @@ public class LikesDAO {
 	  public int updateLike(LikesDTO dto) {
 		  return mybatis.update("like.updateStatus",dto);  
 	  }
+	  
+	  public int updateLikeWhenUnliked(LikesDTO dto) {
+		  return mybatis.update("like.updateLikeCancel",dto);
+	  }
 
 	  //찜하기 상태 가져오기
 	  public String likeStatus(LikeStatusDTO dto) {

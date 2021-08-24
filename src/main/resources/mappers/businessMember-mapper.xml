@@ -98,11 +98,11 @@
 
 		select 연령대,count(연령대) from
 		(select name,
-      	<![CDATA[ case when to_char(sysdate,'yyyy')-to_char(yearofbirth) <= 19  then '10대'
-            when to_char(sysdate,'yyyy')-to_char(yearofbirth) <= 29  then '20대'
-            when to_char(sysdate,'yyyy')-to_char(yearofbirth) <= 39 then '30대'
-            when to_char(sysdate,'yyyy')-to_char(yearofbirth) <= 49  then '40대'
-            when to_char(sysdate,'yyyy')-to_char(yearofbirth) <= 59 then '50대']]>
+      	<![CDATA[ case when to_char(sysdate,'yyyy')-to_char(yob) <= 19  then '10대'
+            when to_char(sysdate,'yyyy')-to_char(yob) <= 29  then '20대'
+            when to_char(sysdate,'yyyy')-to_char(yob) <= 39 then '30대'
+            when to_char(sysdate,'yyyy')-to_char(yob) <= 49  then '40대'
+            when to_char(sysdate,'yyyy')-to_char(yob) <= 59 then '50대']]>
 		else '60대 이상'
 		end as 연령대
 		from reservation r, client_member c where r.userid = c.id and
@@ -136,7 +136,7 @@
 		when nation='US' then '미국'
 		else 'Others'
 		end as 국적
-		from (select nation,yearofbirth, id, name from reservation r,
+		from (select nation,yob, id, name from reservation r,
 		client_member c where r.userid = c.id and r.res_name=#{value})) group
 		by 국적) where rnum between 1 and 5
 	</select>

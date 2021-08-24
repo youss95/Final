@@ -20,6 +20,11 @@
 	update likes set like_status = 'N' where userId = #{userId} and biz_seq = #{biz_seq}
 	</update>
 	
+	<update id="updateLikeCancel">
+	update likes set like_status ='Y' where userId = #{userId} and biz_seq = #{biz_seq}
+	</update>
+	
+	
 	<select id="likeStatus" resultType="String">
 	select like_status from likes where userId = #{userId} and biz_seq = #{biz_seq}
 	</select>

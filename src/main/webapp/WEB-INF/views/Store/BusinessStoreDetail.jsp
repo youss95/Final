@@ -216,7 +216,7 @@ section {
 					<c:when test="${getFlist!=null}">
 						<c:forEach var="item" items="${getFlist}" varStatus="s">
 						<div class="swiper-wrapper">
-							<div class="swiper-slide"><img src="${item.sysName}"></div>
+							<div class="swiper-slide"><img src="/files/${item.sysName}" ></div>
 						</div>
 						</c:forEach>
 							<div class="swiper-button-next"></div>
@@ -682,6 +682,7 @@ section {
          });
          
        });
+       
       </script>
 
 
@@ -717,14 +718,91 @@ section {
 				</div>
 			</a>
 			<script>
-         
-         
+			$(function(){
+				
+		
+      $("#likeStar").click(function(){
+    	  
+   
+        	 let data={userId:'${loginID}',biz_seq:${list.biz_seq}}
+        	 $.ajax({
+        		 url:"/like/statusReload",
+        		 data:JSON.stringify(data),
+        		 type:"POST",
+        		 contentType:"application/json;charset=utf-8"
+        	 }).done(function(resp){
+        		 console.log("sta:" +resp)
+        		 if(resp === 'Y'){
+        			 $("#heartIcon").css("color","red")
+        	            //취소
+        	              
+        	              let data = {
+        	                    userId:'${loginID}',
+        	                  businessName:'${list.businessName}',
+        	                  biz_seq:${list.biz_seq}
+        	                           }
+        	              $.ajax({
+        	                url:"/like/updateLike",
+        	                data:JSON.stringify(data),
+        	                type:"POST",
+        	                contentType:"application/json;charset=utf-8"
+        	              }).done(function(resp){
+        	                console.log(resp)
+        	              $("#heartIcon").css("color","black")
+        	             
+        	              })
+        	              
+        	           
+        		 }else if(resp === 'N'){
+        			  $("#heartIcon").css("color","black")
+                   
+                     let data = {
+                           userId:'${loginID}',
+                         businessName:'${list.businessName}',
+                         biz_seq:${list.biz_seq}
+                                  }
+                     $.ajax({
+                       url:"/like/updateLikeN",
+                       data:JSON.stringify(data),
+                       type:"POST",
+                       contentType:"application/json;charset=utf-8"
+                     }).done(function(resp){
+                       console.log(resp)
+                     $("#heartIcon").css("color","red")
+                   
+                     })
+                     
+                  
+        		 }else{
+        			  let data = {
+                              userId:'${loginID}',
+                            businessName:'${list.businessName}',
+                            biz_seq:${list.biz_seq}
+                                     }
+                        $.ajax({
+                          url:"/like/insertLike",
+                          data:JSON.stringify(data),
+                          type:"POST",
+                          contentType:"application/json;charset=utf-8"
+                        }).done(function(resp){
+                          console.log(resp)
+                        $("#heartIcon").css("color","red")
+                       
+                        })
+        		 }
+        	 })
+      })
+			})
+			
+         $(function(){
+        	 
+        	
          
             <c:choose>
             <c:when test="${likeStatus == 'Y' }">
             $("#heartIcon").css("color","red")
             //취소
-               $("#likeStar").click(function(){
+             /*   $("#likeStar").click(function(){
               let data = {
                     userId:'${loginID}',
                   businessName:'${list.businessName}',
@@ -738,33 +816,41 @@ section {
               }).done(function(resp){
                 console.log(resp)
               $("#heartIcon").css("color","black")
+              statusReload()
               })
               
-            })
+            }) */
             
                </c:when>
-               <c:otherwise>
+            <c:when test="${likeStatus == 'N' }">
                $("#heartIcon").css("color","black")
-               $("#likeStar").click(function(){
+            /*    $("#likeStar").click(function(){
               let data = {
                     userId:'${loginID}',
                   businessName:'${list.businessName}',
                   biz_seq:${list.biz_seq}
                            }
               $.ajax({
-                url:"/like/insertLike",
+                url:"/like/updateLikeN",
                 data:JSON.stringify(data),
                 type:"POST",
                 contentType:"application/json;charset=utf-8"
               }).done(function(resp){
                 console.log(resp)
               $("#heartIcon").css("color","red")
+              statusReload()
               })
               
-            })
-         </c:otherwise>
+            }) */
+        </c:when>
+               <c:otherwise>
+               $("#likeStar").click(function(){
+                 
+                   
+                 })
+               </c:otherwise>
             </c:choose>
-            
+         })
           
             
             $(window).scroll(function() {
