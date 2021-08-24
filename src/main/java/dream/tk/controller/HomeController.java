@@ -17,7 +17,7 @@ public class HomeController {
 	@RequestMapping("/")
 
 	public String home() {
-		return "home";
+		return "redirect:store/signup?cpage=1";
 	}
 	
 }

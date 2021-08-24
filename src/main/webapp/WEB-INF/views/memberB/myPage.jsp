@@ -240,6 +240,7 @@
 		let pw = $("#pw").val();
 		let repw = $("#repw").val();
 		
+		if($("#pw").val()){
 		if(pw != repw){
 			alert("패스워드가 일치하지 않습니다.");
 			return false;
@@ -249,7 +250,7 @@
 			alert('비밀번호는 8자 이상이어야 하며, 숫자/대,소문자/특수문자를 모두 포함해야 합니다.');
 			return false;
 		}
-		
+		}
 
 		let nameReg = /^.{2,30}$/;
 		let name = $("#name").val();

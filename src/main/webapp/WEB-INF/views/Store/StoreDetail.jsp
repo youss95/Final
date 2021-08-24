@@ -453,7 +453,7 @@ section {
 			function commentList() {
 				$
 						.ajax({
-							url : '/comment/list',
+							url : '/CommentMain/list',
 							type : 'get',
 							data : {
 								'bno' : bno
@@ -481,10 +481,10 @@ section {
 															+ '</div>'
 													if (value.writer === $(
 															"#writer").val()) {
-														a += ' <div class="commentInfo'+ value.cno+'">'
+														a += ' <div class="commentInfo'+ value.cno1+'">'
 														a += '<br>'
 														a += '<a onclick="commentUpdate('
-																+ value.cno
+																+ value.cno1
 																+ ',\''
 																+ value.content
 																+ '\');"> Update </a>';
@@ -515,7 +515,7 @@ section {
 			
 			function commentInsert(data) {
 				$.ajax({
-					url : '/comment/insert',
+					url : '/CommentMain/insert',
 					type : 'post',
 					data : JSON.stringify(data),
 					contentType:"application/json;charset=utf-8",
@@ -544,7 +544,7 @@ section {
 			function commentUpdateProc(cno) {
 				var updateContent = $('[name=content_' + cno + ']').val();
 				$.ajax({
-					url : '/comment/update',
+					url : '/CommentMain/update',
 					type : 'post',
 					data : {
 						'content' : updateContent,
@@ -559,7 +559,7 @@ section {
 			//댓글 삭제 
 			function commentDelete(cno) {
 				$.ajax({
-					url : '/comment/delete/' + cno,
+					url : '/CommentMain/delete/' + cno,
 					type : 'post',
 					success : function(data) {
 						if (data == 1)

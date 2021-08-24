@@ -216,7 +216,7 @@ section {
 					<c:when test="${getFlist!=null}">
 						<c:forEach var="item" items="${getFlist}" varStatus="s">
 						<div class="swiper-wrapper">
-							<div class="swiper-slide"><img src="${item.sysName}"></div>
+							<div class="swiper-slide"><img src="/files/${item.sysName}" ></div>
 						</div>
 						</c:forEach>
 							<div class="swiper-button-next"></div>
@@ -484,7 +484,7 @@ section {
 								<h4>
 									<i class="fa fa-paper-plane-o"></i> Leave a Comment:
 									<div class="make_star">
-										<div class="rating" data-rate="3">
+										<div class="rating" data-rate="3" style="float: right">
 											<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
 												class="fas fa-star"></i> <i class="fas fa-star"></i> <i
 												class="fas fa-star"></i>
@@ -495,8 +495,8 @@ section {
 									value="${loginID}"> <input type="hidden" id="bno"
 									name="bno" value="${list.biz_seq }" />
 								<div class="form-group">
-									<input type="text" class="form-control" id="content"
-										name="content" placeholder="내용을 입력하세요.">
+									<input type="text" class="form-control" id="contents"
+										name="contents" placeholder="내용을 입력하세요.">
 								</div>
 								<button type="button" value="" class="btn btn-primary"
 									name="commentInsertBtn" style="left: 0;">
@@ -551,6 +551,7 @@ section {
            });
         console.log(targetNum)
          var bno = $("#bno").val(); //게시글 번호
+         var comments = $("#comments").val();
          $('[name=commentInsertBtn]').click(function() { //댓글 등록 버튼 클릭시 
             //var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
             let data = {bno:${list.biz_seq },writer:'${loginID}' ,content:'코멘트테스트',star_avg:targetNum}
@@ -772,6 +773,22 @@ section {
                      })
                      
                   
+        		 }else{
+        			  let data = {
+                              userId:'${loginID}',
+                            businessName:'${list.businessName}',
+                            biz_seq:${list.biz_seq}
+                                     }
+                        $.ajax({
+                          url:"/like/insertLike",
+                          data:JSON.stringify(data),
+                          type:"POST",
+                          contentType:"application/json;charset=utf-8"
+                        }).done(function(resp){
+                          console.log(resp)
+                        $("#heartIcon").css("color","red")
+                       
+                        })
         		 }
         	 })
       })
@@ -828,21 +845,7 @@ section {
         </c:when>
                <c:otherwise>
                $("#likeStar").click(function(){
-                   let data = {
-                         userId:'${loginID}',
-                       businessName:'${list.businessName}',
-                       biz_seq:${list.biz_seq}
-                                }
-                   $.ajax({
-                     url:"/like/insertLike",
-                     data:JSON.stringify(data),
-                     type:"POST",
-                     contentType:"application/json;charset=utf-8"
-                   }).done(function(resp){
-                     console.log(resp)
-                   $("#heartIcon").css("color","red")
-                  
-                   })
+                 
                    
                  })
                </c:otherwise>
