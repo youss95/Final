@@ -101,7 +101,7 @@ select res_checked from reservation where res_time=#{res_time} and res_date=#{re
   
   <!-- 사용자가 구매한 순서대로 환불 진행하기  -->
   <select id="refundOrder" resultType="int">
-  select pay_no from res_payment where memberId=#{memberId} and (refund = 1 or refund =0 ) and rownum = 1 order by pay_no desc
+  select pay_no from res_payment where memberId=#{memberId} and (refund =0 ) and rownum = 1 order by pay_no desc
   </select>
    <select id="refundPrice" resultType="int">
   select price from res_payment where memberId=#{memberId} and refund = 0 and rownum = 1 order by pay_no desc

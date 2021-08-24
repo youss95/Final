@@ -67,18 +67,18 @@ font-weight:600;
 </section>
  </div>
 <script>
-$(function(){
+/* $(function(){
 	$.ajax({
 		url:"/pay/refundCheck",
 			data:{memberId :'${loginID}'}
 	}).done(function(resp){
 		console.log(resp)
-		if(resp === 1){
+		/* if(resp === 1){
 			$("#check2").hide();
-		}
-	})
+		} */
+/* 	})
 })
-
+ */ 
 
 let price = '';
 $("input[type=radio][name='price']").on('change',function(){
@@ -151,6 +151,7 @@ $("input[type=radio][name='price']").on('change',function(){
             		contentType:'application/json;charset=utf-8',
             		dataType:'json',
             		success:function(resp){
+            		    location.href="/bMember/myPage"
             			 msg += '결제가 완료되었습니다.';
              			msg += '이멜' +resp.biz_email;
             			console.log("resp",resp)
@@ -162,6 +163,7 @@ $("input[type=radio][name='price']").on('change',function(){
                           msg += '결제 금액 : ' + rsp.paid_amount;
                           msg += '카드 승인번호 : ' + rsp.apply_num; */
                           alert(msg)
+                     
             		}
 
             	})
@@ -172,7 +174,7 @@ $("input[type=radio][name='price']").on('change',function(){
                 alert(msg)
             }
          
-         
+         location.href="/bMember/myPage";
         });
     });
     
@@ -194,6 +196,7 @@ $("input[type=radio][name='price']").on('change',function(){
 				}
 			}).done(function(result){ //환불 성공
 				console.log('환불 성공')
+				location.href="/bMember/myPage"
 				console.log(result);
 			}).fail(function(error){
 				console.log("환불 실패 : "+ error);
