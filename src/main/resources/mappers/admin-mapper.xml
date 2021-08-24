@@ -40,12 +40,12 @@
 	from
     	(select 
         	case
-            	when to_number(extract(year from sysdate))-yearofbirth<20 then '10대 이하'
-            	when to_number(extract(year from sysdate))-yearofbirth between 20 and 29 then '20대'
-	            when to_number(extract(year from sysdate))-yearofbirth between 30 and 39 then '30대'
-	            when to_number(extract(year from sysdate))-yearofbirth between 40 and 49 then '40대'
-	            when to_number(extract(year from sysdate))-yearofbirth between 50 and 59 then '50대'
-	            when to_number(extract(year from sysdate))-yearofbirth >=60 then '60대 이상'
+            	when to_number(extract(year from sysdate))-yob<20 then '10대 이하'
+            	when to_number(extract(year from sysdate))-yob between 20 and 29 then '20대'
+	            when to_number(extract(year from sysdate))-yob between 30 and 39 then '30대'
+	            when to_number(extract(year from sysdate))-yob between 40 and 49 then '40대'
+	            when to_number(extract(year from sysdate))-yob between 50 and 59 then '50대'
+	            when to_number(extract(year from sysdate))-yob >=60 then '60대 이상'
 	        end 
 	            label
 	    from client_member)
