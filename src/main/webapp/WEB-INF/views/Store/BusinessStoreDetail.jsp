@@ -216,7 +216,7 @@ section {
 					<c:when test="${getFlist!=null}">
 						<c:forEach var="item" items="${getFlist}" varStatus="s">
 						<div class="swiper-wrapper">
-							<div class="swiper-slide"><img src="${item.sysName}"></div>
+							<div class="swiper-slide"><img src="/files/${item.sysName}" ></div>
 						</div>
 						</c:forEach>
 							<div class="swiper-button-next"></div>

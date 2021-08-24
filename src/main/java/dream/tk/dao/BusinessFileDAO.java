@@ -32,4 +32,8 @@ public class BusinessFileDAO {
 		return mybatis.selectOne("bFile.getSysName",seq);
 	}
 	
+	public List<BusinessFileDTO> getFlistSeq(int biz_seq) {
+		return mybatis.selectList("bFile.getFlistSeq",biz_seq);
+	}
+	
 }
