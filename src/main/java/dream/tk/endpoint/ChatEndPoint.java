@@ -62,7 +62,9 @@ public class ChatEndPoint {
 				json.addProperty("bizName", (String) hsession.getAttribute("buisnessNameChat")); //업체명
 				json.addProperty("manager", (String)hsession.getAttribute("manager")); //매니저 유무 확인
 				json.addProperty("contents", contents); // 메세지
+				json.addProperty("writer", (String)hsession.getAttribute("writer"));
 				String nickname = (String)hsession.getAttribute("nickname");
+				String writer = (String)hsession.getAttribute("writer");
 				if(nickname == null) {
 					nickname = (String)hsession.getAttribute("loginID");
 				}
@@ -76,22 +78,20 @@ public class ChatEndPoint {
 				}else {
 					chatnum = "manager" + store;
 				}
+				System.out.println("제발 마지막 확인 manager : " + manager);
 				try {
-					if(nickname.contentEquals("manager")) {
+					if(writer.contentEquals("manager")) {
 						dao.insertManager(new ChatAdminDTO(chatnum,store,contents,nickname));
+
+					}else if(writer.contentEquals("client")) {
+						dao.insert(new ChatDTO(chatnum,store,contents,nickname));
 					}else {
 						if(manager == null) {
-							if(bizName == null) {
-								dao.insert(new ChatDTO(chatnum,store,contents,nickname));
-								//dao.deleteChatRoom(chatnum);
-							}else {
 								dao.insertBusiness(new ChatDTO(chatnum,store,contents,nickname));
-							}
-
+							
 						}else {
-							if(bizName != null) {
 								dao.insertBizManager(new ChatAdminDTO(chatnum,store,contents,nickname));
-							}
+						
 						}
 					}
 					dao.selectList(nickname);

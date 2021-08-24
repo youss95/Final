@@ -27,6 +27,7 @@ public class ChatController {
 	//클라이언트 채팅 리스트
 	@RequestMapping("toChat")
 	public String chat(Model model) throws Exception {
+		session.setAttribute("writer", "client");
 		String nickname = (String)session.getAttribute("loginID");
 		String storeName = (String) session.getAttribute("storeName");
 		String roomid = nickname + storeName;
@@ -58,13 +59,19 @@ public class ChatController {
 	public String clickChat(String roomid, String id) throws Exception{
 		session.setAttribute("roomid", roomid);
 		session.setAttribute("nickname", id);
+		
+		if(roomid.contains("manager")) {
+			session.setAttribute("manager", "manager");
+		}else {
+			session.setAttribute("manager", null);
+		}
 		return "redirect:businessChat";
 	}
 	
 	//비즈니스 채팅 리스트
 	@RequestMapping("businessChat")
 	public String businessChat(Model model) throws Exception{
-		System.out.println("업체 아이디");
+		session.setAttribute("writer", "store");
 		//String nickname = (String)session.getAttribute("loginID");
 		String storeName = (String) session.getAttribute("storeName");
 		String roomid = (String) session.getAttribute("roomid");
@@ -109,6 +116,7 @@ public class ChatController {
 	//관리자 관점 채팅방
 	@RequestMapping("adminChat")
 	public String adminChat(Model model) throws Exception{
+		session.setAttribute("writer", "admin");
 		String storeName = (String) session.getAttribute("store");
 
 		String chatnum = "manager"+storeName;
