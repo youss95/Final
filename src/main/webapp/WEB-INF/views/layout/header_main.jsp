@@ -120,12 +120,23 @@
 	  
 	   });
 
-	   $(document).on("click", "#menu2", function () {
-	     $(".section *").remove();
-	     let contentSection = $(".section");
-	     let second = `<div id="aaa">menu2 내용</div><br>`;
-	     contentSection.append(second);
-	   });
+	  $(document).on("click", "#menu2", function () {
+		     $(".section *").remove();
+		     let contentSection = $(".section");
+		     $.ajax({
+		    	 url:"/like/getLikes",
+		    	 data:{'userId':'${loginID}'}
+		     }).done(function(resp){
+		    	 console.log(resp)
+		    	 let second=''
+		    	 resp.map((list)=>{
+		    		 second +="<div id='aaa' data-lkno='"+list.like_no+"'><span>식당 이름: </span>"+list.businessName+"</div><br><br>"
+		    	 })
+		    	    contentSection.append(second);
+		     })
+		  
+		 
+		   });
 	   
 	   
   </script>

@@ -597,7 +597,7 @@ section {
                                                 + ',\''
                                                 + value.content
                                                 + '\');"> 수정하기 </a>';
-                                          a += '<a href="/comment/deleteComment?cno='
+                                          a += '<a href="/comment/deleteComments?cno='
                                                 + value.cno
                                                 + '"> 삭제하기 </a></div>';
                                        }
