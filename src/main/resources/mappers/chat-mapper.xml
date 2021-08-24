@@ -17,6 +17,12 @@
 		values(CHAT_CLIENT_SEQ.nextval,#{chatnum},#{nickname},#{store},#{contents},#{store},
 		sysdate)
 	</insert>
+	
+	<insert id="insertBizManager">
+		insert into CHAT_MANAGER
+		values(CHAT_MANAGER_SEQ.nextval,#{chatnum},null,#{store},#{contents},#{store},
+		sysdate)
+	</insert>
 
 	<select id="selectAll" resultType="dream.tk.dto.ChatDTO">
 		select seq, chatnum, id,

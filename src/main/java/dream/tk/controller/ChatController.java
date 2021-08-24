@@ -96,6 +96,13 @@ public class ChatController {
 		return "redirect:businessChat";
 	}
 	
+	@RequestMapping("bizSendManager")
+	public String bizSendManager(String roomid) throws Exception{
+		session.setAttribute("roomid", roomid);
+		session.setAttribute("manager", "manager");
+		return "redirect:businessChat";
+	}
+	
 	@ExceptionHandler
 	public String exceptionHandler(Exception e) {
 		e.printStackTrace();

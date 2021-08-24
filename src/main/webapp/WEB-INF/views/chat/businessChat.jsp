@@ -33,24 +33,21 @@ body {
 	float: left;
 }
 
-.search {
+.toManager {
 	padding: 20px;
 }
 
-input {
+.toManager>a>button {
 	border-radius: 3px;
 	border: none;
-	padding: 14px;
+	padding: 13px;
 	color: white;
 	background: #6A6C75;
 	width: 90%;
 	font-size: 14px;
+	margin-bottom:20px;
 }
 
-.fa-search {
-	position: relative;
-	left: -25px;
-}
 
 ul {
 	padding: 20px;
@@ -317,6 +314,8 @@ button:hover {
 			$("#message-to-send").val(" ");
 
 		})
+		
+		
 	})
 </script>
 </head>
@@ -324,8 +323,8 @@ button:hover {
 <a id="backBtn" href="/store/signup?cpage=1">toBoard</a>
 	<div class="container clearfix">
 		<div class="people-list" id="people-list">
-			<div class="search">
-				<input type="text" placeholder="search" /> <i class="fa fa-search"></i>
+			<div class="toManager">
+			<a href = "/chat/bizSendManager?roomid=manager${storeName }"><button type="button" id="sendManager">to Manager</button></a>
 			</div>
 			<!-- 채팅 리스트 -->
 			<ul class="list">
@@ -344,7 +343,7 @@ button:hover {
 							</div></li>
 					</c:if>
 					<c:if test="${item.store == null }">
-						<div>null입니다</div>
+						<div>아무에게도 문의가 들어오지 않았습니다.</div>
 					</c:if>
 				</c:forEach>
 			</ul>
@@ -357,7 +356,7 @@ button:hover {
 					alt="avatar" />
 
 				<div class="chat-about">
-					<div class="chat-with">Chat with ${storeName }</div>
+					<div class="chat-with">Chat with ${nickname }</div>
 					<div class="chat-num-messages">already 1 902 messages</div>
 				</div>
 				<i class="fa fa-star"></i>

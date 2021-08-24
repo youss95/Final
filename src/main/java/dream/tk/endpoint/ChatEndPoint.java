@@ -60,22 +60,37 @@ public class ChatEndPoint {
 				json.addProperty("store", (String)hsession.getAttribute("storeName"));// 가게이름
 				json.addProperty("nickname", (String)hsession.getAttribute("nickname")); // 유저 닉네임
 				json.addProperty("bizName", (String) hsession.getAttribute("buisnessNameChat")); //업체명
+				json.addProperty("manager", (String)hsession.getAttribute("manager")); //매니저 유무 확인
 				json.addProperty("contents", contents); // 메세지
 				String nickname = (String)hsession.getAttribute("nickname");
 				if(nickname == null) {
 					nickname = (String)hsession.getAttribute("loginID");
 				}
 				String store = (String)hsession.getAttribute("storeName");
-				String chatnum = nickname+store;
-				String bizName =  (String) hsession.getAttribute("buisnessNameChat");
-				System.out.println("chatnum : " + chatnum + "store : " + store + "ninckname : " + nickname);
 				
+				String bizName =  (String) hsession.getAttribute("buisnessNameChat");
+				String manager = (String) hsession.getAttribute("manager");
+				String chatnum = null;
+				if(manager == null) {
+				chatnum = nickname+store;
+				}else {
+					chatnum = "manager" + store;
+				}
 				try {
-					if(bizName == null) {
-					dao.insert(new ChatDTO(chatnum,store,contents,nickname));
-					//dao.deleteChatRoom(chatnum);
+					if(manager == null) {
+						if(bizName == null) {
+							dao.insert(new ChatDTO(chatnum,store,contents,nickname));
+							//dao.deleteChatRoom(chatnum);
+						}else {
+							dao.insertBusiness(new ChatDTO(chatnum,store,contents,nickname));
+						}
 					}else {
-						dao.insertBusiness(new ChatDTO(chatnum,store,contents,nickname));
+						if(bizName == null) {
+							dao.insert(new ChatDTO(chatnum,store,contents,nickname));
+							//dao.deleteChatRoom(chatnum);
+						}else {
+							dao.insertBizManager(new ChatDTO(chatnum,store,contents,nickname));
+						}
 					}
 					dao.selectAll(chatnum);
 					dao.selectList(nickname);

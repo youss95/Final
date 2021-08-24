@@ -27,6 +27,10 @@ public class ChatService {
 		  return dao.insertBusiness(dto); 
 	}
 	  
+	  public int insertBizManager(ChatDTO dto) throws Exception{ 
+		  return dao.insertBizManager(dto); 
+	}
+	  
 	  public List<ChatDTO> selectAll(String chatnum) throws Exception{
 		  return dao.selectAll(chatnum);
 	  }
