@@ -26,6 +26,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
  <style>
       p{display:inline-block;}
     .card-body div{ display:inline-block;}
@@ -83,6 +84,17 @@
 				alert("업종을 선택해주세요.");
 				return false;
 			}
+			if($("#bizNum").val()==null||$("#bizNum").val()==""){
+				alert("사업자등록번호를 입력해주세요.");
+				return false;
+			}
+			let bizNumReg = /^[0-9]{5,}$/;
+			let bizNum = $("#bizNum").val();
+
+			if (!bizNumReg.test(bizNum)) {
+				alert("유효하지 않은 사업자등록번호입니다. 5자리 이상의 숫자만 입력해주세요. \n ex) 13079");
+				return false;
+			}
 			if($("#businessName").val()==null||$("#businessName").val()==""){
 				alert("업체명을 입력해주세요.");
 				return false;
@@ -118,10 +130,10 @@
 // 				alert("업체 휴무일을 입력해주세요.");
 // 				return false;
 // 			}
-			if($("input[name=offday]:checked").val()==null||$("input[name=offday]:checked").val()==""){
-				alert("업체 휴무일을 입력해주세요.");
-				return false;
-			}
+// 			if($("input[name=offday]:checked").val()==null||$("input[name=offday]:checked").val()==""){
+// 				alert("업체 휴무일을 입력해주세요.");
+// 				return false;
+// 			}
 		
 		})
 		//-------Business Info 관련 -------
@@ -289,7 +301,7 @@
 
 </head>
 
-<body class="">
+<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 
   <div class="wrapper ">
      <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" style="height:100%;">
@@ -541,43 +553,43 @@
                       </div>
 
 
-						<div class="card-body" style="width: 100%">
-								<div style="width: 30%">업체 휴무일</div>
-								<div style="width: 60%" class="hiddenDivB">${bizInfo.offday}</div>
+<!-- 						<div class="card-body" style="width: 100%"> -->
+<!-- 								<div style="width: 30%">업체 휴무일</div> -->
+<%-- 								<div style="width: 60%" class="hiddenDivB">${bizInfo.offday}</div> --%>
 <!-- 								<input class="hiddenInputB" id="offday" name="offday" -->
 <%-- 											type=text value="${bizInfo.offday}" style="display: none"> --%>
-								<div class="rd_group hiddenInputB" style="display: none">
-											<div class="inp_rd">
-												<input type="radio" id="mon" name="offday" value="mon">
-												<label for="m1">월</label>
-											</div>
-											<div class="inp_rd">
-												<input type="radio" id="tue" name="offday" value="tue">
-												<label for="m2">화</label>
-											</div>
-											<div class="inp_rd">
-												<input type="radio" id="wed" name="offday" value="wed">
-												<label for="m3">수</label>
-											</div>
-											<div class="inp_rd">
-												<input type="radio" id="thu" name="offday" value="thu">
-												<label for="m3">목</label>
-											</div>
-											<div class="inp_rd">
-												<input type="radio" id="fri" name="offday" value="fri">
-												<label for="m3">금</label>
-											</div>
-											<div class="inp_rd">
-												<input type="radio" id="sat" name="offday" value="sat">
-												<label for="m3">토</label>
-											</div>
-											<div class="inp_rd">
-												<input type="radio" id="sun" name="offday" value="sun">
-												<label for="m3">일</label>
-											</div>
-										</div>
+<!-- 								<div class="rd_group hiddenInputB" style="display: none"> -->
+<!-- 											<div class="inp_rd"> -->
+<!-- 												<input type="radio" id="mon" name="offday" value="mon"> -->
+<!-- 												<label for="m1">월</label> -->
+<!-- 											</div> -->
+<!-- 											<div class="inp_rd"> -->
+<!-- 												<input type="radio" id="tue" name="offday" value="tue"> -->
+<!-- 												<label for="m2">화</label> -->
+<!-- 											</div> -->
+<!-- 											<div class="inp_rd"> -->
+<!-- 												<input type="radio" id="wed" name="offday" value="wed"> -->
+<!-- 												<label for="m3">수</label> -->
+<!-- 											</div> -->
+<!-- 											<div class="inp_rd"> -->
+<!-- 												<input type="radio" id="thu" name="offday" value="thu"> -->
+<!-- 												<label for="m3">목</label> -->
+<!-- 											</div> -->
+<!-- 											<div class="inp_rd"> -->
+<!-- 												<input type="radio" id="fri" name="offday" value="fri"> -->
+<!-- 												<label for="m3">금</label> -->
+<!-- 											</div> -->
+<!-- 											<div class="inp_rd"> -->
+<!-- 												<input type="radio" id="sat" name="offday" value="sat"> -->
+<!-- 												<label for="m3">토</label> -->
+<!-- 											</div> -->
+<!-- 											<div class="inp_rd"> -->
+<!-- 												<input type="radio" id="sun" name="offday" value="sun"> -->
+<!-- 												<label for="m3">일</label> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
 
-									</div>
+<!-- 									</div> -->
 
 									<!--                       <div class="card-body" style="width:100%"> -->
 <!--                         <div style="width:30%">업체 영엽시간</div> -->
@@ -669,7 +681,7 @@
                     				<a style="margin:0 20px 0 5px; display:block">${f.oriName}</a>
                     				</div>     
                    		 			<div class="input-group-btn" style="display: inline; width:10%">
-									<button class="btn btn-danger delTarget" type="button" seq=${f.seq} style="padding:0; margin:0; width:15px; height:16px">X</button>
+									<button class="btn btn-danger delTarget" type="button" seq="${f.seq}" style="padding:0; margin:0; width:15px; height:16px">X</button>
 			  						</div>
 			  				   </div>	
              				</c:forEach>

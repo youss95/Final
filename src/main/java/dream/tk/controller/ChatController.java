@@ -127,6 +127,9 @@ public class ChatController {
 		String storeName = (String) session.getAttribute("store");
 		session.setAttribute("storeName", storeName);
 		String chatnum = "manager"+storeName;
+		if(storeName == null) {
+			chatnum = "chatnum";
+		}
 		session.setAttribute("chatnum", chatnum);
 		session.setAttribute("nickname", "manager");
 		List<ChatAdminDTO> list1 = service.selectAdminList("manager");

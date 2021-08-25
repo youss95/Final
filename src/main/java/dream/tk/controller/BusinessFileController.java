@@ -48,7 +48,9 @@ public class BusinessFileController {
 			if(delFiles!=null) {
 				for(int i=0; i<delFiles.length; i++) {
 						String seq = delFiles[i];
+						System.out.println("삭제할 seq는 " +seq);
 						String delfileName = fser.getSysName(seq);
+						System.out.println("삭제할 delfileName는 " +delfileName);
 						File delTarget = new File(realPath+"/"+delfileName);
 						boolean delResult = delTarget.delete();
 							if(delResult) {
