@@ -343,8 +343,7 @@ section {
 							href="/Business/view?biz_seq=${list.biz_seq }&userId=${loginID}">
 								<input type="hidden" id="click" value="${list.biz_seq }">
 								<figure>
-									<img src="https://source.unsplash.com/mZS7cne5iY0/800x600"
-										alt="Photo of Brooklyn Park">
+									<img src="${pageContext.request.contextPath}/resources/Storeimages/ready.png" alt="">
 									<figcaption>
 										<p>${list.address1 }</p>
 										<h2>${list.businessNameEng }</h2>

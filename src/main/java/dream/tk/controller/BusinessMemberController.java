@@ -353,6 +353,11 @@ public class BusinessMemberController {
 		return "/memberB/myReservation";
 	}
 	
+	@RequestMapping("noAccess")
+	public String noAccess() {
+		return "/memberB/noAccess";
+	}
+	
 	
 
 }
