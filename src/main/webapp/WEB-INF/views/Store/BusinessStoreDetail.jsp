@@ -518,12 +518,14 @@ section {
 									name="bno" value="${list.biz_seq }" />
 								<div class="form-group">
 									<input type="text" class="form-control" id="contents"
-										name="contents" placeholder="Please enter your content.">
+										name="contents" placeholder="ready." disabled>
 								</div>
+								<!--  
 								<button type="button" value="" class="btn btn-primary"
 									name="commentInsertBtn" style="left: 0;">
 									<i class="fa fa-reply"></i>Submit
 								</button>
+								-->
 							</form>
 						</c:when>
 
