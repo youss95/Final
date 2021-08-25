@@ -14,29 +14,41 @@
 			<c:when test="${loginID!=null }">
 				<ul>
 
-					<li>
-						<c:if test="${binfo.member_role eq 'B'}">
-							<a href="${pageContext.request.contextPath}/bMember/myPage">MyPage</a>
-							<li><a href="${pageContext.request.contextPath}/member/logout"><i
-							class="fas fa-sign-out-alt"></i></a></li>
-							<li><a href="/noti/detail?userId=${loginID}&page=1"
-						class="button" style="position: relative"><i
-							class="fas fa-bell fa-2x"></i><span class="nav-counter"></span></a></li>
-							<li><i class="fas fa-user-alt userIcon" id="popBtn"
-						data-placement="bottom" class="btn btn-lg btn-danger"
-						data-toggle="popover lightbox" title="Popover title"
-						data-content="And here's some amazing content. It's very engaging. Right?"></i></li>
-						</c:if>
-						<c:if test="${info.member_role eq 'C'}">
-							<a href="${pageContext.request.contextPath}/cMember/mypage">MyPage</a>
-							<li><a href="${pageContext.request.contextPath}/member/logout"><i
-							class="fas fa-sign-out-alt"></i></a></li>
-							<li><i class="fas fa-user-alt userIcon" id="popBtn"
-						data-placement="bottom" class="btn btn-lg btn-danger"
-						data-toggle="popover lightbox" title="Popover title"
-						data-content="And here's some amazing content. It's very engaging. Right?"></i></li>
-						</c:if>
-						</li>
+					<li><c:choose>
+							<c:when test="${binfo.member_role eq 'B'}">
+
+								<a href="${pageContext.request.contextPath}/bMember/myPage">MyPage</a>
+								<li><a
+									href="${pageContext.request.contextPath}/member/logout"><i
+										class="fas fa-sign-out-alt"></i></a></li>
+								<li><a href="/noti/detail?userId=${loginID}&page=1"
+									class="button" style="position: relative"><i
+										class="fas fa-bell fa-2x"></i><span class="nav-counter"></span></a></li>
+								<li><i class="fas fa-user-alt userIcon" id="popBtn"
+									data-placement="bottom" class="btn btn-lg btn-danger"
+									data-toggle="popover lightbox" title="Popover title"
+									data-content="And here's some amazing content. It's very engaging. Right?"></i></li>
+							</c:when>
+							<c:when test="${info.member_role eq 'C'}">
+
+								<a href="${pageContext.request.contextPath}/cMember/mypage">MyPage</a>
+								<li><a
+									href="${pageContext.request.contextPath}/member/logout"><i
+										class="fas fa-sign-out-alt"></i></a></li>
+								<li><i class="fas fa-user-alt userIcon" id="popBtn"
+									data-placement="bottom" class="btn btn-lg btn-danger"
+									data-toggle="popover lightbox" title="Popover title"
+									data-content="And here's some amazing content. It's very engaging. Right?"></i></li>
+							</c:when>
+							<c:otherwise>
+							<a href="${pageContext.request.contextPath}/admin/dashForm">AdminPage</a>
+								<li><a
+									href="${pageContext.request.contextPath}/member/logout"><i
+										class="fas fa-sign-out-alt"></i></a></li>
+
+
+							</c:otherwise>
+						</c:choose></li>
 				</ul>
 			</c:when>
 			<c:otherwise>
