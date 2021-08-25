@@ -156,7 +156,8 @@ public class BusinessMemberController {
 	@RequestMapping("signOut")
 	public String signOut(String id) {
 		ser.signOut(id);
-		return "/memberB/login";
+		session.invalidate();
+		return "/memberB/memberOutView";
 	}
 	
 	@RequestMapping("editPersonalInfo")
