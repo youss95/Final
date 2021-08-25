@@ -233,7 +233,7 @@ section {
 
 		<div class="headers">
 			<div class="swiper-container mySwiper">
-			${list.businessNameEng }
+		
 				<c:choose>
 					<c:when test="${getFlist!=null}">
 						<c:forEach var="item" items="${getFlist}" varStatus="s">
@@ -778,7 +778,7 @@ section {
         	              })
         	              
         	              /* 알람  */
-        	let businessName = '${list.businessName}'
+        	let businessName = '${list.businessNameEng }'
             let sender = '${loginID}'
             let getter = ${list.seq}
             let content = sender+" 님이 "+businessName+" 을  찜하였습니다."
@@ -803,7 +803,7 @@ section {
                    
                      let data = {
                            userId:'${loginID}',
-                         businessName:'${list.businessName}',
+                         businessName:'${list.businessNameEng }',
                          biz_seq:${list.biz_seq}
                                   }
                      $.ajax({

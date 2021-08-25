@@ -249,7 +249,7 @@ $(function(){
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                  </div>
-                <input id="name" name="name" class="form-control" placeholder="Name" type="text">
+                <input id="name" name="name" class="form-control" placeholder="EnglishName Required!! 영어이름을 입력" type="text">
             </div> <!-- form-group// -->
 
 

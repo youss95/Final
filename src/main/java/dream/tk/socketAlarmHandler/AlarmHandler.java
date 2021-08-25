@@ -56,7 +56,7 @@ public class AlarmHandler extends TextWebSocketHandler{
 			String boardId = strs[2];
 			String businessName = strs[3];
 			String count = strs[4];
-			System.out.println(boardId);
+			System.out.println("받는사람 아이디: "+boardId);
 			
 			WebSocketSession boardWriterSession = userSessions.get(boardId);//게시글 작성자가 있으면
 			System.out.println("받는사람"+boardWriterSession);
