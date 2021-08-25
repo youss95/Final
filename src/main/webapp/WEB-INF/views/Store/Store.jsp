@@ -9,15 +9,19 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Store_main.css?after">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/map.css?after">
 <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link rel="stylesheet"
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
 	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
 	crossorigin="anonymous" />
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
 
 <style>
 * {
@@ -230,7 +234,7 @@ section {
 	margin-top: 20px;
 }
 
-.pagination modal{
+.pagination modals{
 	text-align: center;
 }
 .pagination li {
@@ -269,7 +273,7 @@ section {
 	outline: none;
 }
 
-.modal .num {
+.modals .num {
 	margin-left: 10px;
 	padding: 0;
 	width: 30px;
@@ -280,12 +284,12 @@ section {
 	border-radius: 100%;
 }
 
-.modal .num:hover {
+.modals .num:hover {
 	background-color: #2e9cdf;
 	color: #ffffff;
 }
 
-.modal .num.active, .modal .num:active {
+.modals .num.active, .modals .num:active {
 	background-color: #2e9cdf;
 	cursor: pointer;
 }
@@ -311,10 +315,10 @@ section {
 <body>
 	<div id="wrap">
 		<br>
-		<div class="contain">
+			
+			<div class="contain">
 			<%@include file="../layout/header_main.jsp" %>
 		</div>
-			<%@include file="banner.jsp" %>
 		
 		
 		
@@ -322,7 +326,7 @@ section {
 			<!-- 왼쪽 -->
 			<main role="main">
 				<br>
-				<h3 style="font-size: 20px; text-align: left; margin: 10px;">메인 사이트</h3>
+				<h3 style="font-size: 20px; text-align: left; margin: 10px;">List of restaurants you can trust and watch > </h3>
 				<hr>
 				<ul class="flexgrid columns-news">
 					<c:forEach var="list" items="${viewAll}">
@@ -331,7 +335,7 @@ section {
 							href="/store/view?store_seq=${list.store_seq }">
 							<input type="hidden" id="click" value="${list.store_seq }">
 								<figure>
-									<img src="https://source.unsplash.com/mZS7cne5iY0/800x600"
+									<img src="${pageContext.request.contextPath}/resources/Storeimages/${list.img }"
 										alt="Photo of Brooklyn Park">
 									<figcaption>
 										<p>${list.city }</p>
@@ -345,7 +349,7 @@ section {
 			</main>
 			<!-- 페이징바!! -->
 			<div class="page" style="text-align: center; margin-left:1px ">
-				<ul class="pagination modal">
+				<ul class="pagination modals">
 					<c:if test="${paging.startPage != 1 }">
 						<li><a class="active num"
 							href="/store/signup?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
@@ -417,7 +421,7 @@ section {
 				<div class="d1">
 					<div class="search">
 						<input type="text" id="searchWrd" name="searchWrd"
-							placeholder="Find an address" value="${searchVO.searchWrd }">
+							placeholder="It's under development." value="${searchVO.searchWrd }" disabled>
 							
 							<a
 							href="" onclick="fn_search();" class="btn-login" style="float: left"><button
@@ -425,7 +429,7 @@ section {
 							
 							
 							<a
-							href="" onclick="fn_search();" class="btn-login"><button
+							href="#" onclick="fn_search();" class="btn-login"><button
 								type="button" class="pulse"></button></a>
 					</div>
 				</div>
@@ -566,9 +570,9 @@ section {
 
 			<!-- 하단 추천바!! -->
 			
-			<br><br>	
-			<!-- 예약하기  -->
-		     <h3 style="font-size: 20px; text-align: left; margin:10px; ">an immediate reservation <a href="/Business/signup?cpage=1" style="float: right;">></a></h3>
+			<br><br><br>	
+			
+		       <!--<h3 style="font-size: 20px; text-align: left; margin:10px; ">an immediate reservation <a href="/Business/signup?cpage=1" style="float: right;">></a></h3>
 		    <hr style="margin: 24px 0">  
 			<script>
                 function random_imglink() {
@@ -591,7 +595,7 @@ section {
                 random_imglink();
             </script>
 			
-			<br><br><br>
+			<br><br><br>-->
 			
 			<!-- 1번쨰 -->
 			 <h3 style="font-size: 20px; text-align: left; margin:10px; ">Recommended bar <a href="https://www.tripadvisor.com/Restaurants-g294197-zfn7778640-Seoul.html" style="float: right;">></a></h3>
@@ -671,6 +675,5 @@ section {
             
 		</section>
 	</div>
-	 <%@include file="../layout/alarm.jsp" %>
 </body>
 </html>

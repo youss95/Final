@@ -57,7 +57,6 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="/resources/js/header.js"></script>
 <script>
-
   $(function(){
 	  $.ajax({
 		  url:"/noti/alarmCounts",
@@ -72,7 +71,6 @@
   /* 팝오버입니다. */
   $("#popBtn").popover({
 	     animation: true,
-
 	     delay: { show: 50, hide: 10 },
 	     // template 사용한다.
 	     html: true,
@@ -91,7 +89,6 @@
 	     setTimeout(function() {
 	    	 document.getElementById("menu1").click();
 	    	}, 100);
-
 	     
 	    
 	    
@@ -99,7 +96,6 @@
 	     // $(".wrap").css("background-color", "rgba(0,0,0,0.6)");
 	     //$(".wrap").css("opacity", "0.3");
 	   });
-
 	   $("#popBtn").attr(
 	     "data-content",
 	     '<li id="menu1">예약정보</li><li id="menu2">메뉴2</li><div id="myp"><a href=""><i class="fas fa-cog fa-2x"></i></a></div><br><div class="section"></div>'
@@ -123,7 +119,6 @@
 		   })
 	  
 	   });
-
 	  $(document).on("click", "#menu2", function () {
 		     $(".section *").remove();
 		     let contentSection = $(".section");
