@@ -233,6 +233,7 @@ section {
 
 		<div class="headers">
 			<div class="swiper-container mySwiper">
+			${list.businessNameEng }
 				<c:choose>
 					<c:when test="${getFlist!=null}">
 						<c:forEach var="item" items="${getFlist}" varStatus="s">
