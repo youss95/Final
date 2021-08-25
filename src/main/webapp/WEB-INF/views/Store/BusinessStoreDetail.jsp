@@ -778,7 +778,7 @@ section {
         	              })
         	              
         	              /* 알람  */
-        	let businessName = '${list.businessNameEng }'
+        	/* let businessName = '${list.businessNameEng }'
             let sender = '${loginID}'
             let getter = ${list.seq}
             let content = sender+" 님이 "+businessName+" 을  찜하였습니다."
@@ -796,7 +796,7 @@ section {
                   console.log(scktMsg);
                   socket.send(scktMsg);
                }
-            })
+            }) */
         	           
         		 }else if(resp === 'N'){
         			  $("#heartIcon").css("color","black")
@@ -818,7 +818,7 @@ section {
                      })
                      
                      /* 알람  */
-            let businessName = '${list.businessName}'
+          /*   let businessName = '${list.businessName}'
             let sender = '${loginID}'
             let getter = ${list.seq}
             let content = sender+" 님이 "+businessName+" 을  찜하였습니다."
@@ -836,7 +836,7 @@ section {
                   console.log(scktMsg);
                   socket.send(scktMsg);
                }
-            })
+            }) */
                   
         		 }else{
         			  let data = {
@@ -867,7 +867,7 @@ section {
             <c:when test="${likeStatus == 'Y' }">
             $("#heartIcon").css("color","red")
             //취소
-             /*   $("#likeStar").click(function(){
+                $("#likeStar").click(function(){
               let data = {
                     userId:'${loginID}',
                   businessName:'${list.businessName}',
@@ -884,12 +884,12 @@ section {
               statusReload()
               })
               
-            }) */
+            }) 
             
                </c:when>
             <c:when test="${likeStatus == 'N' }">
                $("#heartIcon").css("color","black")
-            /*    $("#likeStar").click(function(){
+                $("#likeStar").click(function(){
               let data = {
                     userId:'${loginID}',
                   businessName:'${list.businessName}',
@@ -906,7 +906,7 @@ section {
               statusReload()
               })
               
-            }) */
+            }) 
         </c:when>
                <c:otherwise>
                $("#likeStar").click(function(){
@@ -944,7 +944,7 @@ section {
             })
          })
          $("#likeStar").on('click',function(){
-         
+        	
          })
          </script>
 		</div>

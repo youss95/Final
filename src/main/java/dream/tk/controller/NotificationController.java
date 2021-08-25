@@ -44,6 +44,7 @@ public class NotificationController {
 		System.out.println("seq"+seq);
 		System.out.println("con"+content);
 		String userId = notiService.getRecipient(seq);
+		System.out.println("userId"+userId);
 		notiService.alarmInsert(userId, content);
 		return userId;
 	}
