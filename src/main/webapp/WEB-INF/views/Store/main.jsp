@@ -216,9 +216,9 @@
                 </div>
                 <div class="col-md-4">
                     <div class="product-item">
-                        <a href="#"><img src="${pageContext.request.contextPath}/resources/Storeimages/ready.png" alt=""></a>
+                        <a href="/Business/view?biz_seq=308&userId="><img src="${pageContext.request.contextPath}/resources/Storeimages/ready.png" alt=""></a>
                         <div class="down-content">
-                            <a href="#">
+                            <a href="/Business/view?biz_seq=308&userId=">
                                 <!-- 타이틀 이름-->
                                 <h4>Tittle goes here</h4>
                             </a>
@@ -239,9 +239,9 @@
                 </div>
                 <div class="col-md-4">
                     <div class="product-item">
-                        <a href="#"><img src="${pageContext.request.contextPath}/resources/Storeimages/ready.png" alt=""></a>
+                        <a href="/Business/view?biz_seq=307&userId="><img src="${pageContext.request.contextPath}/resources/Storeimages/ready.png" alt=""></a>
                         <div class="down-content">
-                            <a href="#">
+                            <a href="/Business/view?biz_seq=307&userId=">
                                 <h4>Tittle goes here</h4>
                             </a>
                             
@@ -259,9 +259,9 @@
                 </div>
                 <div class="col-md-4">
                     <div class="product-item">
-                        <a href="#"><img src="${pageContext.request.contextPath}/resources/Storeimages/ready.png" alt=""></a>
+                        <a href="/Business/view?biz_seq=25&userId="><img src="${pageContext.request.contextPath}/resources/Storeimages/ready.png" alt=""></a>
                         <div class="down-content">
-                            <a href="#">
+                            <a href="/Business/view?biz_seq=25&userId=">
                                 <h4>Tittle goes here</h4>
                             </a>
                            
@@ -279,9 +279,9 @@
                 </div>
                 <div class="col-md-4">
                     <div class="product-item">
-                        <a href="#"><img src="${pageContext.request.contextPath}/resources/Storeimages/ready.png" alt=""></a>
+                        <a href="/Business/view?biz_seq=34&userId="><img src="${pageContext.request.contextPath}/resources/Storeimages/ready.png" alt=""></a>
                         <div class="down-content">
-                            <a href="#">
+                            <a href="/Business/view?biz_seq=34&userId=">
                                 <h4>Tittle goes here</h4>
                             </a>
                            
@@ -299,9 +299,9 @@
                 </div>
                 <div class="col-md-4">
                     <div class="product-item">
-                        <a href="#"><img src="${pageContext.request.contextPath}/resources/Storeimages/ready.png" alt=""></a>
+                        <a href="/Business/view?biz_seq=13&userId="><img src="${pageContext.request.contextPath}/resources/Storeimages/ready.png" alt=""></a>
                         <div class="down-content">
-                            <a href="#">
+                            <a href="/Business/view?biz_seq=13&userId=">
                                 <h4>Tittle goes here</h4>
                             </a>
                             
@@ -319,9 +319,9 @@
                 </div>
                 <div class="col-md-4">
                     <div class="product-item">
-                        <a href="#"><img src="${pageContext.request.contextPath}/resources/Storeimages/ready.png" alt=""></a>
+                        <a href="/Business/view?biz_seq=30&userId="><img src="${pageContext.request.contextPath}/resources/Storeimages/ready.png" alt=""></a>
                         <div class="down-content">
-                            <a href="#">
+                            <a href="/Business/view?biz_seq=30&userId=">
                                 <h4>Tittle goes here</h4>
                             </a>
                          
