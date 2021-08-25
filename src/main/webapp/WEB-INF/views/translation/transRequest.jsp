@@ -91,10 +91,10 @@ input {
 					<div class="row list">
 						<div class="col-2"></div>
 						<div class="col-4">
-							<input class="inp menu" type="text" name="menu_kor">
+							<input class="inp menu" type="text" name="menu_kor" required>
 						</div>
 						<div class="col-4">
-							<input class="inp price" type="text" name="price">
+							<input class="inp price" type="text" name="price" required>
 						</div>
 						<div class="col-2">
 							<button type="button" class="btn btn-light btnDel">-</button>
@@ -135,6 +135,7 @@ input {
 				inpM.attr("class", "inp menu");
 				inpM.attr("type", "text");
 				inpM.attr("name", "menu_kor");
+				inpM.attr("required", true);
 				col2.append(inpM);
 
 				let col3 = $("<div>");
@@ -143,6 +144,7 @@ input {
 				inpP.attr("class", "inp price");
 				inpP.attr("type", "text");
 				inpP.attr("name", "price");
+				inpP.attr("required", true);
 				col3.append(inpP);
 
 				let col4 = $("<div>");
