@@ -250,11 +250,17 @@ button:hover {
 .name>a {
 	text-decoration:none;
 	color:white;
+	font-size:18px;
+	font-weight:bold;
+	text-shadow : 1px 1px 1px gray;
 }
 
 .deleteMsg{
 	text-decoration:none;
 	color:white;
+	background-color:gray;
+	font-size:14px;
+	border-radius:10%;
 }
 
 #backBtn{
@@ -271,7 +277,7 @@ button:hover {
 	})
 	$(function() {
 
-		let ws = new WebSocket("ws://172.30.1.24/chat");
+		let ws = new WebSocket("ws://122.45.84.154:8080/chat");
 		ws.onmessage = function(event) {
 			/* let text = JSON.parse(event.data);
 			let line = $("<div>");
@@ -331,6 +337,12 @@ button:hover {
 
 		})
 		
+		$(".deleteMsg").on("click", function(){
+			 if(confirm("해당 채팅방을 정말로 삭제하시겠습니까? 상대방과 나의 모든 기록이 삭제됩니다.")){
+				location.href=$(this).attr('id');
+			 }
+		})
+		
 		
 	})
 </script>
@@ -354,7 +366,7 @@ button:hover {
 							<div class="about">
 								<div class="name"> <a href="/chat/clickChat?roomid=${item.chatnum}&&id=${item.id}">${item.id }</a></div>
 								<div class="status">
-									<i class="fa fa-circle offline"></i> <a class="deleteMsg" href = "/chat/deleteBusinessChatRoom?chatnum=${item.chatnum }">delete</a>
+									<i class="fa fa-circle offline"></i> <button type="button" class="deleteMsg" id = "/chat/deleteBusinessChatRoom?chatnum=${item.chatnum }">delete</button>
 								</div>
 							</div></li>
 					</c:if>
