@@ -250,11 +250,17 @@ button:hover {
 .name>a {
 	text-decoration:none;
 	color:white;
+	font-size:18px;
+	font-weight:bold;
+	text-shadow : 1px 1px 1px gray;
 }
 
 .deleteMsg{
 	text-decoration:none;
 	color:white;
+	background-color:gray;
+	font-size:14px;
+	border-radius:10%;
 }
 
 #backBtn{
@@ -331,6 +337,12 @@ button:hover {
 			$("#message-to-send").val(" ");
 
 		})
+		
+		$(".deleteMsg").on("click", function(){
+			 if(confirm("해당 채팅방을 정말로 삭제하시겠습니까? 상대방과 나의 모든 기록이 삭제됩니다.")){
+				location.href=$(this).attr('id');
+			 }
+		})
 	})
 </script>
 </head>
@@ -354,7 +366,7 @@ button:hover {
 							<div class="about">
 								<div class="name"> <a href="/chat/makeChat?store=${item.store }">${item.store }</a></div>
 								<div class="status">
-									<i class="fa fa-circle offline"></i> <a class="deleteMsg" href = "/chat/deleteChatRoom?chatnum=${item.chatnum }">delete</a>
+									<i class="fa fa-circle offline"></i> <button type="button" class="deleteMsg" id = "/chat/deleteChatRoom?chatnum=${item.chatnum }">delete</button>
 								</div>
 							</div></li>
 					</c:if>

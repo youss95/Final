@@ -16,18 +16,27 @@
 <!--별점-->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/Store_detail.css?after">
+
+<!--  요개 문제 댓글용
 <link rel='stylesheet'
 	href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-<link
-	href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
+-->
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+	crossorigin="anonymous" />
 
 
 
@@ -120,9 +129,36 @@ section {
 	width: 100%;
 	height: 100%;
 }
+
 #commentInsertForm{
  width: 100%;
 }
+
+
+/*이거 댓글 */
+.well {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+}
+
+.panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+
+#commentInsertForm{
+ width: 100%;
+}
+
 </style>
 </head>
 <body>
@@ -134,12 +170,9 @@ section {
 		<div class="headers">
 			<div class="swiper-container mySwiper">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide">Slide 1</div>
-					<div class="swiper-slide">Slide 2</div>
-					<div class="swiper-slide">Slide 3</div>
-					<div class="swiper-slide">Slide 4</div>
-					<div class="swiper-slide">Slide 5</div>
-					<div class="swiper-slide">Slide 6</div>
+					<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/Storeimages/ready.png" alt=""></div>
+					<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/Storeimages/ready.png" alt=""></div>
+					<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/Storeimages/ready.png" alt=""></div>
 				</div>
 				<div class="swiper-button-next"></div>
 				<div class="swiper-button-prev"></div>
@@ -377,7 +410,11 @@ section {
 				<div class="well">
 					<c:choose>
 						<c:when test="${loginID != null}">
+
+						<div>I'm sorry. I'm getting ready.</div>
+							<!-- 
 							<form role="form" id="commentInsertForm" name="commentInsertForm">
+
 								<h4>
 									<i class="fa fa-paper-plane-o"></i> Leave a Comment:
 									<div class="make_star">
@@ -400,9 +437,11 @@ section {
 										name="commen fa-reply"></i>Submit
 								</button>
 							</form>
+							-->
 						</c:when>
 
 						<c:otherwise>
+							
 							<h4>
 								<i class="fa fa-paper-plane-o"></i> Leave a Comment:
 							</h4>
@@ -411,7 +450,7 @@ section {
 									value="${list.store_seq }" />
 								<div class="form-group">
 									<input type="text" class="form-control" id="content"
-										name="content" placeholder="리뷰를 작성하고 싶으시면, 로그인을 하세요" disabled>
+										name="content" placeholder="If you want to write a review, log in." disabled>
 								</div>
 								<button type="button"
 									onclick="location.href='${pageContext.request.contextPath}/member/whichMember'"

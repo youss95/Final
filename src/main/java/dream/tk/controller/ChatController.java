@@ -31,8 +31,14 @@ public class ChatController {
 		String nickname = (String)session.getAttribute("loginID");
 		String storeName = (String) session.getAttribute("storeName");
 		String roomid = nickname + storeName;
+		if(storeName.contentEquals("")) {
+			roomid = "chatnum";
+		}
 		session.setAttribute("roomid", roomid);
+		System.out.println("nickname 왜안돼.." + nickname);
+		System.out.println("storeName 왜안돼.." + storeName);
 		System.out.println("roomid 왜안돼.." + roomid);
+		
 		
 		List<ChatDTO> list = service.selectAll(roomid); 
 		List<ChatDTO> list2 = service.selectList(nickname);
@@ -81,6 +87,7 @@ public class ChatController {
 		if(roomid == null) {
 			roomid = "chatnum";
 		}
+		System.out.println("중복 storeName : " + storeName);
 		
 		List<ChatDTO> list = service.selectBusinessAll(roomid); 
 		List<ChatDTO> list2 = service.selectBusinessList(storeName);

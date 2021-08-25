@@ -38,7 +38,12 @@ public class StoreController {
 	@Autowired
 	private CommentService serviceC;
 	
-
+	// 혹시 모르는 페이지
+	@RequestMapping("main")
+	public String Main() {
+		return "Store/main";
+	}
+	
 	@GetMapping("signup")
 	public String boardList(PagingVO vo, Model model
 			, @RequestParam(value="nowPage", required=false)String nowPage
@@ -81,11 +86,7 @@ public class StoreController {
 		return "/Store/StoreDetail";
 	}
 	
-	// 혹시 모르는 페이지
-	@RequestMapping("store_detail")
-	public String detail() {
-		return "Store/StoreDetail";
-	}
+
 	
 	
 	
