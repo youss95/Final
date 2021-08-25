@@ -298,7 +298,7 @@ button:hover {
 				let li = $("<li class='clearfix'>");
 				let line = $("<div class='message-data-ajax align-right'>");
 				let time = $("<span class='message-data-time'></span>");
-				let timeID = $("#loginID").val();
+				let timeID = $("#storeName").val();
 				time.append(timeID);
 				let who = $("<span class='message-data-name'>me</span>");
 
@@ -325,7 +325,9 @@ button:hover {
 			}
 
 		}
+		
 
+		  
 		/* function updateScroll(){
 		   var element = document.getElementById("chat-history");
 		   element.scrollTop = element.scrollHeight;
@@ -386,7 +388,7 @@ button:hover {
 					alt="avatar" />
 
 				<div class="chat-about">
-					<div class="chat-with">Chat with ${nickname }</div>
+					<div class="chat-with" id="chat-with">Chat with ${nickname }</div>
 					<div class="chat-num-messages">already 1 902 messages</div>
 				</div>
 				<i class="fa fa-star"></i>
@@ -395,6 +397,7 @@ button:hover {
 
 			<div class="chat-history">
 				<input type="hidden" id="loginID" value="${loginID }">
+				<input type="hidden" id="storeName" value="${storeName }">
 				<ul id="history-under">
 					<c:forEach var="i" items="${businesschatlist}">
 						<c:if test="${i.nickname == storeName}">

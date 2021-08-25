@@ -325,6 +325,8 @@ button:hover {
 			}
 
 		}
+		
+		  
 
 		/* function updateScroll(){
 		   var element = document.getElementById("chat-history");
