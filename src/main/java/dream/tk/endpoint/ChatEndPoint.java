@@ -52,6 +52,10 @@ public class ChatEndPoint {
 
 	@OnMessage
 	public void onMessage(Session self, String contents) {
+		//DB에 전부 저장해 -> DB -> seq -> 클라로 갈지, 가게 , 기업
+		//seq -> nextval from dual seq -> DB 3개 ? DB 2개? 
+		// 고객 - 업체 / 업체 - 매니저
+		// manager 분기점... 채팅 <input hidden >
 		synchronized (clients) {
 			for (Session client : clients) { // 채팅방끼리 통신 가능함.
 
@@ -77,24 +81,8 @@ public class ChatEndPoint {
 				}else {
 					chatnum = nickname+store;
 				}
-				System.out.println("제발 마지막 확인 writer : " + writer);
-				System.out.println("제발 마지막 확인 chatnum : " + chatnum);
-				System.out.println("제발 마지막 확인 manager : " + manager);
 				try {
-					if(writer.contentEquals("admin")) {
-						dao.insertManager(new ChatAdminDTO(chatnum,store,contents,nickname));
-
-					}else if(writer.contentEquals("client")) {
-						dao.insert(new ChatDTO(chatnum,store,contents,nickname));
-					}else {
-						if(manager == null) {
-								dao.insertBusiness(new ChatDTO(chatnum,store,contents,nickname));
-							
-						}else {
-								dao.insertBizManager(new ChatAdminDTO(chatnum,store,contents,nickname));
-						
-						}
-					}
+					
 					dao.selectList(nickname);
 					dao.selectAll(chatnum);
 					dao.selectAllManager(chatnum);
@@ -107,7 +95,46 @@ public class ChatEndPoint {
 					e.printStackTrace();
 				}
 			}
-			
+			JsonObject json = new JsonObject();
+			json.addProperty("store", (String)hsession.getAttribute("storeName"));// 가게이름
+			json.addProperty("nickname", (String)hsession.getAttribute("nickname")); // 유저 닉네임
+			json.addProperty("bizName", (String) hsession.getAttribute("buisnessNameChat")); //업체명
+			json.addProperty("manager", (String)hsession.getAttribute("manager")); //매니저 유무 확인
+			json.addProperty("contents", contents); // 메세지
+			json.addProperty("writer", (String)hsession.getAttribute("writer"));
+			String nickname = (String)hsession.getAttribute("nickname");
+			String writer = (String)hsession.getAttribute("writer");
+			if(nickname == null) {
+				nickname = (String)hsession.getAttribute("loginID");
+			}
+			String store = (String)hsession.getAttribute("storeName");
+
+			String manager = (String) hsession.getAttribute("manager");
+			String chatnum = null;
+			if(writer.contentEquals("admin")) {
+				chatnum = "manager" + store;
+				
+			}else {
+				chatnum = nickname+store;
+			}
+			try {
+				if(writer.contentEquals("admin")) {
+					dao.insertManager(new ChatAdminDTO(chatnum,store,contents,nickname));
+
+				}else if(writer.contentEquals("client")) {
+					dao.insert(new ChatDTO(chatnum,store,contents,nickname));
+				}else {
+					if(manager == null) {
+							dao.insertBusiness(new ChatDTO(chatnum,store,contents,nickname));
+						
+					}else {
+							dao.insertBizManager(new ChatAdminDTO(chatnum,store,contents,nickname));
+					
+					}
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 			
 		}
 	}
