@@ -167,43 +167,12 @@ section {
 		<div class="contain">
 			<%@include file="../layout/header_main.jsp"%>
 		</div>
-		<div class="headers">
-			<div class="swiper-container mySwiper">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/Storeimages/ready.png" alt=""></div>
-					<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/Storeimages/ready.png" alt=""></div>
-					<div class="swiper-slide"><img src="${pageContext.request.contextPath}/resources/Storeimages/ready.png" alt=""></div>
-				</div>
-				<div class="swiper-button-next"></div>
-				<div class="swiper-button-prev"></div>
-				<div class="swiper-pagination"></div>
-			</div>
-		</div>
-		<!--슬라이드 Script-->
-		<script>
-		
-		
-		
-			var swiper = new Swiper(".mySwiper", {
-				slidesPerView : 3,
-				spaceBetween : 30,
-				slidesPerGroup : 3,
-				loop : true,
-				loopFillGroupWithBlank : true,
-				pagination : {
-					el : ".swiper-pagination",
-					clickable : true,
-				},
-				navigation : {
-					nextEl : ".swiper-button-next",
-					prevEl : ".swiper-button-prev",
-				},
-			});
-		</script>
+	
 
 
-		<!--  -->
+		<!--  --><br><br>
 		<aside>
+		
 			<div id='store'>
 				<input type="hidden" id="x" name="x" value="${list.store_x }">
 				<input type="hidden" id="y" name="y" value="${list.store_y }">
