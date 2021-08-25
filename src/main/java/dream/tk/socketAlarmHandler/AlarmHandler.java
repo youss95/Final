@@ -66,6 +66,12 @@ public class AlarmHandler extends TextWebSocketHandler{
 				System.out.println("tmp"+tmpMsg);
 				boardWriterSession.sendMessage(tmpMsg);
 				
+			}else	if("unlike".equals(cmd) && boardWriterSession != null) {
+				TextMessage tmpMsg = new TextMessage(sender + "님이" + businessName + "의 찜을 취소했습니다."+","+count);
+				
+				System.out.println("tmp"+tmpMsg);
+				boardWriterSession.sendMessage(tmpMsg);
+				
 			}
 		
 			}
