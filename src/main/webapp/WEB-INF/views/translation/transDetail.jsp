@@ -33,6 +33,28 @@ body {
 	background-color: #D8E3E7;
 }
 
+.navbar-nav {
+	width: 100%;
+	height: 60px;
+	padding-right: 1%;
+	background-color: rgb(56, 61, 78);
+}
+
+.nav-link {
+	text-align: center;
+	font-size: larger;
+	line-height: 45px;
+	background-color: rgb(56, 61, 78);
+}
+
+.nav-link:hover {
+	background-color: rgb(84, 86, 92);
+}
+
+.icons {
+	margin-right: 10px;
+}
+
 .container {
 	margin-top: 80px;
 	padding: 5%;
@@ -96,6 +118,16 @@ width:100%;
 </head>
 
 <body>
+
+	<nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="navbar-nav">
+			<a class="nav-link" href="${pageContext.request.contextPath}/" style="color: white;width:15%;">home</a>
+			<a class="nav-link" href="${pageContext.request.contextPath}/admin/dashForm" style="color: white;width:23.3%;"><i class="fas fa-chart-line icons"></i>관리자 대시보드</a>
+			<a class="nav-link" href="${pageContext.request.contextPath}/trans/transList?currentPage=1" style="color: white;width:23.3%;"><i class="fas fa-tasks icons"></i>메뉴 번역 요청함</a>
+			<a class="nav-link" href="${pageContext.request.contextPath}/admin/manageBusinessPage" style="color: white;width:23.3%;"><i class="fas fa-user-tie icons"></i>업체 회원 관리</a>
+			<a class="nav-link" href="${pageContext.request.contextPath}/chat/adminChat" style="color: white;width:15%;"><i class="fas fa-comment-dots icons"></i>To Chat</a>
+		</div>
+	</nav>
 
 
 	<div class="container p-4 shadow bg-white rounded">
