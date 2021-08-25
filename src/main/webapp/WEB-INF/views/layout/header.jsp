@@ -102,11 +102,7 @@
 	     $("#popBtn").popover("toggle");
 	     setTimeout(function() {
 	    	 document.getElementById("menu1").click();
-	    	}, 100);
-
-	     
-	    
-	    
+	    	}, 100); 
 	     //$("#popBtn").ekkoLightbox();
 	     // $(".wrap").css("background-color", "rgba(0,0,0,0.6)");
 	     //$(".wrap").css("opacity", "0.3");
@@ -114,7 +110,7 @@
 
 	   $("#popBtn").attr(
 	     "data-content",
-	     '<li id="menu1">예약정보</li><li id="menu2">찜</li><div id="myp"><a href=""><i class="fas fa-cog fa-2x"></i></a></div><br><div class="section"></div>'
+	     '<li id="menu1">예약정보</li><li id="menu2">찜</li><div id="myp"><i id="getout" class="fas fa-window-close fa-2x"></i></div><br><div class="section"></div>'
 	   );
 	 
 	   //동적 생성된거는 이거 쓴다.
@@ -153,6 +149,10 @@
 	  
 	 
 	   });
+	   
+	   $(document).on('click','#getout',function(){
+		   $("#popBtn").click();
+	   })
 	   
 	   
   </script>
