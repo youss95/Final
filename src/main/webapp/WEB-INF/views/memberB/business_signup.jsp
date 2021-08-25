@@ -115,7 +115,7 @@ $(function(){
 		}
 		
 		if (!pwReg.test(pw)) {
-			alert('비밀번호는 8자 이상이어야 하며, 숫자/대,소문자/특수문자를 모두 포함해야 합니다.');
+			alert('비밀번호는 8자 이상이어야 하며, 숫자/영문자/특수문자를 모두 포함해야 합니다.');
 			return false;
 		}
 		
@@ -176,15 +176,25 @@ $(function(){
 	
 	//이메일 인증번호
 	$("#emailSend").on("click",function(){
-		$.ajax({
-			url:"${pageContext.request.contextPath}/bMember/emailSend",
-			data:{"name":$("#name").val(), "email":$("#email").val()}
-		}).done(function(resp){
-			$("#sendNum").val(resp);
-			$(".emailDnone").css("display","flex");
-		}).fail(function(){
-			alert("이메일 발송에 실패하였습니다. 다시 시도해주세요.")
-		})
+		let emailReg = /^[0-9a-zA-Z_-]*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		let email = $("#email").val();
+
+		if (!emailReg.test(email)) {
+			alert("이메일 형식을 확인해주세요.");
+			return false;
+		}
+		else{
+			$.ajax({
+				url:"${pageContext.request.contextPath}/bMember/emailSend",
+				data:{"name":$("#name").val(), "email":$("#email").val()}
+			}).done(function(resp){
+				$("#sendNum").val(resp);
+				$(".emailDnone").css("display","flex");
+			}).fail(function(){
+				alert("이메일 발송에 실패하였습니다. 다시 시도해주세요.")
+			})
+		}
+		
 	})
    
 	//이메일 인증번호 확인
@@ -194,6 +204,31 @@ $(function(){
 			eResultB = true;
 		}else{
 			$("#eResult").text("이메일 인증 실패! 다시 시도해주세요.")
+		}
+	})
+	
+	
+	//비밀번호 입력 관련 안내
+	$("#pw").on("blur",function(){
+		let pwReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+		let pw = $("#pw").val();
+		if(!pwReg.test(pw)){
+			$("#pwResult").css("color","red");
+			$("#pwResult").html("비밀번호는 8자 이상이어야 하며, 숫자/영문자/특수문자를 모두 포함해야 합니다.");
+			$("#pw").val("");
+		}else{
+			$("#pwResult").html("");
+		}
+	})
+	$("#repw").on("blur",function(){
+		let pw = $("#pw").val();
+		let repw = $("#repw").val();
+		if(pw != repw){
+			$("#repwResult").css("color","red");
+			$("#repwResult").html("비밀번호가 일치하지 않습니다");
+			$("#repw").val("");
+		}else{
+			$("#repwResult").html("");
 		}
 	})
 	
@@ -237,13 +272,14 @@ $(function(){
                 </div>
                 <input id="pw" name="pw" class="form-control" placeholder="Create password" type="password">
             </div> <!-- form-group// -->
+            <div id="pwResult" class="result"></div>
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                 </div>
                 <input id="repw" class="form-control" placeholder="Repeat password" type="password">
             </div> <!-- form-group// -->                                      
-
+			<div id="repwResult" class="result"></div>
 
             <div class="form-group input-group">
                 <div class="input-group-prepend">
