@@ -46,7 +46,6 @@ public class ChatEndPoint {
 		hsession = (HttpSession)config.getUserProperties().get("hsession");
 		String roomid = (String) hsession.getAttribute("roomid");
 		System.out.println(hsession.getAttribute("loginID"));
-		//System.out.println("bizname : " + hsession.getAttribute("bizName"));
 		System.out.println("Openbizname : " + hsession.getAttribute("buisnessNameChat"));
 		clients.add(session);
 	}
@@ -108,6 +107,8 @@ public class ChatEndPoint {
 					e.printStackTrace();
 				}
 			}
+			
+			
 		}
 	}
 	// 접속했던 session 객체가 연결을 종료하는 순간
