@@ -35,21 +35,22 @@ body {
 .navbar-nav {
 	width: 100%;
 	height: 60px;
+	padding-right: 1%;
+	background-color: rgb(56, 61, 78);
 }
 
 .nav-link {
-	width: 20%;
 	text-align: center;
 	font-size: larger;
 	line-height: 45px;
 	background-color: rgb(56, 61, 78);
 }
 
-a:hover {
+.nav-link:hover {
 	background-color: rgb(84, 86, 92);
 }
 
-i {
+.icons {
 	margin-right: 10px;
 }
 
@@ -121,11 +122,11 @@ a {
 
 	<nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="navbar-nav">
-			<a class="nav-link" href="#" style="color: white;">home</a>
-			<a class="nav-link" href="${pageContext.request.contextPath}/admin/dashForm" style="color: white;"><i class="fas fa-chart-line"></i>관리자 대시보드</a>
-			<a class="nav-link" href="${pageContext.request.contextPath}/trans/transList?currentPage=1" style="color: white;"><i class="fas fa-tasks"></i>메뉴 번역 요청함</a>
-			<a class="nav-link" href="#" style="color: white;"><i class="fas fa-user"></i>일반 회원 관리</a>
-			<a class="nav-link" href="${pageContext.request.contextPath}/admin/manageBusinessPage" style="color: white;"><i class="fas fa-user-tie"></i>업체 회원 관리</a>
+			<a class="nav-link" href="${pageContext.request.contextPath}/" style="color: white;width:15%;">home</a>
+			<a class="nav-link" href="${pageContext.request.contextPath}/admin/dashForm" style="color: white;width:23.3%;"><i class="fas fa-chart-line"></i>관리자 대시보드</a>
+			<a class="nav-link" href="${pageContext.request.contextPath}/trans/transList?currentPage=1" style="color: white;width:23.3%;"><i class="fas fa-tasks"></i>메뉴 번역 요청함</a>
+			<a class="nav-link" href="${pageContext.request.contextPath}/admin/manageBusinessPage" style="color: white;width:23.3%;"><i class="fas fa-user-tie"></i>업체 회원 관리</a>
+			<a class="nav-link" href="${pageContext.request.contextPath}/chat/adminChat" style="color: white;width:15%;"><i class="fas fa-comment-dots"></i>To Chat</a>
 		</div>
 	</nav>
 
