@@ -6,10 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/Store_main.css?after">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/map.css?after">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Store_main.css?after">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/map.css?after">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -28,6 +26,15 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+	crossorigin="anonymous" />
+
 <style>
 * {
 	margin: 0;
@@ -42,8 +49,9 @@
 .contain {
 	width: 100%;
 	height: 127px;
-	float: center -webkit-font-smoothing: antialiased;
-	box-sizing: border-box;
+	float: center
+	-webkit-font-smoothing: antialiased;
+    box-sizing: border-box; 
 }
 
 aside {
@@ -63,17 +71,12 @@ section {
 	height: 700px;
 }
 /* 화면 너비 0 ~ 1540px */
-@media ( max-width : 1540px) {
+@media ( max-width : 1660px) {
 	#wrap {
 		width: 100%;
 	}
 }
-/* 화면 너비 0 ~ 768px */
-@media ( max-width : 768px) {
-	#wrap {
-		width: 100%;
-	}
-}
+
 /* 화면 너비 0 ~ 480px */
 @media ( max-width : 480px) {
 	#wrap {
@@ -224,8 +227,10 @@ section {
 }
 
 <!--
-페이징 -->.page {
-	text-align: center;
+페이징 -->
+
+.page {
+	text-align: center;	
 	width: 50%;
 }
 
@@ -236,10 +241,9 @@ section {
 	margin-top: 20px;
 }
 
-.pagination modal {
+.pagination modals{
 	text-align: center;
 }
-
 .pagination li {
 	display: inline;
 	text-align: center;
@@ -276,7 +280,7 @@ section {
 	outline: none;
 }
 
-.modal .num {
+.modals .num {
 	margin-left: 10px;
 	padding: 0;
 	width: 30px;
@@ -287,12 +291,12 @@ section {
 	border-radius: 100%;
 }
 
-.modal .num:hover {
+.modals .num:hover {
 	background-color: #2e9cdf;
 	color: #ffffff;
 }
 
-.modal .num.active, .modal .num:active {
+.modals .num.active, .modals .num:active {
 	background-color: #2e9cdf;
 	cursor: pointer;
 }
@@ -304,6 +308,15 @@ section {
 	border-bottom: 10px solid transparent;
 	border-right: 10px solid blue;
 }
+
+.custom_zoomcontrol span {
+    display: block;
+    width: 36px;
+    text-align: center;
+    cursor: pointer;
+    border-bottom: 1px solid #bfbfbf;
+}
+
 </style>
 </head>
 <body>
@@ -312,7 +325,7 @@ section {
 		<div class="contain">
 			<%@include file="../layout/header_main.jsp"%>
 		</div>
-		<%@include file="banner.jsp"%>
+		
 
 
 
@@ -320,7 +333,7 @@ section {
 			<!-- 왼쪽 -->
 			<main role="main">
 				<br>
-				<h3 style="font-size: 20px; text-align: left; margin: 10px;">예약 가능한 사이트</h3>
+				<h3 style="font-size: 20px; text-align: left; margin: 10px;">You can make a reservation at this store.</h3>
 				<hr>
 				<ul class="flexgrid columns-news">
 					<c:forEach var="list" items="${viewAll}">
@@ -335,7 +348,7 @@ section {
 									<figcaption>
 										<p>${list.address1 }</p>
 										<h2>${list.businessNameEng }</h2>
-										<h3>조회수 : ${list.view_Count }</h3>
+										<h3>view : ${list.view_Count }</h3>
 									</figcaption>
 								</figure>
 						</a>
@@ -345,7 +358,7 @@ section {
 			</main>
 			<!-- 페이징바!! -->
 			<div class="page" style="text-align: center; margin-left: 1px">
-				<ul class="pagination modal">
+				<ul class="pagination modals">
 					<c:if test="${paging.startPage != 1 }">
 						<li><a class="active num"
 							href="/Business/signup?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
@@ -418,7 +431,7 @@ section {
 				<div class="d1">
 					<div class="search">
 						<input type="text" id="searchWrd" name="searchWrd"
-							placeholder="Find an address" value="${searchVO.searchWrd }">
+							placeholder="It's under development." value="${searchVO.searchWrd }" disabled>
 						<a href="" onclick="fn_search();" class="btn-login"><button
 								type="button" class="pulse"></button></a>
 					</div>

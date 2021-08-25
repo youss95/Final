@@ -17,13 +17,14 @@ public class StoreDTO {
 	private int star_age_count;
 	private int keep_count;
 	private String searchWrd;
+	private String img;
 
 	public StoreDTO() {}
 	
 	
 	public StoreDTO(int store_seq, String city, String businessName, String businessNameEng, String phone, String post,
 			String road_name, String road_nameEng, String store_x, String store_y, int view_count, int report_count,
-			String star_age, int star_age_count, int keep_count) {
+			String star_age, int star_age_count, int keep_count, String img) {
 		super();
 		this.store_seq = store_seq;
 		this.city = city;
@@ -40,6 +41,7 @@ public class StoreDTO {
 		this.star_age = star_age;
 		this.star_age_count = star_age_count;
 		this.keep_count = keep_count;
+		this.img = img;
 	}
 
 	public StoreDTO(String businessNameEng, String road_name, int store_seq) {
@@ -205,6 +207,17 @@ public class StoreDTO {
 	public void setSearchWrd(String searchWrd) {
 		this.searchWrd = searchWrd;
 	}
+
+	
+	public String getImg() {
+		return img;
+	}
+
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
 
 	@Override
 	public String toString() {

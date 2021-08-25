@@ -54,12 +54,13 @@
 		SELECT
 			road_name,
 			businessNameEng,
+			city,
 			store_seq
 		FROM
 			store
 		WHERE
 		 <!--  <if test="searchWrd != null and searchWrd !=''">--> 
-			(road_name LIKE '%${searchWrd}%'  or
+			(city LIKE '%${searchWrd}%'  or
 			businessNameEng LIKE '%${searchWrd}%')
 		 <!--  </if> -->
 	</select>
