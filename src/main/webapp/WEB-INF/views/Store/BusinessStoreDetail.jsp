@@ -774,7 +774,7 @@ section {
         	              }).done(function(resp){
         	                console.log(resp)
         	              $("#heartIcon").css("color","black")
-        	             
+        	             alert()
         	              })
         	              
         	              /* 알람  */
@@ -814,7 +814,7 @@ section {
                      }).done(function(resp){
                        console.log(resp)
                      $("#heartIcon").css("color","red")
-                   
+                   alert("찜을 하였습니다.")
                      })
                      
                      /* 알람  */

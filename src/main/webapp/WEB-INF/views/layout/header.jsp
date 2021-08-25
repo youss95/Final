@@ -123,15 +123,17 @@
 			  
 			  // $(".section *").remove();
 			   
-			     let first ='';
+			     let first ='<table class="table"><thead><tr><th scope="col">식당이름</th><th scope="col">날짜</th><th scope="col">시간</th></tr></thead><tbody>'
+			     
 			      resp.map((list)=>{	
-			    first += "<div id='aaa' data-res='"+list.res_no+"'>"+list.res_name+"</div><br><div>"+list.res_date+"</div><br><div>"+list.res_time+"</div><br>";	
+			    first += "<tr><th scope='row'><a href='/Business/view?biz_seq="+list.biz_seq+"&userId="+list.userId+"'>"+list.res_name+"</a></th><td>"+ list.res_date+"</td><td>"+list.res_time+"</td></tr>";	
 			     }) 
+			     first+='  </tbody></table>'
 			     contentSection.html(first);
 		   })
 	  
 	   });
-
+	 // <div id='aaa' data-res='"+list.res_no+"'>"+list.res_name+"</div><br><div>"+list.res_date+"</div><br><div>"+list.res_time+"</div><br>
 	   $(document).on("click", "#menu2", function () {
 	     $(".section *").remove();
 	     let contentSection = $(".section");
@@ -157,6 +159,3 @@
 	   
   </script>
 
-</html>
-</body>
-</html>

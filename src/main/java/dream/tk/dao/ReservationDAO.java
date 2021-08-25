@@ -13,6 +13,7 @@ import dream.tk.dto.NotificationDTO;
 import dream.tk.dto.PaymentDTO;
 import dream.tk.dto.ResInfoDTO;
 import dream.tk.dto.ReservationDTO;
+import dream.tk.dto.ReservationPopOverDTO;
 import dream.tk.dto.ReserveCheckDTO;
 
 @Repository
@@ -56,6 +57,10 @@ public class ReservationDAO {
 	
 	public List<ReservationDTO> resInfoList(String userId){
 		return mybatis.selectList("ResMapper.resInfoList",userId);
+	}
+	
+	public String resImgForPopOver(String userId) {
+		return mybatis.selectOne("ResMapper.getResImg",userId);
 	}
 	
 	public int registerBiz(BusinessDTO dto) {

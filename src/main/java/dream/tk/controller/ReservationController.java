@@ -1,5 +1,6 @@
 package dream.tk.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,7 @@ import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.NotificationDTO;
 import dream.tk.dto.ResInfoDTO;
 import dream.tk.dto.ReservationDTO;
+import dream.tk.dto.ReservationPopOverDTO;
 import dream.tk.dto.ReserveCheckDTO;
 import dream.tk.service.ReservationService;
 
@@ -138,10 +140,9 @@ public class ReservationController {
 	@GetMapping(value= "/resInfoList",produces= {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
 	public List<ReservationDTO> resInfoList(String userId){
-		System.out.println(userId);
+		
 		List<ReservationDTO> list = resService.resInfoList(userId);
-		
-		
+
 		return list;
 	}
 	
