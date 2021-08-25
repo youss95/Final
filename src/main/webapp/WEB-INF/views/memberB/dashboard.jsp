@@ -112,10 +112,20 @@ $(function(){
           
 
           <li class="nav-item" style="height:20%;">
-            <a class="nav-link" href="${pageContext.request.contextPath}/chat/businessMakeChat?store=${bizInfo.businessName}">
-              <i class="material-icons">chat</i>
-              <p>Chatting</p>
-            </a>
+          <c:choose>
+          	<c:when test="${bizInfo.businessName eq null}">
+          		<a class="nav-link" href="${pageContext.request.contextPath}/bMember/noAccess">
+          		<i class="material-icons">chat</i>
+                <p>Chatting</p>
+                </a>
+          	</c:when>
+          	<c:otherwise>
+          	    <a class="nav-link" href="${pageContext.request.contextPath}/chat/businessMakeChat?store=${bizInfo.businessName}">
+          	   <i class="material-icons">chat</i>
+           	   <p>Chatting</p>
+               </a>
+          	</c:otherwise>
+          </c:choose>  
           </li>
           
           <li class="nav-item" style="height:20%;">
