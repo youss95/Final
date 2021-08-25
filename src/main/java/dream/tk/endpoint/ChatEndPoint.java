@@ -70,17 +70,19 @@ public class ChatEndPoint {
 				}
 				String store = (String)hsession.getAttribute("storeName");
 
-				String bizName =  (String) hsession.getAttribute("buisnessNameChat");
 				String manager = (String) hsession.getAttribute("manager");
 				String chatnum = null;
-				if(manager == null) {
-					chatnum = nickname+store;
-				}else {
+				if(writer.contentEquals("admin")) {
 					chatnum = "manager" + store;
+					
+				}else {
+					chatnum = nickname+store;
 				}
+				System.out.println("제발 마지막 확인 writer : " + writer);
+				System.out.println("제발 마지막 확인 chatnum : " + chatnum);
 				System.out.println("제발 마지막 확인 manager : " + manager);
 				try {
-					if(writer.contentEquals("manager")) {
+					if(writer.contentEquals("admin")) {
 						dao.insertManager(new ChatAdminDTO(chatnum,store,contents,nickname));
 
 					}else if(writer.contentEquals("client")) {

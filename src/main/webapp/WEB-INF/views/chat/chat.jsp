@@ -45,9 +45,8 @@ body {
 	background: #6A6C75;
 	width: 90%;
 	font-size: 14px;
-	margin-bottom:20px;
+	margin-bottom: 20px;
 }
-
 
 ul {
 	padding: 20px;
@@ -248,29 +247,29 @@ button:hover {
 }
 
 .name>a {
-	text-decoration:none;
-	color:white;
-	font-size:18px;
-	font-weight:bold;
-	text-shadow : 1px 1px 1px gray;
+	text-decoration: none;
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+	text-shadow: 1px 1px 1px gray;
 }
 
-.deleteMsg{
-	text-decoration:none;
-	color:white;
-	background-color:gray;
-	font-size:14px;
-	border-radius:10%;
+.deleteMsg {
+	float: left;
+	text-decoration: none;
+	color: white;
+	background-color: gray;
+	font-size: 14px;
+	border-radius: 10%;
 }
 
-#backBtn{
-	float:right;
-	font-size:50px;
-	text-decoration:none;
-	color:white;
-	margin-right:5%;
+#backBtn {
+	float: right;
+	font-size: 50px;
+	text-decoration: none;
+	color: white;
+	margin-right: 5%;
 }
-
 </style>
 <script>
 	$(document).ready(function() {
@@ -278,7 +277,7 @@ button:hover {
 	})
 	$(function() {
 
-		let ws = new WebSocket("ws://122.45.84.154:8080/chat");
+		let ws = new WebSocket("ws://172.30.1.24/chat");
 		ws.onmessage = function(event) {
 			/* let text = JSON.parse(event.data);
 			let line = $("<div>");
@@ -295,7 +294,7 @@ button:hover {
 			updateScroll(); */
 
 			let text = JSON.parse(event.data);
-			if(text.writer == 'client'){
+			if (text.writer == 'client') {
 				let li = $("<li class='clearfix'>");
 				let line = $("<div class='message-data-ajax align-right'>");
 				let time = $("<span class='message-data-time'></span>");
@@ -309,11 +308,11 @@ button:hover {
 				line.append(msgLine);
 				li.append(line);
 				$("#history-under").append(li);
-			}else{
+			} else {
 				let li = $("<li class='clearfix'>");
 				let line = $("<div class='message-data-left'>");
 				let time = $("<span class='message-data-time'></span>");
-				let timeID = $("#loginID").val();
+				let timeID = text.nickname;
 				time.append(timeID);
 				let who = $("<span class='message-data-name'>me</span>");
 
@@ -337,36 +336,38 @@ button:hover {
 			$("#message-to-send").val(" ");
 
 		})
-		
-		$(".deleteMsg").on("click", function(){
-			 if(confirm("해당 채팅방을 정말로 삭제하시겠습니까? 상대방과 나의 모든 기록이 삭제됩니다.")){
-				location.href=$(this).attr('id');
-			 }
+
+		$(".deleteMsg").on("click", function() {
+			if (confirm("해당 채팅방을 정말로 삭제하시겠습니까? 상대방과 나의 모든 기록이 삭제됩니다.")) {
+				location.href = $(this).attr('id');
+			}
 		})
 	})
 </script>
 </head>
 <body>
-<a id="backBtn" href="/cMember/mypage">X</a>
+	<a id="backBtn" href="/cMember/mypage">X</a>
 	<div class="container clearfix">
-	
+
 		<div class="people-list" id="people-list">
 			<div class="toManager">
-			<button type="button" id="sendManager">Chat List</button>
+				<button type="button" id="sendManager">Chat List</button>
 			</div>
 			<!-- 채팅 리스트 -->
 			<ul class="list">
-			
+
 				<c:forEach var="item" items="${chatStore}">
 					<c:if test="${item.store != null }">
-						<li class="clearfix">
-						<img
+						<li class="clearfix"><img
 							src="${pageContext.request.contextPath}/resources/images/shop.png"
 							alt="avatar" />
 							<div class="about">
-								<div class="name"> <a href="/chat/makeChat?store=${item.store }">${item.store }</a></div>
+								<div class="name">
+									<a href="/chat/makeChat?store=${item.store }">${item.store }</a>
+								</div>
 								<div class="status">
-									<i class="fa fa-circle offline"></i> <button type="button" class="deleteMsg" id = "/chat/deleteChatRoom?chatnum=${item.chatnum }">delete</button>
+									<button type="button" class="deleteMsg"
+										id="/chat/deleteChatRoom?chatnum=${item.chatnum }">delete</button>
 								</div>
 							</div></li>
 					</c:if>
@@ -392,9 +393,9 @@ button:hover {
 			<!-- end chat-header -->
 
 			<div class="chat-history">
-			<input type="hidden" id="loginID" value="${loginID }">
+				<input type="hidden" id="loginID" value="${loginID }">
 				<ul id="history-under">
-					
+
 					<c:forEach var="i" items="${chatlist}">
 						<c:if test="${i.nickname == loginID}">
 							<li class="clearfix">
