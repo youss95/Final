@@ -46,7 +46,6 @@ public class ChatEndPoint {
 		hsession = (HttpSession)config.getUserProperties().get("hsession");
 		String roomid = (String) hsession.getAttribute("roomid");
 		System.out.println(hsession.getAttribute("loginID"));
-		//System.out.println("bizname : " + hsession.getAttribute("bizName"));
 		System.out.println("Openbizname : " + hsession.getAttribute("buisnessNameChat"));
 		clients.add(session);
 	}
@@ -70,17 +69,19 @@ public class ChatEndPoint {
 				}
 				String store = (String)hsession.getAttribute("storeName");
 
-				String bizName =  (String) hsession.getAttribute("buisnessNameChat");
 				String manager = (String) hsession.getAttribute("manager");
 				String chatnum = null;
-				if(manager == null) {
-					chatnum = nickname+store;
-				}else {
+				if(writer.contentEquals("admin")) {
 					chatnum = "manager" + store;
+					
+				}else {
+					chatnum = nickname+store;
 				}
+				System.out.println("제발 마지막 확인 writer : " + writer);
+				System.out.println("제발 마지막 확인 chatnum : " + chatnum);
 				System.out.println("제발 마지막 확인 manager : " + manager);
 				try {
-					if(writer.contentEquals("manager")) {
+					if(writer.contentEquals("admin")) {
 						dao.insertManager(new ChatAdminDTO(chatnum,store,contents,nickname));
 
 					}else if(writer.contentEquals("client")) {
@@ -106,6 +107,8 @@ public class ChatEndPoint {
 					e.printStackTrace();
 				}
 			}
+			
+			
 		}
 	}
 	// 접속했던 session 객체가 연결을 종료하는 순간

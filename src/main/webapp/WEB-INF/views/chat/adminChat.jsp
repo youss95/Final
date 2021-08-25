@@ -247,19 +247,20 @@ button:hover {
 }
 
 .name>a {
-	text-decoration:none;
-	color:white;
-	font-size:18px;
-	font-weight:bold;
-	text-shadow : 1px 1px 1px gray;
+	text-decoration: none;
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+	text-shadow: 1px 1px 1px gray;
 }
 
 .deleteMsg {
-	text-decoration:none;
-	color:white;
-	background-color:gray;
-	font-size:14px;
-	border-radius:10%;
+	float: left;
+	text-decoration: none;
+	color: white;
+	background-color: gray;
+	font-size: 14px;
+	border-radius: 10%;
 }
 
 #backBtn {
@@ -276,7 +277,7 @@ button:hover {
 	})
 	$(function() {
 
-		let ws = new WebSocket("ws://122.45.84.154:8080/chat");
+		let ws = new WebSocket("ws://172.30.1.24//chat");
 		ws.onmessage = function(event) {
 			/* let text = JSON.parse(event.data);
 			let line = $("<div>");
@@ -293,7 +294,7 @@ button:hover {
 			updateScroll(); */
 
 			let text = JSON.parse(event.data);
-			if(text.writer == 'admin'){
+			if (text.writer == 'admin') {
 				let li = $("<li class='clearfix'>");
 				let line = $("<div class='message-data-ajax align-right'>");
 				let time = $("<span class='message-data-time'></span>");
@@ -307,11 +308,11 @@ button:hover {
 				line.append(msgLine);
 				li.append(line);
 				$("#history-under").append(li);
-			}else{
+			} else {
 				let li = $("<li class='clearfix'>");
 				let line = $("<div class='message-data-left'>");
 				let time = $("<span class='message-data-time'></span>");
-				let timeID = $("#loginID").val();
+				let timeID = text.nickname;
 				time.append(timeID);
 				let who = $("<span class='message-data-name'>me</span>");
 
@@ -335,11 +336,11 @@ button:hover {
 			$("#message-to-send").val(" ");
 
 		})
-		
-		$(".deleteMsg").on("click", function(){
-			 if(confirm("해당 채팅방을 정말로 삭제하시겠습니까? 상대방과 나의 모든 기록이 삭제됩니다.")){
-				location.href=$(this).attr('id');
-			 }
+
+		$(".deleteMsg").on("click", function() {
+			if (confirm("해당 채팅방을 정말로 삭제하시겠습니까? 상대방과 나의 모든 기록이 삭제됩니다.")) {
+				location.href = $(this).attr('id');
+			}
 		})
 
 	})
@@ -365,7 +366,7 @@ button:hover {
 									<a href="/chat/makeAdminChat?store=${item.store }">${item.store }</a>
 								</div>
 								<div class="status">
-									<i class="fa fa-circle offline"></i> <button type="button" class="deleteMsg"
+									<button type="button" class="deleteMsg"
 										id="/chat/deleteChatRoom?chatnum=${item.chatnum }">delete</button>
 								</div>
 							</div></li>

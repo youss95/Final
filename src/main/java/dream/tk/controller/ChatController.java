@@ -125,7 +125,7 @@ public class ChatController {
 	public String adminChat(Model model) throws Exception{
 		session.setAttribute("writer", "admin");
 		String storeName = (String) session.getAttribute("store");
-
+		session.setAttribute("storeName", storeName);
 		String chatnum = "manager"+storeName;
 		session.setAttribute("chatnum", chatnum);
 		session.setAttribute("nickname", "manager");
