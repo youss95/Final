@@ -36,4 +36,7 @@ public class BusinessFileDAO {
 		return mybatis.selectList("bFile.getFlistSeq",biz_seq);
 	}
 	
+	public List<BusinessFileDTO> selectAll() throws Exception{
+		return mybatis.selectList("bFile.selectAll");
+	}
 }
