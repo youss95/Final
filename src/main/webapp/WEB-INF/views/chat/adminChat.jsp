@@ -277,7 +277,7 @@ button:hover {
 	})
 	$(function() {
 
-		let ws = new WebSocket("ws://122.45.84.154:8080//chat");
+		let ws = new WebSocket("ws://122.45.84.154/chat");
 		ws.onmessage = function(event) {
 
 			let text = JSON.parse(event.data);
