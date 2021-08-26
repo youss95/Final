@@ -348,9 +348,9 @@ section {
 								<figure style="overflow-y:hidden; height: 150px;">
 									<img
 										src="${pageContext.request.contextPath}/files/${item.sysName}"
-										class="d-block h-100">
+										class="d-block w-100">
 									<figcaption>
-										<h2>${item.businessnameeng}</h2>
+										<h2 style="padding:0px; margin-top:1%; margin-bottom:1%;">${item.businessnameeng}</h2>
 									</figcaption>
 								</figure>
 							</a>
