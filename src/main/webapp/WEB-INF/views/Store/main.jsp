@@ -299,13 +299,13 @@ text-align:center
 										<a
 											href="/Business/viewByBizType?page=1&biz_type=KoreanFood">
 											<img
-											src="${pageContext.request.contextPath}/resources/Storeimages/31.png"
+											src="${pageContext.request.contextPath}/resources/Storeimages/kkkf.jpg"
 											 class="cateImg d-block h-100" >
 										</a>
 									</div>
 									<div class="down-content">
 										<a
-											href="">
+											href="/Business/viewByBizType?page=1&biz_type=KoreanFood">
 											<!-- 타이틀 이름-->
 											<h4>Korean</h4>
 										</a>
@@ -318,13 +318,13 @@ text-align:center
 										<a
 											href="/Business/viewByBizType?page=1&biz_type=JapaneseFood">
 											<img
-											src="${pageContext.request.contextPath}/resources/Storeimages/31.png"
+											src="${pageContext.request.contextPath}/resources/Storeimages/chbap.jpg"
 											 class="cateImg d-block h-100" >
 										</a>
 									</div>
 									<div class="down-content">
 										<a
-											href="">
+											href="/Business/viewByBizType?page=1&biz_type=JapaneseFood">
 											<!-- 타이틀 이름-->
 											<h4>Japanese</h4>
 										</a>
@@ -336,13 +336,13 @@ text-align:center
 										<a
 											href="/Business/viewByBizType?page=1&biz_type=ChineseFood">
 											<img
-											src="${pageContext.request.contextPath}/resources/Storeimages/31.png"
+											src="${pageContext.request.contextPath}/resources/Storeimages/cff.jpg"
 											 class="cateImg d-block h-100" >
 										</a>
 									</div>
 									<div class="down-content">
 										<a
-											href="">
+											href="/Business/viewByBizType?page=1&biz_type=ChineseFood">
 											<!-- 타이틀 이름-->
 											<h4>Chinese</h4>
 										</a>
@@ -361,7 +361,7 @@ text-align:center
 									</div>
 									<div class="down-content">
 										<a
-											href="">
+											href="/Business/viewByBizType?page=1&biz_type=WesternFood">
 											<!-- 타이틀 이름-->
 											<h4>Western</h4>
 										</a>
@@ -380,7 +380,7 @@ text-align:center
 									</div>
 									<div class="down-content">
 										<a
-											href="">
+											href="/Business/viewByBizType?page=1&biz_type=WorldFood">
 											<!-- 타이틀 이름-->
 											<h4>World</h4>
 										</a>
@@ -393,13 +393,13 @@ text-align:center
 										<a
 											href="/Business/viewByBizType?page=1&biz_type=Buffet">
 											<img
-											src="${pageContext.request.contextPath}/resources/Storeimages/31.png"
+											src="${pageContext.request.contextPath}/resources/Storeimages/bfff.jpg"
 											 class="cateImg d-block h-100" >
 										</a>
 									</div>
 									<div class="down-content">
 										<a
-											href="">
+											href="/Business/viewByBizType?page=1&biz_type=Buffet">
 											<!-- 타이틀 이름-->
 											<h4>Buffet</h4>
 										</a>
@@ -412,13 +412,13 @@ text-align:center
 										<a
 											href="/Business/viewByBizType?page=1&biz_type=Cafe">
 											<img
-											src="${pageContext.request.contextPath}/resources/Storeimages/31.png"
+											src="${pageContext.request.contextPath}/resources/Storeimages/cafff.jpg"
 											 class="cateImg d-block h-100" >
 										</a>
 									</div>
 									<div class="down-content">
 										<a
-											href="">
+											href="/Business/viewByBizType?page=1&biz_type=Cafe">
 											<!-- 타이틀 이름-->
 											<h4>Cafe</h4>
 										</a>
@@ -431,13 +431,13 @@ text-align:center
 										<a
 											href="/Business/viewByBizType?page=1&biz_type=Bar">
 											<img
-											src="${pageContext.request.contextPath}/resources/Storeimages/31.png"
+											src="${pageContext.request.contextPath}/resources/Storeimages/baaaa.jpg"
 											 class="cateImg d-block h-100" >
 										</a>
 									</div>
 									<div class="down-content">
 										<a
-											href="">
+											href="/Business/viewByBizType?page=1&biz_type=Bar">
 											<!-- 타이틀 이름-->
 											<h4>Bar</h4>
 										</a>
