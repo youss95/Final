@@ -35,29 +35,16 @@ public class ChatEndPoint {
 	private HttpSession hsession;
 	private ChatService service;
 
-	// 1. 채팅방을 로직 DAO, DTO, Service / 2. 채팅방마다 세션을 저장할 리스트가 필요. Map<방이름, List<Session>유저 세션> 
-	// 가영이가 1번 채팅방에서 메세지를 보냈다. 
-	// 가영이가 속한 세션은 방 이름을 찾고. 
-	// 그 방이름으로 Map에서 키값으로 세션을 담았던 List를 뽑고 
-	// Session으로 메세지를 보냄
 
-	// 2. DB에서 채팅방 리스트를 뽑고, 
 	@OnOpen
 	public void onConnect(Session session, EndpointConfig config) {
 		System.out.println("웹 소켓 클라이언트 연결됨.");
 		hsession = (HttpSession)config.getUserProperties().get("hsession");
-		String roomid = (String) hsession.getAttribute("roomid");
-		System.out.println(hsession.getAttribute("loginID"));
-		System.out.println("Openbizname : " + hsession.getAttribute("buisnessNameChat"));
 		clients.add(session);
 	}
 
 	@OnMessage
 	public void onMessage(Session self, String contents) {
-		//DB에 전부 저장해 -> DB -> seq -> 클라로 갈지, 가게 , 기업
-		//seq -> nextval from dual seq -> DB 3개 ? DB 2개? 
-		// 고객 - 업체 / 업체 - 매니저
-		// manager 분기점... 채팅 <input hidden >
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh : mm aa");
 		Date date = new Date();
 		date.setTime(System.currentTimeMillis());

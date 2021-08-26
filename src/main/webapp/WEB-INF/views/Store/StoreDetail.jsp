@@ -667,8 +667,12 @@ section {
 
 
 
-		<div class="footer">
-			<a href="/chat/makeChat?store=${list.businessName }">
+		<!--  <div class="footer">
+		<c:choose>
+			<c:when test="${info.member_role eq 'C'}">
+				<a href="/chat/makeChat?store=${list.businessName }">
+			
+			
 				<div class="chat" onclick="this.classList.toggle('active')">
 					<div class="background"></div>
 					<svg class="chat-bubble" width="100" height="100"
@@ -693,18 +697,17 @@ section {
                     </svg>
 				</div>
 			</a>
+			</c:when>
+		</c:choose>-->
 			<script>
 			
 				$(window).scroll(function() {
 					//스크롤의 위치가 상단에서 450보다 크면  
-					if ($(window).scrollTop() > 450) {
+					if ($(window).scrollTop() > 1) {
 						/* if(window.pageYOffset >= $('원하는위치의엘리먼트').offset().top){ */
 						$('.chat').addClass("fix");
 						//위의 if문에 대한 조건 만족시 fix라는 class를 부여함  
-					} else {
-						$('.chat').removeClass("fix");
-						//위의 if문에 대한 조건 아닌경우 fix라는 class를 삭제함  
-					}
+					} 
 				});
 			</script>
 		</div>
