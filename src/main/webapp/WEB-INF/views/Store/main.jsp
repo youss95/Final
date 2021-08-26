@@ -250,27 +250,25 @@
 
 				<c:choose>
 					<c:when test="${getFlist!=null}">
-						<c:forEach var="item" items="${getFlist}" varStatus="status"
+						<c:forEach var="item" items="${storePics}" varStatus="status"
 							begin="21" end="26">
 							<div class="col-4" >
 								<div class="product-item" style="height: 400px;">
 									<div class="up-content" style="width: 100%; height: 75%; overflow:hidden;" >
 										<a
-											href="/Business/view?biz_seq=${getBusiness[status.index].biz_seq}&userId=">
+											href="/Business/view?biz_seq=${item.biz_seq}&userId=">
 											<img
 											src="${pageContext.request.contextPath}/files/${item.sysName}"
-											class="d-block h-100">
+											>
 										</a>
 									</div>
 									<div class="down-content">
 										<a
-											href="/Business/view?biz_seq=${getBusiness[status.index].biz_seq}&userId=">
+											href="/Business/view?biz_seq=${item.biz_seq}&userId=">
 											<!-- 타이틀 이름-->
-											<h4>${getBusiness[status.index].businessNameEng}</h4>
+											<h4>${item.businessname}</h4>
 										</a>
-										<p>${getBusiness[status.index].address1}</p>
 										<!--댓글 개수 -->
-										<span>Reviews (${getBusiness[status.index].view_Count})</span>
 									</div>
 								</div>
 							</div>
