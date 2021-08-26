@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import dream.tk.config.PagingVO;
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.BusinessFileDTO;
+import dream.tk.dto.CategoryListDTO;
 import dream.tk.dto.LikeStatusDTO;
 import dream.tk.dto.TranslateDTO;
 import dream.tk.service.BusinessFileService;
@@ -104,7 +105,9 @@ public class BusinessStoreController {
 	   @RequestMapping("/viewCategory")
 	   public String viewByCategory(String biz_type,int page, Model model) {
 		   
-		 //  List<>
+		 List<CategoryListDTO> list = service.getListByCategory(biz_type, page);
+		 System.out.println(list.toString());
+		 model.addAttribute("cateList",list);
 		   
 		   return "/Store/BusinessStoreCategory";
 	   }

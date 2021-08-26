@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import dream.tk.config.PagingVO;
 import dream.tk.dto.BusinessDTO;
+import dream.tk.dto.CategoryListDTO;
+import dream.tk.dto.CategoryPagingDTO;
 
 @Repository
 public class StoreBusinessDAO {
@@ -47,7 +49,10 @@ public class StoreBusinessDAO {
 	}
 	
 	//비즈 타입 별로 리스트
-	
+	public List<CategoryListDTO> getListByCategory(CategoryPagingDTO dto){
+		
+		return mybatis.selectList("StoreBu.getListByBizType",dto);
+	}
 	
 	// 마커 지도 검색 관련
 	

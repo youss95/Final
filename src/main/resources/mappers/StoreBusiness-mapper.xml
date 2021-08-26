@@ -73,9 +73,9 @@
 		<!-- </if> -->
 	</select>
 
-<select id="getListByBizType" resultType="dream.tk.dto.BusinessDTO">
+<select id="getListByBizType" resultType="dream.tk.dto.CategoryListDTO">
 select distinct(select sysname from business_file where rownum = 1 and parent_id = m.id) "sysName", b.businessname, b.biz_type ,rownum  
-from business b join business_member m on b.seq = m.seq join business_file f on f.parent_id = m.id where b.biz_type=#{biz_type} and rownum between #{start} and #{end};
+from business b join business_member m on b.seq = m.seq join business_file f on f.parent_id = m.id where b.biz_type=#{biz_type} and rownum between #{firstNum} and #{secondNum};
 </select>
 
 </mapper>
