@@ -10,29 +10,30 @@ import dream.tk.dto.StoreMCommentDTO;
 
 @Service
 public class CommentMService {
+	
 	@Autowired
 	private MCommentDAO dao;
     
     
-    public List<StoreMCommentDTO> commentListService(int bno) throws Exception{
-    	return dao.commentList(bno);
+    public List<StoreMCommentDTO> commentListServicee(int bno) throws Exception{
+    	return dao.commentListe(bno);
     }
     
-    public int commentInsertService(StoreMCommentDTO comment) throws Exception{
-    	return dao.commentInsert(comment);
+    public int commentInsertServicee(StoreMCommentDTO comment) throws Exception{
+    	return dao.commentInserte(comment);
     }
     
-    public int commentUpdateService(StoreMCommentDTO comment) throws Exception{
-        return dao.commentUpdate(comment);
+    public int commentUpdateServicee(StoreMCommentDTO comment) throws Exception{
+        return dao.commentUpdatee(comment);
     }
     
-    public int commentDeleteService(int cno) throws Exception{
-        return dao.commentDelete(cno);
+    public int commentDeleteServicee(int cno) throws Exception{
+        return dao.commentDeletee(cno);
     }
     
     // 댓글 개수 뽑기
-    public int count(int bno) throws Exception{
-    	return dao.count(bno);
+    public int counte(int bno) throws Exception{
+    	return dao.counte(bno);
     }
 	
 	/*
