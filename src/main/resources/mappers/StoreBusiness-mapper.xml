@@ -70,7 +70,7 @@
 		WHERE
 		<!-- <if test="searchWrd != null and searchWrd !=''"> -->
 		(BusinessName LIKE '%${searchWrd}%' or
-		address1 LIKE '%${searchWrd}%')
+		address1 LIKE '%${searchWrd}%' or biz_type like '%${biz_type}%' )
 		<!-- </if> -->
 	</select>
 
