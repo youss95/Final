@@ -40,6 +40,11 @@ public class AllResStorePagingDTO {
 	public AllResStorePagingDTO() {
 		super();
 	}
+	@Override
+	public String toString() {
+		return "AllResStorePagingDTO [startNum=" + startNum + ", lastNum=" + lastNum + ", lastPage=" + lastPage
+				+ ", endPage=" + endPage + "]";
+	}
 	
 	
 	

@@ -108,7 +108,9 @@ public class BusinessStoreController {
 	   @RequestMapping("/viewAll")
 	   public String viewAllResStore(int page,Model model) {
 		   List<AllResStoreDTO> list = service.getAllResStoreList(page);
+		   System.out.println("size: "+list.size());
 				  AllResStorePagingDTO dto = service.getPaging(page);
+				  System.out.println(dto.toString());
 				  model.addAttribute("paging",dto);
 				  model.addAttribute("storeList",list);
 				  return "/Store/BusinessStore";
