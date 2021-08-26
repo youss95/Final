@@ -46,8 +46,8 @@ public class StoreBusinessService {
 	//list
 	public List<AllResStoreDTO> getAllResStoreList(int page){
 
-		int firstNum = (page-1)*10+1;
-		int secondNum = page*10;
+		int firstNum = (page-1)*12+1;
+		int secondNum = page*12;
 		PagingNumDTO dto = new PagingNumDTO(firstNum,secondNum);
 		return daoc.allResStore(dto);
 	}
