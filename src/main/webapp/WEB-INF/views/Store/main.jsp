@@ -243,7 +243,7 @@
 					<div class="section-heading">
 						<!-- 제목 -->
 						<h2>You can make a reservation at this store.</h2>
-						<a href="/Business/signup?cpage=1">view all products >> </a>
+						<a href="/Business/viewAll?page=1">view all products >> </a>
 					</div>
 				</div>
 
@@ -276,8 +276,6 @@
 			</div>
 		</div>
 	</div>
-
-
 
 
 	<footer>

@@ -45,30 +45,25 @@
 	margin: 0;
 	padding: 0;
 }
-
 #wrap {
 	width: 1400px;
 	margin: 0 auto;
 }
-
 .contain {
 	width: 100%;
 	height: 127px;
 	float: center -webkit-font-smoothing: antialiased;
 	box-sizing: border-box;
 }
-
 aside {
 	float: left;
 	width: 60%;
 	height: 700px;
 }
-
 line {
 	float: left;
 	width: 5%;
 }
-
 section {
 	float: right;
 	width: 35%;
@@ -80,7 +75,6 @@ section {
 		width: 100%;
 	}
 }
-
 /* 화면 너비 0 ~ 480px */
 @media ( max-width : 480px) {
 	#wrap {
@@ -100,24 +94,20 @@ section {
 		height: 1400px;
 	}
 }
-
 @media ( min-width :1024px) {
 	.flexgrid.columns-news li {
 		width: 23%;
 	}
 }
-
 /*찾기 버튼*/
 .search {
 	position: relative;
 	width: 532px;
 	margin: 1 auto;
 }
-
 .d1 {
 	background: #A3D0C3;
 }
-
 .d1 input {
 	width: 100%;
 	height: 42px;
@@ -129,7 +119,6 @@ section {
 	color: #9E9C9C;
 	box-sizing: border-box;
 }
-
 .d1 button {
 	position: absolute;
 	top: 0;
@@ -141,20 +130,17 @@ section {
 	border-radius: 0 5px 5px 0;
 	cursor: pointer;
 }
-
 .d1 button:before {
 	content: "\f002";
 	font-family: FontAwesome;
 	font-size: 16px;
 	color: #F9F0DA;
 }
-
 .card-box {
 	padding-bottom: 70px;
 	display: block;
 	width: 100%;
 }
-
 .card-box>ul::before {
 	float: center;
 	content: "메뉴 리스트";
@@ -163,13 +149,11 @@ section {
 	padding-left: 205px;
 	top: 10px;
 }
-
 .card-box>ul {
 	text-align: left;
 	display: block;
 	padding: 0 10px;
 }
-
 .card-box>ul>li {
 	display: block;
 	width: 100%;
@@ -190,7 +174,6 @@ section {
 		padding: 10px;
 	}
 }
-
 .card-box>ul>li>a {
 	position: relative;
 	display: block;
@@ -198,7 +181,6 @@ section {
 	border-radius: 10px;
 	cursor: pointer;
 }
-
 .card-box>ul>li>a>img {
 	width: 100%;
 	height: auto;
@@ -208,7 +190,6 @@ section {
 .card-box>ul>li {
 	text-align: left;
 }
-
 .card-box>ul>li .text {
 	position: absolute;
 	bottom: 20px;
@@ -219,7 +200,6 @@ section {
 	font-weight: bold;
 	line-height: normal;
 }
-
 .overlay_info .address {
 	font-size: 12px;
 	color: #333;
@@ -229,13 +209,12 @@ section {
 	top: 13px;
 	white-space: normal
 }
-
 <!--
 페이징 -->.page {
 	text-align: center;
+
 	width: 50%;
 }
-
 .pagination {
 	list-style: none;
 	display: inline-block;
@@ -243,7 +222,9 @@ section {
 	margin-top: 20px;
 }
 
+
 .pagination modals {
+
 	text-align: center;
 }
 
@@ -251,7 +232,6 @@ section {
 	display: inline;
 	text-align: center;
 }
-
 .pagination a {
 	float: left;
 	display: block;
@@ -261,28 +241,22 @@ section {
 	color: #96a0ad;
 	line-height: 1.5;
 }
-
 .first {
 	margin-right: 15px;
 }
-
 .last {
 	margin-left: 15px;
 }
-
 .first:hover, .last:hover, .left:hover, .right:hover {
 	color: #2e9cdf;
 }
-
 .pagination a.active {
 	cursor: default;
 	color: #ffffff;
 }
-
 .pagination a:active {
 	outline: none;
 }
-
 .modals .num {
 	margin-left: 10px;
 	padding: 0;
@@ -293,17 +267,14 @@ section {
 	-webkit-border-radius: 100%;
 	border-radius: 100%;
 }
-
 .modals .num:hover {
 	background-color: #2e9cdf;
 	color: #ffffff;
 }
-
 .modals .num.active, .modals .num:active {
 	background-color: #2e9cdf;
 	cursor: pointer;
 }
-
 .arrow-left {
 	width: 0;
 	height: 0;
@@ -311,7 +282,6 @@ section {
 	border-bottom: 10px solid transparent;
 	border-right: 10px solid blue;
 }
-
 .custom_zoomcontrol span {
 	display: block;
 	width: 36px;
@@ -339,27 +309,58 @@ section {
 					can make a reservation at this store.</h3>
 				<hr>
 				<ul class="flexgrid columns-news">
-					<c:forEach var="item" items="${storePics}">
+					<c:forEach var="item" items="${storeList}">
 						<li>
-							<!--  <span class="grid-number">임의</span>--> 
+							<!--  <span class="grid-number">임의</span>-->
 							<a
 							href="/Business/view?biz_seq=${item.biz_seq }&userId=${loginID}">
 								<input type="hidden" id="click" value="${item.biz_seq }">
-								<figure style="overflow-y:hidden; height: 150px;">
+								<figure style="overflow-y: hidden; height: 150px;">
 									<img
-										src="${pageContext.request.contextPath}/files/${item.sysName}"
+										src="${pageContext.request.contextPath}/files/${item.sysname}"
 										class="d-block w-100">
-									<figcaption>
-										<h2 style="height: 50px; text-align: center;">${item.businessnameeng}</h2>
-									</figcaption>
+
 								</figure>
+								<div style="width: 100%;">
+									<h2 style="height: 50px; text-align: center;">${item.businessNameEng}</h2>
+								</div>
 							</a>
 						</li>
 					</c:forEach>
 				</ul>
 			</main>
+			
 			<!-- 페이징바!! -->
-			<div class="page" style="text-align: center; margin-left: 1px">
+			 <navi aria-label="Page navigation example ">
+  <ul class="pagination mt-4 justify-content-center align-items-center">
+  <c:choose>
+  <c:when test="${param.page<=1}">
+   <li class="page-item  "><a class="page-link"     onclick="alert('이전 페이지가 없습니다.');">&lt</a></li>
+    </c:when>
+    <c:otherwise>
+     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/Business/viewAll?&page=${param.page-1}">&lt</a></li>
+     </c:otherwise>
+    </c:choose>
+    <c:forEach var="i" begin="${paging.startNum}" end="${paging.endPage}" step="1">
+    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/Business/viewAll?&page=${i}">${i}</a></li>
+   </c:forEach>
+   
+   <c:choose>
+   
+   	<c:when test="${param.page >= paging.endPage }">
+   		<li class="page-item  "><a class="page-link"     onclick="alert('마지막 페이지 입니다.');">&gt</a></li>
+   	</c:when>
+   	<c:otherwise>
+   	 <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/Business/viewAll?&page=${param.page+1}">&gt</a></li>
+   	</c:otherwise>
+    </c:choose>
+  </ul>
+  
+</navi>
+			
+			
+			
+			<%-- <div class="page" style="text-align: center; margin-left: 1px">
 				<ul class="pagination modals">
 					<c:if test="${paging.startPage != 1 }">
 						<li><a class="active num"
@@ -382,7 +383,7 @@ section {
 							href="/Business/signup?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
 					</c:if>
 				</ul>
-			</div>
+			</div> --%>
 
 		</aside>
 
@@ -448,15 +449,12 @@ section {
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2fa91fa0473f76d7311f40d80a8f1521&libraries=services"></script>
 			<script>
 				var click = document.getElementById('click').value;
-
 				var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 				mapOption = {
 					center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
 					level : 5, // 지도의 확대 레벨
 				};
-
 				var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
 				//지도타입 컨트롤의 지도 또는 스카이뷰 버튼을 클릭하면 호출되어 지도타입을 바꾸는 함수입니다
 				function setMapType(maptype) {
 					var roadmapControl = document.getElementById('btnRoadmap');
@@ -471,25 +469,20 @@ section {
 						roadmapControl.className = 'btn';
 					}
 				}
-
 				// 지도 확대, 축소 컨트롤에서 확대 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
 				function zoomIn() {
 					map.setLevel(map.getLevel() - 1);
 				}
-
 				// 지도 확대, 축소 컨트롤에서 축소 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
 				function zoomOut() {
 					map.setLevel(map.getLevel() + 1);
 				}
-
 				//주소-좌표 변환 객체를 생성합니다
 				var geocoder = new kakao.maps.services.Geocoder();
 				var rdnmadrList = new Array();
 				var cmpnmList = new Array();
 				var num = new Array();
-
 				var rdnList = JSON.parse('${rdnmadrListJson}');
-
 				// 값 받는곳!! 
 				for ( var k in rdnList) {
 					var $obj = rdnList[k];
@@ -502,7 +495,6 @@ section {
 					num.push(cc);
 					eng.push(dd);
 				}
-
 				//주소 리스트 
 				rdnmadrList
 						.forEach(function(addr, index) {
@@ -513,12 +505,10 @@ section {
 											function(result, status) {
 												// 정상적으로 검색이 완료됐으면 
 												if (status === kakao.maps.services.Status.OK) {
-
 													// 받은 리스트! 객체 배열
 													var coords = new kakao.maps.LatLng(
 															result[0].y,
 															result[0].x);
-
 													// 결과값으로 받은 위치를 마커로 표시합니다
 													var marker = new kakao.maps.Marker(
 															{
@@ -526,7 +516,6 @@ section {
 																position : coords,
 																clickable : true
 															});
-
 													var content = '<div class="overlay_info">';
 													content += "    <a><strong>"
 															+ cmpnmList[index]
@@ -537,14 +526,12 @@ section {
 															+ '</span>';
 													content += '    </div>';
 													content += '</div>';
-
 													// 인포윈도우로 장소에 대한 설명을 표시합니다
 													var infowindow = new kakao.maps.InfoWindow(
 															{
 																//  content: cmpnmList[index], 
 																content : content,
 															});
-
 													kakao.maps.event
 															.addListener(
 																	marker,
@@ -558,7 +545,6 @@ section {
 																	marker,
 																	'mouseout',
 																	makeOutListener(infowindow));
-
 													function makeOverListener(
 															map, marker,
 															infowindow) {
@@ -568,14 +554,12 @@ section {
 																			marker);
 														};
 													}
-
 													function makeOutListener(
 															infowindow) {
 														return function() {
 															infowindow.close();
 														};
 													}
-
 													kakao.maps.event
 															.addListener(
 																	marker,
@@ -585,7 +569,6 @@ section {
 																		location.href = '/Business/view?biz_seq='
 																				+ num[index];
 																	});
-
 													// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 													if (index == 0) {
 														map.setCenter(coords);
@@ -605,16 +588,13 @@ section {
 			<script>
 				function random_imglink() {
 					var myimages = new Array()
-
 					/* 각각의 이미지 경로 지정 */
 					myimages[1] = "${pageContext.request.contextPath}/resources/images/1.png"
 					myimages[2] = "${pageContext.request.contextPath}/resources/images/2.png"
-
 					/* 각각의 이미지 링크 지정 */
 					var imagelinks = new Array()
 					imagelinks[1] = "https://www.tripadvisor.com/Restaurants-g294197-zfn7778640-Seoul.html"
 					imagelinks[2] = "https://theculturetrip.com/asia/south-korea/articles/korean-cuisine-crash-course-top-10-dishes-to-know/"
-
 					var ry = Math.floor(Math.random() * myimages.length)
 					if (ry == 0)
 						ry = 1
@@ -631,16 +611,13 @@ section {
 			<script>
 				function random_imglink() {
 					var myimages = new Array()
-
 					/* 각각의 이미지 경로 지정 */
 					myimages[1] = "${pageContext.request.contextPath}/resources/images/3.png"
 					myimages[2] = "${pageContext.request.contextPath}/resources/images/4.png"
-
 					/* 각각의 이미지 링크 지정 */
 					var imagelinks = new Array()
 					imagelinks[1] = "https://www.tripadvisor.com/Restaurants-g294197-zfn7778638-Seoul.html"
 					imagelinks[2] = "https://www.willflyforfood.net/seoul-food-guide-25-must-eat-restaurants-in-seoul-south-korea/"
-
 					var ry = Math.floor(Math.random() * myimages.length)
 					if (ry == 0)
 						ry = 1
@@ -654,16 +631,13 @@ section {
 			<script>
 				function random_imglink() {
 					var myimages = new Array()
-
 					/* 각각의 이미지 경로 지정 */
 					myimages[1] = "${pageContext.request.contextPath}/resources/images/5.png"
 					myimages[2] = "${pageContext.request.contextPath}/resources/images/6.png"
-
 					/* 각각의 이미지 링크 지정 */
 					var imagelinks = new Array()
 					imagelinks[1] = "https://www.tripadvisor.com/Restaurants-g294197-zfn7778650-Seoul.html"
 					imagelinks[2] = "https://www.creatrip.com/en/blog/1822/TOP-5-Busan-Pork-Rice-Soup-Restaurants"
-
 					var ry = Math.floor(Math.random() * myimages.length)
 					if (ry == 0)
 						ry = 1

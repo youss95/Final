@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dream.tk.config.PagingVO;
+import dream.tk.dto.AllResStoreDTO;
+import dream.tk.dto.AllResStorePagingDTO;
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.BusinessFileDTO;
+import dream.tk.dto.CategoryListDTO;
 import dream.tk.dto.LikeStatusDTO;
 import dream.tk.dto.TranslateDTO;
 import dream.tk.service.BusinessFileService;
@@ -102,12 +105,36 @@ public class BusinessStoreController {
 	      return "/Store/BusinessStoreDetail";
 	   }
 	
+	   @RequestMapping("/viewAll")
+	   public String viewAllResStore(int page,Model model) {
+		   List<AllResStoreDTO> list = service.getAllResStoreList(page);
+		   System.out.println("size: "+list.size());
+				  AllResStorePagingDTO dto = service.getPaging(page);
+				  System.out.println(dto.toString());
+				  model.addAttribute("paging",dto);
+				  model.addAttribute("storeList",list);
+				  return "/Store/BusinessStore";
+	   }
+	   
+	   @RequestMapping("/viewCategory")
+	   public String viewByCategory(String biz_type,int page, Model model) {
+		   
+		 List<CategoryListDTO> list = service.getListByCategory(biz_type, page);
+		 System.out.println(list.toString());
+		 model.addAttribute("cateList",list);
+		   
+		   return "/Store/BusinessStoreCategory";
+	   }
+	   
 	
 	// 혹시 모르는 페이지
 	@RequestMapping("store_detail")
 	public String detail() {
 		return "/Store/BusinessStoreDetail";
 	}
+
+
+
 	
 	   @ExceptionHandler
 	   public String exceptionHandler(Exception e) {
@@ -115,3 +142,4 @@ public class BusinessStoreController {
 	      return "error";
 	   }
 }
+

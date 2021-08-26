@@ -64,4 +64,7 @@ public class ChatService {
 	  public int deleteChatRoom(String chatnum) throws Exception{
 		  return dao.deleteChatRoom(chatnum);
 	  }
+	  public int deleteAdminChatRoom(String chatnum) throws Exception{
+		  return dao.deleteAdminChatRoom(chatnum);
+	  }
 }

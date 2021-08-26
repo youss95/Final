@@ -95,14 +95,14 @@
 				alert("유효하지 않은 사업자등록번호입니다. 5자리 이상의 숫자만 입력해주세요. \n ex) 13079");
 				return false;
 			}
-			if($("#businessName").val()==null||$("#businessName").val()==""){
-				alert("업체명을 입력해주세요.");
-				return false;
-			}
-			if($("#businessNameEng").val()==null||$("#businessNameEng").val()==""){
-				alert("영문 업체명을 입력해주세요.");
-				return false;
-			}
+// 			if($("#businessName").val()==null||$("#businessName").val()==""){
+// 				alert("업체명을 입력해주세요.");
+// 				return false;
+// 			}
+// 			if($("#businessNameEng").val()==null||$("#businessNameEng").val()==""){
+// 				alert("영문 업체명을 입력해주세요.");
+// 				return false;
+// 			}
 			if($("#businessContact").val()==null||$("#businessContact").val()==""){
 				alert("업체 연락처를 입력해주세요.");
 				return false;
@@ -517,14 +517,14 @@
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">업체명</div>
-                        <div style="width:60%" class="hiddenDivB">${bizInfo.businessName}</div>
-                        <input class="hiddenInputB" id="businessName" name="businessName" type=text value="${bizInfo.businessName}" style="display:none">
+                        <div style="width:60%" >${bizInfo.businessName}</div>
+<%--                         <input class="hiddenInputB" id="businessName" name="businessName" type=text value="${bizInfo.businessName}" style="display:none"> --%>
                       </div>
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">영문 업체명</div>
-                        <div style="width:60%" class="hiddenDivB">${bizInfo.businessNameEng}</div>
-                        <input class="hiddenInputB" id="businessNameEng" name="businessNameEng" type=text value="${bizInfo.businessNameEng}" style="display:none">
+                        <div style="width:60%" >${bizInfo.businessNameEng}</div>
+<%--                         <input class="hiddenInputB" id="businessNameEng" name="businessNameEng" type=text value="${bizInfo.businessNameEng}" style="display:none"> --%>
                       </div>
 
                       <div class="card-body" style="width:100%">
@@ -641,10 +641,10 @@
 				<c:choose>
 					<c:when test="${flist[0] eq null || flist[0] eq ''}">
 					 <div class="card-body" style="width:100%">
-                      <div style="width:30%">업체 사진 등록 서비스</div>
+                      <div style="width:30%">업체 대표사진 등록 서비스</div>
                       <div style="width:60%">
                       <form id="uploadFrm1" action="${pageContext.request.contextPath}/bFile/upload" method="post" enctype="multipart/form-data">
-                      <input id='fileInput' type=file name="file" multiple accept="image/jpeg, image/jpg, image/png"><button class="btn" type='button' id='uploadBtn1'>업로드</button>
+                      <input id='fileInput' type=file name="file" accept="image/jpeg, image/jpg, image/png"><button class="btn" type='button' id='uploadBtn1'>업로드</button>
                       <input type='hidden' name="id" value="${binfo.id}">
                       </form>
                       </div>
@@ -662,7 +662,7 @@
                       		
                       		</c:forEach>
                       	 </div>	
-                      	 <div style="width:20%"><button class="btn" id="editFileBtn" type="button">수정</button></div>
+<!--                       	 <div style="width:20%"><button class="btn" id="editFileBtn" type="button">수정</button></div> -->
                       </div>
                     </div>
                     </c:otherwise>

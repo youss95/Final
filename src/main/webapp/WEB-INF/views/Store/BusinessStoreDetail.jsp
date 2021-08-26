@@ -254,8 +254,8 @@ section {
 				<c:when test="${getFlist!=null}">
 					
 							<c:forEach var="item" items="${getFlist}" varStatus="s">
-								<div style="width: 33%;overflow-y: hidden;overflow-x: hidden;">
-									<img src="/files/${item.sysName}" class="d-block w-100"
+								<div style="display:inline-block; height:100%;overflow-y: hidden;overflow-x: hidden;">
+									<img src="/files/${item.sysName}" class="d-block h-100"
 										alt="...">
 								</div>
 							</c:forEach>
@@ -815,7 +815,7 @@ section {
         	              }).done(function(resp){
         	                console.log(resp)
         	              $("#heartIcon").css("color","black")
-        	             alert()
+        	             alert("취소 되었습니다.")
         	              })
         	              
         	              /* 알람  */

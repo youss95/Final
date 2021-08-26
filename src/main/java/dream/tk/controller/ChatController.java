@@ -110,6 +110,12 @@ public class ChatController {
 		return "redirect:businessChat";
 	}
 	
+	@RequestMapping("deleteAdminChatRoom")
+	public String deleteAdminChatRoom(String chatnum) throws Exception{
+		service.deleteAdminChatRoom(chatnum);
+		return "redirect:adminChat";
+	}
+	
 	//매니저와 채팅
 	@RequestMapping("bizSendManager")
 	public String bizSendManager(String roomid) throws Exception{

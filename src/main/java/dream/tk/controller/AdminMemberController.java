@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import dream.tk.api.SHA256;
 import dream.tk.api.VerifyRecaptcha;
 import dream.tk.dto.AdminMemberDTO;
+import dream.tk.dto.ClientMemberDTO;
 import dream.tk.service.AdminMemberService;
 import dream.tk.service.EmailService;
 
@@ -77,6 +78,8 @@ public class AdminMemberController {
 		String shaPW = SHA256.getSHA512(pw);
 		int result = service.login(emp_id, shaPW);
 		if(result>0) {
+			AdminMemberDTO dto = service.getInfo(emp_id);
+			session.setAttribute("info", dto);
 			session.setAttribute("loginID", emp_id);
 			return "redirect:/admin/dashForm";
 		}else {
