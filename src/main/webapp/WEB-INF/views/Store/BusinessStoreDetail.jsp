@@ -249,12 +249,12 @@ section {
 			<%@include file="../layout/header_main.jsp"%>
 		</div>
 
-		<div class="headers" style="width: 65%; height:500px; overflow-y: hidden;overflow-x: hidden;">
+		<div class="headers" style="width: 65%;">
 			<c:choose>
 				<c:when test="${getFlist!=null}">
 					
 							<c:forEach var="item" items="${getFlist}" varStatus="s">
-								<div style="weight: 100%; overflow-y: hidden;overflow-x: hidden;">
+								<div style="weight: 100%;">
 									<img src="/files/${item.sysName}" class="d-block w-100"
 										alt="...">
 								</div>
