@@ -116,15 +116,27 @@ public class BusinessStoreController {
 				  return "/Store/BusinessStore";
 	   }
 	   
-	   @RequestMapping("/viewCategory")
-	   public String viewByCategory(String biz_type,int page, Model model) {
-		   
-		 List<CategoryListDTO> list = service.getListByCategory(biz_type, page);
-		 System.out.println(list.toString());
-		 model.addAttribute("cateList",list);
-		   
-		   return "/Store/BusinessStoreCategory";
+	   @RequestMapping("/viewByBizType")
+	   public String viewByBizType(int page,String biz_type,Model model) {
+		   System.out.println(biz_type);
+		   List<AllResStoreDTO> list = service.getAllByBizType(page,biz_type); //페이지당 12개
+		   System.out.println(list.size());
+		   AllResStorePagingDTO dto = service.getPagingCategory(page,biz_type);
+		   model.addAttribute("paging",dto);
+		   model.addAttribute("storeList",list);
+		   return "/Store/BusinessStore";
 	   }
+	   
+		/*
+		 * @RequestMapping("/viewCategory") public String viewByCategory(String
+		 * biz_type,int page, Model model) {
+		 * 
+		 * List<CategoryListDTO> list = service.getListByCategory(biz_type, page);
+		 * System.out.println(list.toString()); model.addAttribute("cateList",list);
+		 * 
+		 * return "/Store/BusinessStoreCategory"; }
+		 */
+	   
 	   
 	
 	// 혹시 모르는 페이지

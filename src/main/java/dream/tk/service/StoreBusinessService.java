@@ -15,6 +15,7 @@ import dream.tk.dto.AllResStorePagingDTO;
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.CategoryListDTO;
 import dream.tk.dto.CategoryPagingDTO;
+import dream.tk.dto.CategoryPagingNumDTO;
 import dream.tk.dto.PagingNumDTO;
 
 @Service
@@ -64,15 +65,36 @@ public class StoreBusinessService {
 		AllResStorePagingDTO dto = new AllResStorePagingDTO(startNum,lastNum,lastPage,endPage);
 		return dto;
 	}
-	
-	//카테고리 별 리스트
-	public List<CategoryListDTO> getListByCategory(String biz_type,int page){
-		
-		int firstNum = (page-1)*4+1;
-		int secondNum = page*4;
-		CategoryPagingDTO dto = new CategoryPagingDTO(biz_type, firstNum, secondNum);
-		return daoc.getListByCategory(dto);
+	//cate 페이징
+	public AllResStorePagingDTO getPagingCategory(int page,String biz_type) {
+		//int allCount = daoc.pagingCount();
+		int allCount = daoc.categoryCount(biz_type);
+		System.out.println("coutn: "+allCount);
+		int nowGrp = (int)(Math.ceil((double)page/10));
+		int startNum = (nowGrp-1)*10+1;
+		int lastNum = nowGrp*10;
+		int lastPage = (int)Math.ceil(allCount/12.0);
+		int endPage =  lastNum > lastPage ? lastPage : lastNum;
+		AllResStorePagingDTO dto = new AllResStorePagingDTO(startNum,lastNum,lastPage,endPage);
+		return dto;
 	}
+	
+	//비즈타입
+	public List<AllResStoreDTO> getAllByBizType(int page,String biz_type){
+		int firstNum = (page-1)*12+1;
+		int secondNum = page*12;
+		CategoryPagingNumDTO dto = new CategoryPagingNumDTO(firstNum,secondNum,biz_type);
+		return daoc.allResStoreCategory(dto);
+	}
+	
+
+	/*
+	 * public List<CategoryListDTO> getListByCategory(String biz_type,int page){
+	 * 
+	 * int firstNum = (page-1)*4+1; int secondNum = page*4; CategoryPagingDTO dto =
+	 * new CategoryPagingDTO(biz_type, firstNum, secondNum); return
+	 * daoc.getListByCategory(dto); }
+	 */
 	
 	// 마커 다중 검색
 	public List<BusinessDTO> getList(BusinessDTO searchVO) throws Exception {
