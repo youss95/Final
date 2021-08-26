@@ -279,19 +279,6 @@ button:hover {
 
 		let ws = new WebSocket("ws://122.45.84.154/chat");
 		ws.onmessage = function(event) {
-			/* let text = JSON.parse(event.data);
-			let line = $("<div>");
-			
-			let nickLine = $("<div>");
-			nickLine.append(text.nickname);
-			
-			let messageLine = $("<div>");
-			messageLine.append(text.message);
-			
-			line.append(nickLine);
-			line.append(messageLine);
-			$("#chat-history").append(line); 
-			updateScroll(); */
 
 			let text = JSON.parse(event.data);
 			if (text.writer == 'client') {
