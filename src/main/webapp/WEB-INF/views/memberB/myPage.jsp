@@ -414,7 +414,7 @@
                 <!-- ==== 개인정보 관련 ==== -->
                 <div class="col-lg-12">
                 
-                    <form id="personalInfoFrm" action="${pageContext.request.contextPath}/bMember/editPersonalInfo">
+                    <form id="personalInfoFrm" action="${pageContext.request.contextPath}/bMember/editPersonalInfo" method="post">
                     <div class="card">
 
                       <div class="card-header card-header-warning">
@@ -480,7 +480,7 @@
                  <!-- ==== 업체 정보 관련 ==== -->
                  <div class="col-lg-12">
                    
-                    <form id="bizFrm" action="${pageCotext.request.contextPath}/bMember/editBizInfo">
+                    <form id="bizFrm" action="${pageCotext.request.contextPath}/bMember/editBizInfo" method="post">
                    
                     <div class="card">
 

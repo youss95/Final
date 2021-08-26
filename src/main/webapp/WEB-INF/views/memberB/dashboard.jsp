@@ -384,7 +384,7 @@ console.log("${nationLabel[1]}");
               y: {
                   beginAtZero: true,
                   stepSize:5,
-                  max:20
+                 
               }
           },
      
@@ -505,7 +505,7 @@ console.log("${nationLabel[1]}");
              scales: {
                  y: {
                      beginAtZero: true,
-                     max:25
+                     
                  }
              },
         
@@ -550,7 +550,7 @@ console.log("${nationLabel[1]}");
              scales: {
                  y: {
                      beginAtZero: true,
-                     max:50
+                     stepSize:5
                  }
              },
         

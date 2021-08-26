@@ -220,7 +220,6 @@ public class BusinessMemberController {
 //		dto.setCreateDate(new Date(0));
 		int memSeq = ((BusinessMemberDTO) session.getAttribute("binfo")).getSeq();
 		dto.setSeq(memSeq);
-		
 		ser.editBizInfo(dto);
 		BusinessDTO newdto = ser.getBizInfo(memSeq);
 		session.setAttribute("bizInfo", newdto);

@@ -6,13 +6,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dream.tk.api.SHA256;
 import dream.tk.api.VerifyRecaptcha;
-import dream.tk.dto.BusinessMemberDTO;
 import dream.tk.dto.ClientMemberDTO;
 import dream.tk.service.ClientMemberService;
 import dream.tk.service.EmailService;
@@ -50,7 +50,7 @@ public class ClientMemberController {
 
 	@RequestMapping(value="signupProc")
 	public String signupProc(ClientMemberDTO dto, Model m) {
-		
+
 		System.out.println("signupProc");
 		String shaPW = SHA256.getSHA512(dto.getPw());
 		dto.setPw(shaPW);
@@ -81,10 +81,10 @@ public class ClientMemberController {
 	}
 	@RequestMapping(value="mypage")
 	public String mypage(Model m) {
-		
+
 		String id = (String)session.getAttribute("loginID");
 		ClientMemberDTO dto = service.getInfo(id);
-		
+
 		m.addAttribute("info", dto);
 		return "memberC/mypage";
 	}
@@ -94,14 +94,14 @@ public class ClientMemberController {
 		String shaPW = SHA256.getSHA512(dto.getPw());
 		dto.setPw(shaPW);
 		service.update(dto);
-		
+
 		return "redirect:/cMember/mypage";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value="currentPW")
 	public int currentPW(String pw) throws Exception {
-		
+
 		String id = (String)session.getAttribute("loginID");
 		String shaPW = SHA256.getSHA512(pw);
 		String currentPW = service.currentPW(id);
@@ -127,7 +127,7 @@ public class ClientMemberController {
 			return -1; //에러
 		}
 	}
-	
+
 	@RequestMapping(value="findIDForm")
 	public String findIDForm() {
 		return "memberC/findID";
@@ -172,6 +172,10 @@ public class ClientMemberController {
 		return "memberC/resetPWResult";
 	}
 
-
+	@ExceptionHandler
+	public String exceptionHandler(Exception e) {
+		e.printStackTrace();
+		return "error";
+	}
 
 }

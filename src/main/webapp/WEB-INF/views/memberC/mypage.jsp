@@ -224,27 +224,7 @@ div[class*=hidden] {
 				</div>
 			</div>
 
-			<div class="row fieldYOB">
-				<div class="col-3 left">Year of Birth</div>
-				<div class="col-9">
-					<div class="row">
-						<div class="col-12">
-							${info.yob}
-							<button class="btn modi" id="modiYOB" type="button">modify</button>
-						</div>
-					</div>
-					<div class="row hiddenYOB">
-						<div class="col-12">Year Of Birth</div>
-						<div class="col-12">
-							<input type="number" class="ipF" name="yob" id="iyob"
-								placeholder="ex) 1995">
-						</div>
-					</div>
-					<div class="row hiddenYOB">
-						<div class="col-12 yobCheck"></div>
-					</div>
-				</div>
-			</div>
+			
 
 			<div class="row fieldNation">
 				<div class="col-3 left">Nation</div>
