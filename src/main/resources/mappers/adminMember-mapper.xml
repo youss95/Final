@@ -18,7 +18,7 @@
 		insert into admin_member
 		values(admin_member_seq.nextval,
 		#{emp_id}, #{pw}, #{name}, #{phone},
-		#{email}, sysdate)
+		#{email}, sysdate, 'A')
 	</insert>
 
 	<update id="update">
@@ -35,6 +35,12 @@
 	<select id="login" resultType="int">
 		select count(*) from admin_member
 		where emp_id=#{emp_id} and pw=#{pw}
+	</select>
+	
+	<select id="getInfo" resultType="dream.tk.dto.AdminMemberDTO">
+		select * from admin_member
+		where
+		emp_id=#{value}
 	</select>
 
 
