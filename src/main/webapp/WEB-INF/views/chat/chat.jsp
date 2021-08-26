@@ -279,19 +279,6 @@ button:hover {
 
 		let ws = new WebSocket("ws://122.45.84.154/chat");
 		ws.onmessage = function(event) {
-			/* let text = JSON.parse(event.data);
-			let line = $("<div>");
-			
-			let nickLine = $("<div>");
-			nickLine.append(text.nickname);
-			
-			let messageLine = $("<div>");
-			messageLine.append(text.message);
-			
-			line.append(nickLine);
-			line.append(messageLine);
-			$("#chat-history").append(line); 
-			updateScroll(); */
 
 			let text = JSON.parse(event.data);
 			if (text.writer == 'client') {
@@ -328,11 +315,13 @@ button:hover {
 				$("#history-under").append(li);
 			}
 
-			if (!isScrollUp) {
+			if($("#chatnum").val() != 'chatnum'){
+				if (!isScrollUp) {
 			      $('#chat-history').animate({
 			        scrollTop: divChat.scrollHeight - divChat.clientHeight//?
 			      }, 100);
 			    }
+			}
 		}
 		var isScrollUp = false;
 		  var lastScrollTop;
@@ -348,11 +337,13 @@ button:hover {
 		    }
 
 		    // 기본적으로 스크롤 최하단으로 이동 (애니메이션 적용)
-		    if (!isScrollUp) {
-		      $('#chat-history').animate({
-		        scrollTop: divChat.scrollHeight - divChat.clientHeight//?
-		      }, 100);
-		    }
+		    if($("#chatnum").val() != 'chatnum'){
+				if (!isScrollUp) {
+			      $('#chat-history').animate({
+			        scrollTop: divChat.scrollHeight - divChat.clientHeight//?
+			      }, 100);
+			    }
+			}
 
 		  /* 메뉴 스크롤 ↓ 버튼 클릭 시 */
 		  $('#btn_scroll_down').on('click', function() {
@@ -403,11 +394,10 @@ button:hover {
 		  });
 		  
 
-		/* function updateScroll(){
-		   var element = document.getElementById("chat-history");
-		   element.scrollTop = element.scrollHeight;
-		} */
 		$("#send").on("click", function() {
+			if($("#chatnum").val() == 'chatnum'){
+				alert("현재 대기방에 위치하고 있습니다. 왼쪽 채팅리스트를 클릭해 채팅 방에 들어간 후 채팅해주세요.")
+			}else{
 			if ($("#message-to-send").val() != '') {
 				let text = $("#message-to-send").val();
 				ws.send(text);
@@ -415,11 +405,14 @@ button:hover {
 			} else {
 				alert("입력해주세요!")
 			}
-
+			}
 		})
 
 		let writechat = document.getElementById("message-to-send");
 		$("#message-to-send").on("keydown", function(e){
+			if($("#chatnum").val() == 'chatnum'){
+				alert("현재 대기방에 위치하고 있습니다. 왼쪽 채팅리스트를 클릭해 채팅 방에 들어간 후 채팅해주세요.")
+			}else{
 			console.log(e.keyCode);
 			if (e.keyCode == 13 && !e.shiftKey) {
 				if ($("#message-to-send").val() != '') {
@@ -430,6 +423,7 @@ button:hover {
 					alert("입력해주세요!")
 				}
 
+			}
 			}
 		})
 
@@ -490,6 +484,7 @@ button:hover {
 
 			<div class="chat-history" id="chat-history">
 				<input type="hidden" id="loginID" value="${loginID }">
+				<input type="hidden" id="chatnum" value="${chatnum }">
 				<ul id="history-under">
 
 					<c:forEach var="i" items="${chatlist}">
