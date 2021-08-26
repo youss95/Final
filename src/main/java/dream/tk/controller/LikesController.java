@@ -67,4 +67,6 @@ public class LikesController {
 		  List<LikesDTO> list = likesService.likeList(userId);
 		  return list;
 	  }
+	  
+	  
 }

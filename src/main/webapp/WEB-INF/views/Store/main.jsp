@@ -27,7 +27,22 @@
 	crossorigin="anonymous" />
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+	integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+	integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+.col-4 {
+	padding: 0.5%;
+}
+.up-content{
+	border-radius: 5%;
+}
+</style>
 </head>
 
 <body>
@@ -70,14 +85,14 @@
 	<div class="latest-products">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-12">
 					<!-- Store 메인 -->
 					<div class="section-heading">
 						<h2>List of restaurants you can trust and watch</h2>
 						<a href="/store/signup?cpage=1">view all products >> </a>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-4">
 					<div class="product-item">
 						<a href="/store/view?store_seq=1"><img
 							src="${pageContext.request.contextPath}/resources/Storeimages/1.png"
@@ -101,7 +116,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-4">
 					<div class="product-item">
 						<a href="/store/view?store_seq=19"><img
 							src="${pageContext.request.contextPath}/resources/Storeimages/19.png"
@@ -123,7 +138,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-4">
 					<div class="product-item">
 						<a href="/store/view?store_seq=31"><img
 							src="${pageContext.request.contextPath}/resources/Storeimages/31.png"
@@ -145,7 +160,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-4">
 					<div class="product-item">
 						<a href="/store/view?store_seq=116"><img
 							src="${pageContext.request.contextPath}/resources/Storeimages/116.png"
@@ -167,7 +182,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-4">
 					<div class="product-item">
 						<a href="/store/view?store_seq=120"><img
 							src="${pageContext.request.contextPath}/resources/Storeimages/120.png"
@@ -189,7 +204,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-4">
 					<div class="product-item">
 						<a href="/store/view?store_seq=100"><img
 							src="${pageContext.request.contextPath}/resources/Storeimages/100.png"
@@ -223,7 +238,7 @@
 	<div class="latest-products">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-12">
 					<!-- Store 메인 -->
 					<div class="section-heading">
 						<!-- 제목 -->
@@ -235,14 +250,22 @@
 
 				<c:choose>
 					<c:when test="${getFlist!=null}">
-						<c:forEach var="item" items="${getFlist}" varStatus="status" begin="1" end="6">
-							<div class="col-md-4">
-								<div class="product-item">
-									<a href="/Business/view?biz_seq=${getBusiness[status.index].biz_seq}&userId="> <img
-										src="${pageContext.request.contextPath}/files/${item.sysName}"
-										width="350" height="233"></a>
+						<c:forEach var="item" items="${getFlist}" varStatus="status"
+							begin="1" end="6">
+							<div class="col-4" >
+								<div class="product-item" style="height: 400px;">
+									<div class="up-content" style="width: 100%; height: 75%; overflow:hidden;" >
+										<a
+											href="/Business/view?biz_seq=${getBusiness[status.index].biz_seq}&userId=">
+											<img
+											src="${pageContext.request.contextPath}/files/${item.sysName}"
+											class="d-block w-100 h-100">
+										</a>
+									</div>
 									<div class="down-content">
-										<a href="/Business/view?biz_seq=${getBusiness[status.index].biz_seq}&userId="> <!-- 타이틀 이름-->
+										<a
+											href="/Business/view?biz_seq=${getBusiness[status.index].biz_seq}&userId=">
+											<!-- 타이틀 이름-->
 											<h4>${getBusiness[status.index].businessNameEng}</h4>
 										</a>
 										<p>${getBusiness[status.index].address1}</p>
@@ -285,6 +308,7 @@
 
 	<!--  css  파일!!! -->
 	<script src="/jquery/jquery.min.js"></script>
+
 	<script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- Additional Scripts -->
 	<script src="${pageContext.request.contextPath}/resources/js/custom.js"></script>
@@ -294,5 +318,6 @@
 		src="${pageContext.request.contextPath}/resources/js/isotope.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/accordions.js"></script>
+	<%@include file="../layout/alarm.jsp"%>
 </body>
 </html>

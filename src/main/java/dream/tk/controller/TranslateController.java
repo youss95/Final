@@ -34,10 +34,10 @@ public class TranslateController {
 
 	@Autowired
 	private NaverTransService serviceT;
-	
+
 	@Autowired
 	private BusinessMemberDAO daoBM;
-	
+
 	@Autowired
 	private StoreBusinessDAO daoB;
 
@@ -65,23 +65,23 @@ public class TranslateController {
 
 		//menu_kor를 String 배열로 받았기 때문에 for문 돌림
 		for(int i=0; i<menu_kor.length; i++) {
-			
+
 			//for문 어디까지 돌아가는 지 일단 확인하기 위해
 			System.out.println(i);
-			
+
 			//자동 번역 api로 영어로 번역
 			String responseBody = serviceT.getTransSentence(menu_kor[i]);
-			
+
 			//JSON parser로 번역된 menu_eng만 꺼내는 과정
 			JSONObject responseObj;
 			responseObj = (JSONObject) jsonParse.parse(responseBody);
 			JSONObject messageObj = (JSONObject) responseObj.get("message");
 			JSONObject resultObj = (JSONObject) messageObj.get("result");
 			String menu_eng = (String) resultObj.get("translatedText");
-			
+
 			//menu_kor랑 menu_eng 잘 나왔는지 확인
 			System.out.println(menu_kor[i] +":"+ menu_eng);
-			
+
 			//DB에 넣는 작업
 			int p = Integer.parseInt(price[i]);
 			TranslateDTO dto = new TranslateDTO(menu_kor[i], menu_eng, p, business_id, business_name, biz_seq);
@@ -126,9 +126,8 @@ public class TranslateController {
 	}
 
 
-
 	@ExceptionHandler
-	public String exceptionHandlerB(Exception e) {
+	public String exceptionHandler(Exception e) {
 		e.printStackTrace();
 		return "error";
 	}

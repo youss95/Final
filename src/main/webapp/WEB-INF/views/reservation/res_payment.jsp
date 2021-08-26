@@ -13,11 +13,20 @@
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ <link rel="stylesheet" href="/resources/css/formstyle.css" />
 </head>
 <style>
 .payTitle{
 margin-bottom:100px;
 }
+
+#cont{
+ text-align: center;
+}
+
+ h4 span{
+            color: #7FC8A9;
+        }
 .inp_rd{
 
 margin-right:130px;
@@ -37,6 +46,19 @@ font-weight:600;
 font-size:30px;
 font-weight:600;
 }
+.benefitInfo{
+margin-bottom:50px;
+}
+.infoImg{
+width:200px;
+height:200px;
+
+}
+t{
+font-size:17px;
+color:#AAAAAA;
+}
+
 </style>
 <body>
 <%@include file="../layout/header.jsp" %>
@@ -44,24 +66,43 @@ font-weight:600;
 <section class="">
 <div class="payTitle"><h2>결제 페이지 (정액권)</h2></div>
 	
+	<div id="cont">
+    <h4>
+      결제를 하고 얻을 수 있는 혜택 3가지 !!<br />Tasty Korea에서
+      <span>제공하는 유용한 데이터로 매출 UP!!!</span>
+    </h4>
+</div>
+<br><br>
+ <div class="benefitInfo"> 
+
+<img class="infoImg" src="${pageContext.request.contextPath}/resources/images/p1.PNG" style="vertical-align:middle;">
+<span style="margin:20px;font-size: 25px;font-weight: 600;"  >국가별 예약자수 비교 - <t>어느 나라 사람들이 우리 식당을 가장 많이 이용하는지 알수 있어요</t></span><br>
+
+<img class="infoImg" src="${pageContext.request.contextPath}/resources/images/p2.PNG" style="vertical-align:middle;">
+<span style="margin:20px;font-size: 25px;font-weight: 600;"  >연령대 비교 - <t>어느 연령대에서 우리 식당을 가장 많이 이용하는지 알수 있어요</t></span><br>
+
+<img class="infoImg" src="${pageContext.request.contextPath}/resources/images/p33.PNG" style="vertical-align:middle;">
+<span style="margin:20px;font-size: 25px;font-weight: 600;"  >월별 예약자 추세 - <t>각 달마다 예약자를 한눈에 확인이 가능해요</t></span><br>
+  </div>
+	
 										<div class="inp_rd">
 											<input type="radio" id="m1" name="price" value=100>
 											
-											<label for="m1">1개월 <strong>5,000원</strong></label>
+											<label for="m1">1개월 <strong>100원</strong></label>
 										</div>
 										<div class="inp_rd">
 											<input type="radio" id="m2" name="price" value=200>
-											<label for="m2">6개월 <strong>30,000원</strong></label>
+											<label for="m2">6개월 <strong>200원</strong></label>
 										</div>
 										<div class="inp_rd">
 											<input type="radio" id="m3" name="price" value=300>
-											<label for="m3">12개월 <strong>70,000원</strong></label>
+											<label for="m3">12개월 <strong>300원</strong></label>
 										</div>
 							
 								<hr>
-<div id="priceTitle">총 가격: <span id="totalPrice"></span></div>
+<div id="priceTitle">결제 가격: <span id="totalPrice"></span></div>
  
-    <button id="check_module" type="button">결제</button>
+    <button id="check_module" type="button" class="btn_m btn_primary">결제</button>
   <!--   <input type="button" id="check2" value="환불"> -->
 
 </section>

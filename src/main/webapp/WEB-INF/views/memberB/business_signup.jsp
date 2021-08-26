@@ -285,7 +285,7 @@ $(function(){
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                  </div>
-                <input id="name" name="name" class="form-control" placeholder="Name" type="text">
+                <input id="name" name="name" class="form-control" placeholder="name" type="text">
             </div> <!-- form-group// -->
 
 

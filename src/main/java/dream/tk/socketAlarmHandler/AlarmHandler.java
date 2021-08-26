@@ -56,12 +56,18 @@ public class AlarmHandler extends TextWebSocketHandler{
 			String boardId = strs[2];
 			String businessName = strs[3];
 			String count = strs[4];
-			System.out.println(boardId);
+			System.out.println("받는사람 아이디: "+boardId);
 			
 			WebSocketSession boardWriterSession = userSessions.get(boardId);//게시글 작성자가 있으면
 			System.out.println("받는사람"+boardWriterSession);
 			if("like".equals(cmd) && boardWriterSession != null) {
 				TextMessage tmpMsg = new TextMessage(sender + "님이" + businessName + "을 찜했습니다."+","+count);
+				
+				System.out.println("tmp"+tmpMsg);
+				boardWriterSession.sendMessage(tmpMsg);
+				
+			}else	if("unlike".equals(cmd) && boardWriterSession != null) {
+				TextMessage tmpMsg = new TextMessage(sender + "님이" + businessName + "의 찜을 취소했습니다."+","+count);
 				
 				System.out.println("tmp"+tmpMsg);
 				boardWriterSession.sendMessage(tmpMsg);
