@@ -251,7 +251,7 @@
 				<c:choose>
 					<c:when test="${getFlist!=null}">
 						<c:forEach var="item" items="${getFlist}" varStatus="status"
-							begin="1" end="6">
+							begin="21" end="26">
 							<div class="col-4" >
 								<div class="product-item" style="height: 400px;">
 									<div class="up-content" style="width: 100%; height: 75%; overflow:hidden;" >
@@ -259,7 +259,7 @@
 											href="/Business/view?biz_seq=${getBusiness[status.index].biz_seq}&userId=">
 											<img
 											src="${pageContext.request.contextPath}/files/${item.sysName}"
-											class="d-block w-100 h-100">
+											class="d-block h-100">
 										</a>
 									</div>
 									<div class="down-content">

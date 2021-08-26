@@ -28,8 +28,8 @@
         where b.biz_seq=${value}
 	</select>
 	
-	<select id="selectAll" resultType="dream.tk.dto.BusinessFileDTO">
-		select * from business_file
+	<select id="storePics" resultType="dream.tk.dto.BusinessFileDTO">
+		select distinct(select sysname from business_file where rownum = 1 and parent_id = m.id) "sysName", b.businessname from business b join business_member m on b.seq = m.seq join business_file f on f.parent_id = m.id
 	</select>
 	
 </mapper>
