@@ -169,9 +169,7 @@ public class BusinessMemberController {
 			String originPw=((BusinessMemberDTO) session.getAttribute("binfo")).getPw();
 			dto.setPw(originPw);
 		}
-//		dto.setSeq(0);
-//		dto.setPremium("No");
-//		dto.setPrm_exp_date(new Date(0));
+
 		
 		ser.editPersonalInfo(dto);
 		BusinessMemberDTO newdto =ser.getInfo((String) session.getAttribute("loginID"));
@@ -213,11 +211,7 @@ public class BusinessMemberController {
 	
 	@RequestMapping("editBizInfo")
 	public String editBizInfo(BusinessDTO dto) {
-//		dto.setBiz_seq(0);
-//		String[] list = new String[3];
-//		dto.setOnday(list);
-//		dto.setTimeAvailable("tue");
-//		dto.setCreateDate(new Date(0));
+
 		int memSeq = ((BusinessMemberDTO) session.getAttribute("binfo")).getSeq();
 		dto.setSeq(memSeq);
 		ser.editBizInfo(dto);
@@ -330,8 +324,7 @@ public class BusinessMemberController {
 		m.addAttribute("nationLabel", nationLabel);
 		m.addAttribute("nationData",nationData);
 		m.addAttribute("monthData",monthData);
-		//m.addAttribute("vsResult",vsResult);
-		//m.addAttribute("vsMine",vsMine);
+		
 		m.addAttribute("bizStar_avg",bizStar_avg);
 		m.addAttribute("bizLikes",bizLikes);
 		m.addAttribute("bizView_count",bizView_count);

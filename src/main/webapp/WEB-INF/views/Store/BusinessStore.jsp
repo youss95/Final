@@ -315,7 +315,7 @@ section {
 							<a
 							href="/Business/view?biz_seq=${item.biz_seq }&userId=${loginID}">
 								<input type="hidden" id="click" value="${item.biz_seq }">
-								<figure style="overflow-y:hidden;">
+								<figure style="overflow-y:hidden; height: 150px;">
 									<img
 										src="${pageContext.request.contextPath}/files/${item.sysName}"
 										class="d-block h-100">
