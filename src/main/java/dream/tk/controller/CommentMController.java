@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,5 +68,11 @@ public class CommentMController {
 	    private int deleteComment(@PathVariable int cno) throws Exception{
 	    	System.out.println("cno : " + cno);
 	        return serviceT.commentDeleteServicee(cno);
+	    }
+	    
+	    @ExceptionHandler
+	    public String exceptionHandler(Exception e) {
+	       e.printStackTrace();
+	       return "error";
 	    }
 }

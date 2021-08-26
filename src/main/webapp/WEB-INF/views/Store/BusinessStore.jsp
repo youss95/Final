@@ -102,7 +102,7 @@ section {
 /*찾기 버튼*/
 .search {
 	position: relative;
-	width: 510px;
+	width: 532px;
 	margin: 1 auto;
 }
 .d1 {
@@ -311,18 +311,19 @@ section {
 				<ul class="flexgrid columns-news">
 					<c:forEach var="item" items="${storePics}">
 						<li>
-							<!--  <span class="grid-number">임의</span>--> 
+							<!--  <span class="grid-number">임의</span>-->
 							<a
 							href="/Business/view?biz_seq=${item.biz_seq }&userId=${loginID}">
 								<input type="hidden" id="click" value="${item.biz_seq }">
-								<figure style="overflow-y:hidden; height: 150px;">
+								<figure style="overflow-y: hidden; height: 150px;">
 									<img
 										src="${pageContext.request.contextPath}/files/${item.sysName}"
 										class="d-block w-100">
-									<figcaption>
-										<h2 style="height: 50px; text-align: center;">${item.businessnameeng}</h2>
-									</figcaption>
+
 								</figure>
+								<div style="width: 100%;">
+									<h2 style="height: 50px; text-align: center;">${item.businessnameeng}</h2>
+								</div>
 							</a>
 						</li>
 					</c:forEach>
@@ -403,7 +404,7 @@ section {
 				<div class="d1">
 					<div class="search">
 						<input type="text" id="searchWrd" name="searchWrd"
-							placeholder="It's under development."
+							placeholder="I'm sorry. I'll be developing it soon."
 							value="${searchVO.searchWrd }" disabled> <a href=""
 							onclick="fn_search();" class="btn-login"><button
 								type="button" class="pulse"></button></a>
