@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,26 +19,40 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/Store_detail.css?after">
 
-<!--  요개 문제 댓글용
-<link rel='stylesheet'
-	href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
--->
-
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+	integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 <script
-	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+	crossorigin="anonymous"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+	integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+	integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/like.js"></script>
 <link rel="stylesheet"
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
 	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
 	crossorigin="anonymous" />
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 
 
@@ -112,14 +128,58 @@ section {
 	}
 }
 
-/*강사님이 말한 댓글 삐져 나오는거, 각각의 요소들
-#store{
+.form-group {
+	width: 600px;
+	height: 100px;
+}
+
+.form-group>input {
+	width: 800px;
+	height: 100%;
+}
+
+.btn_light {
+	background-color: #3DB2FF;
+	color: #203e60;
+	border: 1px solid #d6e6f2;
+}
+
+.btn_s {
+	display: inline-block;
+	min-width: 70px;
+	min-height: 32px;
+	padding: 8px 13px;
+	font-size: 13px;
+	text-align: center;
+	outline: none;
+	vertical-align: middle;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all 0.1s ease-out;
+}
+
+.afterLikes {
+	color: red;
+}
+
+#heartIcon:hover {
+	cursor: pointer
+}
+
+<!--
+테이블-->#menu {
+	width: 100%;
+}
+
+/*강사님이 말한 댓글 삐져 나오는거, 각각의 요소들 사이에 margin 준 거 */
+#store {
 	margin: 3%;
 }
 
-.well{
+.well {
 	margin: 3%;
 }
+
 .form-group {
 	width: 100%;
 	height: 100px;
@@ -130,35 +190,49 @@ section {
 	height: 100%;
 }
 
-#commentInsertForm{
- width: 100%;
+#commentInsertForm {
+	width: 100%;
 }
 
-
-/*이거 댓글 */
-.well {
-    min-height: 20px;
-    padding: 19px;
-    margin-bottom: 20px;
-    background-color: #f5f5f5;
-    border: 1px solid #e3e3e3;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-    box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+.scrolltable {
+	table-layout: fixed;
+	border-collapse: collapse;
+	border: 1px solid #888;
+	width: 100%;
 }
 
-.panel-heading {
-    padding: 10px 15px;
-    border-bottom: 1px solid transparent;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
+.scrolltable thead {
+	display: block;
+	background: #a88;
+	color: #fff;
 }
 
-
-#commentInsertForm{
- width: 100%;
+.scrolltable tbody {
+	display: block;
+	overflow: auto;
+	height: 190px;
+	width: 100%;
 }
 
+/* 행 장식 */
+.scrolltable th, .scrolltable td {
+	padding: 10px;
+	text-align: left;
+	width: 406px;
+	text-align: center;
+	font-size: 1.375em;
+}
+/*
+.scrolltable tbody tr:nth-child(2n+1) {
+    background-color: #f0f0f0;
+}
+*/
+.bottom_bottom {
+	position: relative;
+	height: 200px;
+	padding: 10px;
+	border: 1px solid red;
+}
 </style>
 </head>
 <body>
@@ -375,42 +449,36 @@ section {
 			<!-- 지워지면 망 -->
 			<!--  댓글  -->
 
-			<div class="containers">
+				<div class="containers">
 				<div class="well">
 					<c:choose>
 						<c:when test="${loginID != null}">
-
-						<div>I'm sorry. I'm getting ready.</div>
-							<!-- 
-							<form role="form" id="commentInsertForm" name="commentInsertForm">
-
+							<form role="form" name="commentInsertForm">
 								<h4>
 									<i class="fa fa-paper-plane-o"></i> Leave a Comment:
 									<div class="make_star">
-										<div class="rating" data-rate="3" style="float: right">
+										<div class="rating" data-rate="3" style="float: left">
 											<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
 												class="fas fa-star"></i> <i class="fas fa-star"></i> <i
 												class="fas fa-star"></i>
 										</div>
 									</div>
 								</h4>
+								<!-- 로그인하면 나오는 리뷰 -->
 								<input type="hidden" id="writer" name="writer"
 									value="${loginID}"> <input type="hidden" id="bno"
 									name="bno" value="${list.store_seq }" />
 								<div class="form-group">
-									<input type="text" class="form-control" id="content"
-										name="content" placeholder="내용을 입력하세요.">
+									<input type="text" class="form-control" id="contents" name="contents" placeholder="check">
 								</div>
-								<button type="buttInsertBtn" style="left: 0;">
-									<i class="faton" value="" class="btn btn-primary"
-										name="commen fa-reply"></i>Submit
+								<button type="button" value="" class="btn btn-primary"
+									name="commentInsertBtn" style="left: 0;">
+									<i class="fa fa-reply"></i>Submit
 								</button>
+								
 							</form>
-							-->
 						</c:when>
-
 						<c:otherwise>
-							
 							<h4>
 								<i class="fa fa-paper-plane-o"></i> Leave a Comment:
 							</h4>
@@ -418,13 +486,13 @@ section {
 								<input type="hidden" id="bno" name="bno"
 									value="${list.store_seq }" />
 								<div class="form-group">
-									<input type="text" class="form-control" id="content"
-										name="content" placeholder="If you want to write a review, log in." disabled>
+									<input type="text" class="co" id="contents" name="contents"
+										placeholder="If you want to write a review, log in." disabled>
 								</div>
 								<button type="button"
 									onclick="location.href='${pageContext.request.contextPath}/member/whichMember'"
 									class="btn btn-primary" name="commentInsertBtn"
-									style="left: 0;">login</button>
+									style="left: 0;">로그인하기</button>
 							</form>
 						</c:otherwise>
 					</c:choose>
@@ -434,166 +502,170 @@ section {
 			<div class="containers">
 				<div class="commentList"></div>
 			</div>
-
-
-
 		</div>
 
 		<!-- 이거 지워지면 안된다 -->
 		<script>
-		
-		 $(function () {
-			 /* 등록후 리스트 */
-			
-		        /* 별점 등록할떄 */
-	 let targetNum=1;
-		 $(".make_star i").click(function () {
-			 targetNum = $(this).index() + 1; //별점 값
-	          $(".make_star i").css({ color: "#000" });
-	          $(".make_star")
-	            .find(".rating")
-	            .find("i:nth-child(-n" + targetNum + ")")
-	            .css({ color: "yellow" });
-	       
-	        });
-	     console.log(targetNum)
-		   var bno = $("#bno").val(); //게시글 번호
-		   var content = $("#content").val(); // 게시글
-			$('[name=commentInsertBtn]').click(function() { //댓글 등록 버튼 클릭시 
-				//var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
-				let data = {bno:${list.store_seq },writer:'${loginID}' ,content:content,star_age:targetNum}
-				commentInsert(data); //Insert 함수호출(아래)
-			});
-			
-			//댓글 목록
-			function commentList() {
-				$
-						.ajax({
-							url : '/CommentMain/list',
-							type : 'get',
-							data : {
-								'bno' : bno
-							},
-							success : function(data) {
-								var a = '';
-								$
-										.each(
-												data,
-												function(key, value) {
-													console.log("vale",value)
-													a += '<div class="col-sm-12"><div class="panel panel-default"><div class="panel-heading">'
-													a += '<h3><i class="fa fa-comment"></i> '
-															+ value.writer
-															+ '<small> 날짜 : '
-															+ value.reg_date
-															+ '<div class="review">'
-															+ ' <div class="rating" data-rate='+value.star_age+'>'
-															+ ' <i class="fas fa-star"></i>'
-															+ ' <i class="fas fa-star"></i>'
-															+ ' <i class="fas fa-star"></i>'
-															+ ' <i class="fas fa-star"></i>'
-															+ ' <i class="fas fa-star"></i>'
-															+ '</div>'
-															+ '</div>'
-													if (value.writer === $(
-															"#writer").val()) {
-														a += ' <div class="commentInfo'+ value.cno1+'">'
-														a += '<br>'
-														a += '<a onclick="commentUpdate('
-																+ value.cno1
-																+ ',\''
-																+ value.content
-																+ '\');"> Update </a>';
-														a += '<a onclick="commentDelete('
-																+ value.cno
-																+ ');"> Drop </a></div>';
-													}
-													a += '</small></h3></div>';
-													a += '<div class="panel-body"><div class="panel-body'+ value.cno + '"><p>'
-															+ value.content
-															+ '</p>';
-													a += '</div></div></div></div>';
-												});
-								$(".commentList").html(a);
-								 let rating = $(".review .rating");
-									console.log(rating)
-								        rating.each(function () {
-								          let targetScore = $(this).attr("data-rate");
-								          console.log(targetScore)
-								          $(this)
-								            .find("i:nth-child(-n" + targetScore + ")")
-								            .css({ color: "yellow" });
-								        });
-							}
-						});
-			}
-			//댓글 등록
-			
-			function commentInsert(data) {
-				$.ajax({
-					url : '/CommentMain/insert',
-					type : 'post',
-					data : JSON.stringify(data),
-					contentType:"application/json;charset=utf-8",
-					success : function(res) {
-						if (res == 1) {
-							commentList(); //댓글 작성 후 댓글 목록 reload
-							$('[name=content]').val('');
-						}
-					}
-				});
-			}
-			
-			//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
-			function commentUpdate(cno, content) {
-				var a = '';
-				a += '<div class="col-sm-12"><div class="panel panel-default"><div class="panel-heading" style="height:145px">';
-				a += '<div class="form-group">';
-				a += '<input type="text" class="form-control" name="content_'+ cno +'" value="'+content+'"/>';
-				a += '<button class="btn btn-primary" style="left:0" type="button" onclick="commentUpdateProc('
-						+ cno + ');">수정하기</button>';
-				a += '</div></div></div>';
-				$('.panel-body' + cno).html(a);
-			}
-			
-			//댓글 수정
-			function commentUpdateProc(cno) {
-				var updateContent = $('[name=content_' + cno + ']').val();
-				$.ajax({
-					url : '/CommentMain/update',
-					type : 'post',
-					data : {
-						'content' : updateContent,
-						'cno' : cno
-					},
-					success : function(data) {
-						if (data == 1)
-							commentList(bno); //댓글 수정후 목록 출력 
-					}
-				});
-			}
-			//댓글 삭제 
-			function commentDelete(cno) {
-				$.ajax({
-					url : '/CommentMain/delete/' + cno,
-					type : 'post',
-					success : function(data) {
-						if (data == 1)
-							commentList(bno); //댓글 삭제후 목록 출력 
-					}
-				});
-			}
-			$(document).ready(function() {
-				commentList(); //페이지 로딩시 댓글 목록 출력 
-				
-			});
-			
-		 });
-		</script>
+      
+       $(function () {
+          /* 등록후 리스트 */
+         
+              /* 별점 등록할떄 */
+              let targetNum=0;
+       $(".make_star i").click(function () {
+          targetNum = $(this).index() + 1; //별점 값
+           
+             $(".make_star i").css({ color: "#000" });
+             $(".make_star")
+               .find(".rating")
+               .find("i:nth-child(-n" + targetNum + ")")
+               .css({ color: "yellow" });
+          
+           });
+        console.log(targetNum)
+         var bno = $("#bno").val(); //게시글 번호
+         
+         
+         $('[name=commentInsertBtn]').click(function() { //댓글 등록 버튼 클릭시 
+            //var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
+            var contents = $("#contents").val();
+            let data = {bno:${list.store_seq },writer:'${loginID}' ,content:contents,star_avg:targetNum}
+            commentInsert(data); //Insert 함수호출(아래)
+         });
+         
+         //댓글 목록
+         function commentList() {
+            
+            $
+                  .ajax({
+                     url : '/CommentMain/list',
+                     type : 'get',
+                     data : {
+                        'bno' : bno
+                     },
+                     success : function(data) {
+                        var a = '';
+                        $
+                              .each(
+                                    data,
+                                    function(key, value) {
+                                       console.log("vale",value)
+                                       a += '<div class="col-sm-12"><div class="panel panel-default"><div class="panel-heading">'
+                                       a += '<h3><i class="fa fa-comment"></i> '
+                                             + value.writer
+                                             + '<small> 날짜 : '
+                                             + value.reg_date
+                                             
+                                             + '<div class="review">'
+                                             + ' <div class="rating" data-rate='+value.star_avg+'>'
+                                             + ' <i class="fas fa-star"></i>'
+                                             + ' <i class="fas fa-star"></i>'
+                                             + ' <i class="fas fa-star"></i>'
+                                             + ' <i class="fas fa-star"></i>'
+                                             + ' <i class="fas fa-star"></i>'
+                                             + '</div>'
+                                             + '</div>'
+                                      /* if (value.writer === $(
+                                             "#writer").val()) {
+                                          a += ' <div class="commentInfo'+ value.cno+'">'
+                                          a += '<br>'
+                                          
+                                          a += '<a onclick="commentUpdate('
+                                                + value.cno
+                                                + ',\''
+                                                + value.content
+                                                + '\');"> 수정하기 </a>';
+                                          a += '<a href="/comment/deleteComments?cno='
+                                                + value.cno
+                                                + '"> 삭제하기 </a></div>';
+                                       }*/
+                                       a += '</small></h3></div>';
+                                       a += '<div class="panel-body"><div class="panel-body'+ value.cno + '"><p>'
+                                             + value.content
+                                             + '</p>';
+                                       a += '</div></div></div></div>';
+                                    });
+                        $(".commentList").html(a);
+                         let rating = $(".review .rating");
+                           console.log(rating)
+                                rating.each(function () {
+                                  let targetScore = $(this).attr("data-rate");
+                                  console.log(targetScore)
+                                  $(this)
+                                    .find("i:nth-child(-n" + targetScore + ")")
+                                    .css({ color: "yellow" });
+                                });
+                     }
+                  });
+         }
+         //댓글 등록
+         function commentInsert(data) {
+            $.ajax({
+               url : '/CommentMain/insert',
+               type : 'post',
+               data : JSON.stringify(data),
+               contentType:"application/json;charset=utf-8",
+               success : function(res) {
+                  if (res == 1) {
+                     commentList(); //댓글 작성 후 댓글 목록 reload
+                     $("#contents").val('');
+                  }
+               }
+            });
+         }
+         //댓글 수정 - 댓글 ㄹ 출력을 input 폼으로 변경 
+         function commentUpdate(cno, content) {
+            var a = '';
+            a += '<div class="col-sm-12"><div class="panel panel-default"><div class="panel-heading" style="height:145px">';
+            a += '<div class="form-group">';
+            a += '<input type="text" class="form-control" name="content_'+cno+'" value="'+content+'"/>';
+            a += '<button class="btn btn-primary" style="left:0" type="button" onclick="commentUpdateProc('
+                  + cno + ');">수정하기</button>';
+            a += '</div></div></div>';
+            $('.panel-body' + cno).html(a);
+         }
+         //댓글 수정
+         function commentUpdateProc(cno) {
+            var updateContent = $('[name=content_' + cno + ']').val();
+            $.ajax({
+               url : '/comment/update',
+               type : 'post',
+               data : {
+                  'content' : updateContent,
+                  'cno' : cno
+               },
+               success : function(data) {
+                  if (data == 1)
+                     commentList(bno); //댓글 수정후 목록 출력 
+               }
+            });
+         }
+         //댓글 삭제 
+         function commentDelete(cno) {
+        	 console.log("삭제 경로 수정")
+            $.ajax({
+               url : '/comment/delete/' + cno,
+               type : 'post',
+               success : function(data) {
+                  if (data == 1)
+                     commentList(bno); //댓글 삭제후 목록 출력 
+               }
+            });
+         }
+         $(document).ready(function() {
+            commentList(); //페이지 로딩시 댓글 목록 출력 
+            
+         });
+         
+       });
+       
+      </script>
 
 
 
-		<!-- ---------------------------------------------- -->
+
+
+
 
 		<div class="footer">
 			<a href="/chat/makeChat?store=${list.businessName }">
