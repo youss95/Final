@@ -148,8 +148,8 @@ public class ChatController {
 	}
 	
 	@ExceptionHandler
-	public String exceptionHandler(Exception e) {
-		e.printStackTrace();
-		return "error";
-	}
+	   public String exceptionHandler(Exception e) {
+	      e.printStackTrace();
+	      return "error";
+	   }
 }

@@ -277,7 +277,7 @@ button:hover {
 	})
 	$(function() {
 
-		let ws = new WebSocket("ws://172.30.1.24/chat");
+		let ws = new WebSocket("ws://172.30.1.2/chat");
 		ws.onmessage = function(event) {
 			/* let text = JSON.parse(event.data);
 			let line = $("<div>");
@@ -296,31 +296,40 @@ button:hover {
 			let text = JSON.parse(event.data);
 			if (text.writer == 'store') {
 				let li = $("<li class='clearfix'>");
-				let line = $("<div class='message-data-ajax align-right'>");
+				let line = $("<div class='message-data align-right'>");
 				let time = $("<span class='message-data-time'></span>");
-				let timeID = $("#storeName").val();
+				let timeID = text.time;
 				time.append(timeID);
-				let who = $("<span class='message-data-name'>me</span>");
-
+				
+				
 				let msgLine = $("<div class='message other-message float-right pleft'>");
 				msgLine.append(text.contents);
 				line.append(time);
-				line.append(msgLine);
+				line.append('&nbsp;&nbsp;');
+				line.append('&nbsp;&nbsp;');
 				li.append(line);
+				li.append(msgLine);
 				$("#history-under").append(li);
 			} else {
 				let li = $("<li class='clearfix'>");
-				let line = $("<div class='message-data-left'>");
+				let line = $("<div class='message-data'>");
 				let time = $("<span class='message-data-time'></span>");
-				let timeID = text.nickname;
+				let timeID = text.time;
 				time.append(timeID);
-				let who = $("<span class='message-data-name'>me</span>");
-
+				
+				/* let who = $("<span class='message-data-name'></span>");
+				let whoID = text.writerName;
+				who.append(whoID); */
+				
 				let msgLine = $("<div class='message my-message'>");
 				msgLine.append(text.contents);
+				//line.append(who);
+				line.append('&nbsp;&nbsp;');
+				line.append('&nbsp;&nbsp;');
 				line.append(time);
-				line.append(msgLine);
 				li.append(line);
+				li.append(msgLine);
+				
 				$("#history-under").append(li);
 			}
 
@@ -404,7 +413,7 @@ button:hover {
 							<li class="clearfix">
 								<div class="message-data align-right">
 									<span class="message-data-time">${i.write_date }</span> &nbsp;
-									&nbsp; <span class="message-data-name">${i.nickname }</span> <i
+									&nbsp; <span class="message-data-name"></span> <i
 										class="fa fa-circle me"></i>
 								</div>
 								<div class="message other-message float-right">${i.contents }</div>
@@ -413,7 +422,7 @@ button:hover {
 						<c:if test="${i.nickname != storeName}">
 							<li>
 								<div class="message-data">
-									<span class="message-data-name">${i.nickname }</span> <span
+									<span class="message-data-name"></span> <span
 										class="message-data-time">${i.write_date }</span>
 								</div>
 								<div class="message my-message">${i.contents }</div>
