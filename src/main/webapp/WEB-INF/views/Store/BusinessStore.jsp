@@ -110,7 +110,7 @@ section {
 /*찾기 버튼*/
 .search {
 	position: relative;
-	width: 510px;
+	width: 532px;
 	margin: 1 auto;
 }
 
@@ -433,7 +433,7 @@ section {
 				<div class="d1">
 					<div class="search">
 						<input type="text" id="searchWrd" name="searchWrd"
-							placeholder="It's under development."
+							placeholder="I'm sorry. I'll be developing it soon."
 							value="${searchVO.searchWrd }" disabled> <a href=""
 							onclick="fn_search();" class="btn-login"><button
 								type="button" class="pulse"></button></a>
