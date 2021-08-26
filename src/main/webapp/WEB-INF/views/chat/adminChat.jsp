@@ -277,7 +277,7 @@ button:hover {
 	})
 	$(function() {
 
-		let ws = new WebSocket("ws://172.30.1.2//chat");
+		let ws = new WebSocket("ws://122.45.84.154//chat");
 		ws.onmessage = function(event) {
 
 			let text = JSON.parse(event.data);
@@ -315,6 +315,11 @@ button:hover {
 				$("#history-under").append(li);
 			}
 
+			if (!isScrollUp) {
+			      $('#chat-history').animate({
+			        scrollTop: divChat.scrollHeight - divChat.clientHeight//?
+			      }, 100);
+			    }
 		}
 
 		 var isScrollUp = false;
@@ -390,7 +395,6 @@ button:hover {
 		} */ 
 		$("#send").on("click", function() {
 			if ($("#message-to-send").val() != '') {
-				console.log($("#message-to-send").val())
 				let text = $("#message-to-send").val();
 				ws.send(text);
 				$("#message-to-send").val(" ");
@@ -400,27 +404,19 @@ button:hover {
 
 		})
 		let writechat = document.getElementById("message-to-send");
-		const Chat = (function() {
-		function init() {
-		 $(document).on('keydown', 'div.input-div input', function(e) {
-			 console.log("경로1")
+		$("#message-to-send").on("keydown", function(e){
+			console.log(e.keyCode);
 			if (e.keyCode == 13 && !e.shiftKey) {
 				if ($("#message-to-send").val() != '') {
 					let text = $("#message-to-send").val();
 					ws.send(text);
-					$("#message-to-send").val(" ");
+					$("#message-to-send").val("");
 				} else {
 					alert("입력해주세요!")
 				}
 
 			}
-
-		});
-		}
-		 return {
-				'init' : init
-			};
-		})();
+		})
 
 		$(".deleteMsg").on("click", function() {
 			if (confirm("해당 채팅방을 정말로 삭제하시겠습니까? 상대방과 나의 모든 기록이 삭제됩니다.")) {

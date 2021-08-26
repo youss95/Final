@@ -28,8 +28,8 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public String home(Model m) throws Exception{
-		List<BusinessFileDTO> getFlist =  serviceF.selectAll();
-	    m.addAttribute("getFlist", getFlist); //파일
+		List<BusinessFileDTO> storePics =  serviceF.storePics();
+	    m.addAttribute("storePics", storePics); //파일
 	    
 	    List<BusinessDTO> getBusiness = serviceB.selectAll();
 	    m.addAttribute("getBusiness", getBusiness); //비지니스

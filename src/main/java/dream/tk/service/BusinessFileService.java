@@ -57,7 +57,7 @@ public class BusinessFileService {
 		return dao.getFlistSeq(biz_seq);
 	}
 	
-	public List<BusinessFileDTO> selectAll() throws Exception{
-		return dao.selectAll();
+	public List<BusinessFileDTO> storePics() throws Exception{
+		return dao.storePics();
 	}
 }

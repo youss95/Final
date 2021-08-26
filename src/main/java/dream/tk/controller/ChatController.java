@@ -117,6 +117,7 @@ public class ChatController {
 	public String bizSendManager(String roomid) throws Exception{
 		session.setAttribute("roomid", roomid);
 		session.setAttribute("manager", "manager");
+		session.setAttribute("nickname", "manager");
 		return "redirect:businessChat";
 	}
 	
