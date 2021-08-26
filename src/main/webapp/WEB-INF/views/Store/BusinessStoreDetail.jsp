@@ -472,20 +472,10 @@ section {
 			            map: map,
 			            position: coords
 			        });
-			        
-			        
-			        
-			        
-
-			        // 인포윈도우로 장소에 대한 설명을 표시합니다
-			    		        
-			        
-			  
+			       
 					
 			        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 			        map.setCenter(coords);
-			        
-			        
 			    } 
 			});   
             
@@ -558,19 +548,18 @@ section {
 										</div>
 									</div>
 								</h4>
+								<!-- 로그인하면 나오는 리뷰 -->
 								<input type="hidden" id="writer" name="writer"
 									value="${loginID}"> <input type="hidden" id="bno"
 									name="bno" value="${list.biz_seq }" />
 								<div class="form-group">
-									<input type="text" class="form-control" id="contents"
-										name="contents" placeholder="ready." disabled>
+									<input type="text" class="form-control" id="contents" name="contents" placeholder="check">
 								</div>
-								<!--  
 								<button type="button" value="" class="btn btn-primary"
 									name="commentInsertBtn" style="left: 0;">
 									<i class="fa fa-reply"></i>Submit
 								</button>
-								-->
+								
 							</form>
 						</c:when>
 
@@ -582,7 +571,7 @@ section {
 								<input type="hidden" id="bno" name="bno"
 									value="${list.biz_seq }" />
 								<div class="form-group">
-									<input type="text" class="co" id="content" name="content"
+									<input type="text" class="co" id="contents" name="contents"
 										placeholder="If you want to write a review, log in." disabled>
 								</div>
 								<button type="button"
@@ -620,10 +609,12 @@ section {
            });
         console.log(targetNum)
          var bno = $("#bno").val(); //게시글 번호
-         var comments = $("#comments").val();
+         
+         
          $('[name=commentInsertBtn]').click(function() { //댓글 등록 버튼 클릭시 
             //var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
-            let data = {bno:${list.biz_seq },writer:'${loginID}' ,content:'코멘트테스트',star_avg:targetNum}
+            var contents = $("#contents").val();
+            let data = {bno:${list.biz_seq },writer:'${loginID}' ,content:contents,star_avg:targetNum}
             commentInsert(data); //Insert 함수호출(아래)
          });
          
@@ -702,7 +693,7 @@ section {
                success : function(res) {
                   if (res == 1) {
                      commentList(); //댓글 작성 후 댓글 목록 reload
-                     $('[name=content]').val('');
+                     $("#contents").val('');
                   }
                }
             });
