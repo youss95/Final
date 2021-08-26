@@ -667,7 +667,7 @@ section {
 
 
 
-		<div class="footer">
+		<!--  <div class="footer">
 		<c:choose>
 			<c:when test="${info.member_role eq 'C'}">
 				<a href="/chat/makeChat?store=${list.businessName }">
@@ -698,7 +698,7 @@ section {
 				</div>
 			</a>
 			</c:when>
-		</c:choose>
+		</c:choose>-->
 			<script>
 			
 				$(window).scroll(function() {
