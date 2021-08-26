@@ -68,6 +68,9 @@ public class BusinessStoreController {
 		model.addAttribute("paging", vo);
 				
 		try {
+			List<BusinessFileDTO> storePics =  serviceF.storePics();
+		    model.addAttribute("storePics", storePics); //파일
+			
 			model.addAttribute("viewAll", service.selectBoard(vo));
 			
 			List<BusinessDTO> test = service.getList(searchVO);

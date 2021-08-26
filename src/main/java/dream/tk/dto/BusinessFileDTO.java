@@ -8,13 +8,16 @@ public class BusinessFileDTO {
 	private String sysName;
 	private String parent_id;
 	private Date reg_date;
-	private String businessname;
+	private String businessnameeng;
 	private String biz_seq;
 	
-	public BusinessFileDTO(String sysName, String businessname, String biz_seq) {
+	
+
+
+	public BusinessFileDTO(String sysName, String businessnameeng, String biz_seq) {
 		super();
 		this.sysName = sysName;
-		this.businessname = businessname;
+		this.businessnameeng = businessnameeng;
 		this.biz_seq = biz_seq;
 	}
 
@@ -72,12 +75,12 @@ public class BusinessFileDTO {
 		this.reg_date = reg_date;
 	}
 
-	public String getBusinessname() {
-		return businessname;
+	public String getBusinessnameeng() {
+		return businessnameeng;
 	}
 
-	public void setBusinessname(String businessname) {
-		this.businessname = businessname;
+	public void setBusinessnameeng(String businessnameeng) {
+		this.businessnameeng = businessnameeng;
 	}
 
 	public String getBiz_seq() {
@@ -87,6 +90,8 @@ public class BusinessFileDTO {
 	public void setBiz_seq(String biz_seq) {
 		this.biz_seq = biz_seq;
 	}
+
+
 	
 	
 	
