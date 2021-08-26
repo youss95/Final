@@ -95,14 +95,14 @@
 				alert("유효하지 않은 사업자등록번호입니다. 5자리 이상의 숫자만 입력해주세요. \n ex) 13079");
 				return false;
 			}
-			if($("#businessName").val()==null||$("#businessName").val()==""){
-				alert("업체명을 입력해주세요.");
-				return false;
-			}
-			if($("#businessNameEng").val()==null||$("#businessNameEng").val()==""){
-				alert("영문 업체명을 입력해주세요.");
-				return false;
-			}
+// 			if($("#businessName").val()==null||$("#businessName").val()==""){
+// 				alert("업체명을 입력해주세요.");
+// 				return false;
+// 			}
+// 			if($("#businessNameEng").val()==null||$("#businessNameEng").val()==""){
+// 				alert("영문 업체명을 입력해주세요.");
+// 				return false;
+// 			}
 			if($("#businessContact").val()==null||$("#businessContact").val()==""){
 				alert("업체 연락처를 입력해주세요.");
 				return false;
@@ -517,14 +517,14 @@
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">업체명</div>
-                        <div style="width:60%" class="hiddenDivB">${bizInfo.businessName}</div>
-                        <input class="hiddenInputB" id="businessName" name="businessName" type=text value="${bizInfo.businessName}" style="display:none">
+                        <div style="width:60%" >${bizInfo.businessName}</div>
+<%--                         <input class="hiddenInputB" id="businessName" name="businessName" type=text value="${bizInfo.businessName}" style="display:none"> --%>
                       </div>
 
                       <div class="card-body" style="width:100%">
                         <div style="width:30%">영문 업체명</div>
-                        <div style="width:60%" class="hiddenDivB">${bizInfo.businessNameEng}</div>
-                        <input class="hiddenInputB" id="businessNameEng" name="businessNameEng" type=text value="${bizInfo.businessNameEng}" style="display:none">
+                        <div style="width:60%" >${bizInfo.businessNameEng}</div>
+<%--                         <input class="hiddenInputB" id="businessNameEng" name="businessNameEng" type=text value="${bizInfo.businessNameEng}" style="display:none"> --%>
                       </div>
 
                       <div class="card-body" style="width:100%">

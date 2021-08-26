@@ -73,10 +73,18 @@
 		update business_member set pw=#{pw} where id=#{id}
 	</update>
 
+<!-- 	<update id="editBizInfo"> -->
+<!-- 		update business set -->
+<!-- 		biz_type=#{biz_type},bizNum=#{bizNum},businessName=#{businessName}, -->
+<!-- 		businessNameEng=#{businessNameEng}, businessContact=#{businessContact}, -->
+<!-- 		address1=#{address1}, address2=#{address2}, -->
+<!-- 		postcode=#{postcode},address1Kor=#{address1Kor} -->
+<!-- 		where seq=#{seq} -->
+<!-- 	</update> -->
 	<update id="editBizInfo">
 		update business set
-		biz_type=#{biz_type},bizNum=#{bizNum},businessName=#{businessName},
-		businessNameEng=#{businessNameEng}, businessContact=#{businessContact},
+		biz_type=#{biz_type},bizNum=#{bizNum},
+		businessContact=#{businessContact},
 		address1=#{address1}, address2=#{address2},
 		postcode=#{postcode},address1Kor=#{address1Kor}
 		where seq=#{seq}
