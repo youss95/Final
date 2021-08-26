@@ -29,10 +29,19 @@
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+	crossorigin="anonymous"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+	integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+	integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/like.js"></script>
@@ -161,13 +170,14 @@ section {
 }
 
 /*강사님이 말한 댓글 삐져 나오는거, 각각의 요소들 사이에 margin 준 거 */
-#store{
+#store {
 	margin: 3%;
 }
 
-.well{
+.well {
 	margin: 3%;
 }
+
 .form-group {
 	width: 100%;
 	height: 100px;
@@ -178,10 +188,9 @@ section {
 	height: 100%;
 }
 
-#commentInsertForm{
- width: 100%;
+#commentInsertForm {
+	width: 100%;
 }
-
 
 .scrolltable {
 	table-layout: fixed;
@@ -237,13 +246,15 @@ section {
 				<c:choose>
 					<c:when test="${getFlist!=null}">
 						<c:forEach var="item" items="${getFlist}" varStatus="s">
-						<div class="swiper-wrapper">
-							<div class="swiper-slide"><img src="/files/${item.sysName}" ></div>
-						</div>
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+									<img src="/files/${item.sysName}">
+								</div>
+							</div>
 						</c:forEach>
-							<div class="swiper-button-next"></div>
-							<div class="swiper-button-prev"></div>
-							<div class="swiper-pagination"></div>
+						<div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div>
+						<div class="swiper-pagination"></div>
 					</c:when>
 					<c:otherwise>
 					</c:otherwise>
@@ -276,9 +287,11 @@ section {
 		<!--  -->
 		<aside>
 			<div id='store'>
-				<input type="hidden" id="store" value="${list.businessNameEng }">
-				<span id="likeStar"><i id="heartIcon"
-					class="fas fa-heart fa-2x"></i> 찜하기</span>
+				<!--  <input type="hidden" id="store" value="${list.businessNameEng }"> -->
+				<input type="hidden" id="address1Kor" name="address1Kor" value="${list.address1Kor}">
+				<input type="hidden" id="businessNameEng" name="businessNameEng" value="${list.businessNameEng }">
+				 <span id="likeStar"><i
+					id="heartIcon" class="fas fa-heart fa-2x"></i>찜하기</span>
 				<h1 style="float: center;">${list.businessNameEng }</h1>
 				<div>
 					<img
@@ -415,40 +428,70 @@ section {
 
 
 
+			<!-- 지도 값 받기 -->
+			
 
-			<script type="text/javascript">
-            var xid = $('#x').val();
-            var yid = $('#y').val();
-            var businessName = $('#businessName').val();
-            console.log(xid);
-            console.log(yid);
-            console.log(store);
-         </script>
 		</aside>
+
+
+		<!-- 지도 풀하기 -->
 		<section>
-			<div id="staticMap" style="width: 100%; height: 700px;"></div>
+			<div id="map" style="width: 100%; height: 700px;"></div>
 
 			<script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2fa91fa0473f76d7311f40d80a8f1521&libraries=services"></script>
 			<script>
-            // 이미지 지도에 표시할 마커입니다
-            // 이미지 지도에 표시할 마커를 아래와 같이 배열로 넣어주면 여러개의 마커를 표시할 수 있습니다 
-            var markers = [ {
-               position : new kakao.maps.LatLng(xid, yid),
-               text : businessName
-            // text 옵션을 설정하면 마커 위에 텍스트를 함께 표시할 수 있습니다     
-            } ];
-            var staticMapContainer = document.getElementById('staticMap'), // 이미지 지도를 표시할 div  
-            staticMapOption = {
-               center : new kakao.maps.LatLng(xid, yid), // 이미지 지도의 중심좌표
-               level : 4, // 이미지 지도의 확대 레벨
-               marker : markers
-            // 이미지 지도에 표시할 마커 
-            };
-            // 이미지 지도를 생성합니다
-            var staticMap = new kakao.maps.StaticMap(staticMapContainer,
-                  staticMapOption);
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			    mapOption = {
+			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			        level: 4 // 지도의 확대 레벨
+			    };  
+
+			// 지도를 생성합니다
+			var address1kor = $("#address1Kor").val();
+			var businessNameEng = $("#businessNameEng").val();
+			console.log("address1kor : " + address1kor)
+			console.log("businessNameEng : " + businessNameEng)
+			var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+			// 주소-좌표 변환 객체를 생성합니다
+			var geocoder = new kakao.maps.services.Geocoder();
+
+			// 주소로 좌표를 검색합니다
+			geocoder.addressSearch($("#address1Kor").val(), function(result, status) {
+				
+			    // 정상적으로 검색이 완료됐으면 
+			     if (status === kakao.maps.services.Status.OK) {
+
+			        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+			        // 결과값으로 받은 위치를 마커로 표시합니다
+			        var marker = new kakao.maps.Marker({
+			            map: map,
+			            position: coords
+			        });
+			        
+			        
+			        
+			        
+
+			        // 인포윈도우로 장소에 대한 설명을 표시합니다
+			    		        
+			        
+			  
+					
+			        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+			        map.setCenter(coords);
+			        
+			        
+			    } 
+			});   
+            
          </script>
+
+			<!-- 여기까지 -->
+
+
 			<br>
 			<!-- 1번쨰 -->
 			<script>
@@ -537,8 +580,8 @@ section {
 								<input type="hidden" id="bno" name="bno"
 									value="${list.biz_seq }" />
 								<div class="form-group">
-									<input type="text" class="co" id="content"
-										name="content" placeholder="If you want to write a review, log in." disabled>
+									<input type="text" class="co" id="content" name="content"
+										placeholder="If you want to write a review, log in." disabled>
 								</div>
 								<button type="button"
 									onclick="location.href='${pageContext.request.contextPath}/member/whichMember'"
@@ -714,7 +757,7 @@ section {
 
 
 
-		<!-- ---------------------------------------------- -->
+
 
 		<div class="footer">
 			<a href="/chat/makeChat?store=${list.businessName }">
