@@ -78,17 +78,18 @@ public class ChatEndPoint {
 				
 				
 				String nickname = (String)hsession.getAttribute("nickname");
-				
+				String manager = (String) hsession.getAttribute("manager");
 				System.out.println("상대 nickname : " + nickname);
 				
 				
 				String writer = (String)hsession.getAttribute("writer");
 				if(nickname == null) {
 					nickname = (String)hsession.getAttribute("loginID");
+					
 				}
 				String store = (String)hsession.getAttribute("storeName");
 
-				String manager = (String) hsession.getAttribute("manager");
+				
 				String chatnum = null;
 				if(writer.contentEquals("admin")) {
 					chatnum = "manager" + store;
@@ -96,16 +97,6 @@ public class ChatEndPoint {
 				}else {
 					chatnum = nickname+store;
 				}
-				String writeName;
-				if(writer.contentEquals("store")) {
-					if(manager == null) {
-						writeName = store;
-					}
-					writeName = "manager";
-				}else{
-					writeName = store;
-				}
-					json.addProperty("writerName", writeName); //쓴 사람 아이디
 				
 				try {
 					

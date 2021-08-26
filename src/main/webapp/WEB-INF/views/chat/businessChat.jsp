@@ -39,13 +39,15 @@ body {
 
 .toManager>a>button {
 	border-radius: 3px;
-	border: none;
+	border: 2px solid white;
 	padding: 13px;
-	color: white;
-	background: #6A6C75;
+	color: #444753;
+	background: #C5DDEB;
 	width: 90%;
-	font-size: 14px;
+	font-size: 16px;
 	margin-bottom: 20px;
+	 text-shadow: 1px 1px 1px gray; 
+	 box-shadow: 2px 2px 2px gray;
 }
 
 ul {
@@ -273,26 +275,11 @@ button:hover {
 </style>
 <script>
 	$(document).ready(function() {
-
 	})
 	$(function() {
 
 		let ws = new WebSocket("ws://172.30.1.2/chat");
 		ws.onmessage = function(event) {
-			/* let text = JSON.parse(event.data);
-			let line = $("<div>");
-			
-			let nickLine = $("<div>");
-			nickLine.append(text.nickname);
-			
-			let messageLine = $("<div>");
-			messageLine.append(text.message);
-			
-			line.append(nickLine);
-			line.append(messageLine);
-			$("#chat-history").append(line); 
-			updateScroll(); */
-
 			let text = JSON.parse(event.data);
 			if (text.writer == 'store') {
 				let li = $("<li class='clearfix'>");
@@ -332,20 +319,111 @@ button:hover {
 				
 				$("#history-under").append(li);
 			}
-
+			
+			  if (!isScrollUp) {
+			      $('#chat-history').animate({
+			        scrollTop: divChat.scrollHeight - divChat.clientHeight//?
+			      }, 100);
+			    }
+				
 		}
-		
+		 var isScrollUp = false;
+		  var lastScrollTop;
+		  var unreadCnt = 0;
 
+		  var divChat = document.getElementById('chat-history');
+
+		 
+		    if (isScrollUp) {
+		    	// 메뉴가 보이는 상태에서 새로운 라인 추가 시 안 읽은 수 표시
+		      unreadCnt++;
+		      $('#btn_scroll_down').html('↓ ' + unreadCnt);
+		    }
+
+		    // 기본적으로 스크롤 최하단으로 이동 (애니메이션 적용)
+		    if (!isScrollUp) {
+		      $('#chat-history').animate({
+		        scrollTop: divChat.scrollHeight - divChat.clientHeight//?
+		      }, 100);
+		    }
+
+		  /* 메뉴 스크롤 ↓ 버튼 클릭 시 */
+		  $('#btn_scroll_down').on('click', function() {
+			  
+		    // 마지막으로 보고 있었던 (스크롤을 올리기 시작했던) 위치로 이동
+		    $('#div_chat').animate({
+		      scrollTop: lastScrollTop
+		    }, 100);
+
+		    if (lastScrollTop == divChat.scrollHeight - divChat.clientHeight) {
+		      // 마지막 위치와 스크롤 최하단이 같다면 (새로 추가된 라인이 없다면) 메뉴 숨김
+		      $("#menu_scroll_down").css("top", "200px");
+		      isScrollUp = false;
+		      unreadCnt = 0;
+		      $('#btn_scroll_down').html('↓');
+		    } else {
+		      // 마지막 위치와 스크롤 최하단이 다르다면 (새로 추가된 라인이 있다면) 마지막 위치를 최하단으로 변경
+		      lastScrollTop = divChat.scrollHeight - divChat.clientHeight;
+		    }
+		  })
+
+		  /* 스크롤 이벤트 */
+		  $("#chat-history").on('mousewheel DOMMouseScroll', function(e) {
+		    var E = e.originalEvent,
+		      delta = E.wheelDelta || -E.detail;
+
+		    // 메뉴를 숨겼을 때만 마지막 위치 저장
+		    if (!isScrollUp) {
+		      lastScrollTop = $(this).scrollTop();
+		    }
+
+		    // 스크롤이 생겼을 때
+		    if ($(this).scrollTop() > 0) {
+		      if (delta < 0) {
+		        // 스크롤 내리는 이벤트 중 최하단 도달 시 메뉴 숨김 (-1은 오차 제어)
+		        if ($(this).scrollTop() > divChat.scrollHeight - divChat.clientHeight - 1) {
+		          $("#menu_scroll_down").css("top", "200px");
+		          isScrollUp = false;
+		          unreadCnt = 0;
+		          $('#btn_scroll_down').html('↓');
+		        }
+		      } else {
+		        // 스크롤 올리는 이벤트 발생 시 메뉴 보임
+		        $("#menu_scroll_down").css("top", "150px");
+		        isScrollUp = true;
+		      }
+		    }
+		  });
 		  
-		/* function updateScroll(){
+		/*function updateScroll(){
 		   var element = document.getElementById("chat-history");
 		   element.scrollTop = element.scrollHeight;
-		} */
+		}  */
 		$("#send").on("click", function() {
+			if ($("#message-to-send").val() != '') {
 			let text = $("#message-to-send").val();
 			ws.send(text);
 			$("#message-to-send").val(" ");
+			} else {
+				alert("입력해주세요!")
+			}
 
+		})
+		
+		let writechat = document.getElementById("message-to-send");
+	
+		$("#message-to-send").on("keydown", function(e){
+			console.log(e.keyCode);
+			if (e.keyCode == 13 && !e.shiftKey) {
+				if ($("#message-to-send").val() != '') {
+					let text = $("#message-to-send").val();
+					ws.send(text);
+					$("#message-to-send").val("");
+				} else {
+					alert("입력해주세요!")
+				}
+
+			}
 		})
 
 		$(".deleteMsg").on("click", function() {
@@ -363,7 +441,7 @@ button:hover {
 		<div class="people-list" id="people-list">
 			<div class="toManager">
 				<a href="/chat/bizSendManager?roomid=manager${storeName }"><button
-						type="button" id="sendManager">to Manager</button></a>
+						type="button" id="sendManager">To Manager</button></a>
 			</div>
 			<!-- 채팅 리스트 -->
 			<ul class="list">
@@ -404,7 +482,7 @@ button:hover {
 			</div>
 			<!-- end chat-header -->
 
-			<div class="chat-history">
+			<div class="chat-history" id="chat-history">
 				<input type="hidden" id="loginID" value="${loginID }">
 				<input type="hidden" id="storeName" value="${storeName }">
 				<ul id="history-under">
