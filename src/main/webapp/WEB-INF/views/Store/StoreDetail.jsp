@@ -709,6 +709,11 @@ section {
 						//위의 if문에 대한 조건 만족시 fix라는 class를 부여함  
 					} 
 				});
+				document.addEventListener('keydown', function(event) {
+					  if (event.keyCode === 13) {
+					    event.preventDefault();
+					  };
+					}, true);
 			</script>
 		</div>
 	</div>
