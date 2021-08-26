@@ -331,32 +331,41 @@ section {
 			</main>
 			
 			<!-- 페이징바!! -->
-			 <navi aria-label="Page navigation example ">
-  <ul class="pagination mt-4 justify-content-center align-items-center">
-  <c:choose>
-  <c:when test="${param.page<=1}">
-   <li class="page-item  "><a class="page-link"     onclick="alert('이전 페이지가 없습니다.');">&lt</a></li>
-    </c:when>
-    <c:otherwise>
-     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/Business/viewAll?&page=${param.page-1}">&lt</a></li>
-     </c:otherwise>
-    </c:choose>
-    <c:forEach var="i" begin="${paging.startNum}" end="${paging.endPage}" step="1">
-    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/Business/viewAll?&page=${i}">${i}</a></li>
-   </c:forEach>
-   
-   <c:choose>
-   
-   	<c:when test="${param.page >= paging.endPage }">
-   		<li class="page-item  "><a class="page-link"     onclick="alert('마지막 페이지 입니다.');">&gt</a></li>
-   	</c:when>
-   	<c:otherwise>
-   	 <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/Business/viewAll?&page=${param.page+1}">&gt</a></li>
-   	</c:otherwise>
-    </c:choose>
-  </ul>
-  
-</navi>
+		<div style="text-align:center;">
+            <navi aria-label="Page navigation example ">
+            <ul
+               class="pagination mt-4 justify-content-center align-items-center">
+               <c:choose>
+                  <c:when test="${param.page<=1}">
+                     <li class="page-item  "><a class="page-link"
+                        onclick="alert('이전 페이지가 없습니다.');">&lt</a></li>
+                  </c:when>
+                  <c:otherwise>
+                     <li class="page-item"><a class="page-link"
+                        href="${pageContext.request.contextPath}/Business/viewAll?&page=${param.page-1}">&lt</a></li>
+                  </c:otherwise>
+               </c:choose>
+               <c:forEach var="i" begin="${paging.startNum}"
+                  end="${paging.endPage}" step="1">
+                  <li class="page-item"><a class="page-link"
+                     href="${pageContext.request.contextPath}/Business/viewAll?&page=${i}">${i}</a></li>
+               </c:forEach>
+
+               <c:choose>
+
+                  <c:when test="${param.page >= paging.endPage }">
+                     <li class="page-item  "><a class="page-link"
+                        onclick="alert('마지막 페이지 입니다.');">&gt</a></li>
+                  </c:when>
+                  <c:otherwise>
+                     <li class="page-item"><a class="page-link"
+                        href="${pageContext.request.contextPath}/Business/viewAll?&page=${param.page+1}">&gt</a></li>
+                  </c:otherwise>
+               </c:choose>
+            </ul>
+
+            </navi>
+         </div>
 			
 			
 			
