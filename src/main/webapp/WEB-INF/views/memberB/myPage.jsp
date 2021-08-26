@@ -295,6 +295,13 @@
 		
 	})
 	
+	$(function(){
+		$("#restrict").on("click", function(){
+			location.href="${pageContext.request.contextPath}/bMember/restrict";			
+		})
+		
+	})
+	
 	
 
 </script>
@@ -634,7 +641,16 @@
                     
                     <div class="card-body" style="width:100%;">
                       <div style="width:30%">메뉴판 번역 서비스</div>
-                      <div style="width:60%"><button class="btn" type="button" id="transRequest">번역 서비스</button></div>
+                      <div style="width:60%">
+                      	<c:choose>
+                      		<c:when test="${bizInfo.businessName eq null}">
+                      			<button class="btn" type="button" id="restrict">번역 서비스</button>
+                      		</c:when>
+                      		<c:otherwise>
+                      			<button class="btn" type="button" id="transRequest">번역 서비스</button>
+                      		</c:otherwise>
+                      	</c:choose>                     	
+                      </div>
                     </div>
 					<hr>	
 		
