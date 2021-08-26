@@ -469,7 +469,7 @@ section {
 									value="${loginID}"> <input type="hidden" id="bno"
 									name="bno" value="${list.store_seq }" />
 								<div class="form-group">
-									<input type="text" class="form-control" id="contents" name="contents" placeholder="check">
+									<input type="text" class="form-control" id="contents" name="contents" placeholder="send a review">
 								</div>
 								<button type="button" value="" class="btn btn-primary"
 									name="commentInsertBtn" style="left: 0;">
@@ -709,6 +709,11 @@ section {
 						//위의 if문에 대한 조건 만족시 fix라는 class를 부여함  
 					} 
 				});
+				document.addEventListener('keydown', function(event) {
+					  if (event.keyCode === 13) {
+					    event.preventDefault();
+					  };
+					}, true);
 			</script>
 		</div>
 	</div>
