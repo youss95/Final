@@ -75,20 +75,35 @@ $(function(){
 	
 	
 	$("#dupleCheck").on("click",function(){
-		$.ajax({
-            url: "/bMember/dupleCheck",
-            type: "get",
-            data: { "id": $("#id").val() }
-        }).done(function (resp) {
-            if (resp == "1") {
-                $("#dResult").text("ID가 이미 존재합니다");
-                $("#id").val("");
-                $("#id").focus();
-            } else {
-            	$("#dResult").text("사용가능한 ID입니다.");
-            	idDupleCheck = true;
-            }
-        })
+		
+		if($("#id").val()){
+			let idReg = /^[a-z]+[a-z0-9]{3,19}$/g;
+			let id = $("#id").val();
+			if (!idReg.test(id)) {
+				alert("아이디는 영문자로 시작하는 4~20자 영문자 또는 숫자이어야 합니다.");
+				return false;	
+			}else{
+				$.ajax({
+		            url: "/bMember/dupleCheck",
+		            type: "get",
+		            data: { "id": $("#id").val() }
+		        }).done(function (resp) {
+		            if (resp == "1") {
+		                $("#dResult").text("ID가 이미 존재합니다");
+		                $("#id").val("");
+		                $("#id").focus();
+		                idDupleCheck = false;
+		            } else {
+		            	$("#dResult").text("사용가능한 ID입니다.");
+		            	idDupleCheck = true;
+		            }
+		        })
+			}
+
+		}else{
+			$("#dResult").text("중복 체크할 ID 를 먼저 입력해주세요");
+		}
+		
 	})
 	
 	
@@ -319,8 +334,8 @@ $(function(){
                     <option value="011">011</option>
                     <option value="019">019</option>
                 </select>
-                <input id="contact2" name="phone2" class="form-control" placeholder="number" type="text">
-                <input id="contact3" name="phone3" class="form-control" placeholder="number" type="text">
+                <input id="contact2" name="phone2" class="form-control" placeholder="number" type="text" maxlength="4">
+                <input id="contact3" name="phone3" class="form-control" placeholder="number" type="text" maxlength="4">
             </div> <!-- form-group// -->
 
 

@@ -249,33 +249,18 @@ section {
 			<%@include file="../layout/header_main.jsp"%>
 		</div>
 
-		<div class="headers" style="width: 65%;">
+		<div class="headers" style="width: 65%; height:250px; overflow-y: hidden;overflow-x: hidden;">
 			<c:choose>
 				<c:when test="${getFlist!=null}">
-					<div id="carouselExampleControlsNoTouching" class="carousel slide"
-						data-touch="false" data-interval="false"
-						style="width: 100%; margin: auto;">
-
-						<div class="carousel-inner"
-							style="width: 100%; overflow-y: hidden;">
+					
 							<c:forEach var="item" items="${getFlist}" varStatus="s">
-								<div class="carousel-item active" style="width: 100%;">
+								<div style="width: 33%;overflow-y: hidden;overflow-x: hidden;">
 									<img src="/files/${item.sysName}" class="d-block w-100"
 										alt="...">
 								</div>
 							</c:forEach>
-						</div>
-						<a class="carousel-control-prev"
-							href="#carouselExampleControlsNoTouching" role="button"
-							data-slide="prev"> <span class="carousel-control-prev-icon"
-							aria-hidden="true"></span> <span class="sr-only">Previous</span>
-						</a> <a class="carousel-control-next"
-							href="#carouselExampleControlsNoTouching" role="button"
-							data-slide="next"> <span class="carousel-control-next-icon"
-							aria-hidden="true"></span> <span class="sr-only">Next</span>
-						</a>
-						<!--a태그의 href 값에는 carousel id와 같은 값이 들어와야 동작-->
-					</div>
+						
+					
 				</c:when>
 				<c:otherwise>
 				</c:otherwise>

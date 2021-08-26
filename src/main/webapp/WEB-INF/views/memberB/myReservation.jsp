@@ -175,7 +175,13 @@ margin:auto;
 									</thead>
 
 									<tbody>
-										<c:forEach var="resList" items="${resList}">
+										
+										<c:choose>
+											<c:when test="${resList[0].userId eq null}">
+											 <tr><th> 예약자가 없습니다. </th></tr>
+											</c:when>
+											<c:otherwise>
+											 <c:forEach var="resList" items="${resList}">
 											<tr>
 												<th scope="row">${resList.userId}</th>
 												<td>${resList.res_time}</td>
@@ -195,6 +201,11 @@ margin:auto;
 
 											</tr>
 										</c:forEach>
+											</c:otherwise>
+										</c:choose>
+										
+										
+										
 									</tbody>
 
 								</table>
