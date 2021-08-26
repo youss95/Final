@@ -158,7 +158,7 @@ public class ReservationController {
 	public String resRefuse(int res_no,String res_name) {
 		System.out.println("name: "+res_name);
 		resService.resRefuse(res_no);
-		return "redirect:/bMember/myPage";
+		return "redirect:/bMember/reservation?res_name="+res_name;
 	}
 	
 	

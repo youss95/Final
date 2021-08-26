@@ -191,7 +191,7 @@
 	</select>
     
     <select id="getTotalRes" resultType="int">
-		select count(*) from reservation where biz_seq=${value}
+		select count(*) from reservation where biz_seq=${value} and res_checked='Y'
 	</select>
     
     <select id="getLikes" resultType="int">
