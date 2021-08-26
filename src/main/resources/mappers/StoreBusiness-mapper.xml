@@ -77,13 +77,15 @@
 	
 	<!--all count  -->
 	<select id="pagingCount" resultType="int">
-	select count(*) from business_file
+	select count(*) from business_file 
 	</select>
 
 <!-- 모든 리스트 뿌리기 -->
 <select id="getListAllResStore" resultType="dream.tk.dto.AllResStoreDTO">
- select distinct(select sysname from business_file where rownum = 1 and parent_id = m.id) "sysName", b.businessname,b.businessnameeng, b.biz_type, b.biz_seq ,rownum  
-from business b join business_member m on b.seq = m.seq join business_file f on f.parent_id = m.id where rownum between #{firstNum} and #{secondNum}
+select * from
+(select row_number() over(order by b.businessnameeng) rnum, b.biz_seq, b.businessnameeng, b.businessname,b.biz_type,b.businessContact, f.sysname from business b 
+join business_member m on b.seq = m.seq join business_file f on f.parent_id = m.id)
+where rnum between #{firstNum} and #{secondNum}
 </select>
 
 <select id="getListByBizType" resultType="dream.tk.dto.CategoryListDTO">
