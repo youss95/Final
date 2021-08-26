@@ -28,4 +28,8 @@
         where b.biz_seq=${value}
 	</select>
 	
+	<select id="selectAll" resultType="dream.tk.dto.BusinessFileDTO">
+		select * from business_file
+	</select>
+	
 </mapper>
