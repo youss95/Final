@@ -1,6 +1,5 @@
 package dream.tk.controller;
 
-import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -30,30 +30,30 @@ public class AdminController {
 
 	@RequestMapping(value="dashForm")
 	public String dashForm(Model m) {
-		
+
 		int total = serviceA.totalC() + serviceA.totalB();
 		int totalC = serviceA.totalC();
 		int totalB = serviceA.totalB();
-		
+
 		List<String> totalPerMonthLabel = serviceA.totalPerMonthLabel();
 		List<Integer> totalPerMonthCounts = serviceA.totalPerMonthCounts();
-		
+
 		List<String> clietPerNationLabel = serviceA.clietPerNationLabel();
 		List<Integer> clietPerNationCounts = serviceA.clietPerNationCounts();
-		
-		
+
+
 		List<String> clientPerMonthLabel = serviceA.clientPerMonthLabel();
 		List<Integer> clientPerMonthCounts = serviceA.clientPerMonthCounts();
 
 		List<String> clientAgesLabel = serviceA.clientAgesLabel();
 		List<Integer> clientAgesCounts = serviceA.clientAgesCounts();
-		
+
 		List<String> businessPerMonthLabel = serviceA.businessPerMonthLabel();
 		List<Integer> businessPerMonthCounts = serviceA.businessPerMonthCounts();
-		
+
 		List<String> reservationLabel= serviceA.reservationLabel();
 		List<Integer> reservationCounts = serviceA.reservationCounts();
-		
+
 		m.addAttribute("total", total);
 		m.addAttribute("totalC", totalC);
 		m.addAttribute("totalB", totalB);
@@ -71,10 +71,6 @@ public class AdminController {
 		m.addAttribute("reservationCounts", reservationCounts);
 		return "admin/adminDashboard";
 	}
-
-	
-
-
 
 	@RequestMapping("manageBusinessPage")
 	public String manageBusiness(Model m) {
@@ -109,5 +105,11 @@ public class AdminController {
 		System.out.println("inserB 요청");
 		serviceA.insertB();
 		return "admin/insert";
+	}
+
+	@ExceptionHandler
+	public String exceptionHandler(Exception e) {
+		e.printStackTrace();
+		return "error";
 	}
 }
