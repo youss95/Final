@@ -668,7 +668,11 @@ section {
 
 
 		<div class="footer">
-			<a href="/chat/makeChat?store=${list.businessName }">
+		<c:choose>
+			<c:when test="${info.member_role eq 'C'}">
+				<a href="/chat/makeChat?store=${list.businessName }">
+			
+			
 				<div class="chat" onclick="this.classList.toggle('active')">
 					<div class="background"></div>
 					<svg class="chat-bubble" width="100" height="100"
@@ -693,6 +697,8 @@ section {
                     </svg>
 				</div>
 			</a>
+			</c:when>
+		</c:choose>
 			<script>
 			
 				$(window).scroll(function() {
