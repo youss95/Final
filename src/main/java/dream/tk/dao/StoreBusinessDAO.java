@@ -46,9 +46,8 @@ public class StoreBusinessDAO {
 		return mybatis.update("StoreBu.count", store_seq);
 	}
 	
-	public List<BusinessDTO> getListByCategory(String biz_type){
-		return mybatis.selectList("StoreBu.getListByBizType",biz_type);
-	}
+	//비즈 타입 별로 리스트
+	
 	
 	// 마커 지도 검색 관련
 	
