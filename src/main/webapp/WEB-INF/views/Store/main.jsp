@@ -248,10 +248,9 @@
 				</div>
 
 
-				<c:choose>
-					<c:when test="${getFlist!=null}">
+				
 						<c:forEach var="item" items="${storePics}" varStatus="status"
-							begin="21" end="26">
+							begin="1" end="6">
 							<div class="col-4" >
 								<div class="product-item" style="height: 400px;">
 									<div class="up-content" style="width: 100%; height: 75%; overflow:hidden;" >
@@ -273,8 +272,7 @@
 								</div>
 							</div>
 						</c:forEach>
-					</c:when>
-				</c:choose>
+
 			</div>
 		</div>
 	</div>
