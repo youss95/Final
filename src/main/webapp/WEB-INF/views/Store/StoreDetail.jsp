@@ -469,7 +469,7 @@ section {
 									value="${loginID}"> <input type="hidden" id="bno"
 									name="bno" value="${list.store_seq }" />
 								<div class="form-group">
-									<input type="text" class="form-control" id="contents" name="contents" placeholder="check">
+									<input type="text" class="form-control" id="contents" name="contents" placeholder="send a review">
 								</div>
 								<button type="button" value="" class="btn btn-primary"
 									name="commentInsertBtn" style="left: 0;">
