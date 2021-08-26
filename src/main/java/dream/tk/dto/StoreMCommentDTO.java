@@ -62,7 +62,7 @@ public class StoreMCommentDTO {
 		this.content = content;
 	}
 
-	public String getWriter() {
+	public String getwriter() {
 		return writer;
 	}
 

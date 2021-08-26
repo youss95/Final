@@ -18,7 +18,7 @@ public class StoreCommentDTO {
 	    public StoreCommentDTO() {}
 
 		public StoreCommentDTO(int cno, int bno, String content, String writer, int star_avg, 
-				int report_count, Date reg_date, int parent) {
+				int report_count, Date reg_date) {
 			super();
 			this.cno = cno;
 			this.bno = bno;
@@ -27,7 +27,7 @@ public class StoreCommentDTO {
 			this.star_avg = star_avg;
 			this.report_count = report_count;
 			this.reg_date = reg_date;
-			this.parent = parent;
+		
 		}
 		
 
