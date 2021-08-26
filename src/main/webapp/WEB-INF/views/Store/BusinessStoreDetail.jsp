@@ -249,23 +249,7 @@ section {
 			<%@include file="../layout/header_main.jsp"%>
 		</div>
 
-		<div class="headers" style="width: 65%;">
-			<c:choose>
-				<c:when test="${getFlist!=null}">
-					
-							<c:forEach var="item" items="${getFlist}" varStatus="s">
-								<div style="weight: 100%;">
-									<img src="/files/${item.sysName}" class="d-block w-100"
-										alt="...">
-								</div>
-							</c:forEach>
-						
-					
-				</c:when>
-				<c:otherwise>
-				</c:otherwise>
-			</c:choose>
-		</div>
+
 		<!--슬라이드 Script-->
 		<script>
       
