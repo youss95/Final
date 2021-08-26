@@ -59,7 +59,7 @@ public class StoreBusinessService {
 		int nowGrp = (int)(Math.ceil((double)page/10));
 		int startNum = (nowGrp-1)*10+1;
 		int lastNum = nowGrp*10;
-		int lastPage = (int)Math.ceil(allCount/10.0);
+		int lastPage = (int)Math.ceil(allCount/12.0);
 		int endPage =  lastNum > lastPage ? lastPage : lastNum;
 		AllResStorePagingDTO dto = new AllResStorePagingDTO(startNum,lastNum,lastPage,endPage);
 		return dto;
