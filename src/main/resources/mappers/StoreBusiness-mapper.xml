@@ -56,6 +56,8 @@
 	</update>
 
 
+
+
 	<!-- 검색 다중 마커 및 마커 조회 -->
 	<select id="getList" parameterType="dream.tk.dto.BusinessDTO"
 		resultType="dream.tk.dto.BusinessDTO">
@@ -69,9 +71,24 @@
 		WHERE
 		<!-- <if test="searchWrd != null and searchWrd !=''"> -->
 		(BusinessName LIKE '%${searchWrd}%' or
-		address1 LIKE '%${searchWrd}%' or biz_type like '%${biz_type}%' )
+		address1 LIKE '%${searchWrd}%'  )
 		<!-- </if> -->
 	</select>
+	
+	<!--all count  -->
+	<select id="pagingCount" resultType="int">
+	select count(*) from business_file
+	</select>
 
+<!-- 모든 리스트 뿌리기 -->
+<select id="getListAllResStore" resultType="dream.tk.dto.AllResStoreDTO">
+ select distinct(select sysname from business_file where rownum = 1 and parent_id = m.id) "sysName", b.businessname,b.businessnameeng, b.biz_type, b.biz_seq ,rownum  
+from business b join business_member m on b.seq = m.seq join business_file f on f.parent_id = m.id where rownum between #{firstNum} and #{secondNum}
+</select>
+
+<select id="getListByBizType" resultType="dream.tk.dto.CategoryListDTO">
+select distinct(select sysname from business_file where rownum = 1 and parent_id = m.id) "sysName", b.businessname, b.biz_type ,rownum  
+from business b join business_member m on b.seq = m.seq join business_file f on f.parent_id = m.id where b.biz_type=#{biz_type} and rownum between #{firstNum} and #{secondNum}
+</select>
 
 </mapper>

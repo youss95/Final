@@ -141,12 +141,19 @@
 	    	 url:"/like/getLikes",
 	    	 data:{'userId':'${loginID}'}
 	     }).done(function(resp){
-	    	 console.log(resp)
+	    	 console.log(resp[0].like_status)
+	    	
 	    	 let second=''
+	    	 
+	    		
 	    	 resp.map((list)=>{
-	    		 second +="<div id='aaa' data-lkno='"+list.like_no+"'><span>식당 이름: </span>"+list.businessName+"</div><br><br>"
+	    		 if(list.like_status === 'Y'){
+	    		 second +="<div id='aaa' data-lkno='"+list.like_no+"'><span>식당 이름: </span>"+list.businessName+"</div><div><a href='/Business/view?biz_seq="+list.biz_seq+"&userId="+list.userId+"'>상세보기: <i class='fas fa-sign-in-alt'></i></a></div><br>"
+	    		 }
 	    	 })
+	    	 
 	    	    contentSection.append(second);
+	    	 
 	     })
 	  
 	 

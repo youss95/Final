@@ -7,7 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import dream.tk.config.PagingVO;
+import dream.tk.dto.AllResStoreDTO;
 import dream.tk.dto.BusinessDTO;
+import dream.tk.dto.CategoryListDTO;
+import dream.tk.dto.CategoryPagingDTO;
+import dream.tk.dto.PagingNumDTO;
 
 @Repository
 public class StoreBusinessDAO {
@@ -44,6 +48,21 @@ public class StoreBusinessDAO {
 	// 조회수 카운터
 	public int count(int store_seq) throws Exception {
 		return mybatis.update("StoreBu.count", store_seq);
+	}
+	
+	//페이징 카운트
+	public int pagingCount() {
+		return mybatis.selectOne("StoreBu.pagingCount");
+	}
+	
+	public List<AllResStoreDTO> allResStore(PagingNumDTO dto){
+		return mybatis.selectList("StoreBu.getListAllResStore",dto);
+	}
+	
+	//비즈 타입 별로 리스트
+	public List<CategoryListDTO> getListByCategory(CategoryPagingDTO dto){
+		
+		return mybatis.selectList("StoreBu.getListByBizType",dto);
 	}
 	
 	// 마커 지도 검색 관련
