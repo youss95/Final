@@ -130,6 +130,12 @@ margin-top:150px;
       color:#1E3163
       }
 
+#aaa{
+	color:#1E3163;
+	font-size:15px;
+	 font-weight:600;
+}
+
 .popover-body  li:hover{
 	cursor:pointer
 }      

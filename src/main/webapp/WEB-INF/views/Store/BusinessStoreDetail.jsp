@@ -808,7 +808,7 @@ section {
         	              }).done(function(resp){
         	                console.log(resp)
         	              $("#heartIcon").css("color","black")
-        	             alert()
+        	             alert("취소 되었습니다.")
         	              })
         	              
         	              /* 알람  */
