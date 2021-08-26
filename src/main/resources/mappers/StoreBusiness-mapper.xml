@@ -44,8 +44,7 @@
 		) A
 		)
 		WHERE RN
-		BETWEEN #{vo.start} AND #{vo.end} 
-
+		BETWEEN #{start} AND #{end}
 	</select>
 
 
@@ -67,13 +66,12 @@
 		address1kor
 		FROM
 		business
-		WHERE 
+		WHERE
 		<!-- <if test="searchWrd != null and searchWrd !=''"> -->
 		(BusinessName LIKE '%${searchWrd}%' or
-		address1 LIKE '%${searchWrd}%')
+		address1 LIKE '%${searchWrd}%'  )
+		<!-- </if> -->
 	</select>
-
-
 
 
 </mapper>
