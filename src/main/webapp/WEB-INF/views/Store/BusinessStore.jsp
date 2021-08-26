@@ -341,18 +341,19 @@ section {
 				<ul class="flexgrid columns-news">
 					<c:forEach var="item" items="${storePics}">
 						<li>
-							<!--  <span class="grid-number">임의</span>--> 
+							<!--  <span class="grid-number">임의</span>-->
 							<a
 							href="/Business/view?biz_seq=${item.biz_seq }&userId=${loginID}">
 								<input type="hidden" id="click" value="${item.biz_seq }">
-								<figure style="overflow-y:hidden; height: 150px;">
+								<figure style="overflow-y: hidden; height: 150px;">
 									<img
 										src="${pageContext.request.contextPath}/files/${item.sysName}"
 										class="d-block w-100">
-									<figcaption>
-										<h2 style="height: 50px; text-align: center;">${item.businessnameeng}</h2>
-									</figcaption>
+
 								</figure>
+								<div style="width: 100%;">
+									<h2 style="height: 50px; text-align: center;">${item.businessnameeng}</h2>
+								</div>
 							</a>
 						</li>
 					</c:forEach>
