@@ -80,12 +80,26 @@
 	select count(*) from business_file 
 	</select>
 
+<!-- all count category -->
+<select id="countCategory" resultType="int">
+select count(*) from business b 
+join business_member m on b.seq = m.seq join business_file f on f.parent_id = m.id
+where biz_type =#{biz_type}
+</select>
+
 <!-- 모든 리스트 뿌리기 -->
 <select id="getListAllResStore" resultType="dream.tk.dto.AllResStoreDTO">
 select * from
 (select row_number() over(order by b.businessnameeng) rnum, b.biz_seq, b.businessnameeng, b.businessname,b.biz_type,b.businessContact, f.sysname from business b 
 join business_member m on b.seq = m.seq join business_file f on f.parent_id = m.id)
 where rnum between #{firstNum} and #{secondNum}
+</select>
+<!-- type별로 뿌리기 -->
+<select id="getListAllByBizType" resultType="dream.tk.dto.AllResStoreDTO">
+select * from
+(select row_number() over(partition by b.biz_type order by biz_type desc) rnum, b.biz_seq, b.businessnameeng, b.businessname,b.biz_type,b.businessContact, f.sysname from business b 
+join business_member m on b.seq = m.seq join business_file f on f.parent_id = m.id) 
+where biz_type =#{biz_type} and rnum between #{firstNum} and #{secondNum}
 </select>
 
 <select id="getListByBizType" resultType="dream.tk.dto.CategoryListDTO">

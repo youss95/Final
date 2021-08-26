@@ -11,6 +11,7 @@ import dream.tk.dto.AllResStoreDTO;
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.CategoryListDTO;
 import dream.tk.dto.CategoryPagingDTO;
+import dream.tk.dto.CategoryPagingNumDTO;
 import dream.tk.dto.PagingNumDTO;
 
 @Repository
@@ -55,15 +56,26 @@ public class StoreBusinessDAO {
 		return mybatis.selectOne("StoreBu.pagingCount");
 	}
 	
+	public int categoryCount(String biz_type) {
+		return mybatis.selectOne("StoreBu.countCategory",biz_type);
+	}
+	
 	public List<AllResStoreDTO> allResStore(PagingNumDTO dto){
 		return mybatis.selectList("StoreBu.getListAllResStore",dto);
 	}
-	
-	//비즈 타입 별로 리스트
-	public List<CategoryListDTO> getListByCategory(CategoryPagingDTO dto){
-		
-		return mybatis.selectList("StoreBu.getListByBizType",dto);
+	//카테고리별로
+	public List<AllResStoreDTO> allResStoreCategory(CategoryPagingNumDTO dto){
+		System.out.println("cate: "+dto.toString());
+		System.out.println(mybatis.selectList("StoreBu.getListAllByBizType",dto));
+		return mybatis.selectList("StoreBu.getListAllByBizType",dto);
 	}
+	
+	/*
+	 * //비즈 타입 별로 리스트 public List<CategoryListDTO>
+	 * getListByCategory(CategoryPagingDTO dto){
+	 * 
+	 * return mybatis.selectList("StoreBu.getListByBizType",dto); }
+	 */
 	
 	// 마커 지도 검색 관련
 	

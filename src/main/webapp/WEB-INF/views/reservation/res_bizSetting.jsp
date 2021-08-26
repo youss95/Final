@@ -71,7 +71,7 @@ padding-top:5px;
 				<div>
 					<h4>사업장 전화번호</h4>
 					<input type="text" class="inpform" id="businessContact"
-						name="businessContact" placeholder="'-'를 제외하고 입력해주세요 ex)01012341234" required>
+						name="businessContact" placeholder="'ex)010-1234-5678" required>
 					<spring:hasBindErrors name="businessDTO">
 						<c:if test="${errors.hasFieldErrors('businessContact') }">
 
@@ -232,13 +232,13 @@ $(function() {
             }
         }).open();
     }
-	let phoneRegex = /^010\d{3,4}\d{4}$/;
+	let phoneRegex = /^\d{2,3}-\d{3,4}-\d{4}$/;
 	 $("#businessContact").on("blur", function() {
 		if(!phoneRegex.test($("#businessContact").val())){
-			alert(" '-' 를 제외환 11 ~ 12 자리")
-			return;
+			alert(" ex)010-1234-5678")
+			return  false;
 		}
-	}) 
+	})  
 })
 
 function onSubmit(){
