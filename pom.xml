@@ -236,7 +236,7 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
-		<!-- 아임포트 결제를 위해 필요한 설정 시작 -->
+	
 		<!-- json mapper -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -265,7 +265,7 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.5.2</version>
 		</dependency>
-		<!-- 아임포트 결제를 위해 필요한 설정 끝 -->
+
 
 <!--유효성 -->
 		      <dependency>

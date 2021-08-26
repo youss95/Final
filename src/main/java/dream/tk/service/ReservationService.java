@@ -14,6 +14,7 @@ import dream.tk.dto.NotificationDTO;
 import dream.tk.dto.PaymentDTO;
 import dream.tk.dto.ResInfoDTO;
 import dream.tk.dto.ReservationDTO;
+import dream.tk.dto.ReservationPopOverDTO;
 import dream.tk.dto.ReserveCheckDTO;
 
 @Service
@@ -57,6 +58,10 @@ public class ReservationService {
 	
 	public List<ReservationDTO> resInfoList(String userId){
 		return resDao.resInfoList(userId);
+	}
+	
+	public String resImgForPopOver(String userId) {
+		return resDao.resImgForPopOver(userId);
 	}
 	
 	public String resCheck(ReserveCheckDTO dto) {

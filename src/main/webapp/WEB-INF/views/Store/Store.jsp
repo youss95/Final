@@ -421,16 +421,8 @@ section {
 				<div class="d1">
 					<div class="search">
 						<input type="text" id="searchWrd" name="searchWrd"
-							placeholder="It's under development." value="${searchVO.searchWrd }" disabled>
-							
-							<a
-							href="" onclick="fn_search();" class="btn-login" style="float: left"><button
-								type="button" class="pulse"></button></a>
-							
-							
-							<a
-							href="#" onclick="fn_search();" class="btn-login"><button
-								type="button" class="pulse"></button></a>
+							placeholder="It's under development." value="${searchVO.searchWrd }">
+							<a href="" onclick="fn_search();" class="btn-login" style="float: left"><button type="button" class="pulse"></button></a>
 					</div>
 				</div>
 
@@ -482,7 +474,7 @@ section {
 				var rdnmadrList = new Array();
 				var cmpnmList = new Array();
 				var num = new Array();
-				var eng = new Array();
+				var city = new Array();
 			
 
 				
@@ -492,11 +484,11 @@ section {
 					var aa = $obj.road_name;
 					var bb = $obj.businessNameEng;
 					var cc = $obj.store_seq;
-					var dd = $obj.businessNameEng;
+					var dd = $obj.city;
 					rdnmadrList.push(aa);
 					cmpnmList.push(bb);
 					num.push(cc);
-					eng.push(dd);
+					city.push(dd);
 				}
 				console.log(aa);
 				
@@ -523,7 +515,7 @@ section {
 									+ '</strong></a>';
 							content += '    <div class="desc">';
 							content += '        <span class="address">'
-									+ eng[index] + '</span>';
+									+ city[index] + '</span>';
 							content += '    </div>';
 							content += '</div>';
 

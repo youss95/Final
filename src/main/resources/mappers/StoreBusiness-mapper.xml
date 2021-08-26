@@ -7,9 +7,8 @@
 
 	<!-- 게시글 불러오기 -->
 	<select id="selectAll" resultType="dream.tk.dto.BusinessDTO">
-		select * from business order
-		by
-		grade desc
+		select * from business 
+		<!--order by grade desc-->
 	</select>
 
 	<select id="getSeq" resultType="int">
@@ -70,7 +69,7 @@
 		WHERE
 		<!-- <if test="searchWrd != null and searchWrd !=''"> -->
 		(BusinessName LIKE '%${searchWrd}%' or
-		address1 LIKE '%${searchWrd}%')
+		address1 LIKE '%${searchWrd}%' or biz_type like '%${biz_type}%' )
 		<!-- </if> -->
 	</select>
 

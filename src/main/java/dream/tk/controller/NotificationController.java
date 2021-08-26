@@ -44,6 +44,7 @@ public class NotificationController {
 		System.out.println("seq"+seq);
 		System.out.println("con"+content);
 		String userId = notiService.getRecipient(seq);
+		System.out.println("userId"+userId);
 		notiService.alarmInsert(userId, content);
 		return userId;
 	}
@@ -58,9 +59,7 @@ public class NotificationController {
 	
 	@GetMapping("/detail")
 	public String notiDetail(String userId,int page, Model model) {
-		
-		
-		
+	
 		List<NotificationDTO> list = notiService.getAllNotis(userId,page);
 		AlarmPaginDTO dto = notiService.getPaging(userId, page);
 		notiService.alarmRead();  //알람 읽음을 표시
