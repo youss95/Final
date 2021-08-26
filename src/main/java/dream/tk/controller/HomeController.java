@@ -1,23 +1,41 @@
 package dream.tk.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import java.util.List;
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
+import dream.tk.dto.BusinessDTO;
+import dream.tk.dto.BusinessFileDTO;
+import dream.tk.service.BusinessFileService;
+import dream.tk.service.StoreBusinessService;
 
 @Controller
 public class HomeController {
 
+	@Autowired
+	private BusinessFileService serviceF;
+	
+	@Autowired
+	private StoreBusinessService serviceB;
+	
 	@RequestMapping("/")
-
-	public String home() {
-		return "redirect:store/main";
+	public String home(Model m) throws Exception{
+		List<BusinessFileDTO> getFlist =  serviceF.selectAll();
+	    m.addAttribute("getFlist", getFlist); //파일
+	    
+	    List<BusinessDTO> getBusiness = serviceB.selectAll();
+	    m.addAttribute("getBusiness", getBusiness); //비지니스
+	    
+	  
+		return "/Store/main";
 	}
 	
 }

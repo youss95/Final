@@ -7,9 +7,8 @@
 
 	<!-- 게시글 불러오기 -->
 	<select id="selectAll" resultType="dream.tk.dto.BusinessDTO">
-		select * from business order
-		by
-		grade desc
+		select * from business 
+		<!--order by grade desc-->
 	</select>
 
 	<select id="getSeq" resultType="int">
