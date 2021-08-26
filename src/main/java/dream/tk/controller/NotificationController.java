@@ -59,9 +59,7 @@ public class NotificationController {
 	
 	@GetMapping("/detail")
 	public String notiDetail(String userId,int page, Model model) {
-		
-		
-		
+	
 		List<NotificationDTO> list = notiService.getAllNotis(userId,page);
 		AlarmPaginDTO dto = notiService.getPaging(userId, page);
 		notiService.alarmRead();  //알람 읽음을 표시

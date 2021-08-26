@@ -20,6 +20,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -160,6 +161,12 @@ public class ReservationController {
 		System.out.println("name: "+res_name);
 		resService.resRefuse(res_no);
 		return "redirect:/bMember/myPage";
+	}
+	
+	@ExceptionHandler
+	public String exceptionHandler(Exception e) {
+		e.printStackTrace();
+		return "error";
 	}
 	
 	

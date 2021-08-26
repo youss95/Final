@@ -32,6 +32,12 @@
     font-size: 14px;
   }
 
+.container > section {
+  width: 1200px;
+  margin: auto;
+margin-top:150px;
+}
+
 
 	#modal_time span{
 	border:1px solid red;

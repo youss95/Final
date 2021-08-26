@@ -86,14 +86,15 @@ nav ul li {
 /************************************************/
 .container {
  min-height: 21vh;
+ 
  /*100vh*/
 }
-
-.container > section {
+/* .container > section {
   width: 1200px;
   margin: auto;
 margin-top:150px;
 }
+ */
 
 .container main p {
   height: 50em;
