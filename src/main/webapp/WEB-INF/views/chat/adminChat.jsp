@@ -453,7 +453,7 @@ button:hover {
 								</div>
 								<div class="status">
 									<button type="button" class="deleteMsg"
-										id="/chat/deleteChatRoom?chatnum=${item.chatnum }">delete</button>
+										id="/chat/deleteAdminChatRoom?chatnum=${item.chatnum }">delete</button>
 								</div>
 							</div></li>
 					</c:if>

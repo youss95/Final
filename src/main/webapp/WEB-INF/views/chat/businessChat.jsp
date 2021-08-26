@@ -525,7 +525,7 @@ button:hover {
 							<li class="clearfix">
 								<div class="message-data align-right">
 									<span class="message-data-time">${i.write_date }</span> &nbsp;
-									&nbsp; <span class="message-data-name">${i.nickname }</span> <i
+									&nbsp; <span class="message-data-name"></span> <i
 										class="fa fa-circle me"></i>
 								</div>
 								<div class="message other-message float-right">${i.contents }</div>
@@ -534,7 +534,7 @@ button:hover {
 						<c:if test="${i.nickname == 'manager'}">
 							<li>
 								<div class="message-data">
-									<span class="message-data-name">${i.nickname }</span> <span
+									<span class="message-data-name"></span> <span
 										class="message-data-time">${i.write_date }</span>
 								</div>
 								<div class="message my-message">${i.contents }</div>
