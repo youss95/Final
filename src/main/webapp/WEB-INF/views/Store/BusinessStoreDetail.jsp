@@ -53,6 +53,15 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+	crossorigin="anonymous"></script>
+
 
 <style>
 * {
@@ -240,26 +249,37 @@ section {
 			<%@include file="../layout/header_main.jsp"%>
 		</div>
 
-		<div class="headers">
-			<div class="swiper-container mySwiper">
-		
-				<c:choose>
-					<c:when test="${getFlist!=null}">
-						<c:forEach var="item" items="${getFlist}" varStatus="s">
-							<div class="swiper-wrapper">
-								<div class="swiper-slide">
-									<img src="/files/${item.sysName}">
+		<div class="headers" style="width: 65%;">
+			<c:choose>
+				<c:when test="${getFlist!=null}">
+					<div id="carouselExampleControlsNoTouching" class="carousel slide"
+						data-touch="false" data-interval="false"
+						style="width: 100%; margin: auto;">
+
+						<div class="carousel-inner"
+							style="width: 100%; overflow-y: hidden;">
+							<c:forEach var="item" items="${getFlist}" varStatus="s">
+								<div class="carousel-item active" style="width: 100%;">
+									<img src="/files/${item.sysName}" class="d-block w-100"
+										alt="...">
 								</div>
-							</div>
-						</c:forEach>
-						<div class="swiper-button-next"></div>
-						<div class="swiper-button-prev"></div>
-						<div class="swiper-pagination"></div>
-					</c:when>
-					<c:otherwise>
-					</c:otherwise>
-				</c:choose>
-			</div>
+							</c:forEach>
+						</div>
+						<a class="carousel-control-prev"
+							href="#carouselExampleControlsNoTouching" role="button"
+							data-slide="prev"> <span class="carousel-control-prev-icon"
+							aria-hidden="true"></span> <span class="sr-only">Previous</span>
+						</a> <a class="carousel-control-next"
+							href="#carouselExampleControlsNoTouching" role="button"
+							data-slide="next"> <span class="carousel-control-next-icon"
+							aria-hidden="true"></span> <span class="sr-only">Next</span>
+						</a>
+						<!--a태그의 href 값에는 carousel id와 같은 값이 들어와야 동작-->
+					</div>
+				</c:when>
+				<c:otherwise>
+				</c:otherwise>
+			</c:choose>
 		</div>
 		<!--슬라이드 Script-->
 		<script>
@@ -288,9 +308,10 @@ section {
 		<aside>
 			<div id='store'>
 				<!--  <input type="hidden" id="store" value="${list.businessNameEng }"> -->
-				<input type="hidden" id="address1Kor" name="address1Kor" value="${list.address1Kor}">
-				<input type="hidden" id="businessNameEng" name="businessNameEng" value="${list.businessNameEng }">
-				 <span id="likeStar"><i
+				<input type="hidden" id="address1Kor" name="address1Kor"
+					value="${list.address1Kor}"> <input type="hidden"
+					id="businessNameEng" name="businessNameEng"
+					value="${list.businessNameEng }"> <span id="likeStar"><i
 					id="heartIcon" class="fas fa-heart fa-2x"></i>찜하기</span>
 				<h1 style="float: center;">${list.businessNameEng }</h1>
 				<div>
@@ -429,7 +450,7 @@ section {
 
 
 			<!-- 지도 값 받기 -->
-			
+
 
 		</aside>
 
@@ -551,13 +572,14 @@ section {
 									value="${loginID}"> <input type="hidden" id="bno"
 									name="bno" value="${list.biz_seq }" />
 								<div class="form-group">
-									<input type="text" class="form-control" id="contents" name="contents" placeholder="check">
+									<input type="text" class="form-control" id="contents"
+										name="contents" placeholder="check">
 								</div>
 								<button type="button" value="" class="btn btn-primary"
 									name="commentInsertBtn" style="left: 0;">
 									<i class="fa fa-reply"></i>Submit
 								</button>
-								
+
 							</form>
 						</c:when>
 

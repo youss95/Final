@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="CommentMain">
 
-	<select id="commentCount" resultType="int">
+	<select id="commentCounte" resultType="int">
 		SELECT COUNT(*) FROM
 		comments_main
 	</select>
@@ -17,30 +17,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select> --> 
 	
 	<!--  댓글 리스트 -->
-	 <select id="commentList" resultType="dream.tk.dto.StoreMCommentDTO">
+	 <select id="commentListe" resultType="dream.tk.dto.StoreMCommentDTO">
 		select * from comments_main where bno = ${bno}
 	</select> 
 	
 	<!--  댓글 삽입 -->
-	<insert id="commentInsert">
+	<insert id="commentInserte">
 		INSERT INTO
 		comments_main
 		VALUES(cno1.nextval,${bno},#{content},#{writer}, ${star_avg}, 0, sysdate)
 	</insert>
 	
 	<!--  댓글 수정 -->
-	<update id="commentUpdate" parameterType="dream.tk.dto.StoreMCommentDTO">
+	<update id="commentUpdatee" parameterType="dream.tk.dto.StoreMCommentDTO">
 		UPDATE comments_main SET CONTENT = #{content} WHERE CNO1 =
-		${cno}
+		${cno1}
 	</update>
 	<!--  댓글 삭제 -->
-	<delete id="commentDelete" parameterType="int">
+	<delete id="commentDeletee" parameterType="int">
 		DELETE FROM comments_main
-		WHERE CNO1 = ${cno}
+		WHERE CNO1 = ${cno1}
 	</delete>
 	
 	<!--  댓글 개수 뽑기 -->
-	<select id="count" resultType="int">
+	<select id="counte" resultType="int">
 		select count(*) from comments_main where bno = #{bno}
 	</select>
 	<!-- select count(*) from comments group by bno having bno = ${bno} -->	
