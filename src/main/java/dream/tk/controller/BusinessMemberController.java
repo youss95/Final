@@ -351,6 +351,10 @@ public class BusinessMemberController {
 		return "/memberB/noAccess";
 	}
 	
+	@RequestMapping("restrict")
+	public String restrict() {
+		return "/memberB/restrict";
+	}
 	
 
 }
