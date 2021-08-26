@@ -102,9 +102,9 @@ public class BusinessStoreController {
 	   }
 	
 	   @RequestMapping("/viewCategory")
-	   public String viewByCategory(String biz_type,Model model) {
+	   public String viewByCategory(String biz_type,int page, Model model) {
 		   
-		   
+		 //  List<>
 		   
 		   return "/Store/BusinessStoreCategory";
 	   }
