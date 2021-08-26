@@ -258,14 +258,14 @@
 											href="/Business/view?biz_seq=${item.biz_seq}&userId=">
 											<img
 											src="${pageContext.request.contextPath}/files/${item.sysName}"
-											>
+											 class="d-block h-100" >
 										</a>
 									</div>
 									<div class="down-content">
 										<a
 											href="/Business/view?biz_seq=${item.biz_seq}&userId=">
 											<!-- 타이틀 이름-->
-											<h4>${item.businessname}</h4>
+											<h4>${item.businessnameeng}</h4>
 										</a>
 										<!--댓글 개수 -->
 									</div>
