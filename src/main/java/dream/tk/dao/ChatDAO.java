@@ -59,4 +59,8 @@ public class ChatDAO {
 	 public int deleteChatRoom(String chatnum) {
 		 return mybatis.delete("Chat.deleteChatRoom", chatnum);
 	 }
+	 
+	 public int deleteAdminChatRoom(String chatnum) {
+		 return mybatis.delete("Chat.deleteAdminChatRoom", chatnum);
+	 }
 }

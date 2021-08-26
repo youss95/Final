@@ -78,5 +78,9 @@
 	<delete id="deleteChatRoom">
 		delete from chat_client where chatnum = #{chatnum}
 	</delete>
+	
+	<delete id="deleteAdminChatRoom">
+		delete from chat_manager where chatnum = #{chatnum}
+	</delete>
 
 </mapper>
