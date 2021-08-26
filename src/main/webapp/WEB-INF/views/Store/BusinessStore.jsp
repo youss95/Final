@@ -350,7 +350,7 @@ section {
 										src="${pageContext.request.contextPath}/files/${item.sysName}"
 										class="d-block w-100">
 									<figcaption>
-										<h2 style="padding:0px; margin-top:1%; margin-bottom:1%;">${item.businessnameeng}</h2>
+										<h2 style="height: 50px; text-align: center;">${item.businessnameeng}</h2>
 									</figcaption>
 								</figure>
 							</a>
