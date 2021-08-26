@@ -308,9 +308,9 @@ section {
 						src="${pageContext.request.contextPath}/resources/images/view.png">
 					${list.view_Count} <img
 						src="${pageContext.request.contextPath}/resources/images/start.png">
-					<img
+					0 <img
 						src="${pageContext.request.contextPath}/resources/images/write.png">
-					${countCmt}
+					0
 				</div>
 				<br>
 				<table class='table'>
