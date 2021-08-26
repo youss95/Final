@@ -144,36 +144,43 @@
 		
 		// 사진 등록 서비스 관련
 		$("#uploadBtn1").on("click",function(){    
-			//let reg = /(.*?)\.(jpg|jpeg|png)$/;
-			let reg = /^\S*\.(jpg|jpeg|png)$/;
-			let files=$('input[name="file"]')[0].files;
-		       	         
-		    let regResult = true;
-		    for(var i= 0; i<files.length; i++){
-		        if(!reg.test(files[i].name)){
-		        	alert("사진은 jpg, jpeg, png 형식만 등록 가능합니다.");
-		        	regResult = false;
-		        	break;
-		        }
-		     }
-		            	     
-			if(regResult){
-				Swal.fire({
-					  icon: "question",
-					  title: "사진을 등록하시겠습니까?",
-					  text: "확인 버튼을 클릭 시, 사진이 등록됩니다.",
-					  showConfirmButton:true,
-					  showCancelButton:true,
-					  confirmButtonText:"확인",
-					  cancelButtonText:"취소",
-					}).then((result) =>{
-						if(result.isConfirmed){
-							$("#uploadFrm1").submit();
-						}else{
-							return false;
-						}						
-					})
-					}						
+			
+			if("${bizInfo.businessName}" == null || "${bizInfo.businessName}" ==""){
+				location.href="${pageContext.request.contextPath}/bMember/restrict";		
+			}else{
+
+				//let reg = /(.*?)\.(jpg|jpeg|png)$/;
+				let reg = /^\S*\.(jpg|jpeg|png)$/;
+				let files=$('input[name="file"]')[0].files;
+			       	         
+			    let regResult = true;
+			    for(var i= 0; i<files.length; i++){
+			        if(!reg.test(files[i].name)){
+			        	alert("사진은 jpg, jpeg, png 형식만 등록 가능합니다.");
+			        	regResult = false;
+			        	break;
+			        }
+			     }
+			            	     
+				if(regResult){
+					Swal.fire({
+						  icon: "question",
+						  title: "사진을 등록하시겠습니까?",
+						  text: "확인 버튼을 클릭 시, 사진이 등록됩니다.",
+						  showConfirmButton:true,
+						  showCancelButton:true,
+						  confirmButtonText:"확인",
+						  cancelButtonText:"취소",
+						}).then((result) =>{
+							if(result.isConfirmed){
+								$("#uploadFrm1").submit();
+							}else{
+								return false;
+							}						
+						})
+						}	
+			}
+								
 			})	
 	     // ===========사진 등록 서비스 관련
 			
@@ -308,7 +315,7 @@
 
 </head>
 
-<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
+<body>
 
   <div class="wrapper ">
      <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" style="height:100%;">
