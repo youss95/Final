@@ -24,25 +24,27 @@ public class CommentMController {
 	private HttpSession session;
 	
 	@Autowired
-	private CommentMService service;
+	private CommentMService serviceT;
 	
 	 @RequestMapping("/list") //댓글 리스트
 	 @ResponseBody
 	    private List<StoreMCommentDTO> mCommentServiceList(int bno, Model m) throws Exception{
 		 //댓글 개수 뽑기
-		 m.addAttribute("commentCount", service.count(bno));
+		 m.addAttribute("commentCount", serviceT.counte(bno));
 	    // int avg = service.avg(bno);
-	     return service.commentListService(bno);
+	     return serviceT.commentListServicee(bno);
 	    }
 	    
 	    @RequestMapping("/insert") //댓글 작성 
 	    @ResponseBody
 	    private int mCommentServiceInsert(@RequestBody StoreMCommentDTO dto) throws Exception{
 	        System.out.println("출력됩니다.");
-	    	return service.commentInsertService(dto);
+	    	return serviceT.commentInsertServicee(dto);
 
 	    }
 	    
+	    
+	    // 여기 빠져
 	    @RequestMapping("/update") //댓글 수정  
 	    @ResponseBody
 	    private int mCommentServiceUpdateProc(@RequestParam int cno1, @RequestParam String content) throws Exception{
@@ -50,20 +52,20 @@ public class CommentMController {
 	        StoreMCommentDTO comment = new StoreMCommentDTO();
 	    	comment.setCno(cno1);
 	    	comment.setContent(content);
-	        return service.commentUpdateService(comment);
+	        return serviceT.commentUpdateServicee(comment);
 	    }
 	    
 	    @RequestMapping("/delete/{cno}") //댓글 삭제  
 	    @ResponseBody
 	    private int mCommentServiceDelete(@PathVariable int cno1) throws Exception{
 	    	System.out.println("cno : " + cno1);
-	        return service.commentDeleteService(cno1);
+	        return serviceT.commentDeleteServicee(cno1);
 	    }
 
 	    @RequestMapping("/deleteComment") //댓글 삭제  
 	    @ResponseBody
 	    private int deleteComment(@PathVariable int cno) throws Exception{
 	    	System.out.println("cno : " + cno);
-	        return service.commentDeleteService(cno);
+	        return serviceT.commentDeleteServicee(cno);
 	    }
 }

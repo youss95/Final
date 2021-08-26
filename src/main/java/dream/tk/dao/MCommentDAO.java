@@ -16,32 +16,32 @@ public class MCommentDAO {
 	private SqlSessionTemplate mybatis;
 	
 	   public int commentCount() throws Exception{
-		   return mybatis.selectOne("CommentMain.commentCount");
+		   return mybatis.selectOne("CommentMain.commentCounte");
 	   }
 	   
 	    // 댓글 목록
-	    public List<StoreMCommentDTO> commentList(int bno) throws Exception{
-	    	return mybatis.selectList("CommentMain.commentList", bno);
+	    public List<StoreMCommentDTO> commentListe(int bno) throws Exception{
+	    	return mybatis.selectList("CommentMain.commentListe", bno);
 	    }
 	 
 	    // 댓글 작성
-	    public int commentInsert(StoreMCommentDTO comment) throws Exception{
-	    	return mybatis.insert("CommentMain.commentInsert", comment);
+	    public int commentInserte(StoreMCommentDTO comment) throws Exception{
+	    	return mybatis.insert("CommentMain.commentInserte", comment);
 	    }
 	    
 	    // 댓글 수정
-	    public int commentUpdate(StoreMCommentDTO comment) throws Exception{
-	    	return mybatis.update("CommentMain.commentUpdate", comment);
+	    public int commentUpdatee(StoreMCommentDTO comment) throws Exception{
+	    	return mybatis.update("CommentMain.commentUpdatee", comment);
 	    }
 	 
 	    // 댓글 삭제
-	    public int commentDelete(int cno1) throws Exception{
-	    	return mybatis.update("CommentMain.commentDelete", cno1);
+	    public int commentDeletee(int cno1) throws Exception{
+	    	return mybatis.update("CommentMain.commentDeletee", cno1);
 	    }
 	    
 	    // 댓글 개수
-	    public int count(int bno) throws Exception{
-	    	return mybatis.selectOne("CommentMain.count", bno);
+	    public int counte(int bno) throws Exception{
+	    	return mybatis.selectOne("CommentMain.counte", bno);
 	    }
 	    
 	    /*

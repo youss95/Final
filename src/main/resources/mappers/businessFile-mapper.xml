@@ -5,12 +5,14 @@
 <mapper namespace="bFile">
 
 	<insert id="insert">
-		insert into business_file values(business_file_seq.nextval, #{oriName},#{sysName},#{id},sysdate)
+		insert into business_file
+		values(business_file_seq.nextval, #{oriName},#{sysName},#{id},sysdate)
 	</insert>
 
-	
+
 	<select id="getFlist" resultType="dream.tk.dto.BusinessFileDTO">
-		select * from business_file where parent_id=#{value}
+		select * from business_file
+		where parent_id=#{value}
 	</select>
 
 
@@ -19,17 +21,23 @@
 	</delete>
 
 	<select id="getSysName" resultType="string">
-		select sysname from business_file where seq=#{value}
+		select sysname from
+		business_file where seq=#{value}
 	</select>
-	
-	
-	<select id="getFlistSeq" resultType="dream.tk.dto.BusinessFileDTO">
-		select * from business b join business_member m on b.seq = m.seq join business_file f on f.parent_id = m.id
-        where b.biz_seq=${value}
+
+
+	<select id="getFlistSeq"
+		resultType="dream.tk.dto.BusinessFileDTO">
+		select * from business b join business_member m on b.seq =
+		m.seq join business_file f on f.parent_id = m.id
+		where b.biz_seq=${value}
 	</select>
-	
+
 	<select id="storePics" resultType="dream.tk.dto.BusinessFileDTO">
-		select distinct(select sysname from business_file where rownum = 1 and parent_id = m.id) "sysName", b.businessname from business b join business_member m on b.seq = m.seq join business_file f on f.parent_id = m.id
+		select distinct(select sysname from business_file where rownum = 1 and
+		parent_id = m.id) "sysName", b.businessnameeng "businessnameeng",
+		b.biz_seq "biz_seq" from business b join business_member m on b.seq =
+		m.seq join business_file f on f.parent_id = m.id
 	</select>
-	
+
 </mapper>

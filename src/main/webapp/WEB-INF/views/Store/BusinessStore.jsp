@@ -6,20 +6,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Store_main.css?after">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/map.css?after">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/Store_main.css?after">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/map.css?after">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
-	<link rel="stylesheet"
+<link rel="stylesheet"
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
 	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
 	crossorigin="anonymous" />
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+	crossorigin="anonymous"></script>
 
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -49,9 +54,8 @@
 .contain {
 	width: 100%;
 	height: 127px;
-	float: center
-	-webkit-font-smoothing: antialiased;
-    box-sizing: border-box; 
+	float: center -webkit-font-smoothing: antialiased;
+	box-sizing: border-box;
 }
 
 aside {
@@ -227,10 +231,8 @@ section {
 }
 
 <!--
-페이징 -->
-
-.page {
-	text-align: center;	
+페이징 -->.page {
+	text-align: center;
 	width: 50%;
 }
 
@@ -241,9 +243,10 @@ section {
 	margin-top: 20px;
 }
 
-.pagination modals{
+.pagination modals {
 	text-align: center;
 }
+
 .pagination li {
 	display: inline;
 	text-align: center;
@@ -310,13 +313,12 @@ section {
 }
 
 .custom_zoomcontrol span {
-    display: block;
-    width: 36px;
-    text-align: center;
-    cursor: pointer;
-    border-bottom: 1px solid #bfbfbf;
+	display: block;
+	width: 36px;
+	text-align: center;
+	cursor: pointer;
+	border-bottom: 1px solid #bfbfbf;
 }
-
 </style>
 </head>
 <body>
@@ -325,7 +327,7 @@ section {
 		<div class="contain">
 			<%@include file="../layout/header_main.jsp"%>
 		</div>
-		
+
 
 
 
@@ -333,24 +335,25 @@ section {
 			<!-- 왼쪽 -->
 			<main role="main">
 				<br>
-				<h3 style="font-size: 20px; text-align: left; margin: 10px;">You can make a reservation at this store.</h3>
+				<h3 style="font-size: 20px; text-align: left; margin: 10px;">You
+					can make a reservation at this store.</h3>
 				<hr>
 				<ul class="flexgrid columns-news">
-					<c:forEach var="list" items="${viewAll}">
+					<c:forEach var="item" items="${storePics}">
 						<li>
-							<!--  <span class="grid-number">임의</span>--> <span class="ribbon"><a
-								href="/Business/view?seq=">2.5</a></span> <a
-							href="/Business/view?biz_seq=${list.biz_seq }&userId=${loginID}">
-								<input type="hidden" id="click" value="${list.biz_seq }">
-								<figure>
-									<img src="${pageContext.request.contextPath}/resources/Storeimages/ready.png" alt="">
+							<!--  <span class="grid-number">임의</span>--> 
+							<a
+							href="/Business/view?biz_seq=${item.biz_seq }&userId=${loginID}">
+								<input type="hidden" id="click" value="${item.biz_seq }">
+								<figure style="overflow-y:hidden; height: 150px;">
+									<img
+										src="${pageContext.request.contextPath}/files/${item.sysName}"
+										class="d-block w-100">
 									<figcaption>
-										<p>${list.address1 }</p>
-										<h2>${list.businessNameEng }</h2>
-										<h3>view : ${list.view_Count }</h3>
+										<h2 style="padding:0px; margin-top:1%; margin-bottom:1%;">${item.businessnameeng}</h2>
 									</figcaption>
 								</figure>
-						</a>
+							</a>
 						</li>
 					</c:forEach>
 				</ul>
@@ -410,9 +413,9 @@ section {
 								src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png"
 								alt="확대"></span> <span onclick="zoomOut()"><img
 								src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png"
-								alt="축소"></span>
-								<span><a href="/Business/signup"><img src="${pageContext.request.contextPath}/resources/images/reset.png" alt="리셋">
-										 </a></span>
+								alt="축소"></span> <span><a href="/Business/signup"><img
+									src="${pageContext.request.contextPath}/resources/images/reset.png"
+									alt="리셋"> </a></span>
 						</div>
 					</div>
 				</div>
@@ -430,8 +433,9 @@ section {
 				<div class="d1">
 					<div class="search">
 						<input type="text" id="searchWrd" name="searchWrd"
-							placeholder="It's under development." value="${searchVO.searchWrd }" disabled>
-						<a href="" onclick="fn_search();" class="btn-login"><button
+							placeholder="It's under development."
+							value="${searchVO.searchWrd }" disabled> <a href=""
+							onclick="fn_search();" class="btn-login"><button
 								type="button" class="pulse"></button></a>
 					</div>
 				</div>
@@ -594,8 +598,7 @@ section {
 
 			<!-- 하단 추천바!! -->
 
-			<br>
-			<br></br>
+			<br> <br></br>
 			<!-- 1번쨰 -->
 
 			<!-- 예약하기  -->
@@ -623,8 +626,7 @@ section {
 
 
 
-			<br>
-			<br></br>
+			<br> <br></br>
 			<!-- 2번쨰 -->
 			<script>
 				function random_imglink() {
@@ -647,8 +649,7 @@ section {
 				}
 				random_imglink();
 			</script>
-			<br>
-			<br></br>
+			<br> <br></br>
 			<!-- 3번쨰 -->
 			<script>
 				function random_imglink() {
@@ -679,6 +680,6 @@ section {
 
 		</section>
 	</div>
-		 <%@include file="../layout/alarm.jsp" %>
+	<%@include file="../layout/alarm.jsp"%>
 </body>
 </html>
