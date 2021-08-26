@@ -641,10 +641,10 @@
 				<c:choose>
 					<c:when test="${flist[0] eq null || flist[0] eq ''}">
 					 <div class="card-body" style="width:100%">
-                      <div style="width:30%">업체 사진 등록 서비스</div>
+                      <div style="width:30%">업체 대표사진 등록 서비스</div>
                       <div style="width:60%">
                       <form id="uploadFrm1" action="${pageContext.request.contextPath}/bFile/upload" method="post" enctype="multipart/form-data">
-                      <input id='fileInput' type=file name="file" multiple accept="image/jpeg, image/jpg, image/png"><button class="btn" type='button' id='uploadBtn1'>업로드</button>
+                      <input id='fileInput' type=file name="file" accept="image/jpeg, image/jpg, image/png"><button class="btn" type='button' id='uploadBtn1'>업로드</button>
                       <input type='hidden' name="id" value="${binfo.id}">
                       </form>
                       </div>
@@ -662,7 +662,7 @@
                       		
                       		</c:forEach>
                       	 </div>	
-                      	 <div style="width:20%"><button class="btn" id="editFileBtn" type="button">수정</button></div>
+<!--                       	 <div style="width:20%"><button class="btn" id="editFileBtn" type="button">수정</button></div> -->
                       </div>
                     </div>
                     </c:otherwise>

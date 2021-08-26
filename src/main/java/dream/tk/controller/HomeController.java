@@ -10,6 +10,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import dream.tk.dto.BusinessDTO;
@@ -38,4 +39,10 @@ public class HomeController {
 		return "/Store/main";
 	}
 	
+	
+	   @ExceptionHandler
+	   public String exceptionHandler(Exception e) {
+	      e.printStackTrace();
+	      return "error";
+	   }
 }

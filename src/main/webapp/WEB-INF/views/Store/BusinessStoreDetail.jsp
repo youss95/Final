@@ -254,7 +254,7 @@ section {
 				<c:when test="${getFlist!=null}">
 					
 							<c:forEach var="item" items="${getFlist}" varStatus="s">
-								<div style="width: 33%;overflow-y: hidden;overflow-x: hidden;">
+								<div style="display:inline-block; width: 33%;overflow-y: hidden;overflow-x: hidden;">
 									<img src="/files/${item.sysName}" class="d-block w-100"
 										alt="...">
 								</div>
@@ -304,9 +304,9 @@ section {
 						src="${pageContext.request.contextPath}/resources/images/view.png">
 					${list.view_Count} <img
 						src="${pageContext.request.contextPath}/resources/images/start.png">
-					<img
+					0 <img
 						src="${pageContext.request.contextPath}/resources/images/write.png">
-					${countCmt}
+					0
 				</div>
 				<br>
 				<table class='table'>
