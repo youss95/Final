@@ -109,6 +109,7 @@
     float: right;
     top: 650px;
     right: 10px;
+    z-index: 100000;
 }
 
 .background {
