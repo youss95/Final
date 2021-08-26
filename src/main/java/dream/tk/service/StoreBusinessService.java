@@ -38,6 +38,9 @@ public class StoreBusinessService {
 		return daoc.selectBoard(vo);
 	}
 	
+	//카테고리 별 리스트
+	
+	
 	// 마커 다중 검색
 	public List<BusinessDTO> getList(BusinessDTO searchVO) throws Exception {
 	    return daoc.getList(searchVO);

@@ -98,6 +98,14 @@ public class BusinessStoreController {
 	      return "/Store/BusinessStoreDetail";
 	   }
 	
+	   @RequestMapping("/viewCategory")
+	   public String viewByCategory(String biz_type,Model model) {
+		   
+		   
+		   
+		   return "/Store/BusinessStoreCategory";
+	   }
+	   
 	
 	// 혹시 모르는 페이지
 	@RequestMapping("store_detail")
