@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dream.tk.config.PagingVO;
+import dream.tk.dto.AllResStoreDTO;
+import dream.tk.dto.AllResStorePagingDTO;
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.BusinessFileDTO;
 import dream.tk.dto.CategoryListDTO;
@@ -103,6 +105,15 @@ public class BusinessStoreController {
 	      return "/Store/BusinessStoreDetail";
 	   }
 	
+	   @RequestMapping("/viewAll")
+	   public String viewAllResStore(int page,Model model) {
+		   List<AllResStoreDTO> list = service.getAllResStoreList(page);
+				  AllResStorePagingDTO dto = service.getPaging(page);
+				  model.addAttribute("paging",dto);
+				  model.addAttribute("storeList",list);
+				  return "/Store/BusinessStore";
+	   }
+	   
 	   @RequestMapping("/viewCategory")
 	   public String viewByCategory(String biz_type,int page, Model model) {
 		   

@@ -10,9 +10,12 @@ import org.springframework.stereotype.Service;
 
 import dream.tk.config.PagingVO;
 import dream.tk.dao.StoreBusinessDAO;
+import dream.tk.dto.AllResStoreDTO;
+import dream.tk.dto.AllResStorePagingDTO;
 import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.CategoryListDTO;
 import dream.tk.dto.CategoryPagingDTO;
+import dream.tk.dto.PagingNumDTO;
 
 @Service
 public class StoreBusinessService {
@@ -38,6 +41,28 @@ public class StoreBusinessService {
 	public List<BusinessDTO> selectBoard(PagingVO vo) throws Exception {
 		
 		return daoc.selectBoard(vo);
+	}
+	
+	//list
+	public List<AllResStoreDTO> getAllResStoreList(int page){
+
+		int firstNum = (page-1)*10+1;
+		int secondNum = page*10;
+		PagingNumDTO dto = new PagingNumDTO(firstNum,secondNum);
+		return daoc.allResStore(dto);
+	}
+	
+	//페이징
+	public AllResStorePagingDTO getPaging(int page) {
+		int allCount = daoc.pagingCount();
+		System.out.println("coutn: "+allCount);
+		int nowGrp = (int)(Math.ceil((double)page/10));
+		int startNum = (nowGrp-1)*10+1;
+		int lastNum = nowGrp*10;
+		int lastPage = (int)Math.ceil(allCount/10.0);
+		int endPage =  lastNum > lastPage ? lastPage : lastNum;
+		AllResStorePagingDTO dto = new AllResStorePagingDTO(startNum,lastNum,lastPage,endPage);
+		return dto;
 	}
 	
 	//카테고리 별 리스트

@@ -309,7 +309,7 @@ section {
 					can make a reservation at this store.</h3>
 				<hr>
 				<ul class="flexgrid columns-news">
-					<c:forEach var="item" items="${storePics}">
+					<c:forEach var="item" items="${storeList}">
 						<li>
 							<!--  <span class="grid-number">임의</span>-->
 							<a
@@ -317,20 +317,50 @@ section {
 								<input type="hidden" id="click" value="${item.biz_seq }">
 								<figure style="overflow-y: hidden; height: 150px;">
 									<img
-										src="${pageContext.request.contextPath}/files/${item.sysName}"
+										src="${pageContext.request.contextPath}/files/${item.sysname}"
 										class="d-block w-100">
 
 								</figure>
 								<div style="width: 100%;">
-									<h2 style="height: 50px; text-align: center;">${item.businessnameeng}</h2>
+									<h2 style="height: 50px; text-align: center;">${item.businessNameEng}</h2>
 								</div>
 							</a>
 						</li>
 					</c:forEach>
 				</ul>
 			</main>
+			
 			<!-- 페이징바!! -->
-			<div class="page" style="text-align: center; margin-left: 1px">
+			 <navi aria-label="Page navigation example ">
+  <ul class="pagination mt-4 justify-content-center align-items-center">
+  <c:choose>
+  <c:when test="${param.page<=1}">
+   <li class="page-item  "><a class="page-link"     onclick="alert('이전 페이지가 없습니다.');">Previous</a></li>
+    </c:when>
+    <c:otherwise>
+     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/Business/viewAll?&page=${param.page-1}">Previous</a></li>
+     </c:otherwise>
+    </c:choose>
+    <c:forEach var="i" begin="${paging.startNum}" end="${paging.endPage}" step="1">
+    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/Business/viewAll?&page=${i}">${i}</a></li>
+   </c:forEach>
+   
+   <c:choose>
+   
+   	<c:when test="${param.page >= paging.endPage }">
+   		<li class="page-item  "><a class="page-link"     onclick="alert('마지막 페이지 입니다.');">Next</a></li>
+   	</c:when>
+   	<c:otherwise>
+   	 <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/Business/viewAll?&page=${param.page+1}">Next</a></li>
+   	</c:otherwise>
+    </c:choose>
+  </ul>
+  
+</navi>
+			
+			
+			
+			<%-- <div class="page" style="text-align: center; margin-left: 1px">
 				<ul class="pagination modals">
 					<c:if test="${paging.startPage != 1 }">
 						<li><a class="active num"
@@ -353,7 +383,7 @@ section {
 							href="/Business/signup?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
 					</c:if>
 				</ul>
-			</div>
+			</div> --%>
 
 		</aside>
 
