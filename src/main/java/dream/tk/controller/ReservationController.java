@@ -1,5 +1,6 @@
 package dream.tk.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +35,7 @@ import dream.tk.dto.BusinessDTO;
 import dream.tk.dto.NotificationDTO;
 import dream.tk.dto.ResInfoDTO;
 import dream.tk.dto.ReservationDTO;
+import dream.tk.dto.ReservationPopOverDTO;
 import dream.tk.dto.ReserveCheckDTO;
 import dream.tk.service.ReservationService;
 
@@ -138,10 +141,9 @@ public class ReservationController {
 	@GetMapping(value= "/resInfoList",produces= {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
 	public List<ReservationDTO> resInfoList(String userId){
-		System.out.println(userId);
+		
 		List<ReservationDTO> list = resService.resInfoList(userId);
-		
-		
+
 		return list;
 	}
 	
@@ -159,6 +161,12 @@ public class ReservationController {
 		System.out.println("name: "+res_name);
 		resService.resRefuse(res_no);
 		return "redirect:/bMember/myPage";
+	}
+	
+	@ExceptionHandler
+	public String exceptionHandler(Exception e) {
+		e.printStackTrace();
+		return "error";
 	}
 	
 	

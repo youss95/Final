@@ -102,11 +102,7 @@
 	     $("#popBtn").popover("toggle");
 	     setTimeout(function() {
 	    	 document.getElementById("menu1").click();
-	    	}, 100);
-
-	     
-	    
-	    
+	    	}, 100); 
 	     //$("#popBtn").ekkoLightbox();
 	     // $(".wrap").css("background-color", "rgba(0,0,0,0.6)");
 	     //$(".wrap").css("opacity", "0.3");
@@ -114,7 +110,7 @@
 
 	   $("#popBtn").attr(
 	     "data-content",
-	     '<li id="menu1">예약정보</li><li id="menu2">찜</li><div id="myp"><a href=""><i class="fas fa-cog fa-2x"></i></a></div><br><div class="section"></div>'
+	     '<li id="menu1">예약정보</li><li id="menu2">찜</li><div id="myp"><i id="getout" class="fas fa-window-close fa-2x"></i></div><br><div class="section"></div>'
 	   );
 	 
 	   //동적 생성된거는 이거 쓴다.
@@ -127,15 +123,17 @@
 			  
 			  // $(".section *").remove();
 			   
-			     let first ='';
+			     let first ='<table class="table"><thead><tr><th scope="col">식당이름</th><th scope="col">날짜</th><th scope="col">시간</th></tr></thead><tbody>'
+			     
 			      resp.map((list)=>{	
-			    first += "<div id='aaa' data-res='"+list.res_no+"'>"+list.res_name+"</div><br><div>"+list.res_date+"</div><br><div>"+list.res_time+"</div><br>";	
+			    first += "<tr><th scope='row'><a href='/Business/view?biz_seq="+list.biz_seq+"&userId="+list.userId+"'>"+list.res_name+"</a></th><td>"+ list.res_date+"</td><td>"+list.res_time+"</td></tr>";	
 			     }) 
+			     first+='  </tbody></table>'
 			     contentSection.html(first);
 		   })
 	  
 	   });
-
+	 // <div id='aaa' data-res='"+list.res_no+"'>"+list.res_name+"</div><br><div>"+list.res_date+"</div><br><div>"+list.res_time+"</div><br>
 	   $(document).on("click", "#menu2", function () {
 	     $(".section *").remove();
 	     let contentSection = $(".section");
@@ -154,9 +152,10 @@
 	 
 	   });
 	   
+	   $(document).on('click','#getout',function(){
+		   $("#popBtn").click();
+	   })
+	   
 	   
   </script>
 
-</html>
-</body>
-</html>

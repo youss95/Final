@@ -82,13 +82,15 @@ select res_checked from reservation where res_time=#{res_time} and res_date=#{re
   
   <!-- 예약 정보 가져오기 수정 필요 select * from reservation where res_name = #{res_name} -->  
   <select id="getResInfo" resultType="dream.tk.dto.ReservationDTO">
-  select * from reservation where biz_seq = #{biz_seq} and res_checked = 'Y'
+  select * from reservation where biz_seq = #{biz_seq} and res_checked = 'Y' and  userId = #{userId}
   </select>
   
   <!-- 팝오버에 뿌릴 예약 정보 가져오기 -->
   <select id="resInfoList" resultType="dream.tk.dto.ReservationDTO">
   select * from reservation where userId=#{userId} and res_checked = 'Y'
   </select>
+  
+
   
   <!-- 정액권 결제 -->
   <insert id="resPay">

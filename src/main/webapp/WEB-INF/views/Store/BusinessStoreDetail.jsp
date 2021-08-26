@@ -21,9 +21,6 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/Store_detail.css?after">
 
-
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
 	integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
@@ -236,6 +233,7 @@ section {
 
 		<div class="headers">
 			<div class="swiper-container mySwiper">
+		
 				<c:choose>
 					<c:when test="${getFlist!=null}">
 						<c:forEach var="item" items="${getFlist}" varStatus="s">
@@ -776,16 +774,36 @@ section {
         	              }).done(function(resp){
         	                console.log(resp)
         	              $("#heartIcon").css("color","black")
-        	             
+        	             alert()
         	              })
         	              
+        	              /* 알람  */
+        	 let businessName = '${list.businessNameEng }'
+            let sender = '${loginID}'
+            let getter = ${list.seq}
+            let content = sender+" 님이 "+businessName+" 을  찜하였습니다."
+            console.log(content)
+            //let data ={content:content,seq:getter,biz_seq:biz_seq}
+            $.ajax({
+               url:"/noti/likeAlarm",
+               type:"post",
+               data:{'content':content,'seq':getter},
+               
+            }).done(function(resp){
+               console.log(resp)
+               if(socket){
+                  let scktMsg = "unlike,"+sender+","+resp+","+businessName+","+"1";
+                  console.log(scktMsg);
+                  socket.send(scktMsg);
+               }
+            }) 
         	           
         		 }else if(resp === 'N'){
         			  $("#heartIcon").css("color","black")
                    
                      let data = {
                            userId:'${loginID}',
-                         businessName:'${list.businessName}',
+                         businessName:'${list.businessNameEng }',
                          biz_seq:${list.biz_seq}
                                   }
                      $.ajax({
@@ -796,9 +814,29 @@ section {
                      }).done(function(resp){
                        console.log(resp)
                      $("#heartIcon").css("color","red")
-                   
+                   alert("찜을 하였습니다.")
                      })
                      
+                     /* 알람  */
+             let businessName = '${list.businessName}'
+            let sender = '${loginID}'
+            let getter = ${list.seq}
+            let content = sender+" 님이 "+businessName+" 을  찜하였습니다."
+            console.log(content)
+            //let data ={content:content,seq:getter,biz_seq:biz_seq}
+            $.ajax({
+               url:"/noti/likeAlarm",
+               type:"post",
+               data:{'content':content,'seq':getter},
+               
+            }).done(function(resp){
+               console.log(resp)
+               if(socket){
+                  let scktMsg = "like,"+sender+","+resp+","+businessName+","+"1";
+                  console.log(scktMsg);
+                  socket.send(scktMsg);
+               }
+            }) 
                   
         		 }else{
         			  let data = {
@@ -906,25 +944,7 @@ section {
             })
          })
          $("#likeStar").on('click',function(){
-            let businessName = '${list.businessName}'
-            let sender = '${loginID}'
-            let getter = ${list.seq}
-            let content = sender+" 님이 "+businessName+" 을  찜하였습니다."
-            console.log(content)
-            //let data ={content:content,seq:getter,biz_seq:biz_seq}
-            $.ajax({
-               url:"/noti/likeAlarm",
-               type:"post",
-               data:{'content':content,'seq':getter},
-               
-            }).done(function(resp){
-               console.log(resp)
-               if(socket){
-                  let scktMsg = "like,"+sender+","+resp+","+businessName+","+"1";
-                  console.log(scktMsg);
-                  socket.send(scktMsg);
-               }
-            })
+        	
          })
          </script>
 		</div>
