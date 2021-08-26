@@ -254,7 +254,7 @@ section {
 				<c:when test="${getFlist!=null}">
 					
 							<c:forEach var="item" items="${getFlist}" varStatus="s">
-								<div style="width: 33%;overflow-y: hidden;overflow-x: hidden;">
+								<div style="display:inline-block; width: 33%;overflow-y: hidden;overflow-x: hidden;">
 									<img src="/files/${item.sysName}" class="d-block w-100"
 										alt="...">
 								</div>
