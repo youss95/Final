@@ -22,16 +22,16 @@ public class EmailService {
 		email.setFrom(EmailConfig.getUserAccount(), EmailConfig.getUserName());
 		email.setSubject("TASTY KOREA Account Confirmation");
 		
-		String msg1="This is TASTY KOREA <br><br>";
-		String msg2="Welcome join us!<br>";
-		String msg3="If you want to join us, please put the numbers below in your confirming area.<br><br>";
-		String msg4 = String.valueOf((int)(Math.random()*(1000000-100000))+100000);
-        String msg = msg1+msg2+msg3+msg4;
+
+		String msg1="If you want to join us, please put ";
+		String msg2 = String.valueOf((int)(Math.random()*(1000000-100000))+100000);
+		String msg3 = " in your confirming area.";
+        String msg = msg1+msg2+msg3;
 		email.setMsg(msg);
 		email.addTo(rcpEmail, rcpName);
 		email.send();
 		
-		return msg4;
+		return msg2;
 	}
 
 }

@@ -137,32 +137,31 @@ public class AdminService {
 		};
 		return reservationCounts;
 	}
-
+	//JP, CN, US, FR
 	public void insertC() {
-		String[] nations = new String[]{"AR", "AU", "BR", "CA", "CN", "FR", "DE", "IN", "ID", "IT", "JP", "KR", "MX", "RU", "SA", "ZA", "TR", "GB", "US"};
+		String[] nations = new String[]{"CN"};
 		int indexN= 1;
 		int indexD=1;
 		Date[] dates = new Date[] { 
-				java.sql.Date.valueOf("2020-09-18"), java.sql.Date.valueOf("2020-10-18"), 
-				java.sql.Date.valueOf("2021-11-18"), java.sql.Date.valueOf("2021-12-18"), 
-				java.sql.Date.valueOf("2021-01-18"), java.sql.Date.valueOf("2021-02-18"), 
+				
+				java.sql.Date.valueOf("2021-01-18"),
 				java.sql.Date.valueOf("2021-03-18"), java.sql.Date.valueOf("2021-04-18"),
 				java.sql.Date.valueOf("2021-05-18"), java.sql.Date.valueOf("2021-06-18"),
 				java.sql.Date.valueOf("2021-07-18"), java.sql.Date.valueOf("2021-08-18")};
 		int yob=1;
-		for(int i=300; i<400;i++) {
-			indexN = (int)(Math.random()*19);
-			indexD = (int)(Math.random()*12);
+		for(int i=750; i<800;i++) {
+			indexN = (int)(Math.random()*1);
+			indexD = (int)(Math.random()*7);
 			String id = "test000"+String.valueOf(i);
 			String pw = "test000"+String.valueOf(i)+"!!";
 			String shaPW = SHA256.getSHA512(pw);
 			String email = "test000"+String.valueOf(i)+"google.com";
 			String name = "test000"+String.valueOf(i);
-			yob =(int)(Math.random()*20)+1980;
+			yob =(int)(Math.random()*60)+1950;
 			String nation = nations[indexN];
 			String agree = "agree";
 			Date reg_date = dates[indexD];
-			daoC.insert(new ClientMemberDTO(0, id, shaPW, email, name, yob, nation, agree, reg_date));
+			daoC.insert(new ClientMemberDTO(0, id, shaPW, email, name, yob, nation, agree, 0, reg_date, "C"));
 		}
 	}
 
@@ -189,13 +188,13 @@ public class AdminService {
 			daoB.insert(new BusinessMemberDTO(0, id, shaPW, name, email, phone, premium, reg_date, null, null));
 		}
 	}
-	
-	
+
+
 	public int getSeq(int seq) {
 		return daoA.getSeq(seq);
 	}
 	public int businessMemberOut(int businessMemberSeq){
 		return daoA.businessMemberOut(businessMemberSeq);
 	}
-	
+
 }

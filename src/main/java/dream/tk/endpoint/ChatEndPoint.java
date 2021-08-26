@@ -1,8 +1,10 @@
 package dream.tk.endpoint;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -56,6 +58,11 @@ public class ChatEndPoint {
 		//seq -> nextval from dual seq -> DB 3개 ? DB 2개? 
 		// 고객 - 업체 / 업체 - 매니저
 		// manager 분기점... 채팅 <input hidden >
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh : mm aa");
+		Date date = new Date();
+		date.setTime(System.currentTimeMillis());
+
+		String dateString = simpleDateFormat.format(date);
 		synchronized (clients) {
 			for (Session client : clients) { // 채팅방끼리 통신 가능함.
 
@@ -66,7 +73,15 @@ public class ChatEndPoint {
 				json.addProperty("manager", (String)hsession.getAttribute("manager")); //매니저 유무 확인
 				json.addProperty("contents", contents); // 메세지
 				json.addProperty("writer", (String)hsession.getAttribute("writer"));
+				json.addProperty("time", dateString); //현재 시간
+				
+				
+				
 				String nickname = (String)hsession.getAttribute("nickname");
+				
+				System.out.println("상대 nickname : " + nickname);
+				
+				
 				String writer = (String)hsession.getAttribute("writer");
 				if(nickname == null) {
 					nickname = (String)hsession.getAttribute("loginID");
@@ -81,6 +96,17 @@ public class ChatEndPoint {
 				}else {
 					chatnum = nickname+store;
 				}
+				String writeName;
+				if(writer.contentEquals("store")) {
+					if(manager == null) {
+						writeName = store;
+					}
+					writeName = "manager";
+				}else{
+					writeName = store;
+				}
+					json.addProperty("writerName", writeName); //쓴 사람 아이디
+				
 				try {
 					
 					dao.selectList(nickname);
@@ -115,8 +141,13 @@ public class ChatEndPoint {
 				chatnum = "manager" + store;
 				
 			}else {
+				if(manager == null) {
 				chatnum = nickname+store;
+				}else {
+					chatnum = "manager" + store;
+				}
 			}
+			System.out.println("chatnum : " + chatnum);
 			try {
 				if(writer.contentEquals("admin")) {
 					dao.insertManager(new ChatAdminDTO(chatnum,store,contents,nickname));
@@ -132,6 +163,7 @@ public class ChatEndPoint {
 					
 					}
 				}
+				
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
