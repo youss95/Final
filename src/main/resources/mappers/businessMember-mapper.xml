@@ -78,7 +78,7 @@
 		biz_type=#{biz_type},bizNum=#{bizNum},businessName=#{businessName},
 		businessNameEng=#{businessNameEng}, businessContact=#{businessContact},
 		address1=#{address1}, address2=#{address2},
-		postcode=#{postcode},address1Kor=#{address1Kor}, offday=#{offday}
+		postcode=#{postcode},address1Kor=#{address1Kor}
 		where seq=#{seq}
 	</update>
 
@@ -191,7 +191,7 @@
 	</select>
     
     <select id="getTotalRes" resultType="int">
-		select count(*) from reservation where biz_seq=${value}
+		select count(*) from reservation where biz_seq=${value} and res_checked='Y'
 	</select>
     
     <select id="getLikes" resultType="int">
