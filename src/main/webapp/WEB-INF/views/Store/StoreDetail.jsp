@@ -253,7 +253,7 @@ section {
 				<input type="hidden" id="store" value="${list.businessName }">
 				<a><img
 					src="${pageContext.request.contextPath}/resources/images/start.png">
-					찜하기</a>
+					Bookmark</a>
 				<h1 style="float: center;">${list.businessNameEng }</h1>
 				<div>
 					<img
