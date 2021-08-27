@@ -124,7 +124,8 @@ public class BusinessStoreController {
 		   AllResStorePagingDTO dto = service.getPagingCategory(page,biz_type);
 		   model.addAttribute("paging",dto);
 		   model.addAttribute("storeList",list);
-		   return "/Store/BusinessStore";
+		   model.addAttribute("biz_type",biz_type);
+		   return "/Store/BusinessStoreCategory";
 	   }
 	   
 		/*
