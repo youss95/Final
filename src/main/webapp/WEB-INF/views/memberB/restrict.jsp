@@ -15,8 +15,8 @@
 <script>
 			Swal.fire({
 				  icon: 'error',
-				  title: "번역 서비스 이용 불가",
-				  text: '업체 정보를 등록해야 번역 서비스 이용이 가능합니다. ',
+				  title: "서비스 이용 불가",
+				  text: '업체 정보를 등록해야 해당 서비스 이용이 가능합니다. ',
 			}).then(function() {
 				location.href="${pageContext.request.contextPath}/bMember/myPage";
 			});
