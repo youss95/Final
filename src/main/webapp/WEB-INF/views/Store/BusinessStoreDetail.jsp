@@ -541,7 +541,7 @@ section {
 									name="bno" value="${list.biz_seq }" />
 								<div class="form-group">
 									<input type="text" class="form-control" id="contents"
-										name="contents" placeholder="check">
+										name="contents" placeholder="send a review">
 								</div>
 								<button type="button" value="" class="btn btn-primary"
 									name="commentInsertBtn" style="left: 0;">
@@ -972,6 +972,11 @@ section {
          $("#likeStar").on('click',function(){
         	
          })
+         document.addEventListener('keydown', function(event) {
+					  if (event.keyCode === 13) {
+					    event.preventDefault();
+					  };
+					}, true);
          </script>
 		</div>
 	</div>
