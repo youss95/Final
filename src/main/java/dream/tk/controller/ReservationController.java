@@ -157,10 +157,11 @@ public class ReservationController {
 	}
 	
 	@GetMapping("/cancel")
-	public String resRefuse(int res_no,String res_name) {
+	public String resRefuse(int res_no,String res_name,Model model) {
 		System.out.println("name: "+res_name);
 		resService.resRefuse(res_no);
-		return "redirect:/bMember/reservation?res_name="+res_name;
+		model.addAttribute("res_name",res_name);
+		return "/memberB/cancelSuccess";
 	}
 	
 	@ExceptionHandler
