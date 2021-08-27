@@ -280,7 +280,7 @@ section {
 					value="${list.address1Kor}"> <input type="hidden"
 					id="businessNameEng" name="businessNameEng"
 					value="${list.businessNameEng }"> <span id="likeStar"><i
-					id="heartIcon" class="fas fa-heart fa-2x"></i>찜하기</span>
+					id="heartIcon" class="fas fa-heart fa-2x"></i> Bookmark</span>
 				<h1 style="float: center;">${list.businessNameEng }</h1>
 				<div>
 					<img
@@ -565,7 +565,7 @@ section {
 								<button type="button"
 									onclick="location.href='${pageContext.request.contextPath}/member/whichMember'"
 									class="btn btn-primary" name="commentInsertBtn"
-									style="left: 0;">로그인하기</button>
+									style="left: 0;">login</button>
 							</form>
 						</c:otherwise>
 					</c:choose>
@@ -626,8 +626,8 @@ section {
                                        a += '<div class="col-sm-12"><div class="panel panel-default"><div class="panel-heading">'
                                        a += '<h3><i class="fa fa-comment"></i> '
                                              + value.writer
-                                             + '<small> 날짜 : '
-                                             + value.reg_date
+                                             /*+ '<small> 날짜 : '
+                                             + value.reg_date*/
                                              
                                              + '<div class="review">'
                                              + ' <div class="rating" data-rate='+value.star_avg+'>'
