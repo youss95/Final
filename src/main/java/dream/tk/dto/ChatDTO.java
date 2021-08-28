@@ -96,6 +96,10 @@ public class ChatDTO {
 	public void setWrite_date(String write_date) {
 		this.write_date = write_date;
 	}
-	
-	
 }
+
+/*
+ * CREATE TABLE CHAT_CLIENT( seq NUMBER PRIMARY KEY, chatnum VARCHAR(1000) NOT
+ * NULL, id VARCHAR(50), store VARCHAR(50), contents VARCHAR(2000) NOT NULL,
+ * nickname varchar(50), write_date DATE DEFAULT sysdate );
+ */
