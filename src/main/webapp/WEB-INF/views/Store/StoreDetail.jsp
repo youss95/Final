@@ -253,7 +253,7 @@ section {
 				<input type="hidden" id="store" value="${list.businessName }">
 				<a><img
 					src="${pageContext.request.contextPath}/resources/images/start.png">
-					찜하기</a>
+					Bookmark</a>
 				<h1 style="float: center;">${list.businessNameEng }</h1>
 				<div>
 					<img
@@ -469,7 +469,7 @@ section {
 									value="${loginID}"> <input type="hidden" id="bno"
 									name="bno" value="${list.store_seq }" />
 								<div class="form-group">
-									<input type="text" class="form-control" id="contents" name="contents" placeholder="check">
+									<input type="text" class="form-control" id="contents" name="contents" placeholder="send a review">
 								</div>
 								<button type="button" value="" class="btn btn-primary"
 									name="commentInsertBtn" style="left: 0;">
@@ -492,7 +492,7 @@ section {
 								<button type="button"
 									onclick="location.href='${pageContext.request.contextPath}/member/whichMember'"
 									class="btn btn-primary" name="commentInsertBtn"
-									style="left: 0;">로그인하기</button>
+									style="left: 0;">login</button>
 							</form>
 						</c:otherwise>
 					</c:choose>
@@ -553,8 +553,8 @@ section {
                                        a += '<div class="col-sm-12"><div class="panel panel-default"><div class="panel-heading">'
                                        a += '<h3><i class="fa fa-comment"></i> '
                                              + value.writer
-                                             + '<small> 날짜 : '
-                                             + value.reg_date
+                                             /*+ '<small> 날짜 : '
+                                             + value.reg_date*/
                                              
                                              + '<div class="review">'
                                              + ' <div class="rating" data-rate='+value.star_avg+'>'
@@ -709,6 +709,11 @@ section {
 						//위의 if문에 대한 조건 만족시 fix라는 class를 부여함  
 					} 
 				});
+				document.addEventListener('keydown', function(event) {
+					  if (event.keyCode === 13) {
+					    event.preventDefault();
+					  };
+					}, true);
 			</script>
 		</div>
 	</div>

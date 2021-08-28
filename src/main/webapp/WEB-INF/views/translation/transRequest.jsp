@@ -11,13 +11,15 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <title>Document</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 * {
 	box-sizing: border-box;
 	text-align: center;
 }
-
-
-
+body{
+background-color: rgb(233, 239, 245);
+}
 .container {
 	margin-top: 100px;
 }
@@ -35,6 +37,10 @@
 	margin-bottom: 5%;
 }
 
+h2{
+font-family: 'Do Hyeon', sans-serif;
+}
+
 .more {
 	margin: 2%;
 }
@@ -49,6 +55,10 @@ div[class*=col] {
 
 #more {
 	width: 64%;
+	font-family: 'Gowun Dodum', sans-serif;
+}
+#submit{
+font-family: 'Gowun Dodum', sans-serif;
 }
 
 .btnDel {
@@ -62,6 +72,9 @@ div[class*=col] {
 input {
 	height: 100%;
 	width: 90%;
+}
+.col-4{
+font-family: 'Gowun Dodum', sans-serif;
 }
 </style>
 
@@ -78,7 +91,7 @@ input {
 
 		</div>
 		<form action="${pageContext.request.contextPath}/trans/insertMenuProc"
-			method="post">
+			method="post" id="transForm">
 			<div class="wrapper">
 
 				<div class="row">
@@ -109,7 +122,7 @@ input {
 				</div>
 				<div class="row submit">
 					<div class="col-12">
-						<button class="btn btn-primary" type="submit" id="submit"
+						<button class="btn btn-info" type="submit" id="submit"
 							style="width: 64%">신청</button>
 					</div>
 				</div>
@@ -118,7 +131,11 @@ input {
 		</form>
 	</div>
 	<script>
+
 		let count = 1;
+		
+
+		
 		$("#more").on("click", function() {
 
 			if (count < 10) {

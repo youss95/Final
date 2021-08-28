@@ -144,36 +144,43 @@
 		
 		// 사진 등록 서비스 관련
 		$("#uploadBtn1").on("click",function(){    
-			//let reg = /(.*?)\.(jpg|jpeg|png)$/;
-			let reg = /^\S*\.(jpg|jpeg|png)$/;
-			let files=$('input[name="file"]')[0].files;
-		       	         
-		    let regResult = true;
-		    for(var i= 0; i<files.length; i++){
-		        if(!reg.test(files[i].name)){
-		        	alert("사진은 jpg, jpeg, png 형식만 등록 가능합니다.");
-		        	regResult = false;
-		        	break;
-		        }
-		     }
-		            	     
-			if(regResult){
-				Swal.fire({
-					  icon: "question",
-					  title: "사진을 등록하시겠습니까?",
-					  text: "확인 버튼을 클릭 시, 사진이 등록됩니다.",
-					  showConfirmButton:true,
-					  showCancelButton:true,
-					  confirmButtonText:"확인",
-					  cancelButtonText:"취소",
-					}).then((result) =>{
-						if(result.isConfirmed){
-							$("#uploadFrm1").submit();
-						}else{
-							return false;
-						}						
-					})
-					}						
+			
+			if("${bizInfo.businessName}" == null || "${bizInfo.businessName}" ==""){
+				location.href="${pageContext.request.contextPath}/bMember/restrict";		
+			}else{
+
+				//let reg = /(.*?)\.(jpg|jpeg|png)$/;
+				let reg = /^\S*\.(jpg|jpeg|png)$/;
+				let files=$('input[name="file"]')[0].files;
+			       	         
+			    let regResult = true;
+			    for(var i= 0; i<files.length; i++){
+			        if(!reg.test(files[i].name)){
+			        	alert("사진은 jpg, jpeg, png 형식만 등록 가능합니다.");
+			        	regResult = false;
+			        	break;
+			        }
+			     }
+			            	     
+				if(regResult){
+					Swal.fire({
+						  icon: "question",
+						  title: "사진을 등록하시겠습니까?",
+						  text: "확인 버튼을 클릭 시, 사진이 등록됩니다.",
+						  showConfirmButton:true,
+						  showCancelButton:true,
+						  confirmButtonText:"확인",
+						  cancelButtonText:"취소",
+						}).then((result) =>{
+							if(result.isConfirmed){
+								$("#uploadFrm1").submit();
+							}else{
+								return false;
+							}						
+						})
+						}	
+			}
+								
 			})	
 	     // ===========사진 등록 서비스 관련
 			
@@ -295,13 +302,20 @@
 		
 	})
 	
+	$(function(){
+		$("#restrict").on("click", function(){
+			location.href="${pageContext.request.contextPath}/bMember/restrict";			
+		})
+		
+	})
+	
 	
 
 </script>
 
 </head>
 
-<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
+<body>
 
   <div class="wrapper ">
      <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" style="height:100%;">
@@ -634,7 +648,16 @@
                     
                     <div class="card-body" style="width:100%;">
                       <div style="width:30%">메뉴판 번역 서비스</div>
-                      <div style="width:60%"><button class="btn" type="button" id="transRequest">번역 서비스</button></div>
+                      <div style="width:60%">
+                      	<c:choose>
+                      		<c:when test="${bizInfo.businessName eq null}">
+                      			<button class="btn" type="button" id="restrict">번역 서비스</button>
+                      		</c:when>
+                      		<c:otherwise>
+                      			<button class="btn" type="button" id="transRequest">번역 서비스</button>
+                      		</c:otherwise>
+                      	</c:choose>                     	
+                      </div>
                     </div>
 					<hr>	
 		

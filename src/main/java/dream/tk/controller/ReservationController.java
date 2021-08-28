@@ -92,16 +92,16 @@ public class ReservationController {
 	
 	
 	@PostMapping("/setTime")
-	public String setTime(@Valid BusinessDTO dto, BindingResult bindingResult) {
-		if(bindingResult.hasErrors()) {
-			Map<String,String> errorMap = new HashMap<>();
-			
-			for(FieldError error : bindingResult.getFieldErrors()) {
-				errorMap.put(error.getField(), error.getDefaultMessage());
-			}
-		System.out.println("유효성 검사 실패 메시지: "+errorMap.get("businessContact"));
-			return "redirect: /reservation/res_bizSetting";
-		}
+	public String setTime(BusinessDTO dto) {
+		/*
+		 * if(bindingResult.hasErrors()) { Map<String,String> errorMap = new
+		 * HashMap<>();
+		 * 
+		 * for(FieldError error : bindingResult.getFieldErrors()) {
+		 * errorMap.put(error.getField(), error.getDefaultMessage()); }
+		 * System.out.println("유효성 검사 실패 메시지: "+errorMap.get("businessContact")); return
+		 * "redirect: /reservation/res_bizSetting"; }
+		 */
 		
 		
 		
@@ -157,10 +157,11 @@ public class ReservationController {
 	}
 	
 	@GetMapping("/cancel")
-	public String resRefuse(int res_no,String res_name) {
+	public String resRefuse(int res_no,String res_name,Model model) {
 		System.out.println("name: "+res_name);
 		resService.resRefuse(res_no);
-		return "redirect:/bMember/reservation?res_name="+res_name;
+		model.addAttribute("res_name",res_name);
+		return "/memberB/cancelSuccess";
 	}
 	
 	@ExceptionHandler

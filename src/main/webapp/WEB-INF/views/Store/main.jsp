@@ -42,6 +42,26 @@
 .up-content{
 	border-radius: 5%;
 }
+.product-item-category{
+margin:0 auto;
+width:200px;
+height:200px;
+
+
+border-radius:70%;
+overflow:hidden
+}
+.cateImg{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+#blankSpace{
+margin-bottom:10px;
+}
+.foodCon{
+text-align:center
+}
 </style>
 </head>
 
@@ -267,11 +287,165 @@
 											<!-- 타이틀 이름-->
 											<h4>${item.businessnameeng}</h4>
 										</a>
-										<!--댓글 개수 -->
 									</div>
 								</div>
 							</div>
 						</c:forEach>
+<!-- category  -->
+
+<div class="col-4" >
+								<div class="foodCon" >
+									<div class="up-content product-item-category"  >
+										<a
+											href="/Business/viewByBizType?page=1&biz_type=KoreanFood">
+											<img
+											src="${pageContext.request.contextPath}/resources/Storeimages/kkkf.jpg"
+											 class="cateImg d-block h-100" >
+										</a>
+									</div>
+									<div class="down-content">
+										<a
+											href="/Business/viewByBizType?page=1&biz_type=KoreanFood">
+											<!-- 타이틀 이름-->
+											<h4>Korean</h4>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-4" >
+								<div class="foodCon" >
+									<div class="up-content product-item-category"  >
+										<a
+											href="/Business/viewByBizType?page=1&biz_type=JapaneseFood">
+											<img
+											src="${pageContext.request.contextPath}/resources/Storeimages/chbap.jpg"
+											 class="cateImg d-block h-100" >
+										</a>
+									</div>
+									<div class="down-content">
+										<a
+											href="/Business/viewByBizType?page=1&biz_type=JapaneseFood">
+											<!-- 타이틀 이름-->
+											<h4>Japanese</h4>
+										</a>
+									</div>
+								</div>
+							</div><div class="col-4" >
+								<div class="foodCon" >
+									<div class="up-content product-item-category"  >
+										<a
+											href="/Business/viewByBizType?page=1&biz_type=ChineseFood">
+											<img
+											src="${pageContext.request.contextPath}/resources/Storeimages/cff.jpg"
+											 class="cateImg d-block h-100" >
+										</a>
+									</div>
+									<div class="down-content">
+										<a
+											href="/Business/viewByBizType?page=1&biz_type=ChineseFood">
+											<!-- 타이틀 이름-->
+											<h4>Chinese</h4>
+										</a>
+									</div>
+								</div>
+							</div>
+<div class="col-4" >
+								<div class="foodCon" >
+									<div class="up-content product-item-category"  >
+										<a
+											href="/Business/viewByBizType?page=1&biz_type=WesternFood">
+											<img
+											src="${pageContext.request.contextPath}/resources/Storeimages/burger.png"
+											 class="cateImg d-block h-100" >
+										</a>
+									</div>
+									<div class="down-content">
+										<a
+											href="/Business/viewByBizType?page=1&biz_type=WesternFood">
+											<!-- 타이틀 이름-->
+											<h4>Western</h4>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-4" >
+								<div class="foodCon" >
+									<div class="up-content product-item-category"  >
+										<a
+											href="/Business/viewByBizType?page=1&biz_type=WorldFood">
+											<img
+											src="${pageContext.request.contextPath}/resources/Storeimages/food-world.png"
+											 class="cateImg d-block h-100" >
+										</a>
+									</div>
+									<div class="down-content">
+										<a
+											href="/Business/viewByBizType?page=1&biz_type=WorldFood">
+											<!-- 타이틀 이름-->
+											<h4>World</h4>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-4" >
+								<div class="foodCon" >
+									<div class="up-content product-item-category"  >
+										<a
+											href="/Business/viewByBizType?page=1&biz_type=Buffet">
+											<img
+											src="${pageContext.request.contextPath}/resources/Storeimages/bfff.jpg"
+											 class="cateImg d-block h-100" >
+										</a>
+									</div>
+									<div class="down-content">
+										<a
+											href="/Business/viewByBizType?page=1&biz_type=Buffet">
+											<!-- 타이틀 이름-->
+											<h4>Buffet</h4>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-4" >
+								<div class="foodCon" >
+									<div class="up-content product-item-category"  >
+										<a
+											href="/Business/viewByBizType?page=1&biz_type=Cafe">
+											<img
+											src="${pageContext.request.contextPath}/resources/Storeimages/cafff.jpg"
+											 class="cateImg d-block h-100" >
+										</a>
+									</div>
+									<div class="down-content">
+										<a
+											href="/Business/viewByBizType?page=1&biz_type=Cafe">
+											<!-- 타이틀 이름-->
+											<h4>Cafe</h4>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-4" >
+								<div class="foodCon" >
+									<div class="up-content product-item-category"  >
+										<a
+											href="/Business/viewByBizType?page=1&biz_type=Bar">
+											<img
+											src="${pageContext.request.contextPath}/resources/Storeimages/baaaa.jpg"
+											 class="cateImg d-block h-100" >
+										</a>
+									</div>
+									<div class="down-content">
+										<a
+											href="/Business/viewByBizType?page=1&biz_type=Bar">
+											<!-- 타이틀 이름-->
+											<h4>Bar</h4>
+										</a>
+									</div>
+								</div>
+							</div>
+
+
 
 			</div>
 		</div>
@@ -284,9 +458,9 @@
 				<div class="col-md-12">
 					<div class="inner-content">
 						<p>
-							Copyright &copy; 2020 Sixteen Clothing Co., Ltd. - Design: <a
-								rel="nofollow noopener" href="https://templatemo.com"
-								target="_blank">TemplateMo</a>
+							TastyKorea <a
+								rel="nofollow noopener" href=""
+								target="_blank">4조 꿈이크조 </a>
 						</p>
 					</div>
 				</div>
