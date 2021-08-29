@@ -99,7 +99,21 @@ public class BusinessMemberDTO {
 		this.member_role = member_role;
 	}
 
+//	create table business_member(
+//		    seq number primary key, 
+//		    id varchar2(20) not null,
+//		    pw varchar2(20) not null,
+//		    name varchar2(30) ,
+//		    email varchar2(100) ,
+//		    phone varchar2(20) ,
+//		    reg_date DATE default sysdate,
+//		    premium varchar2(1) default 'N',
+//		    prm_exp_date DATE default null,
+//		    member_role varchar2(1) default 'B'
+//		);
+//	
 	
+//	create sequence business_member_seq start with 1 increment by 1 nomaxvalue nocache;
 	
 	
 }
