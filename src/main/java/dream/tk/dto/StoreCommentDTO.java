@@ -112,7 +112,19 @@ public class StoreCommentDTO {
 		}
 	    
 	    
-	    
+/*
+  create table comments(
+	cno number not null,
+	bno number not null,
+	content varchar2(3000) not null,
+	wirter varchar2(20) not null,
+	star_age number,
+	report_count number,
+	keep_count number,
+	keep_date char,
+	reg_date detail sysdate
+);
+ */
 		
 		
 	   

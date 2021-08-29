@@ -109,5 +109,16 @@ public class StoreMCommentDTO {
 	public void setAvg(int avg) {
 		this.avg = avg;
 	}
-    
+   /*create table comments_Main(
+	cno1 number not null,
+	bno number not null,
+	content varchar2(3000) not null,
+	wirter varchar2(20) not null,
+	star_age number,
+	report_count number,
+	keep_count number,
+	keep_date char,
+	reg_date detail sysdate
+);
+    */
 }
