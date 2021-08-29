@@ -228,7 +228,25 @@ public class StoreDTO {
 				+ ", keep_count=" + keep_count + ", searchWrd=" + searchWrd + "]";
 	}
 	
-	
+/*
+ * create table store (
+  Store_seq number not null,      
+  city varchar2(300),
+  BusinessName varchar2(300),
+  BusinessNameEng varchar2(300),
+  phone varchar2(300),
+  post varchar2(200),
+  Road_name varchar2(200),
+  Road_nameEng2 varchar2(200),
+  store_X varchar2(100),
+  store_y varchar2(100),           
+  view_count number,            
+  report_count number,          
+  star_age varchar2(100),              
+  star_age_count number,                         
+  keep_count number                   
+);
+ */
 	
 	
 	

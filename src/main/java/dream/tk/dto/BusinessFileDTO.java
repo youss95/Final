@@ -92,7 +92,15 @@ public class BusinessFileDTO {
 	}
 
 
+//	create table business_file(
+//			seq number ,
+//			oriName varchar2(200),
+//			sysName varchar2(200),
+//			parent_id varchar2(20),
+//			reg_date date default sysdate
+//			);
 	
+//	create sequence business_file_seq start with 1 increment by 1 NOCACHE NOMAXVALUE;
 	
 	
 	
