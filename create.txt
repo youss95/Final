@@ -1,0 +1,55 @@
+create table res_payment (   
+pay_no number primary key,
+memberId varchar2(100), --로그인한 아이디
+imp_uid varchar2(200),
+merchant_uid varchar2(200),
+biz_email varchar2(100),
+pay_date Date default sysdate,
+card_no varchar2(100),
+price number,
+refund number default 0 
+);
+
+create table reservation(  
+res_no number primary key,  
+res_name varchar2(100), --(식당 테이블 fk키)  식당 이름
+userId varchar2(100),  --유저아이디 (유저 테이블 fk키)
+res_date varchar2(100), --예약날짜 '2021-08-21'
+res_time varchar2(100), --예약시간  '17:00'
+res_checked char(1) default 'N' constraint resCheck check (res_checked in ('Y' , 'N')), --예약 체크 
+biz_seq number,
+res_createDate Date default sysdate not null
+);
+
+create table notification (
+noti_no number primary key,
+userId varchar2(100) not null,
+content varchar2(1000) not null,  
+noti_createDate Date not null, 
+noti_readDate char(1) default 'N'
+);
+
+create table business (
+biz_seq number primary key,
+biz_type varchar2(50)not null,
+bizNum varchar2(20) not null, --사업자번호
+businessName varchar2(50) not null,
+businessNameEng varchar2(50) not null,
+businessContact varchar2(20) not null,
+address1 varchar2(200) not null,
+address2 varchar2(200),
+postcode varchar2(20),
+address1Kor varchar2(200) not null,
+offday varchar2(300),
+onday varchar2(300),
+createDate DATE default sysdate,
+seq number 
+);
+
+create table likes(
+like_no number primary key,
+userId varchar2(100),
+businessName varchar2(100),
+like_status char(1) default 'N',
+biz_seq number
+);
