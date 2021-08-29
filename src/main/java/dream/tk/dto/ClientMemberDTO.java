@@ -3,6 +3,23 @@ package dream.tk.dto;
 import java.sql.Date;
 
 public class ClientMemberDTO {
+	
+//	create table client_member(
+//		    seq number primary key,
+//		    id VARCHAR2(50),
+//		    pw VARCHAR2(200) ,
+//		    email VARCHAR2(100),
+//		    name VARCHAR2(100),
+//		    yob NUMBER,
+//		    nation VARCHAR2(50),
+//		    agree varchar(10),
+//		    police_count number,
+//		    reg_date date,
+//		    member_role varchar(1)
+//		);
+	
+//	create sequence client_member_seq start with 1 increment by 1 nocache nomaxvalue;
+	
 	private int seq;
 	private String id;
 	private String pw;
