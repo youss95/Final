@@ -6,6 +6,26 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AdminMemberDTO {
+	
+//	create table admin_member(
+//		    seq number primary key,
+//		    emp_id VARCHAR2(50),
+//		    pw VARCHAR2(200),
+//		    name VARCHAR2(100),
+//		    phone VARCHAR2(20) ,
+//		    email VARCHAR2(100),
+//		    reg_date DATE,
+//		    member_role varchar(1) default 'A'
+//		);
+	
+//	create sequence admin_member_seq start with 1 increment by 1 nocache nomaxvalue;
+	
+//	create table admin_premember(
+//		    seq number,
+//		    emp_id VARCHAR2(50) ,
+//		    name VARCHAR2(100)
+//		);
+	
 	private int seq;
 	private String emp_id;
 	private String pw;

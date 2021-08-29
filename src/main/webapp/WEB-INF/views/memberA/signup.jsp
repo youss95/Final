@@ -158,7 +158,7 @@ button {
 
 					<div class="row" style="margin-top: 15px">
 						<div class="col-12" style="text-align: center;">
-							<button type="submit" id="signup">Sign Up</button>
+							<button type="submit" class="btn btn-primary" id="signup" style="width:100%;">Sign Up</button>
 						</div>
 
 					</div>

@@ -4,6 +4,21 @@ import java.sql.Date;
 
 public class TranslateDTO {
 	
+//	create table menu_translate(
+//		    seq number primary key,
+//		    menu_kor varchar2(400) not null,
+//		    menu_eng varchar2(400),
+//		    price number not null,
+//		    business_id varchar(20),
+//		    business_name varchar(500),
+//		    reg_date date,
+//		    confirm_date date,
+//		    confirm_YN varchar(1) default 'N',
+//		    biz_seq number
+//		);
+	
+//	create sequence menu_translate_seq start with 1 increment by 1 nocache nomaxvalue;
+	
 	private int seq;
 	private String menu_kor;
 	private String menu_eng;
