@@ -48,8 +48,8 @@ TastyKorea는 약3주 동안 준비한 kh정보교육원에서 진행한 프로�
 
 ## Contributors
 
-- 김사용: 예약, 찜, 알람, 결제, 예약관리
-- 임예이: 회원가입, 로그인, 회원 수정, 메뉴 번역, 관리자 파트
-- 김가영: Client, Business 채팅
-- 이광재: 메인 화면, 공공데이터 포털 자료로 업체 등록, 업체 상세 페이지, 별점 & 댓글
-- 이윤서: 비즈니스 회원가입, 로그인, 대시보드, 사진 업로드, 업체 회원 관리
+- 김사용: 예약, 찜, 알람, 결제, 예약관리 [GitHub](https://github.com/youss95)
+- 임예이: 회원가입, 로그인, 회원 수정, 메뉴 번역, 관리자 파트 [GitHub](https://github.com/hiki-como)
+- 김가영: Client, Business 채팅 [GitHub](https://github.com/gayoung98)
+- 이광재: 메인 화면, 공공데이터 포털 자료로 업체 등록, 업체 상세 페이지, 별점 & 댓글 [GitHub](https://github.com/dfsdfsdfadasf)
+- 이윤서: 비즈니스 회원가입, 로그인, 대시보드, 사진 업로드, 업체 회원 관리 [GitHub](https://github.com/riicoseo)
