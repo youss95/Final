@@ -40,12 +40,8 @@ public class AlarmHandler extends TextWebSocketHandler{
 		System.out.println("메시지"+message);
 		String senderId= getId(session);  //모든 부라우저는 세션 아이디를 가진다.
 		System.out.println("senderId"+senderId);
-		/*
-		 * for(WebSocketSession sess: sessions) { //모든 세션에게 메시지 보내기 sess.sendMessage(new
-		 * TextMessage(senderId+" "+message.getPayload())); }
-		 */
 		
-		//protocol: cmd,댓글작성자,게시글작성자  (alarm,sender,getter,no)
+		
 		String msg = message.getPayload();
 		System.out.println("msg: "+msg);
 		if(msg != null) {
@@ -61,13 +57,13 @@ public class AlarmHandler extends TextWebSocketHandler{
 			WebSocketSession boardWriterSession = userSessions.get(boardId);//게시글 작성자가 있으면
 			System.out.println("받는사람"+boardWriterSession);
 			if("like".equals(cmd) && boardWriterSession != null) {
-				TextMessage tmpMsg = new TextMessage(sender + "님이" + businessName + "을 찜했습니다."+","+count);
+				TextMessage tmpMsg = new TextMessage(sender + "님이" + businessName + " 을 찜했습니다.");
 				
 				System.out.println("tmp"+tmpMsg);
 				boardWriterSession.sendMessage(tmpMsg);
 				
 			}else	if("unlike".equals(cmd) && boardWriterSession != null) {
-				TextMessage tmpMsg = new TextMessage(sender + "님이" + businessName + "의 찜을 취소했습니다."+","+count);
+				TextMessage tmpMsg = new TextMessage(sender + "님이" + businessName + " 의 찜을 취소했습니다.");
 				
 				System.out.println("tmp"+tmpMsg);
 				boardWriterSession.sendMessage(tmpMsg);

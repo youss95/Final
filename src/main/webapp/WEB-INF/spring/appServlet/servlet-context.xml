@@ -48,7 +48,7 @@
 
 <!-- 스프링 웹소켓 -->
 <websocket:handlers>
- <websocket:mapping handler="webSocketAlarmHandler" path="/replyEcho" />
+ <websocket:mapping handler="webSocketAlarmHandler" path="/likeEcho" />
  <websocket:handshake-interceptors>  <!-- 인터셉터는 httpsession 사용하기 위하여 -->
       <beans:bean
           class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
